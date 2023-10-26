@@ -1,6 +1,8 @@
-import {registerService} from '@/services/auth.service';
 import React from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
+import {Button, SafeAreaView} from 'react-native';
+
+import {registerService} from '@/services/auth.service';
+import {Text} from '@/components';
 
 function Register(): JSX.Element {
   const registerHandler = async () => {
@@ -9,8 +11,12 @@ function Register(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <Text>Register</Text>
-      <Button title="Kayıt ol" onPress={registerHandler}></Button>
+      <Text variant="title" color="red">
+        This is a title
+      </Text>
+      <Text variant="content">This is some content</Text>
+      <Text variant="subtitle">This is a subtitle</Text>
+      <Text variant="caption">This is a caption</Text>
     </SafeAreaView>
   );
 }
