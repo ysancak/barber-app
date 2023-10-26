@@ -1,22 +1,19 @@
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
-import RootNavigator from '@/router/RootNavigator';
 import {store} from '@/store';
+import RootNavigator from '@/router/RootNavigator';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <SafeAreaView>
-        <StatusBar barStyle={'dark-content'} />
-        <NavigationContainer>
-          <RootNavigator />
-        </NavigationContainer>
-        <Toast />
-      </SafeAreaView>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+      <Toast />
     </Provider>
   );
 }
