@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { store } from '../store';
-import { setTokens, clearTokens } from '../slices/authSlice';
-import { API_BASE_URL } from '../utils/constants';
+import { store } from '@/store';
+import { setTokens, clearTokens } from '@/store/auth';
+import { API_BASE_URL } from '@/utils/constants';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

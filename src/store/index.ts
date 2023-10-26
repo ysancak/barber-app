@@ -2,16 +2,16 @@ import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/
 import { persistReducer, persistStore } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import userReducer from '../store/user';
+import authReducer from '@/store/auth';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['']
+  whitelist: ['auth']
 };
 
 const rootReducer = combineReducers({
-    user: userReducer,
+    auth: authReducer,
   });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
