@@ -3,7 +3,13 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "moduleResolution": "node",
+    "target": "esnext",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "extends": "@tsconfig/react-native/tsconfig.json"
 }
