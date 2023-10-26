@@ -1,19 +1,29 @@
 import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
-import {store} from '@/store';
+import '@/locale/i18n.config';
+import {store, persistor} from '@/store';
 import RootNavigator from '@/router/RootNavigator';
+import toastConfig from '@/utils/toast/config';
+import {PersistGate} from 'redux-persist/integration/react';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
-      <Toast />
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar
+          backgroundColor="transparent"
+          translucent={true}
+          barStyle={'dark-content'}
+        />
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+        <Toast config={toastConfig} />
+      </PersistGate>
     </Provider>
   );
 }

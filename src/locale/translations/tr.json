@@ -1,0 +1,19 @@
+{
+    "toast": {
+        "apiErrorDefaultMessage": "Serviste hata oluştu, lütfen daha sonra tekrar deneyin",
+        "error": {
+            "title": "Başarısız",
+            "message": "Lütfen daha sonra tekrar deneyin"
+        },
+        "success": {
+            "title": "Başarılı",
+            "message": "Başarıyla tamamlandı"
+        },
+        "info": {
+            "title": "Uyarı"
+        },
+        "warning": {
+            "title": "Bilgilendirme"
+        }
+    }
+}

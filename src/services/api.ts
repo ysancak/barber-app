@@ -5,6 +5,10 @@ import { API_BASE_URL } from '@/utils/constants';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
 });
 
 api.interceptors.request.use(
@@ -24,7 +28,7 @@ api.interceptors.response.use(
   async (error: any) => {
     const originalRequest = error.config;
     const state = store.getState();
-
+  
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       const token = state.auth.refreshToken;
