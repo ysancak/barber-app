@@ -12,6 +12,9 @@ interface Props extends TextProps {
   fontSize?: number;
   color?: string;
   variant?: 'title' | 'content' | 'subtitle' | 'caption';
+  bold?: boolean;
+  medium?: boolean;
+  semibold?: boolean;
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
   fontStyle?: 'normal' | 'italic';
   textTransform?: 'none' | 'uppercase' | 'lowercase' | 'capitalize';
@@ -23,6 +26,9 @@ const Text: React.FC<Props> = ({
   fontSize,
   color,
   variant = 'content',
+  bold,
+  medium,
+  semibold,
   textAlign,
   fontStyle,
   textTransform,
@@ -37,6 +43,9 @@ const Text: React.FC<Props> = ({
     textAlign && {textAlign},
     fontStyle && {fontStyle},
     textTransform && {textTransform},
+    bold && styles.bold,
+    semibold && styles.semiBold,
+    medium && styles.medium,
     color && {color},
     style,
   ];
@@ -58,6 +67,16 @@ const styles = StyleSheet.create({
     fontSize: typography.titleFontSize,
     fontWeight: 'bold',
     fontFamily: 'EncodeSans-Bold',
+  },
+  bold: {
+    fontFamily: 'EncodeSans-Bold',
+  },
+  medium: {
+    fontFamily: 'EncodeSans-Medium',
+  },
+  semiBold: {
+    fontWeight: '700',
+    fontFamily: 'EncodeSans-SemiBold',
   },
   content: {
     fontSize: typography.contentFontSize,

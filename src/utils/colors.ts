@@ -1,8 +1,12 @@
-export const primaryColor = "#1d2226"
+export const primaryColor = "#c10037"
 export const bgColor = "#ebebeb"
+export const borderColor = "#ddd"
+
+//general
+export const whiteColor = "#FFFFFF"
 
 //typography
-export const textColor = "#000000"
+export const textColor = "#0d233e"
 export const captionTextColor = "#7D7D7D"
 
 //states
