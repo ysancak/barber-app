@@ -22,7 +22,7 @@ interface Props extends TextProps {
 const Text: React.FC<Props> = ({
   fontSize,
   color,
-  variant,
+  variant = 'content',
   textAlign,
   fontStyle,
   textTransform,
@@ -57,16 +57,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: typography.titleFontSize,
     fontWeight: 'bold',
+    fontFamily: 'EncodeSans-Bold',
   },
   content: {
     fontSize: typography.contentFontSize,
+    fontFamily: 'EncodeSans-Regular',
   },
   subtitle: {
     fontSize: typography.subtitleFontSize,
     fontWeight: '500',
+    fontFamily: 'EncodeSans-Medium',
   },
   caption: {
     fontSize: typography.captionFontSize,
     color: colors.captionTextColor,
+    fontFamily: 'EncodeSans-SemiBold',
   },
 });

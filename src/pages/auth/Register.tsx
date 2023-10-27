@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button, SafeAreaView} from 'react-native';
 
 import {registerService} from '@/services/auth.service';
 import {Text} from '@/components';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 function Register(): JSX.Element {
   const registerHandler = async () => {
@@ -11,12 +11,10 @@ function Register(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <Text variant="title" color="red">
-        This is a title
+      <Text variant="title" fontSize={35} textAlign="center">
+        Kayıt ol
       </Text>
-      <Text variant="content">This is some content</Text>
-      <Text variant="subtitle">This is a subtitle</Text>
-      <Text variant="caption">This is a caption</Text>
+      <Text textAlign="center">dgfgfg</Text>
     </SafeAreaView>
   );
 }
