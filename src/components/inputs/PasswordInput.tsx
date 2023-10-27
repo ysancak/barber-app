@@ -8,9 +8,10 @@ interface PasswordInputProps {
   placeholder?: string;
   value?: string;
   onChange?: (text: string) => void;
+  onBlur?: () => void;
   keyboardType?: KeyboardType;
   icon?: string;
-  error?: string;
+  error?: string | undefined | false;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = props => {

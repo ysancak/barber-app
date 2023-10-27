@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {TextInput as RNTextInput, StyleSheet, ViewProps} from 'react-native';
 import View from '@/components/View';
 import Text from '@/components/Text';
@@ -13,8 +13,9 @@ interface BaseInputProps extends ViewProps {
   secureTextEntry?: boolean;
   value?: string;
   onChange?: (text: string) => void;
+  onBlur?: () => void;
   keyboardType?: KeyboardType;
-  error?: string;
+  error?: string | undefined | false;
 }
 
 const BaseInput: React.FC<BaseInputProps> = ({
@@ -24,10 +25,13 @@ const BaseInput: React.FC<BaseInputProps> = ({
   secureTextEntry,
   value,
   onChange,
+  onBlur,
   keyboardType,
   error,
   ...props
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   const renderErrorView = useMemo(() => {
     return (
       <View flexDirection="row" alignItems="center" gap={2}>
@@ -45,15 +49,25 @@ const BaseInput: React.FC<BaseInputProps> = ({
         flexDirection="row"
         alignItems="center"
         padding={10}
-        style={[styles.container, error && styles.error]}>
+        style={[
+          styles.container,
+          error && styles.error,
+          isFocused && styles.focused,
+        ]}>
         {prefix && <View marginRight={10}>{prefix}</View>}
         <RNTextInput
           style={styles.input}
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
           value={value}
+          autoCapitalize="none"
           onChangeText={onChange}
           keyboardType={keyboardType}
+          onBlur={() => {
+            setIsFocused(false);
+            if (onBlur) onBlur();
+          }}
+          onFocus={() => setIsFocused(true)}
           {...props}
         />
         {suffix && <View marginLeft={10}>{suffix}</View>}
@@ -72,6 +86,9 @@ const styles = StyleSheet.create({
   },
   error: {
     borderColor: colors.errorColor,
+  },
+  focused: {
+    borderColor: colors.primaryColor,
   },
   input: {
     flex: 1,

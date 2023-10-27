@@ -7,9 +7,10 @@ interface TextInputProps {
   placeholder?: string;
   value?: string;
   onChange?: (text: string) => void;
+  onBlur?: () => void;
   keyboardType?: KeyboardType;
   icon?: string;
-  error?: string;
+  error?: string | undefined | false;
 }
 
 const TextInput: React.FC<TextInputProps> = props => {

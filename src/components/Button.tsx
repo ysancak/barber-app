@@ -9,6 +9,7 @@ interface ButtonProps {
   label: string;
   onPress?: () => void;
   variant?: 'default' | 'secondary' | 'text';
+  disabled?: boolean;
   loading?: boolean;
   suffixIcon?: string;
   prefixIcon?: string;
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   label,
   onPress,
   variant = 'default',
+  disabled = false,
   loading = false,
   suffixIcon,
   prefixIcon,
@@ -39,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
       onPress={onPress}
       activeOpacity={0.8}
       style={[styles.button, {backgroundColor: backgroundColors[variant]}]}
-      disabled={loading}>
+      disabled={loading || disabled}>
       {loading ? (
         <ActivityIndicator size="small" color={contentColors[variant]} />
       ) : (
