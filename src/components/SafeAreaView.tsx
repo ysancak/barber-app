@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleProp, ViewProps, ViewStyle} from 'react-native';
-import {hp, wp} from '@/utils/responsive';
 import {SafeAreaView as BaseView} from 'react-native-safe-area-context';
 
 interface Props extends ViewProps {
@@ -69,8 +68,8 @@ function SafeAreaView({
     margin,
     marginLeft,
     marginRight,
-    ...(fullWidth && {width: wp('100%')}),
-    ...(fullHeight && {height: hp('100%')}),
+    ...(fullWidth && {width: '100%'}),
+    ...(fullHeight && {height: '100%'}),
   };
 
   return (

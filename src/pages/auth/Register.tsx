@@ -7,10 +7,12 @@ import {registerAndLoginValidationSchema} from '@/schemas/validations';
 import {registerService} from '@/services/auth.service';
 import {useDispatch} from 'react-redux';
 import {setTokens} from '@/store/auth';
+import {useTranslation} from 'react-i18next';
 
 function Register(): JSX.Element {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const {t} = useTranslation();
 
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
@@ -37,7 +39,7 @@ function Register(): JSX.Element {
   return (
     <SafeAreaView flex gap={16} paddingHorizontal={16} paddingTop={16}>
       <Text variant="title" textAlign="center">
-        Kayıt ol
+        {t('loginAndRegister.register')}
       </Text>
       <View paddingVertical={18}>
         <Image
@@ -49,7 +51,7 @@ function Register(): JSX.Element {
       <View gap={8}>
         <Input.Text
           icon="email"
-          placeholder="Email adresinizi girin"
+          placeholder={t('loginAndRegister.form.email.placeholder')}
           keyboardType="email-address"
           onChange={formik.handleChange('email')}
           onBlur={() => formik.handleBlur('email')}
@@ -58,7 +60,7 @@ function Register(): JSX.Element {
         />
         <Input.Password
           icon="lock"
-          placeholder="Şifrenizi girin"
+          placeholder={t('loginAndRegister.form.password.placeholder')}
           keyboardType="visible-password"
           onChange={formik.handleChange('password')}
           onBlur={() => formik.handleBlur('password')}
@@ -66,18 +68,18 @@ function Register(): JSX.Element {
           error={formik.touched.password && formik.errors.password}
         />
         <Button
-          label="Kayıt ol"
+          label={t('loginAndRegister.register')}
           onPress={formik.handleSubmit}
           loading={loading}
         />
         <Space />
         <Text textAlign="center" variant="caption">
-          YADA
+          {t('general.or')}
         </Text>
         <Space />
         <Button
           variant="secondary"
-          label="Giriş yap"
+          label={t('loginAndRegister.login')}
           onPress={() => navigation.navigate('Login')}
         />
       </View>

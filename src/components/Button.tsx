@@ -5,7 +5,7 @@ import {colors} from '@/utils';
 import View from '@/components/View';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-interface ButtonProps {
+interface Props {
   label: string;
   onPress?: () => void;
   variant?: 'default' | 'secondary' | 'text';
@@ -15,7 +15,7 @@ interface ButtonProps {
   prefixIcon?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<Props> = ({
   label,
   onPress,
   variant = 'default',

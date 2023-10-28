@@ -18,3 +18,12 @@ export const registerService = async (params: { email: string, password: string 
         showAPIErrorToast(error)
     }
 }
+
+export const userMeService = async () =>  {
+    try {
+        const response = await api.get<UserResponse>(`/user-me`);
+        return response.data;
+    } catch (error) {
+        showAPIErrorToast(error)
+    }
+}

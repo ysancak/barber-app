@@ -2,12 +2,12 @@ import React from 'react';
 import {ViewProps} from 'react-native';
 import View from './View';
 
-interface SpaceProps extends ViewProps {
+interface Props extends ViewProps {
   size?: number;
   direction?: 'vertical' | 'horizontal';
 }
 
-const Space: React.FC<SpaceProps> = ({
+const Space: React.FC<Props> = ({
   size = 10,
   direction = 'vertical',
   ...props

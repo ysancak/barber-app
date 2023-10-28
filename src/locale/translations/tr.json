@@ -15,5 +15,58 @@
         "warning": {
             "title": "Bilgilendirme"
         }
+    },
+    "general": {
+        "or": "yada",
+        "back": "Geri"
+    },
+    "home": {
+        "title": "Ev"
+    },
+    "search": {
+        "title": "Ara"
+    },
+    "shop": {
+        "title": "Market"
+    },
+    "campaigns": {
+        "title": "Kampanyalar"
+    },
+    "myAccount": {
+        "title": "Hesabım",
+        "options": {
+            "editProfile": "Profili düzenle",
+            "logout": "Oturumu kapat",
+            "reservations": "Rezervasyonlar",
+            "myOrders": "Siparişlerim",
+            "paymentMethods": "Ödeme yöntemlerim",
+            "myAddresses": "Adreslerim",
+            "settings": "Ayarlar",
+            "aboutOfApp": "Uygulama hakkında",
+            "faq": "Sık sorulan sorular"
+        }
+    },
+    "loginAndRegister": {
+        "login": "Giriş yap",
+        "register": "Kayıt ol",
+        "form": {
+            "email": {
+                "placeholder": "Email adresinizi girin",
+                "error": {
+                    "invalid": "Email adresi geçersiz",
+                    "notEmpty": "Email adresi boş ol@amaz"
+                }
+            },
+            "password": {
+                "placeholder": "Şifrenizi girin",
+                "error": {
+                    "notEmpty": "Şifre boş olamaz",
+                    "min": "Parola en az 6 karakter olmalıdır"
+                }
+            }
+        }
+    },
+    "editProfile": {
+        "title": "Profili düzenle"
     }
 }
