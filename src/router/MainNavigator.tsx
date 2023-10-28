@@ -1,12 +1,12 @@
-import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import TabNavigator from '@/router/TabNavigator';
-import {Text} from '@/components';
-
-import {colors} from '@/utils';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {EditProfile} from '@/pages';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {Text} from '@/components';
+import {EditProfile} from '@/pages';
+import TabNavigator from '@/router/TabNavigator';
+import {colors} from '@/utils';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +19,7 @@ function MainNavigator(): JSX.Element {
         headerTintColor: colors.primaryColor,
         headerTitle: () => (
           <Text variant="content" semibold fontSize={17}>
-            {route.params?.title || route.name}
+            {route.name}
           </Text>
         ),
         headerBackImage: () => (

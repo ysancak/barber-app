@@ -1,8 +1,9 @@
-import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import {useSelector} from 'react-redux';
+
 import AuthNavigator from '@/router/AuthNavigator';
 import MainNavigator from '@/router/MainNavigator';
-import {useSelector} from 'react-redux';
 
 const Stack = createStackNavigator();
 

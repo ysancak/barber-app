@@ -1,14 +1,15 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StatusBar} from 'react-native';
-import {Provider} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
+import {Provider} from 'react-redux';
 
 import '@/locale/i18n.config';
-import {store, persistor} from '@/store';
-import RootNavigator from '@/router/RootNavigator';
-import toastConfig from '@/utils/toast/config';
 import {PersistGate} from 'redux-persist/integration/react';
+
+import RootNavigator from '@/router/RootNavigator';
+import {store, persistor} from '@/store';
+import toastConfig from '@/utils/toast/config';
 
 function App(): JSX.Element {
   return (

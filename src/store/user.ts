@@ -1,7 +1,7 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 const authInitialState: UserResponse = {
-  email: ''
+  email: '',
 };
 
 const userSlice = createSlice({
@@ -9,11 +9,11 @@ const userSlice = createSlice({
   initialState: authInitialState,
   reducers: {
     updateUser: (state, action: PayloadAction<UserResponse>) => {
-      state.email = action.payload.email
+      state.email = action.payload.email;
     },
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const {updateUser} = userSlice.actions;
 
 export default userSlice.reducer;

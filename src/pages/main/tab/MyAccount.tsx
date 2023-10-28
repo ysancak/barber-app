@@ -1,11 +1,12 @@
-import React, {useTransition} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import {ListItem, Text, View} from '@/components';
-import {colors} from '@/utils';
-import {useDispatch} from 'react-redux';
-import {clearTokens} from '@/store/auth';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {ScrollView, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
+
+import {ListItem, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
+import {clearTokens} from '@/store/auth';
+import {colors} from '@/utils';
 
 function MyAccount(): JSX.Element {
   const {t} = useTranslation();

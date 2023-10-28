@@ -1,7 +1,5 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import {
   BaseToast,
   SuccessToast,
@@ -10,6 +8,8 @@ import {
   ToastConfig,
   BaseToastProps,
 } from 'react-native-toast-message';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import {colors} from '@/utils';
 
 const toastConfig: ToastConfig = {

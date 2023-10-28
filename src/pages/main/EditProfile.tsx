@@ -1,7 +1,7 @@
-import {clearTokens} from '@/store/auth';
-import {colors} from '@/utils';
 import React from 'react';
-import {Button, SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
+import {ScrollView, StyleSheet, Text} from 'react-native';
+
+import {colors} from '@/utils';
 
 function EditProfile(): JSX.Element {
   return (

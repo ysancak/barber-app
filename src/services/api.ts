@@ -1,13 +1,14 @@
 import axios from 'axios';
-import { store } from '@/store';
-import { setTokens, clearTokens } from '@/store/auth';
-import { API_BASE_URL } from '@/utils/constants';
+
+import {store} from '@/store';
+import {setTokens, clearTokens} from '@/store/auth';
+import {API_BASE_URL} from '@/utils/constants';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    Accept: 'application/json',
   },
 });
 
@@ -20,7 +21,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error: any) => Promise.reject(error)
+  (error: any) => Promise.reject(error),
 );
 
 api.interceptors.response.use(
@@ -28,12 +29,12 @@ api.interceptors.response.use(
   async (error: any) => {
     const originalRequest = error.config;
     const state = store.getState();
-  
+
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       const token = state.auth.refreshToken;
       try {
-        const { data } = await axios.post(`${API_BASE_URL}/refresh`, {
+        const {data} = await axios.post(`${API_BASE_URL}/refresh`, {
           token,
         });
         store.dispatch(setTokens(data));
@@ -49,7 +50,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

@@ -1,11 +1,11 @@
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {Text} from '@/components';
-import {colors} from '@/utils';
-
-import {Home, MyAccount} from '@/pages';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {Text} from '@/components';
+import {Home, MyAccount} from '@/pages';
+import {colors} from '@/utils';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ function TabNavigator(): JSX.Element {
             {route.name}
           </Text>
         ),
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({focused, color}) => {
           let iconName;
 
           if (route.name === 'Home') {
