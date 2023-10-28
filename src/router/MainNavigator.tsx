@@ -17,6 +17,9 @@ function MainNavigator(): JSX.Element {
     <Stack.Navigator
       screenOptions={() => ({
         headerTintColor: colors.primaryColor,
+        headerTitle(props) {
+          return <HeaderTitle title={props.children} />;
+        },
         headerBackImage: () => (
           <Icon name="chevron-back" size={25} color={colors.primaryColor} />
         ),
@@ -34,7 +37,7 @@ function MainNavigator(): JSX.Element {
       <Stack.Screen
         name="EditProfile"
         options={{
-          headerTitle: () => <HeaderTitle title={t('editProfile.title')} />,
+          title: t('editProfile.title'),
         }}
         component={EditProfile}
       />

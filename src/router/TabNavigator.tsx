@@ -15,6 +15,9 @@ function TabNavigator(): JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
+        headerTitle(props) {
+          return <HeaderTitle title={props.children} />;
+        },
         tabBarIcon: ({focused, color}) => {
           let iconName;
 
@@ -48,7 +51,7 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen
         name="MyAccount"
         options={{
-          headerTitle: () => <HeaderTitle title={t('myAccount.title')} />,
+          title: t('myAccount.title'),
         }}
         component={MyAccount}
       />
