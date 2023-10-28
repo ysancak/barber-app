@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Text} from '@/components';
+import {HeaderTitle} from '@/components';
 import {EditProfile} from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
 import {colors} from '@/utils';
@@ -15,13 +15,8 @@ function MainNavigator(): JSX.Element {
 
   return (
     <Stack.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={() => ({
         headerTintColor: colors.primaryColor,
-        headerTitle: () => (
-          <Text variant="content" semibold fontSize={17}>
-            {route.name}
-          </Text>
-        ),
         headerBackImage: () => (
           <Icon name="chevron-back" size={25} color={colors.primaryColor} />
         ),
@@ -38,7 +33,9 @@ function MainNavigator(): JSX.Element {
       />
       <Stack.Screen
         name="EditProfile"
-        options={{title: t('editProfile.title')}}
+        options={{
+          headerTitle: () => <HeaderTitle title={t('editProfile.title')} />,
+        }}
         component={EditProfile}
       />
     </Stack.Navigator>

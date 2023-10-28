@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Text} from '@/components';
+import {HeaderTitle, Text} from '@/components';
 import {Home, MyAccount} from '@/pages';
 import {colors} from '@/utils';
 
@@ -15,11 +15,6 @@ function TabNavigator(): JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        headerTitle: () => (
-          <Text variant="content" semibold fontSize={17}>
-            {route.name}
-          </Text>
-        ),
         tabBarIcon: ({focused, color}) => {
           let iconName;
 
@@ -52,7 +47,9 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen name="Campaigns" component={() => <Text>Kampanyalar</Text>} />
       <Tab.Screen
         name="MyAccount"
-        options={{title: t('myAccount.title')}}
+        options={{
+          headerTitle: () => <HeaderTitle title={t('myAccount.title')} />,
+        }}
         component={MyAccount}
       />
     </Tab.Navigator>
