@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {HeaderTitle, Text} from '@/components';
-import {Home, MyAccount} from '@/pages';
+import {Campaigns, Home, MyAccount} from '@/pages';
 import {colors} from '@/utils';
 
 const Tab = createBottomTabNavigator();
@@ -40,8 +40,8 @@ function TabNavigator(): JSX.Element {
           fontSize: 12,
         },
       }}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Campaigns" component={() => <Text>Kampanyalar</Text>} />
+      <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
+      <Tab.Screen name="Campaigns" component={Campaigns} />
       <Tab.Screen
         name="MyAccount"
         options={{

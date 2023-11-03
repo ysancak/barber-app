@@ -48,7 +48,7 @@ const Button: React.FC<Props> = ({
         <ActivityIndicator size="small" color={color} />
       ) : (
         <View flexDirection="row" alignItems="center">
-          {prefixIcon && renderIcon(prefixIcon)}
+          {renderIcon(prefixIcon)}
           <Text
             medium
             textAlign="center"
@@ -62,7 +62,7 @@ const Button: React.FC<Props> = ({
             style={isTextVariant ? undefined : styles.flexible}>
             {label}
           </Text>
-          {suffixIcon && renderIcon(suffixIcon)}
+          {renderIcon(suffixIcon)}
         </View>
       )}
     </TouchableOpacity>

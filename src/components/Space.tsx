@@ -1,5 +1,6 @@
 import React from 'react';
 import {ViewProps} from 'react-native';
+
 import View from './View';
 
 interface Props extends ViewProps {

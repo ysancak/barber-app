@@ -10,3 +10,12 @@ export const getFaqService = async () => {
     showAPIErrorToast(error);
   }
 };
+
+export const getCategoriesService = async () => {
+  try {
+    const response = await api.get<Category[]>('/category');
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+  }
+};

@@ -8,7 +8,26 @@ type UserResponse = {
 };
 
 type FaqResponse = {
-  _id: String;
-  question: String;
-  answer: String;
+  _id: string;
+  question: string;
+  answer: string;
+};
+
+type Category = {
+  _id: string;
+  categoryName: string;
+};
+
+type Saloon = {
+  _id: string;
+  businessLocation: string;
+  businessID: string;
+  businessImage: string;
+  businessName: string;
+  businessTel: string;
+  businessMail: string;
+  businessWebsite: string;
+  socialFacebook: string;
+  socialInstagram: string;
+  businessImages: string[];
 };

@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* BarberAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BarberAppTests.m */; };
-		0643877F2AEBB90C00E2C48A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0643877E2AEBB90C00E2C48A /* Ionicons.ttf */; };
-		064387822AEBB91E00E2C48A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064387802AEBB91D00E2C48A /* MaterialCommunityIcons.ttf */; };
-		064387832AEBB91E00E2C48A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064387812AEBB91E00E2C48A /* MaterialIcons.ttf */; };
-		064387872AEBB93200E2C48A /* FontAwesome6_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064387842AEBB93200E2C48A /* FontAwesome6_Regular.ttf */; };
-		064387882AEBB93200E2C48A /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064387852AEBB93200E2C48A /* Feather.ttf */; };
-		064387892AEBB93200E2C48A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064387862AEBB93200E2C48A /* FontAwesome5_Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-BarberApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-BarberApp.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -283,7 +277,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0643877F2AEBB90C00E2C48A /* Ionicons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				93E812C3EAA54007AAF92121 /* EncodeSans-Bold.ttf in Resources */,
@@ -291,11 +284,6 @@
 				AB6624847CA04245B058C014 /* EncodeSans-Medium.ttf in Resources */,
 				57A5C53CE4644975AA2025DB /* EncodeSans-Regular.ttf in Resources */,
 				237B8271F11F4D20832A52BB /* EncodeSans-SemiBold.ttf in Resources */,
-				064387822AEBB91E00E2C48A /* MaterialCommunityIcons.ttf in Resources */,
-				064387872AEBB93200E2C48A /* FontAwesome6_Regular.ttf in Resources */,
-				064387882AEBB93200E2C48A /* Feather.ttf in Resources */,
-				064387892AEBB93200E2C48A /* FontAwesome5_Regular.ttf in Resources */,
-				064387832AEBB91E00E2C48A /* MaterialIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

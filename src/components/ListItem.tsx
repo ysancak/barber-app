@@ -1,9 +1,11 @@
 import React from 'react';
-import View from './View';
-import Text from './Text';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import {colors} from '@/utils';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Text from './Text';
+import View from './View';
+
+import {colors} from '@/utils';
 
 interface Props {
   icon?: string;

@@ -1,7 +1,9 @@
 import React, {useMemo, useState} from 'react';
-import BaseInput from './BaseInput';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import BaseInput from './BaseInput';
+
 import {colors} from '@/utils';
 
 interface PasswordInputProps {

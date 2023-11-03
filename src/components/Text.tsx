@@ -6,6 +6,7 @@ import {
   StyleProp,
   TextStyle,
 } from 'react-native';
+
 import {colors, typography} from '@/utils';
 
 interface Props extends TextProps {
