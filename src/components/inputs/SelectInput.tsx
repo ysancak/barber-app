@@ -34,59 +34,23 @@ const SelectInput: React.FC<Props> = ({
       optionLabel={optionLabel}
       optionValue={optionValue}
       options={options}
-      placeholderStyle={{
-        fontFamily: 'EncodeSans-Medium',
-        color: colors.captionTextColor,
-        fontSize: 15,
-      }}
-      selectedItemStyle={{
-        fontFamily: 'EncodeSans-Medium',
-        fontSize: 15,
-      }}
-      labelStyle={{
-        fontFamily: 'EncodeSans-Medium',
-        color: colors.captionTextColor,
-        fontSize: 15,
-      }}
-      dropdownIconStyle={{top: 16, right: 16}}
+      placeholderStyle={styles.placeholderStyle}
+      selectedItemStyle={styles.selectedItemStyle}
+      labelStyle={styles.labelStyle}
+      dropdownIconStyle={styles.dropdownIconStyle}
       dropdownIcon={
         <Icon name={'expand-more'} size={30} color={colors.textColor} />
       }
-      checkboxComponentStyles={{
-        checkboxLabelStyle: {
-          fontFamily: 'EncodeSans-Medium',
-          fontSize: 15,
-        },
-        checkboxSize: 20,
-        checkboxStyle: {
-          borderColor: colors.borderColor,
-          backgroundColor: colors.primaryColor,
-        },
-      }}
+      checkboxComponentStyles={styles.checkboxComponentStyles}
       listHeaderComponent={
-        <View paddingHorizontal={16} paddingBottom={16}>
+        <View style={styles.listHeaderComponent}>
           <Text variant="title" fontSize={18}>
             {placeholder}
           </Text>
         </View>
       }
-      modalOptionsContainerStyle={{
-        height: hp(60),
-        backgroundColor: colors.bgColor,
-      }}
-      listComponentStyles={{
-        listEmptyComponentStyle: {
-          fontFamily: 'EncodeSans-Medium',
-        },
-        itemSeparatorStyle: {
-          borderWidth: 0.4,
-          backgroundColor: colors.borderColor2,
-        },
-        sectionHeaderStyle: {
-          padding: 10,
-          backgroundColor: 'cyan',
-        },
-      }}
+      modalOptionsContainerStyle={styles.modalOptionsContainerStyle}
+      listComponentStyles={styles.listComponentStyles}
       selectedValue={value}
       onValueChange={value => onChange(value)}
     />
@@ -102,15 +66,55 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: colors.whiteColor,
   },
-  error: {
-    borderColor: colors.errorColor,
-  },
-  focused: {
-    borderColor: colors.primaryColor,
-  },
-  input: {
-    flex: 1,
-    fontFamily: 'EncodeSans-Regular',
+  placeholderStyle: {
+    fontFamily: 'EncodeSans-Medium',
+    color: colors.captionTextColor,
     fontSize: 15,
   },
+  selectedItemStyle: {
+    fontFamily: 'EncodeSans-Medium',
+    fontSize: 15,
+  },
+  labelStyle: {
+    fontFamily: 'EncodeSans-Medium',
+    color: colors.captionTextColor,
+    fontSize: 15,
+  },
+  dropdownIconStyle: {
+    top: 16,
+    right: 16,
+  },
+  checkboxComponentStyles: {
+    checkboxLabelStyle: {
+      fontFamily: 'EncodeSans-Medium',
+      fontSize: 15,
+    },
+    checkboxSize: 20,
+    checkboxStyle: {
+      borderColor: colors.borderColor,
+      backgroundColor: colors.primaryColor,
+    },
+  },
+  listHeaderComponent: {
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  modalOptionsContainerStyle: {
+    height: hp(60),
+    backgroundColor: colors.bgColor,
+  },
+  listComponentStyles: {
+    listEmptyComponentStyle: {
+      fontFamily: 'EncodeSans-Medium',
+    },
+    itemSeparatorStyle: {
+      borderWidth: 0.4,
+      backgroundColor: colors.borderColor2,
+    },
+    sectionHeaderStyle: {
+      padding: 10,
+      backgroundColor: 'cyan',
+    },
+  },
+  // Add any other style definitions as needed
 });
