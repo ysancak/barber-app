@@ -19,5 +19,10 @@ type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Home: undefined;
+  Campaigns: undefined;
+  MyAccount: undefined;
   EditProfile: undefined;
+  Settings: undefined;
+  LanguageSettings: undefined;
+  Faq: undefined;
 };

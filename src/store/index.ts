@@ -7,17 +7,15 @@ import {
 import {persistReducer, persistStore} from 'redux-persist';
 
 import authReducer from '@/store/auth';
-import userReducer from '@/store/user';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth', 'user'],
+  whitelist: ['auth'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  user: userReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

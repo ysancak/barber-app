@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import '@/locale/i18n.config';
 import {PersistGate} from 'redux-persist/integration/react';
 
-import RootNavigator from '@/router/RootNavigator';
+import MainNavigator from '@/router/MainNavigator';
 import {store, persistor} from '@/store';
 import toastConfig from '@/utils/toast/config';
 
@@ -21,7 +21,7 @@ function App(): JSX.Element {
           barStyle={'dark-content'}
         />
         <NavigationContainer>
-          <RootNavigator />
+          <MainNavigator />
         </NavigationContainer>
         <Toast config={toastConfig} />
       </PersistGate>

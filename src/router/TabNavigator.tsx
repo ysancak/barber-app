@@ -23,10 +23,6 @@ function TabNavigator(): JSX.Element {
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Search') {
-            iconName = focused ? 'search' : 'search-outline';
-          } else if (route.name === 'Shop') {
-            iconName = focused ? 'cart' : 'cart-outline';
           } else if (route.name === 'Campaigns') {
             iconName = focused ? 'pricetag' : 'pricetag-outline';
           } else if (route.name === 'MyAccount') {
@@ -45,8 +41,6 @@ function TabNavigator(): JSX.Element {
         },
       }}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Search" component={() => <Text>Ara</Text>} />
-      <Tab.Screen name="Shop" component={() => <Text>Market</Text>} />
       <Tab.Screen name="Campaigns" component={() => <Text>Kampanyalar</Text>} />
       <Tab.Screen
         name="MyAccount"

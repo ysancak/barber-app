@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {Button, Input, SafeAreaView, Space, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
 import {useFormik} from 'formik';
-import {registerAndLoginValidationSchema} from '@/schemas/validations';
-import {loginService} from '@/services/auth.service';
-import {useDispatch} from 'react-redux';
-import {setTokens} from '@/store/auth';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Image, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
 
-function Login(): JSX.Element {
+import {Button, Input, Space, Text, View} from '@/components';
+import {useNavigation} from '@/hooks/useNavigation';
+import {registerAndLoginValidationSchema} from '@/schemas/validations';
+import {registerService} from '@/services/auth.service';
+import {setTokens} from '@/store/auth';
+import {colors} from '@/utils';
+
+function Register(): JSX.Element {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -21,7 +23,7 @@ function Login(): JSX.Element {
     onSubmit: async values => {
       setLoading(true);
       try {
-        const result = await loginService(values);
+        const result = await registerService(values);
         if (result) {
           dispatch(
             setTokens({
@@ -29,6 +31,7 @@ function Login(): JSX.Element {
               refreshToken: result.refreshToken,
             }),
           );
+          navigation.navigate('MyAccount');
         }
       } finally {
         setLoading(false);
@@ -37,17 +40,12 @@ function Login(): JSX.Element {
   });
 
   return (
-    <SafeAreaView flex gap={16} paddingHorizontal={16} paddingTop={16}>
-      <Text variant="title" textAlign="center">
-        {t('loginAndRegister.login')}
-      </Text>
-      <View paddingVertical={18}>
-        <Image
-          source={require('@/assets/images/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-      </View>
+    <View style={styles.container}>
+      <Image
+        source={require('@/assets/images/logo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
       <View gap={8}>
         <Input.Text
           icon="email"
@@ -68,7 +66,7 @@ function Login(): JSX.Element {
           error={formik.touched.password && formik.errors.password}
         />
         <Button
-          label={t('loginAndRegister.login')}
+          label={t('loginAndRegister.register')}
           onPress={formik.handleSubmit}
           loading={loading}
         />
@@ -79,19 +77,27 @@ function Login(): JSX.Element {
         <Space />
         <Button
           variant="secondary"
-          label={t('loginAndRegister.register')}
-          onPress={() => navigation.navigate('Register')}
+          label={t('loginAndRegister.login')}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    backgroundColor: colors.bgColor,
+  },
   logo: {
     width: '100%',
     height: 80,
+    marginTop: 16,
+    marginBottom: 8,
   },
 });

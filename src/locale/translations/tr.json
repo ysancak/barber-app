@@ -18,7 +18,8 @@
     },
     "general": {
         "or": "yada",
-        "back": "Geri"
+        "back": "Geri",
+        "save": "Kaydet"
     },
     "home": {
         "title": "Ev"
@@ -42,7 +43,6 @@
             "paymentMethods": "Ödeme yöntemlerim",
             "myAddresses": "Adreslerim",
             "settings": "Ayarlar",
-            "aboutOfApp": "Uygulama hakkında",
             "faq": "Sık sorulan sorular"
         }
     },
@@ -54,7 +54,7 @@
                 "placeholder": "Email adresinizi girin",
                 "error": {
                     "invalid": "Email adresi geçersiz",
-                    "notEmpty": "Email adresi boş ol@amaz"
+                    "notEmpty": "Email adresi boş olamaz"
                 }
             },
             "password": {
@@ -67,6 +67,21 @@
         }
     },
     "editProfile": {
-        "title": "Profili düzenle"
+        "title": "Profili düzenle",
+        "toast": {
+            "savedSuccess": "Profil güncellendi"
+        }
+    },
+    "settings": {
+        "title": "Ayarlar"
+    },
+    "languageSettings": {
+        "title": "Dil ayarları",
+        "languages": {
+            "tr": "Türkçe"
+        },
+        "toast": {
+            "savedSuccess": "Dil değiştirildi"
+        }
     }
 }

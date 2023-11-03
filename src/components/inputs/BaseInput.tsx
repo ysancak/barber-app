@@ -1,10 +1,12 @@
 import React, {useMemo, useState} from 'react';
 import {TextInput as RNTextInput, StyleSheet, ViewProps} from 'react-native';
-import View from '@/components/View';
-import Text from '@/components/Text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {colors} from '@/utils';
+
 import Space from '../Space';
+
+import Text from '@/components/Text';
+import View from '@/components/View';
+import {colors} from '@/utils';
 
 interface BaseInputProps extends ViewProps {
   prefix?: React.ReactNode;
@@ -65,7 +67,9 @@ const BaseInput: React.FC<BaseInputProps> = ({
           keyboardType={keyboardType}
           onBlur={() => {
             setIsFocused(false);
-            if (onBlur) onBlur();
+            if (onBlur) {
+              onBlur();
+            }
           }}
           onFocus={() => setIsFocused(true)}
           {...props}
@@ -83,6 +87,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.borderColor,
     borderRadius: 12,
+    backgroundColor: colors.whiteColor,
   },
   error: {
     borderColor: colors.errorColor,

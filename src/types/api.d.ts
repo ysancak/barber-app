@@ -6,3 +6,9 @@ type AuthResponse = {
 type UserResponse = {
   email: string;
 };
+
+type FaqResponse = {
+  _id: String;
+  question: String;
+  answer: String;
+};

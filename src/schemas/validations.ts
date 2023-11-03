@@ -11,3 +11,9 @@ export const registerAndLoginValidationSchema = Yup.object().shape({
     .min(6, () => t('loginAndRegister.form.password.error.min'))
     .required(() => t('loginAndRegister.form.password.error.notEmpty')),
 });
+
+export const updateUserProfileSchema = Yup.object().shape({
+  email: Yup.string()
+    .email(() => t('loginAndRegister.form.email.error.invalid'))
+    .required(() => t('loginAndRegister.form.email.error.notEmpty')),
+});

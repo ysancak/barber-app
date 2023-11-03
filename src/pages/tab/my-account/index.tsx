@@ -1,34 +1,21 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
+
+import Account from './components/Account';
 
 import {ListItem, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
-import {clearTokens} from '@/store/auth';
 import {colors} from '@/utils';
 
 function MyAccount(): JSX.Element {
   const {t} = useTranslation();
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   return (
     <ScrollView style={styles.container}>
       <View fullHeight gap={8}>
-        <View>
-          <ListItem
-            icon="edit"
-            label={t('myAccount.options.editProfile')}
-            onPress={() => navigation.navigate('EditProfile')}
-          />
-          <ListItem
-            icon="logout"
-            label={t('myAccount.options.logout')}
-            onPress={() => dispatch(clearTokens())}
-          />
-        </View>
-
+        <Account />
         <View>
           <ListItem
             icon="content-cut"
@@ -46,22 +33,16 @@ function MyAccount(): JSX.Element {
             onPress={console.log}
           />
           <ListItem
-            icon="location-pin"
-            label={t('myAccount.options.myAddresses')}
-            onPress={console.log}
-          />
-          <ListItem
             icon="settings"
             label={t('myAccount.options.settings')}
-            onPress={console.log}
+            onPress={() => navigation.navigate('Settings')}
           />
         </View>
         <View>
           <ListItem
-            label={t('myAccount.options.aboutOfApp')}
-            onPress={console.log}
+            label={t('myAccount.options.faq')}
+            onPress={() => navigation.navigate('Faq')}
           />
-          <ListItem label={t('myAccount.options.faq')} onPress={console.log} />
         </View>
       </View>
     </ScrollView>
@@ -74,11 +55,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.bgColor,
-  },
-  accountContainer: {
-    backgroundColor: colors.whiteColor,
-    paddingHorizontal: 16,
-    paddingTop: 18,
-    paddingBottom: 12,
   },
 });

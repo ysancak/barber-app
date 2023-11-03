@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, ActivityIndicator} from 'react-native';
-import Text from '@/components/Text';
-import {colors} from '@/utils';
-import View from '@/components/View';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Text from '@/components/Text';
+import View from '@/components/View';
+import {colors} from '@/utils';
 
 interface Props {
   label: string;
@@ -24,74 +25,88 @@ const Button: React.FC<Props> = ({
   suffixIcon,
   prefixIcon,
 }) => {
-  const backgroundColors = {
-    default: colors.primaryColor,
-    secondary: colors.borderColor,
-    text: 'transparent',
-  };
+  const {background, color} = stylesVariants[variant];
+  const isTextVariant = variant === 'text';
 
-  const contentColors = {
-    default: colors.whiteColor,
-    secondary: colors.textColor,
-    text: colors.primaryColor,
-  };
+  const renderIcon = (iconName: string) => (
+    <View style={[styles.iconWrapper, isTextVariant && styles.iconWrapperText]}>
+      <Icon name={iconName} size={22} color={color} />
+    </View>
+  );
 
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      style={[styles.button, {backgroundColor: backgroundColors[variant]}]}
+      style={[
+        styles.buttonBase,
+        {backgroundColor: background},
+        isTextVariant && styles.buttonText,
+      ]}
       disabled={loading || disabled}>
       {loading ? (
-        <ActivityIndicator size="small" color={contentColors[variant]} />
+        <ActivityIndicator size="small" color={color} />
       ) : (
         <View flexDirection="row" alignItems="center">
-          <View style={styles.icon} alignItems="flex-start">
-            {prefixIcon && (
-              <Icon
-                name={prefixIcon}
-                size={22}
-                color={contentColors[variant]}
-              />
-            )}
-          </View>
+          {prefixIcon && renderIcon(prefixIcon)}
           <Text
             medium
             textAlign="center"
-            style={[styles.text, {color: contentColors[variant]}]}>
+            color={
+              isTextVariant
+                ? disabled
+                  ? colors.captionTextColor
+                  : color
+                : color
+            }
+            style={isTextVariant ? undefined : styles.flexible}>
             {label}
           </Text>
-          <View style={styles.icon} alignItems="flex-end">
-            {suffixIcon && (
-              <Icon
-                name={suffixIcon}
-                size={22}
-                color={contentColors[variant]}
-              />
-            )}
-          </View>
+          {suffixIcon && renderIcon(suffixIcon)}
         </View>
       )}
     </TouchableOpacity>
   );
 };
 
+const stylesVariants = {
+  default: {
+    background: colors.primaryColor,
+    color: colors.whiteColor,
+  },
+  secondary: {
+    background: colors.borderColor,
+    color: colors.textColor,
+  },
+  text: {
+    background: 'transparent',
+    color: colors.primaryColor,
+  },
+};
+
 const styles = StyleSheet.create({
-  button: {
+  buttonBase: {
     padding: 12,
     height: 52,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
+  buttonText: {
     flex: 1,
-    fontSize: 16,
+    paddingHorizontal: 12,
   },
-  icon: {
-    marginLeft: 5,
-    marginRight: 5,
-    width: 40,
+  flexible: {
+    flex: 1,
+  },
+  iconWrapper: {
+    width: 30,
+    paddingHorizontal: 5,
+    alignItems: 'center',
+  },
+  iconWrapperText: {
+    width: 0,
+    paddingHorizontal: 0,
   },
 });
 

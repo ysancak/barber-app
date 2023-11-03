@@ -25,12 +25,3 @@ export const registerService = async (params: {
     showAPIErrorToast(error);
   }
 };
-
-export const userMeService = async () => {
-  try {
-    const response = await api.get<UserResponse>('/user-me');
-    return response.data;
-  } catch (error) {
-    showAPIErrorToast(error);
-  }
-};

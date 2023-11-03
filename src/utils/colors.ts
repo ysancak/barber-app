@@ -1,6 +1,6 @@
 export const primaryColor = '#c10037';
 export const bgColor = '#f7f7f7';
-export const borderColor = '#c9ccd1';
+export const borderColor = '#d5d9de';
 export const borderColor2 = '#c9ccd150';
 
 //general

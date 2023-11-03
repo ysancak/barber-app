@@ -4,7 +4,14 @@ import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {HeaderTitle} from '@/components';
-import {EditProfile} from '@/pages';
+import {
+  EditProfile,
+  Faq,
+  LanguageSettings,
+  Login,
+  Register,
+  Settings,
+} from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
 import {colors} from '@/utils';
 
@@ -35,11 +42,46 @@ function MainNavigator(): JSX.Element {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="Login"
+        options={{
+          title: t('loginAndRegister.login'),
+        }}
+        component={Login}
+      />
+      <Stack.Screen
+        name="Register"
+        options={{
+          title: t('loginAndRegister.register'),
+        }}
+        component={Register}
+      />
+      <Stack.Screen
         name="EditProfile"
         options={{
           title: t('editProfile.title'),
         }}
         component={EditProfile}
+      />
+      <Stack.Screen
+        name="Settings"
+        options={{
+          title: t('settings.title'),
+        }}
+        component={Settings}
+      />
+      <Stack.Screen
+        name="LanguageSettings"
+        options={{
+          title: t('languageSettings.title'),
+        }}
+        component={LanguageSettings}
+      />
+      <Stack.Screen
+        name="Faq"
+        options={{
+          title: 'Sık sorulan sorular',
+        }}
+        component={Faq}
       />
     </Stack.Navigator>
   );
