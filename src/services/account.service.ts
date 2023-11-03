@@ -5,7 +5,7 @@ import {showAPIErrorToast} from '@/utils/toast';
 export const userMeService = async () => {
   try {
     const response = await api.get<UserResponse>('/user-me');
-    return response.data.user;
+    return response.data;
   } catch (error) {
     showAPIErrorToast(error);
   }

@@ -14,6 +14,10 @@ function EditProfile(): JSX.Element {
   const {t} = useTranslation();
   const navigation = useNavigation();
 
+  useEffect(() => {
+    getUserDetail();
+  }, []);
+
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {email: ''},
@@ -44,15 +48,13 @@ function EditProfile(): JSX.Element {
     },
   });
 
-  useEffect(() => {
-    getUserDetail();
-  }, []);
-
   const getUserDetail = async () => {
     setLoading(true);
     try {
       const result = await userMeService();
-      formik.setValues(result);
+      formik.setValues({
+        email: result?.email ?? '',
+      });
     } finally {
       setLoading(false);
     }

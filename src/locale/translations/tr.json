@@ -44,6 +44,10 @@
             "myAddresses": "Adreslerim",
             "settings": "Ayarlar",
             "faq": "Sık sorulan sorular"
+        },
+        "account": {
+            "title": "Hesabına giriş yap",
+            "description": "Hesabına giriş yaparak, rezervasyon oluşturabilir ve indirimlerden faydalanabilirsin"
         }
     },
     "loginAndRegister": {

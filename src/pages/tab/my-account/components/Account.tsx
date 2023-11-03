@@ -34,15 +34,12 @@ function Account(): JSX.Element {
       <View paddingVertical={26} gap={20} paddingHorizontal={35}>
         <View gap={8}>
           <Text variant="title" fontSize={22} textAlign="center">
-            Hesabına giriş yap
+            {t('myAccount.account.title')}
           </Text>
-          <Text textAlign="center">
-            Hesabına giriş yaparak, rezervasyon oluşturabilir ve indirimlerden
-            faydalanabilirsin
-          </Text>
+          <Text textAlign="center">{t('myAccount.account.description')}</Text>
         </View>
         <Button
-          label="Giriş yap"
+          label={t('loginAndRegister.login')}
           variant="secondary"
           onPress={() => navigation.navigate('Login')}
         />
