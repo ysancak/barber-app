@@ -1,6 +1,8 @@
 import React from 'react';
-import BaseInput from './BaseInput';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import BaseInput from './BaseInput';
+
 import {colors} from '@/utils';
 
 interface TextInputProps {

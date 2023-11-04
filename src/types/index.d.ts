@@ -15,6 +15,12 @@ type KeyboardType =
   | 'web-search'
   | 'visible-password';
 
+type SelectOption = {
+  [key: string]: any;
+};
+
+type SelectValue = string | number;
+
 type RootStackParamList = {
   Login: undefined;
   Register: undefined;
@@ -25,4 +31,12 @@ type RootStackParamList = {
   Settings: undefined;
   LanguageSettings: undefined;
   Faq: undefined;
+  SelectInputDetail: {
+    title: string;
+    options: SelectOption[];
+    selectedValue: SelectOption | undefined;
+    onOptionChange: (item: any) => void;
+    optionLabel: string;
+    optionValue: string;
+  };
 };

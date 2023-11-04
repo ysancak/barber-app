@@ -10,6 +10,7 @@ import {
   LanguageSettings,
   Login,
   Register,
+  SelectInputDetail,
   Settings,
 } from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
@@ -82,6 +83,11 @@ function MainNavigator(): JSX.Element {
           title: 'Sık sorulan sorular',
         }}
         component={Faq}
+      />
+      <Stack.Screen
+        name="SelectInputDetail"
+        component={SelectInputDetail}
+        options={{presentation: 'modal'}}
       />
     </Stack.Navigator>
   );

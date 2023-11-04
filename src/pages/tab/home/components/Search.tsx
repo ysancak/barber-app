@@ -6,7 +6,7 @@ import {getCategoriesService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
-  const [categories, setCategories] = useState<Category[]>();
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     getCategoryList();
@@ -36,15 +36,15 @@ const SearchSaloons = () => {
         Jeder Termin
       </Text>
 
-      <View>
+      <View gap={12}>
         <Input.Select
           placeholder="Kategorie auswahlen"
           options={categories}
           optionLabel="categoryName"
           optionValue="_id"
-          value=""
           onChange={item => console.log(item)}
         />
+        <Input.Address placeholder="Ort wahlen" />
         <Button prefixIcon="search" label="Ara" />
       </View>
     </View>
