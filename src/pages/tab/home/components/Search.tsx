@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Button, Input, Text, View} from '@/components';
+import {useNavigation} from '@/hooks/useNavigation';
 import {getCategoriesService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
+  const navigation = useNavigation();
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -37,6 +39,7 @@ const SearchSaloons = () => {
       </Text>
 
       <View gap={12}>
+        <Input.Gender />
         <Input.Select
           placeholder="Kategorie auswahlen"
           options={categories}
@@ -45,7 +48,11 @@ const SearchSaloons = () => {
           onChange={item => console.log(item)}
         />
         <Input.Address placeholder="Ort wahlen" />
-        <Button prefixIcon="search" label="Ara" />
+        <Button
+          prefixIcon="search"
+          label="Ara"
+          onPress={() => navigation.navigate('MapListing')}
+        />
       </View>
     </View>
   );

@@ -1,18 +1,24 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Text from './Text';
 
+import {useNavigation} from '@/hooks/useNavigation';
 import {colors} from '@/utils';
 
 const SaloonListItem: React.FC<Saloon> = ({
+  _id,
   businessImage,
   businessName,
   businessLocation,
 }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.container}
+      onPress={() => navigation.navigate('SaloonDetail', {id: _id})}>
       <View style={styles.imageContainer}>
         <Image source={{uri: businessImage}} style={styles.businessImage} />
       </View>
@@ -31,7 +37,7 @@ const SaloonListItem: React.FC<Saloon> = ({
           <Text variant="caption">(1 Bewertungen)</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -2,6 +2,7 @@ import Button from './Button';
 import HeaderTitle from './HeaderTitle';
 import Input from './inputs';
 import ListItem from './ListItem';
+import MapMarker from './MapMarker';
 import RadioListItem from './RadioListItem';
 import SafeAreaView from './SafeAreaView';
 import SaloonListItem from './SaloonListItem';
@@ -20,4 +21,5 @@ export {
   Button,
   ListItem,
   SaloonListItem,
+  MapMarker,
 };

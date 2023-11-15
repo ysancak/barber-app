@@ -16,6 +16,10 @@
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
         android:exported="true">
+
+        <meta-data
+          android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyBDZT0cRrHiq2Cm6cQ-fONcvw6KIurO-5o"/>
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

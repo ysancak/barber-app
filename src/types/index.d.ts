@@ -31,6 +31,7 @@ type RootStackParamList = {
   Settings: undefined;
   LanguageSettings: undefined;
   Faq: undefined;
+  SaloonDetail: {id: string};
   SelectInputDetail: {
     title: string;
     options: SelectOption[];
@@ -39,4 +40,5 @@ type RootStackParamList = {
     optionLabel: string;
     optionValue: string;
   };
+  MapListing: undefined;
 };

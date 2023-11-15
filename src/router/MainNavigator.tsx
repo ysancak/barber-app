@@ -9,7 +9,9 @@ import {
   Faq,
   LanguageSettings,
   Login,
+  MapListing,
   Register,
+  SaloonDetail,
   SelectInputDetail,
   Settings,
 } from '@/pages';
@@ -88,6 +90,20 @@ function MainNavigator(): JSX.Element {
         name="SelectInputDetail"
         component={SelectInputDetail}
         options={{presentation: 'modal'}}
+      />
+      <Stack.Screen
+        name="SaloonDetail"
+        component={SaloonDetail}
+        options={{
+          title: '',
+        }}
+      />
+      <Stack.Screen
+        name="MapListing"
+        component={MapListing}
+        options={{
+          title: 'Arama sonuçları',
+        }}
       />
     </Stack.Navigator>
   );

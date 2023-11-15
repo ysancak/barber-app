@@ -1,3 +1,5 @@
+import MapListing from './map-listing';
+import SaloonDetail from './saloon-detail';
 import Settings from './settings';
 import LanguageSettings from './settings/Language';
 import Campaigns from './tab/campaigns';
@@ -20,5 +22,7 @@ export {
   LanguageSettings,
   Faq,
   Campaigns,
+  SaloonDetail,
   SelectInputDetail,
+  MapListing,
 };
