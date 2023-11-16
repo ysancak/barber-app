@@ -17,3 +17,11 @@ export const updateUserProfileSchema = Yup.object().shape({
     .email(() => t('loginAndRegister.form.email.error.invalid'))
     .required(() => t('loginAndRegister.form.email.error.notEmpty')),
 });
+
+export const searchValidationSchema = Yup.object().shape({
+  gender: Yup.string(),
+  category: Yup.string(),
+  address: Yup.object()
+    .shape({latitude: Yup.number(), longitude: Yup.number()})
+    .required('Adres alanı gereklidir'),
+});

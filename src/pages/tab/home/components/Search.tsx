@@ -1,25 +1,34 @@
+import {useFormik} from 'formik';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Button, Input, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {searchValidationSchema} from '@/schemas/validations';
 import {getCategoriesService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
-  const navigation = useNavigation();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState([]);
+
+  const formik = useFormik({
+    initialValues: {
+      gender: 'Man',
+      category: '',
+      address: null,
+    },
+    validationSchema: searchValidationSchema,
+    onSubmit: values => {
+      console.log(values);
+    },
+  });
 
   useEffect(() => {
-    getCategoryList();
+    fetchCategories();
   }, []);
 
-  const getCategoryList = async () => {
-    try {
-      const result = await getCategoriesService();
-      setCategories(result);
-    } finally {
-    }
+  const fetchCategories = async () => {
+    const result = await getCategoriesService();
+    setCategories(result ?? []);
   };
 
   return (
@@ -39,20 +48,28 @@ const SearchSaloons = () => {
       </Text>
 
       <View gap={12}>
-        <Input.Gender />
-        <Input.Select
-          placeholder="Kategorie auswahlen"
-          options={categories}
-          optionLabel="categoryName"
-          optionValue="_id"
-          onChange={item => console.log(item)}
+        <Input.Gender
+          selected={formik.values.gender}
+          onChange={formik.handleChange('gender')}
         />
-        <Input.Address placeholder="Ort wahlen" />
-        <Button
-          prefixIcon="search"
-          label="Ara"
-          onPress={() => navigation.navigate('MapListing')}
+        {categories.length > 0 && (
+          <Input.Select
+            placeholder="Kategorie auswahlen"
+            options={categories}
+            optionLabel="categoryName"
+            optionValue="_id"
+            onChange={item =>
+              formik.setFieldValue('category', item ? item : '')
+            }
+            value={formik.values.category}
+          />
+        )}
+        <Input.Address
+          placeholder="Ort wahlen"
+          onChange={coordinate => formik.setFieldValue('address', coordinate)}
+          error={formik.touched.address && formik.errors.address}
         />
+        <Button prefixIcon="search" label="Ara" onPress={formik.handleSubmit} />
       </View>
     </View>
   );

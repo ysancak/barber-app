@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {HeaderTitle} from '@/components';
 import {
+  AddressInputDetail,
   EditProfile,
   Faq,
   LanguageSettings,
@@ -104,6 +105,11 @@ function MainNavigator(): JSX.Element {
         options={{
           title: 'Arama sonuçları',
         }}
+      />
+      <Stack.Screen
+        name="AddressInputDetail"
+        component={AddressInputDetail}
+        options={{presentation: 'modal'}}
       />
     </Stack.Navigator>
   );

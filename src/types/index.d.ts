@@ -41,4 +41,13 @@ type RootStackParamList = {
     optionValue: string;
   };
   MapListing: undefined;
+  AddressInputDetail: {
+    title: string;
+    onChange: (label: string, coordinate: Coordinate) => void;
+  };
+};
+
+type Coordinate = {
+  latitude: number;
+  longitude: number;
 };

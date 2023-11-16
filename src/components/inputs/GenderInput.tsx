@@ -1,40 +1,41 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
+enum Gender {
+  Man = 'Man',
+  Woman = 'Woman',
+}
+
 type Props = {
-  onChange?: (value: string) => void;
+  selected: string;
+  onChange: (value: Gender) => void;
 };
 
-const GenderInput: React.FC<Props> = ({onChange}) => {
-  const [active, setActive] = useState('man');
-
-  const onPressHandler = (value: string) => {
-    setActive(value);
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
-  const getIconColor = gender =>
-    active === gender ? colors.whiteColor : colors.secondaryColor;
-  const getTextColor = gender =>
-    active === gender ? colors.whiteColor : colors.textColor;
+const GenderInput: React.FC<Props> = ({selected = Gender.Man, onChange}) => {
+  const getIconColor = (gender: Gender) =>
+    selected === gender ? colors.whiteColor : colors.secondaryColor;
+  const getTextColor = (gender: Gender) =>
+    selected === gender ? colors.whiteColor : colors.textColor;
 
   return (
     <View style={styles.container}>
-      {['man', 'woman'].map(gender => (
+      {Object.values(Gender).map(gender => (
         <TouchableOpacity
           key={gender}
           activeOpacity={0.8}
-          style={[styles.option, active === gender && styles.active]}
-          onPress={() => onPressHandler(gender)}>
-          <Icon name={gender} size={30} color={getIconColor(gender)} />
+          style={[styles.option, selected === gender && styles.active]}
+          onPress={() => onChange(gender)}>
+          <Icon
+            name={gender === Gender.Man ? 'man' : 'woman'}
+            size={30}
+            color={getIconColor(gender)}
+          />
           <Text medium color={getTextColor(gender)}>
-            {gender.charAt(0).toUpperCase() + gender.slice(1)}
+            {gender}
           </Text>
         </TouchableOpacity>
       ))}
