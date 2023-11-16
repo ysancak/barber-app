@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -18,6 +18,7 @@ type Props = {
 };
 
 const MapMarker: React.FC<Props> = ({coordinate, rating, active, onPress}) => {
+  const [tracksViewChanges, setTracksViewChanges] = useState(true);
   const dynamicStyles = {
     pinHead: {
       ...styles.pinHead,
@@ -29,8 +30,16 @@ const MapMarker: React.FC<Props> = ({coordinate, rating, active, onPress}) => {
     },
   };
 
+  useEffect(() => {
+    setTracksViewChanges(true);
+    setTimeout(() => setTracksViewChanges(false), 500);
+  }, [active]);
+
   return (
-    <Marker coordinate={coordinate} onPress={onPress}>
+    <Marker
+      tracksViewChanges={tracksViewChanges}
+      coordinate={coordinate}
+      onPress={onPress}>
       <View style={styles.pin}>
         <View style={dynamicStyles.pinHead}>
           <Icon

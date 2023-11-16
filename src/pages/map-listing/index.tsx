@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
@@ -53,27 +53,7 @@ const MapListing = () => {
         },
       );
     }
-  }, [mapRef, markers, activeIndex]);
-
-  const renderMarkers = useMemo(() => {
-    return markers.map((value, index) => (
-      <MapMarker
-        key={`mapmarker_${index}`}
-        coordinate={value.coordinate}
-        rating={value.rating}
-        active={activeIndex === index}
-        onPress={() => setActiveIndex(index)}
-      />
-    ));
-  }, [markers, activeIndex]);
-
-  const renderActiveSaloon = useMemo(() => {
-    return (
-      <View style={styles.bottomView}>
-        {activeIndex != null && <SaloonListItem {...markers[activeIndex]} />}
-      </View>
-    );
-  }, [markers, activeIndex]);
+  }, [mapRef, activeIndex]);
 
   return (
     <View style={styles.container}>
@@ -84,16 +64,20 @@ const MapListing = () => {
         customMapStyle={mapStyle}
         showsUserLocation
         showsScale={false}
-        showsCompass={false}
-        initialRegion={{
-          latitude: 40.78825,
-          longitude: 29.4324,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.421,
-        }}>
-        {renderMarkers}
+        showsCompass={false}>
+        {markers.map((value, index) => (
+          <MapMarker
+            key={`mapmarker_${index}`}
+            coordinate={value.coordinate}
+            rating={value.rating}
+            active={activeIndex === index}
+            onPress={() => setActiveIndex(index)}
+          />
+        ))}
       </MapView>
-      {renderActiveSaloon}
+      <View style={styles.bottomView}>
+        {activeIndex != null && <SaloonListItem {...markers[activeIndex]} />}
+      </View>
     </View>
   );
 };
