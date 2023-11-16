@@ -46,10 +46,10 @@ type Service = {
   _id: string;
   serviceName: string;
   description: string;
-  price: number;
-  status: string;
+  price: string;
+  durationMinutes: string;
   category: string;
-  businessID: string;
+  serviceType: string;
 };
 
 type SaloonDetail = {

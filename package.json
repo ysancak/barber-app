@@ -12,6 +12,7 @@
     "postclean": "yarn install && cd ios && pod install"
   },
   "dependencies": {
+    "@georstat/react-native-image-gallery": "^1.1.0",
     "@hookform/resolvers": "^3.3.2",
     "@react-native-async-storage/async-storage": "^1.19.3",
     "@react-navigation/bottom-tabs": "^6.5.11",

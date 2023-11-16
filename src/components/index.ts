@@ -1,5 +1,6 @@
 import Button from './Button';
 import HeaderTitle from './HeaderTitle';
+import ImageGallery from './ImageGallery';
 import Input from './inputs';
 import ListItem from './ListItem';
 import MapMarker from './MapMarker';
@@ -24,4 +25,5 @@ export {
   SaloonListItem,
   MapMarker,
   Rating,
+  ImageGallery,
 };

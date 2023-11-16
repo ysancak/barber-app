@@ -1190,6 +1190,11 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.52.0.tgz"
   integrity sha512-mjZVbpaeMZludF2fsWLD0Z9gCref1Tk4i9+wddjRvpUNqqcndPkBD09N/Mapey0b3jaXbLm2kICwFv2E64QinA==
 
+"@georstat/react-native-image-gallery@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@georstat/react-native-image-gallery/-/react-native-image-gallery-1.1.0.tgz#85ec40cec9415f372c950a5d88e26c7123de3cc8"
+  integrity sha512-rRyZpEFWQXUAlzQqaMi3/r3ymFUKqoQd+Jx1BevUEurMcPAX5321x8BbJ0jo1j4JfWR/koZDwyRZgoitEO5QTA==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.npmjs.org/@hapi/hoek/-/hoek-9.3.0.tgz"

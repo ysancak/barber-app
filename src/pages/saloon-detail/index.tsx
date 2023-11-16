@@ -1,14 +1,11 @@
 import React from 'react';
-import {Image, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 
 import BusinessInfo from './components/BusinessInfo';
-import CategoryList from './components/CategoryList';
 import Reviews from './components/Reviews';
-import ServiceItem from './components/ServiceItem';
+import ServiceList from './components/ServiceList';
 
-import {Rating} from '@/components';
-import Gallery from '@/components/Gallery';
-import Text from '@/components/Text';
+import {ImageGallery, Rating, Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
 import {colors} from '@/utils';
 
@@ -36,7 +33,7 @@ const SaloonDetail = () => {
               uri: 'https://barberscout-8c49e53c42dc.herokuapp.com/assets/img/upload/b-1.webp',
             }}
           />
-          <View style={styles.textContainer}>
+          <View marginLeft={16}>
             <Text variant="title" fontSize={22} style={styles.title}>
               Chic Coiffeour
             </Text>
@@ -45,21 +42,15 @@ const SaloonDetail = () => {
           </View>
         </View>
 
-        <View style={{gap: 35}}>
-          <View>
-            <CategoryList onChange={console.log} />
-            <View style={{gap: 12, paddingHorizontal: 16}}>
-              <ServiceItem />
-              <ServiceItem />
-              <ServiceItem />
-            </View>
-          </View>
-
-          <View style={{paddingHorizontal: 16, gap: 35}}>
-            <Gallery />
-
+        <View gap={35} paddingVertical={16}>
+          <ServiceList />
+          <View paddingHorizontal={16} gap={35}>
+            <ImageGallery
+              images={[
+                'https://barberscout-8c49e53c42dc.herokuapp.com/assets/img/upload/b-2.webp',
+              ]}
+            />
             <Reviews />
-
             <BusinessInfo />
           </View>
         </View>
@@ -90,9 +81,6 @@ const styles = StyleSheet.create({
     width: 86,
     height: 86,
     borderRadius: 99,
-  },
-  textContainer: {
-    marginLeft: 16,
   },
   title: {
     marginBottom: 8,
