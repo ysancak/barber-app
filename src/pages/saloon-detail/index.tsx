@@ -1,12 +1,12 @@
 import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BusinessInfo from './components/BusinessInfo';
 import CategoryList from './components/CategoryList';
 import Reviews from './components/Reviews';
 import ServiceItem from './components/ServiceItem';
 
+import {Rating} from '@/components';
 import Gallery from '@/components/Gallery';
 import Text from '@/components/Text';
 import {useNavigation} from '@/hooks/useNavigation';
@@ -41,16 +41,7 @@ const SaloonDetail = () => {
               Chic Coiffeour
             </Text>
             <Text style={styles.subtitle}>Kreis 1,Zürich</Text>
-            <View style={styles.ratingContainer}>
-              <Icon name="star" size={22} color="#ffa800" />
-              <Icon name="star" size={22} color="#ffa800" />
-              <Icon name="star" size={22} color="#ffa800" />
-              <Icon name="star" size={22} color="#ffa800" />
-              <Icon name="star-half" size={22} color="#ffa800" />
-              <Text variant="caption" style={styles.reviewText}>
-                (2 Bewertungen)
-              </Text>
-            </View>
+            <Rating score={4.5} reviewCount={23} />
           </View>
         </View>
 

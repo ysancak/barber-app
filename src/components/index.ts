@@ -4,6 +4,7 @@ import Input from './inputs';
 import ListItem from './ListItem';
 import MapMarker from './MapMarker';
 import RadioListItem from './RadioListItem';
+import Rating from './Rating';
 import SafeAreaView from './SafeAreaView';
 import SaloonListItem from './SaloonListItem';
 import Space from './Space';
@@ -22,4 +23,5 @@ export {
   ListItem,
   SaloonListItem,
   MapMarker,
+  Rating,
 };

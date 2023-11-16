@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {Text, View} from '@/components';
+import {Rating, Text, View} from '@/components';
 import {colors} from '@/utils';
 
 const Reviews = () => {
@@ -20,13 +20,7 @@ const Reviews = () => {
             Claire Redfield
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'center', gap: 12}}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="star" size={24} color="#ffa800" />
-              <Icon name="star" size={24} color="#ffa800" />
-              <Icon name="star" size={24} color="#ffa800" />
-              <Icon name="star" size={24} color="#ffa800" />
-              <Icon name="star-half" size={24} color="#ffa800" />
-            </View>
+            <Rating score={4.2} />
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
               <Icon
                 name="calendar-month"

@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Rating from './Rating';
 import Text from './Text';
 
 import {useNavigation} from '@/hooks/useNavigation';
@@ -30,12 +31,7 @@ const SaloonListItem: React.FC<Saloon> = ({
           <Icon name={'location-on'} size={22} color={colors.borderColor} />
           <Text>{businessLocation}</Text>
         </View>
-        <View style={styles.ratingRow}>
-          <View style={styles.ratingBadge}>
-            <Text style={styles.ratingText}>4.0</Text>
-          </View>
-          <Text variant="caption">(1 Bewertungen)</Text>
-        </View>
+        <Rating score={4.3} variant="compact" reviewCount={24} />
       </View>
     </TouchableOpacity>
   );
@@ -80,20 +76,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-  },
-  ratingRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  ratingBadge: {
-    backgroundColor: 'orange',
-    alignSelf: 'baseline',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  ratingText: {
-    color: colors.whiteColor,
   },
 });

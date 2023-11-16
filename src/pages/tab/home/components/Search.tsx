@@ -3,13 +3,14 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Button, Input, Text, View} from '@/components';
+import {useNavigation} from '@/hooks/useNavigation';
 import {searchValidationSchema} from '@/schemas/validations';
 import {getCategoriesService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
+  const navigation = useNavigation();
   const [categories, setCategories] = useState([]);
-
   const formik = useFormik({
     initialValues: {
       gender: 'Man',
@@ -19,6 +20,7 @@ const SearchSaloons = () => {
     validationSchema: searchValidationSchema,
     onSubmit: values => {
       console.log(values);
+      navigation.navigate('MapListing');
     },
   });
 
