@@ -14,23 +14,22 @@ const BusinessInfo = () => {
           Business Info
         </Text>
       </View>
-      <View style={{gap: 12}}>
+      <View style={styles.mapViewContainer}>
         <ListMapView coordinate={{latitude: 37.79, longitude: -122.42}} />
-        <View
-          style={{
-            backgroundColor: colors.whiteColor,
-            padding: 4,
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: colors.borderColor3,
-          }}>
+        <View style={styles.listContainer}>
           <ListItem
             icon="location-on"
-            label="Alfred-Escherstrasse 64, 8002, Zürich"
+            label="Adres"
+            value="Alfred-Escherstrasse 64, 8002, Zürich"
           />
-          <ListItem icon="call" label="+44 6633 6526" />
-          <ListItem icon="mail" label="info@coiffeur.ch" />
-          <ListItem icon="public" label="www.coiffeur.ch" />
+          <ListItem icon="call" label="Telefon" value="+44 6633 6526" />
+          <ListItem icon="mail" label="Mail" value="info@coiffeur.ch" />
+          <ListItem icon="public" label="Website" value="www.coiffeur.ch" />
+        </View>
+
+        <View style={styles.listContainer}>
+          <ListItem label="Payment methods" value="Cash & Credit cards" />
+          <ListItem label="Spoken languages" value="English and German" />
         </View>
       </View>
     </View>
@@ -45,5 +44,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     marginBottom: 16,
+  },
+  mapViewContainer: {
+    gap: 12,
+  },
+  listContainer: {
+    backgroundColor: colors.whiteColor,
+    padding: 4,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.borderColor3,
   },
 });

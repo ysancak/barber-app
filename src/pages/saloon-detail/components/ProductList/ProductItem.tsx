@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Text, View} from '@/components';
 import {colors} from '@/utils';
-import {wp} from '@/utils/responsive';
 
 const ProductItem: React.FC<Product> = ({
   _id,
@@ -18,7 +17,7 @@ const ProductItem: React.FC<Product> = ({
     <View style={styles.container}>
       <Image
         source={{uri: productImage}}
-        style={{width: '100%', height: 150}}
+        style={styles.image}
         resizeMode="contain"
       />
       <View gap={16}>
@@ -74,5 +73,9 @@ const styles = StyleSheet.create({
   oldPrice: {
     textDecorationStyle: 'solid',
     textDecorationLine: 'line-through',
+  },
+  image: {
+    width: '100%',
+    height: 150,
   },
 });

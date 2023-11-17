@@ -21,13 +21,19 @@ const ListItem: React.FC<Props> = ({icon, label, value, onPress}) => {
         style={styles.container}
         flexDirection="row"
         alignItems="center"
-        justifyContent="space-between">
+        justifyContent="space-between"
+        gap={16}>
         <View flexDirection="row" alignItems="center" gap={8}>
           {icon && <Icon name={icon} size={22} color={colors.primaryColor} />}
           <Text>{label}</Text>
         </View>
-        <View flexDirection="row" alignItems="center" gap={4}>
-          {value && <Text>{value}</Text>}
+        <View
+          flex
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="flex-end"
+          gap={4}>
+          {value && <Text textAlign="right">{value}</Text>}
           {onPress && (
             <Icon
               name={'chevron-right'}
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteColor,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderColor2,
-    height: 50,
+    paddingVertical: 14,
     paddingHorizontal: 12,
   },
 });
