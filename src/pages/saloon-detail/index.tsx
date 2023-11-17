@@ -1,5 +1,7 @@
 import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BusinessInfo from './components/BusinessInfo';
 import ProductList from './components/ProductList';
@@ -15,11 +17,22 @@ const SaloonDetail = () => {
 
   navigation.setOptions({
     title: 'Chic Coiffeour',
+    headerRight: () => (
+      <TouchableOpacity>
+        <View paddingHorizontal={16}>
+          <Icon
+            name="favorite-border"
+            size={30}
+            color={colors.captionTextColor}
+          />
+        </View>
+      </TouchableOpacity>
+    ),
   });
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+      <ScrollView contentContainerStyle={{paddingBottom: 16}}>
         <Image
           style={styles.headerImage}
           source={{
@@ -41,6 +54,41 @@ const SaloonDetail = () => {
             <Text style={styles.subtitle}>Kreis 1,Zürich</Text>
             <Rating score={4.5} reviewCount={23} />
           </View>
+        </View>
+
+        <View
+          style={{
+            borderBottomWidth: 1,
+            backgroundColor: colors.whiteColor,
+            borderColor: colors.borderColor3,
+          }}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingHorizontal: 16,
+              paddingVertical: 20,
+              gap: 20,
+            }}>
+            <TouchableOpacity>
+              <View flexDirection="row" alignItems="center" gap={6}>
+                <Icon name="near-me" size={22} color={colors.primaryColor} />
+                <Text medium>Get Directions</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View flexDirection="row" alignItems="center" gap={6}>
+                <Icon name="public" size={22} color={colors.primaryColor} />
+                <Text medium>Website</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View flexDirection="row" alignItems="center" gap={6}>
+                <Icon name="call" size={22} color={colors.primaryColor} />
+                <Text medium>Call</Text>
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
 
         <View gap={35} paddingVertical={20}>

@@ -100,12 +100,6 @@ const ServiceList = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Icon name={'content-cut'} size={30} color={colors.primaryColor} />
-        <Text variant="title" fontSize={22}>
-          Services
-        </Text>
-      </View>
       {renderCategories()}
       <View style={styles.servicesContainer}>{renderServices()}</View>
     </View>
@@ -120,13 +114,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     gap: 8,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-  },
+
   categoryContainer: {
     marginBottom: 12,
   },
