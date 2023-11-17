@@ -1,40 +1,36 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import ServiceItem from './ServiceItem';
+import ProductItem from './ProductItem';
 
-import {View, Text, Button} from '@/components';
+import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
-const ServiceList = () => {
+const ProductList = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
-  const [services, setServices] = useState<Service[]>([]);
-
-  const SHOW_COUNT = 1;
-  const [showAll, setShowAll] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    setServices([
+    setProducts([
       {
         _id: '65524dc4940e10c58ce122ce',
-        serviceName: 'LPG Targeted Treatment',
-        description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
+        productName: 'Maybelline Color sensational',
+        description: '122 Brick Beat',
         price: '164.34 TL',
-        durationMinutes: '23 mins',
         category: 'Face',
-        serviceType: 'Female',
+        productImage:
+          'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892098219-642483261.webp',
       },
       {
-        _id: '65524dc4940d0c58ce122ce',
-        serviceName: '23 Targeted Treatment',
-        description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
-        price: '20.34 TL',
-        durationMinutes: '15 mins',
+        _id: '65524dc4940e10c3ce122ce',
+        productName: "L'Oreal Paris Perfect Match",
+        description: 'Getöntes Serum',
+        price: '164.34 TL',
         category: 'Nails',
-        serviceType: 'Male',
+        productImage:
+          'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892056878-592017763.webp',
       },
     ]);
   }, []);
@@ -42,10 +38,10 @@ const ServiceList = () => {
   useEffect(() => {
     const uniqueCategories = [
       'all',
-      ...new Set(services.map(service => service.category)),
+      ...new Set(products.map(product => product.category)),
     ];
     setCategories(uniqueCategories);
-  }, [services]);
+  }, [products]);
 
   const renderCategories = () => {
     return (
@@ -74,40 +70,33 @@ const ServiceList = () => {
     );
   };
 
-  const renderServices = () => {
-    const filteredServices = services.filter(
-      service =>
-        selectedCategory === 'all' || service.category === selectedCategory,
+  const renderProducts = () => {
+    const filteredProducts = products.filter(
+      product =>
+        selectedCategory === 'all' || product.category === selectedCategory,
     );
-    const servicesToShow = showAll
-      ? filteredServices
-      : filteredServices.slice(0, SHOW_COUNT);
     return (
-      <View gap={10}>
-        {servicesToShow.map(service => (
-          <ServiceItem key={service._id} {...service} />
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollViewContent}>
+        {filteredProducts.map(product => (
+          <ProductItem key={product._id} {...product} />
         ))}
-        {filteredServices.length > SHOW_COUNT && (
-          <Button
-            label={showAll ? 'Daha Az Göster' : 'Tümünü Gör'}
-            variant="secondary"
-            onPress={() => setShowAll(!showAll)}
-          />
-        )}
-      </View>
+      </ScrollView>
     );
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Icon name={'content-cut'} size={30} color={colors.primaryColor} />
+        <Icon name={'storefront'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          Services
+          Products
         </Text>
       </View>
       {renderCategories()}
-      <View style={styles.servicesContainer}>{renderServices()}</View>
+      {renderProducts()}
     </View>
   );
 };
@@ -115,10 +104,6 @@ const ServiceList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  servicesContainer: {
-    paddingHorizontal: 16,
-    gap: 8,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -146,9 +131,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   scrollViewContent: {
-    gap: 10,
     paddingHorizontal: 16,
+    gap: 10,
   },
 });
 
-export default ServiceList;
+export default ProductList;

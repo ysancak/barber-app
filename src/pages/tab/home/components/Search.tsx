@@ -49,7 +49,7 @@ const SearchSaloons = () => {
         Jeder Termin
       </Text>
 
-      <View gap={12}>
+      <View gap={10}>
         <Input.Gender
           selected={formik.values.gender}
           onChange={formik.handleChange('gender')}

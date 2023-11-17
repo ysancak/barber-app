@@ -1,62 +1,56 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Text, View} from '@/components';
 import {colors} from '@/utils';
+import {wp} from '@/utils/responsive';
 
-const ServiceItem: React.FC<Service> = ({
+const ProductItem: React.FC<Product> = ({
   _id,
+  category,
   description,
-  durationMinutes,
   price,
-  serviceName,
-  serviceType,
+  productImage,
+  productName,
 }) => {
   return (
     <View style={styles.container}>
-      <View flexDirection="row" alignItems="flex-start" gap={16}>
+      <Image
+        source={{uri: productImage}}
+        style={{width: '100%', height: 150}}
+        resizeMode="contain"
+      />
+      <View gap={16}>
         <View flex gap={8}>
           <Text fontSize={17} semibold>
-            {serviceName}
+            {productName}
           </Text>
-          <View flexDirection="row" gap={8} alignItems="flex-end">
+          <Text>{description}</Text>
+        </View>
+        <View flexDirection="row" alignItems="center" gap={22}>
+          <View flex gap={4}>
             <Text variant="title" fontSize={20} color={colors.primaryColor}>
               {price}
             </Text>
             <Text
               variant="title"
-              fontSize={18}
+              fontSize={16}
               style={styles.oldPrice}
               color={colors.captionTextColor}>
               {price}
             </Text>
           </View>
-        </View>
-        <TouchableOpacity style={styles.addButton}>
-          <Icon name="shopping-cart" size={22} color={colors.whiteColor} />
-          <Text variant="caption" color={colors.whiteColor}>
-            Ekle
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <Text>{description}</Text>
-      <View flexDirection="row" gap={12} alignItems="center">
-        <View flexDirection="row" alignItems="center" gap={6}>
-          <Icon name="timer" size={22} color={colors.captionTextColor} />
-          <Text variant="caption">{durationMinutes}</Text>
-        </View>
-
-        <View flexDirection="row" alignItems="center" gap={6}>
-          <Icon name="wc" size={22} color={colors.captionTextColor} />
-          <Text variant="caption">{serviceType}</Text>
+          <TouchableOpacity style={styles.addButton}>
+            <Icon name="shopping-cart" size={22} color={colors.whiteColor} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
 
-export default ServiceItem;
+export default ProductItem;
 
 const styles = StyleSheet.create({
   container: {
@@ -66,6 +60,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     borderColor: colors.borderColor3,
+    width: 240,
   },
   addButton: {
     padding: 12,
@@ -73,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryColor,
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: 6,
+    gap: 8,
     borderRadius: 8,
   },
   oldPrice: {

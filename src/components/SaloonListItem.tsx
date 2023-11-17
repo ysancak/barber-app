@@ -40,9 +40,7 @@ const SaloonListItem: React.FC<Saloon> = ({
 export default SaloonListItem;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 20,
-  },
+  container: {},
   imageContainer: {
     borderLeftWidth: 1,
     borderRightWidth: 1,
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     borderColor: colors.borderColor,
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
-    backgroundColor: colors.borderColor2,
+    backgroundColor: colors.borderColor3,
   },
   businessImage: {
     width: '100%',
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: colors.borderColor,
+    borderColor: colors.borderColor3,
   },
   businessName: {
     fontSize: 18,

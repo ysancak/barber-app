@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   bottomView: {
     paddingHorizontal: 16,
     width: '100%',
-    bottom: 20,
+    bottom: 45,
     position: 'absolute',
     shadowColor: colors.secondaryColor,
     shadowOpacity: 0.2,

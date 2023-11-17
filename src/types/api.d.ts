@@ -57,3 +57,12 @@ type SaloonDetail = {
   reviews: Review[];
   services: Service[];
 };
+
+type Product = {
+  _id: string;
+  productName: string;
+  price: string;
+  category: string;
+  description: string;
+  productImage: string;
+};

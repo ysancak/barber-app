@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   reviewList: {
-    gap: 16,
+    gap: 12,
   },
 });

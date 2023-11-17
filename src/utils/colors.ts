@@ -3,6 +3,7 @@ export const secondaryColor = '#374b5c';
 export const bgColor = '#f7f7f7';
 export const borderColor = '#d5d9de';
 export const borderColor2 = '#c9ccd150';
+export const borderColor3 = '#c9ccd180';
 
 //general
 export const whiteColor = '#FFFFFF';

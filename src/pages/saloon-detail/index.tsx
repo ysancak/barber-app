@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 
 import BusinessInfo from './components/BusinessInfo';
+import ProductList from './components/ProductList';
 import Reviews from './components/Reviews';
 import ServiceList from './components/ServiceList';
 
@@ -42,8 +43,9 @@ const SaloonDetail = () => {
           </View>
         </View>
 
-        <View gap={35} paddingVertical={16}>
+        <View gap={35} paddingVertical={20}>
           <ServiceList />
+          <ProductList />
           <View paddingHorizontal={16} gap={35}>
             <ImageGallery
               images={[
@@ -76,6 +78,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.whiteColor,
+    borderBottomWidth: 1,
+    borderColor: colors.borderColor2,
   },
   avatarImage: {
     width: 86,
