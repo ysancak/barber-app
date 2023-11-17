@@ -18,7 +18,6 @@ const ListMapView: React.FC<Props> = ({coordinate}) => {
       style={styles.container}
       scrollEnabled={false}
       showsCompass={false}
-      onPress={console.log}
       customMapStyle={mapStyle}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
