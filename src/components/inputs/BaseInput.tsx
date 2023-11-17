@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: 'EncodeSans-Regular',
     fontSize: 15,
-    height: 28,
+    paddingVertical: 5,
   },
 });
 

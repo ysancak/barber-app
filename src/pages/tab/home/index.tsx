@@ -1,5 +1,6 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import PopularSaloons from './components/PopularSaloons';
 import SearchSaloons from './components/Search';

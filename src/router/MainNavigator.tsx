@@ -38,7 +38,6 @@ function MainNavigator(): JSX.Element {
           fontFamily: 'EncodeSans-Medium',
         },
         headerBackTitle: t('general.back'),
-        headerBackTitleVisible: true,
       })}>
       <Stack.Screen
         name="Tabs"
