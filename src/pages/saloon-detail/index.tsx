@@ -14,6 +14,7 @@ import BusinessInfo from './components/BusinessInfo';
 import ProductList from './components/ProductList';
 import Reviews from './components/Reviews';
 import ServiceList from './components/ServiceList';
+import ShoppingBasket from './components/ShoppingBasket';
 
 import ImageGallery from '@/components/ImageGallery';
 import Rating from '@/components/Rating';
@@ -120,6 +121,7 @@ const SaloonDetail = () => {
         <ActionButtons />
         <Content />
       </ScrollView>
+      <ShoppingBasket />
     </SafeAreaView>
   );
 };
@@ -130,14 +132,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bgColor,
   },
   scrollViewContent: {
-    paddingBottom: 16,
+    paddingBottom: 40,
   },
   headerRight: {
     paddingHorizontal: 16,
   },
   headerImage: {
     width: '100%',
-    height: 220,
+    height: 140,
   },
   detailContainer: {
     paddingHorizontal: 16,
