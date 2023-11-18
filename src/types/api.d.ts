@@ -46,7 +46,8 @@ type Service = {
   _id: string;
   serviceName: string;
   description: string;
-  price: string;
+  price: number;
+  currency: string;
   durationMinutes: string;
   category: string;
   serviceType: string;
@@ -61,7 +62,8 @@ type SaloonDetail = {
 type Product = {
   _id: string;
   productName: string;
-  price: string;
+  price: number;
+  currency: string;
   category: string;
   description: string;
   productImage: string;

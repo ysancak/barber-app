@@ -10,6 +10,7 @@ const ProductItem: React.FC<Product> = ({
   category,
   description,
   price,
+  currency,
   productImage,
   productName,
 }) => {
@@ -36,14 +37,14 @@ const ProductItem: React.FC<Product> = ({
         <View flexDirection="row" alignItems="center" gap={22}>
           <View flex gap={4}>
             <Text variant="title" fontSize={20} color={colors.primaryColor}>
-              {price}
+              {price} {currency}
             </Text>
             <Text
               variant="title"
               fontSize={16}
               style={styles.oldPrice}
               color={colors.captionTextColor}>
-              {price}
+              {price} {currency}
             </Text>
           </View>
           {isAddedToCart ? (

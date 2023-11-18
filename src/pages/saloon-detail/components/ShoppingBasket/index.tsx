@@ -25,7 +25,7 @@ const ShoppingBasket = () => {
             </View>
           </View>
           <Text variant="title" fontSize={22}>
-            164.34 TL
+            164.34
           </Text>
         </View>
         <View style={styles.buttonWrapper}>

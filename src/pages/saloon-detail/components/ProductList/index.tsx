@@ -10,6 +10,7 @@ import {colors} from '@/utils';
 
 const ProductList = () => {
   const {t} = useTranslation();
+  const businessID = 'busines1';
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -20,7 +21,8 @@ const ProductList = () => {
         _id: '65524dc4940e10c58ce122ce',
         productName: 'Maybelline Color sensational',
         description: '122 Brick Beat',
-        price: '164.34 TL',
+        price: 164.34,
+        currency: 'TL',
         category: 'Face',
         productImage:
           'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892098219-642483261.webp',
@@ -29,7 +31,8 @@ const ProductList = () => {
         _id: '65524dc4940e10c3ce122ce',
         productName: "L'Oreal Paris Perfect Match",
         description: 'Getöntes Serum',
-        price: '164.34 TL',
+        price: 164.34,
+        currency: 'TL',
         category: 'Nails',
         productImage:
           'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892056878-592017763.webp',

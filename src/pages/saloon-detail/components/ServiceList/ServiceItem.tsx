@@ -11,6 +11,7 @@ const ServiceItem: React.FC<Service> = ({
   description,
   durationMinutes,
   price,
+  currency,
   serviceName,
   serviceType,
 }) => {
@@ -25,14 +26,14 @@ const ServiceItem: React.FC<Service> = ({
           </Text>
           <View flexDirection="row" gap={8} alignItems="flex-end">
             <Text variant="title" fontSize={20} color={colors.primaryColor}>
-              {price}
+              {price} {currency}
             </Text>
             <Text
               variant="title"
-              fontSize={18}
+              fontSize={16}
               style={styles.oldPrice}
               color={colors.captionTextColor}>
-              {price}
+              {price} {currency}
             </Text>
           </View>
         </View>

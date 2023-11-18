@@ -10,6 +10,7 @@ import {colors} from '@/utils';
 
 const ServiceList = () => {
   const {t} = useTranslation();
+  const businessID = 'busines1';
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -23,7 +24,8 @@ const ServiceList = () => {
         _id: '65524dc4940e10c58ce122ce',
         serviceName: 'LPG Targeted Treatment',
         description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
-        price: '164.34 TL',
+        price: 164.34,
+        currency: 'TL',
         durationMinutes: '23 mins',
         category: 'Face',
         serviceType: 'Female',
@@ -32,7 +34,8 @@ const ServiceList = () => {
         _id: '65524dc4940d0c58ce122ce',
         serviceName: '23 Targeted Treatment',
         description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
-        price: '20.34 TL',
+        price: 20.34,
+        currency: 'TL',
         durationMinutes: '15 mins',
         category: 'Nails',
         serviceType: 'Male',
