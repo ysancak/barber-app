@@ -8,9 +8,12 @@ import ProductItem from './ProductItem';
 import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
-const ProductList = () => {
+type Props = {
+  businessID: string;
+};
+
+const ProductList: React.FC<Props> = ({businessID}) => {
   const {t} = useTranslation();
-  const businessID = 'busines1';
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,6 +29,7 @@ const ProductList = () => {
         category: 'Face',
         productImage:
           'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892098219-642483261.webp',
+        businessID: 'businessOrnek2',
       },
       {
         _id: '65524dc4940e10c3ce122ce',
@@ -36,6 +40,7 @@ const ProductList = () => {
         category: 'Nails',
         productImage:
           'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892056878-592017763.webp',
+        businessID: 'businessOrnek2',
       },
     ]);
   }, []);

@@ -23,6 +23,7 @@ import {useNavigation} from '@/hooks/useNavigation';
 import {colors} from '@/utils';
 
 const SaloonDetail = () => {
+  const businessID = 'businessOrnek2';
   const {t} = useTranslation();
   const navigation = useNavigation();
 
@@ -99,8 +100,8 @@ const SaloonDetail = () => {
 
   const Content = () => (
     <View style={styles.content}>
-      <ServiceList />
-      <ProductList />
+      <ServiceList businessID={businessID} />
+      <ProductList businessID={businessID} />
       <View style={styles.galleryAndReviews}>
         <ImageGallery
           images={[
@@ -121,7 +122,7 @@ const SaloonDetail = () => {
         <ActionButtons />
         <Content />
       </ScrollView>
-      <ShoppingBasket />
+      <ShoppingBasket businessID={businessID} />
     </SafeAreaView>
   );
 };

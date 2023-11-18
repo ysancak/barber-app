@@ -1,21 +1,39 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
+import {addToCart, removeFromCart} from '@/store/cart';
 import {colors} from '@/utils';
 
-const ServiceItem: React.FC<Service> = ({
-  _id,
-  description,
-  durationMinutes,
-  price,
-  currency,
-  serviceName,
-  serviceType,
-}) => {
+const ServiceItem: React.FC<Service> = service => {
+  const {
+    _id,
+    description,
+    durationMinutes,
+    price,
+    currency,
+    serviceName,
+    serviceType,
+    businessID,
+  } = service;
   const {t} = useTranslation();
+  const dispatch = useDispatch();
+  const businessCart = useSelector(state => state.cart.carts[businessID]);
+  const isInCart = useCallback(
+    () => businessCart && businessCart.items.some(item => item._id === _id),
+    [businessCart, _id],
+  );
+
+  const handleAddRemoveService = () => {
+    if (isInCart()) {
+      dispatch(removeFromCart({businessId: businessID, itemId: _id}));
+    } else {
+      dispatch(addToCart({businessId: businessID, item: service}));
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -37,10 +55,18 @@ const ServiceItem: React.FC<Service> = ({
             </Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.addButton}>
-          <Icon name="shopping-cart" size={22} color={colors.whiteColor} />
-          <Text variant="caption" color={colors.whiteColor}>
-            {t('general.add')}
+        <TouchableOpacity
+          style={isInCart() ? styles.removeButton : styles.addButton}
+          onPress={handleAddRemoveService}>
+          <Icon
+            name="shopping-cart"
+            size={22}
+            color={isInCart() ? colors.primaryColor : colors.whiteColor}
+          />
+          <Text
+            variant="caption"
+            color={isInCart() ? colors.primaryColor : colors.whiteColor}>
+            {isInCart() ? t('general.remove') : t('general.add')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -75,6 +101,17 @@ const styles = StyleSheet.create({
     padding: 12,
     alignItems: 'center',
     backgroundColor: colors.primaryColor,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 6,
+    borderRadius: 8,
+  },
+  removeButton: {
+    backgroundColor: colors.whiteColor,
+    borderWidth: 1,
+    borderColor: colors.primaryColor,
+    padding: 12,
+    alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 6,

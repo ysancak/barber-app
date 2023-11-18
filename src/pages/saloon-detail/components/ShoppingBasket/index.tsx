@@ -1,13 +1,69 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useCallback, useEffect, useRef} from 'react';
+import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {colors} from '@/utils';
 
-const ShoppingBasket = () => {
+type Props = {
+  businessID: string;
+};
+
+const ShoppingBasket: React.FC<Props> = ({businessID}) => {
+  const businessCart = useSelector(state => state.cart.carts[businessID]);
+
+  const totalServices = useCallback(
+    () =>
+      businessCart
+        ? businessCart.items.filter(item => item.serviceName).length
+        : 0,
+    [businessCart],
+  );
+  const totalProducts = useCallback(
+    () =>
+      businessCart
+        ? businessCart.items.filter(item => item.productName).length
+        : 0,
+    [businessCart],
+  );
+
+  const totalPrice = useCallback(() => {
+    const calculatedTotalPrice = businessCart
+      ? Math.abs(businessCart.totalPrice)
+      : 0;
+    const _totalPrice = calculatedTotalPrice < 0.01 ? 0 : calculatedTotalPrice;
+    return _totalPrice;
+  }, [businessCart]);
+
+  console.log(totalPrice());
+
+  const animatedValue = useRef(
+    new Animated.Value(totalPrice() > 0 ? 0 : 1),
+  ).current;
+
+  useEffect(() => {
+    Animated.timing(animatedValue, {
+      toValue: totalPrice() > 0 ? 1 : 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [totalPrice, animatedValue]);
+
+  const animatedStyle = {
+    opacity: animatedValue,
+    transform: [
+      {
+        translateY: animatedValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [100, 0],
+        }),
+      },
+    ],
+  };
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animatedStyle]}>
       <View style={styles.contentWrapper}>
         <View style={styles.infoWrapper}>
           <View style={styles.infoSection}>
@@ -17,15 +73,15 @@ const ShoppingBasket = () => {
                 size={22}
                 color={colors.primaryColor}
               />
-              <Text>23 servis</Text>
+              <Text>{totalServices()} servis</Text>
             </View>
             <View style={styles.iconTextWrapper}>
               <Icon name={'storefront'} size={22} color={colors.primaryColor} />
-              <Text>99 ürün</Text>
+              <Text>{totalProducts()} ürün</Text>
             </View>
           </View>
           <Text variant="title" fontSize={22}>
-            164.34
+            {totalPrice().toFixed(2)}
           </Text>
         </View>
         <View style={styles.buttonWrapper}>
@@ -35,7 +91,7 @@ const ShoppingBasket = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

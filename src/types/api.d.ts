@@ -51,6 +51,7 @@ type Service = {
   durationMinutes: string;
   category: string;
   serviceType: string;
+  businessID: string;
 };
 
 type SaloonDetail = {
@@ -67,4 +68,5 @@ type Product = {
   category: string;
   description: string;
   productImage: string;
+  businessID: string;
 };

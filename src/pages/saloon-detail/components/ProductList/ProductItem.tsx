@@ -1,23 +1,41 @@
-import React, {useState} from 'react';
+import React, {useCallback} from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
+import {addToCart, removeFromCart} from '@/store/cart';
 import {colors} from '@/utils';
 
-const ProductItem: React.FC<Product> = ({
-  _id,
-  category,
-  description,
-  price,
-  currency,
-  productImage,
-  productName,
-}) => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+const ProductItem: React.FC<Product> = product => {
+  const {
+    _id,
+    description,
+    price,
+    currency,
+    productImage,
+    productName,
+    businessID,
+  } = product;
+  const dispatch = useDispatch();
+  const businessCart = useSelector(state => state.cart.carts[businessID]);
+
+  const productQuantity = useCallback(
+    () =>
+      businessCart
+        ? businessCart.items.filter(item => item._id === _id).length
+        : 0,
+    [businessCart, _id],
+  );
 
   const handleAddToCart = () => {
-    setIsAddedToCart(!isAddedToCart);
+    dispatch(addToCart({businessId: businessID, item: product}));
+  };
+
+  const handleRemoveFromCart = () => {
+    if (productQuantity() > 0) {
+      dispatch(removeFromCart({businessId: businessID, itemId: _id}));
+    }
   };
 
   return (
@@ -47,19 +65,21 @@ const ProductItem: React.FC<Product> = ({
               {price} {currency}
             </Text>
           </View>
-          {isAddedToCart ? (
+          {productQuantity() > 0 ? (
             <View style={styles.quantityContainer}>
               <TouchableOpacity
                 style={styles.decreaseButton}
-                onPress={handleAddToCart}>
+                onPress={handleRemoveFromCart}>
                 <Icon name="remove" size={22} color={colors.whiteColor} />
               </TouchableOpacity>
 
               <Text medium fontSize={18} color={colors.whiteColor}>
-                1
+                {productQuantity()}
               </Text>
 
-              <TouchableOpacity style={styles.increaseButton}>
+              <TouchableOpacity
+                style={styles.increaseButton}
+                onPress={handleAddToCart}>
                 <Icon name="add" size={22} color={colors.whiteColor} />
               </TouchableOpacity>
             </View>

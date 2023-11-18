@@ -25,6 +25,7 @@ const cartSlice = createSlice({
       }
       state.carts[businessId].items.push(item);
       state.carts[businessId].totalPrice += Number(item.price);
+      console.log(state);
     },
     removeFromCart: (
       state,
