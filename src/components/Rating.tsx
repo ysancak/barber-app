@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -18,6 +19,7 @@ const Rating: React.FC<RatingProps> = ({
   reviewCount,
   variant = 'star',
 }) => {
+  const {t} = useTranslation();
   const fullStars = Math.floor(score);
   const halfStar = score % 1 !== 0;
 
@@ -33,7 +35,7 @@ const Rating: React.FC<RatingProps> = ({
           )}
           {reviewCount !== undefined && (
             <Text variant="caption" style={styles.reviewText}>
-              ({reviewCount} Bewertungen)
+              ({t('rating.comment', {reviewCount})})
             </Text>
           )}
         </View>
@@ -45,7 +47,7 @@ const Rating: React.FC<RatingProps> = ({
           </View>
           {reviewCount !== undefined && (
             <Text variant="caption" style={styles.reviewText}>
-              ({reviewCount} Bewertungen)
+              ({t('rating.comment', {reviewCount})})
             </Text>
           )}
         </View>

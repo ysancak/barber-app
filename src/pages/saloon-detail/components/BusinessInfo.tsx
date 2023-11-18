@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -6,12 +7,13 @@ import {ListItem, ListMapView, Text, View} from '@/components';
 import {colors} from '@/utils';
 
 const BusinessInfo = () => {
+  const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
         <Icon name={'business-center'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          Business Info
+          {t('businessInfo.title')}
         </Text>
       </View>
       <View style={styles.mapViewContainer}>
@@ -19,17 +21,35 @@ const BusinessInfo = () => {
         <View style={styles.listContainer}>
           <ListItem
             icon="location-on"
-            label="Adres"
+            label={t('general.address')}
             value="Alfred-Escherstrasse 64, 8002, Zürich"
           />
-          <ListItem icon="call" label="Telefon" value="+44 6633 6526" />
-          <ListItem icon="mail" label="Mail" value="info@coiffeur.ch" />
-          <ListItem icon="public" label="Website" value="www.coiffeur.ch" />
+          <ListItem
+            icon="call"
+            label={t('general.phone')}
+            value="+44 6633 6526"
+          />
+          <ListItem
+            icon="mail"
+            label={t('general.email')}
+            value="info@coiffeur.ch"
+          />
+          <ListItem
+            icon="public"
+            label={t('general.website')}
+            value="www.coiffeur.ch"
+          />
         </View>
 
         <View style={styles.listContainer}>
-          <ListItem label="Payment methods" value="Cash & Credit cards" />
-          <ListItem label="Spoken languages" value="English and German" />
+          <ListItem
+            label={t('general.paymentMethods')}
+            value="Cash & Credit cards"
+          />
+          <ListItem
+            label={t('general.spokenLanguages')}
+            value="English and German"
+          />
         </View>
       </View>
     </View>

@@ -19,13 +19,30 @@
     "general": {
         "or": "yada",
         "back": "Geri",
-        "save": "Kaydet"
+        "save": "Kaydet",
+        "all": "Tümü",
+        "seeMore": "Tümünü gör",
+        "seeLess": "Daha az göster",
+        "add": "Ekle",
+        "remove": "Kaldır",
+        "address": "Adres",
+        "phone": "Telefon",
+        "email": "Mail",
+        "website": "Website",
+        "paymentMethods": "Ödeme yöntemleri",
+        "spokenLanguages": "Konuşulan diller"
     },
     "home": {
-        "title": "Ev"
+        "title": "Ana sayfa",
+        "popularSaloons": "Pop*üler* Salonlar"
     },
     "search": {
-        "title": "Ara"
+        "title": "Ara",
+        "topTitle": "Entdecken Sie erstklassige Limousinen",
+        "highlightedTitle": "Wir stehen *dahinter* Jeder Termin",
+        "categoryPlaceholder": "Kategori seç",
+        "addressPlaceholder": "Adres seç",
+        "buttonLabel": "Ara"
     },
     "shop": {
         "title": "Market"
@@ -87,5 +104,47 @@
         "toast": {
             "savedSuccess": "Dil değiştirildi"
         }
+    },
+    "addressInput": {
+        "default": "Bir adres seçin",
+        "searchPlaceholder": "Bir bölge veya mahalle ismi ile başlayın...",
+        "notFound": "Sonuç bulunamadı",
+        "searchResultTitle": "Arama sonuçları"
+    },
+    "selectInput": {
+        "default": "Bir şey seçin"
+    },
+    "gender": {
+        "Man": "Man",
+        "Woman": "Woman"
+    },
+    "imageGallery": {
+        "title": "Galeri"
+    },
+    "rating": {
+        "comment": "{{reviewCount}} yorum"
+    },
+    "product": {
+        "title": "Ürünler"
+    },
+    "service": {
+
+    },
+    "review": {
+        "title": "Yorumlar"
+    },
+    "saloonDetail": {
+        "directionsAction":"Yol tarifi",
+        "callAction": "Ara",
+        "websiteAction": "Websitesini gör"
+    },
+    "businessInfo": {
+        "title": "İşyeri bilgileri"
+    },
+    "mapListing": {
+        "title": "Arama sonuçları"
+    },
+    "faq": {
+        "title": "Sık sorulan sorular"
     }
 }

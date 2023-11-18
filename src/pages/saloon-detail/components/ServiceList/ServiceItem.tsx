@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,6 +14,8 @@ const ServiceItem: React.FC<Service> = ({
   serviceName,
   serviceType,
 }) => {
+  const {t} = useTranslation();
+
   return (
     <View style={styles.container}>
       <View flexDirection="row" alignItems="flex-start" gap={16}>
@@ -36,7 +39,7 @@ const ServiceItem: React.FC<Service> = ({
         <TouchableOpacity style={styles.addButton}>
           <Icon name="shopping-cart" size={22} color={colors.whiteColor} />
           <Text variant="caption" color={colors.whiteColor}>
-            Ekle
+            {t('general.add')}
           </Text>
         </TouchableOpacity>
       </View>

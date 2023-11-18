@@ -12,7 +12,7 @@ import {MAPS_API_KEY} from '@/utils/constants';
 
 const AddressInputDetail = () => {
   const ref = useRef(null);
-  const {i18n} = useTranslation();
+  const {i18n, t} = useTranslation();
   const navigation = useNavigation();
   const {params} = useRoute();
   const currentLanguage = i18n.language;
@@ -22,13 +22,26 @@ const AddressInputDetail = () => {
   }, []);
 
   navigation.setOptions({
-    title: params.title || 'Bir adres seçin',
+    title: params.title || t('addressInput.default'),
   });
+
+  const EmptyListComponent = () => (
+    <View style={styles.emptyListContainer}>
+      <Icon name={'map'} size={60} color={colors.secondaryColor} />
+      <Text>{t('addressInput.notFound')}</Text>
+    </View>
+  );
+
+  const HeaderComponent = () => (
+    <View style={styles.header}>
+      <Text bold>{t('addressInput.searchResultTitle')}</Text>
+    </View>
+  );
 
   return (
     <GooglePlacesAutocomplete
       ref={ref}
-      placeholder="Bir bölge veya mahalle ismi ile başlayın..."
+      placeholder={t('addressInput.searchPlaceholder')}
       onPress={(data, details = null) => {
         if (details?.geometry.location) {
           navigation.goBack();
@@ -51,19 +64,6 @@ const AddressInputDetail = () => {
     />
   );
 };
-
-const EmptyListComponent = () => (
-  <View style={styles.emptyListContainer}>
-    <Icon name={'map'} size={60} color={colors.secondaryColor} />
-    <Text>Sonuç bulunamadı</Text>
-  </View>
-);
-
-const HeaderComponent = () => (
-  <View style={styles.header}>
-    <Text bold>Arama sonuçları</Text>
-  </View>
-);
 
 const styles = StyleSheet.create({
   textInput: {

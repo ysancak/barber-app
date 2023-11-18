@@ -82,7 +82,7 @@ function MainNavigator(): JSX.Element {
       <Stack.Screen
         name="Faq"
         options={{
-          title: 'Sık sorulan sorular',
+          title: t('faq.title'),
         }}
         component={Faq}
       />
@@ -91,18 +91,12 @@ function MainNavigator(): JSX.Element {
         component={SelectInputDetail}
         options={{presentation: 'modal'}}
       />
-      <Stack.Screen
-        name="SaloonDetail"
-        component={SaloonDetail}
-        options={{
-          title: '',
-        }}
-      />
+      <Stack.Screen name="SaloonDetail" component={SaloonDetail} />
       <Stack.Screen
         name="MapListing"
         component={MapListing}
         options={{
-          title: 'Arama sonuçları',
+          title: t('mapListing.title'),
         }}
       />
       <Stack.Screen

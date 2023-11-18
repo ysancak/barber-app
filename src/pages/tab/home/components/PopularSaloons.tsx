@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 
 import {SaloonListItem, Text, View} from '@/components';
@@ -6,6 +7,7 @@ import {getPopularSaloonsService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const PopularSaloons = () => {
+  const {t} = useTranslation();
   const [popularSaloons, setPopularSaloons] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -20,24 +22,32 @@ const PopularSaloons = () => {
     }
   };
 
-  return (
-    <View style={styles.container}>
+  const generateTitle = () => {
+    const fullText = t('home.popularSaloons');
+    const [firstPart, highlightedPart, lastPart] = fullText.split('*');
+
+    return (
       <View style={styles.centered}>
         <View style={styles.titleContainer}>
           <Text variant="title" style={styles.popText}>
-            Pop
+            {firstPart}
           </Text>
           <View style={styles.ularCircle}>
             <Text variant="title" style={styles.ularText}>
-              ular
+              {highlightedPart}
             </Text>
           </View>
         </View>
         <Text variant="title" style={styles.saloonsText}>
-          Saloons
+          {lastPart}
         </Text>
       </View>
+    );
+  };
 
+  return (
+    <View style={styles.container}>
+      {generateTitle()}
       <View style={styles.listContainer}>
         {popularSaloons?.map((item, index) => (
           <SaloonListItem key={index} {...item} />
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
   centered: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
   },
   titleContainer: {
     flexDirection: 'row',

@@ -22,7 +22,7 @@ const SelectInputDetail = () => {
   };
 
   navigation.setOptions({
-    title: params.title || 'Bir şey seçin',
+    title: params.title || t('selectInput.default'),
     headerRight() {
       return (
         <Button

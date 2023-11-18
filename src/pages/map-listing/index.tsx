@@ -63,6 +63,7 @@ const MapListing = () => {
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         showsUserLocation
+        showsMyLocationButton={false}
         showsScale={false}
         showsCompass={false}>
         {markers.map((value, index) => (

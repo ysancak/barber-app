@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -8,6 +9,7 @@ import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
 const ProductList = () => {
+  const {t} = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -62,7 +64,7 @@ const ProductList = () => {
               style={
                 selectedCategory === category && styles.selectedCategoryText
               }>
-              {category === 'all' ? 'Tümü' : category}
+              {category === 'all' ? t('general.all') : category}
             </Text>
           </TouchableOpacity>
         ))}
@@ -92,7 +94,7 @@ const ProductList = () => {
       <View style={styles.titleContainer}>
         <Icon name={'storefront'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          Products
+          {t('product.title')}
         </Text>
       </View>
       {renderCategories()}

@@ -1,5 +1,6 @@
 // Reviews/index.tsx
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -9,12 +10,13 @@ import {Text, View} from '@/components';
 import {colors} from '@/utils';
 
 const Reviews = () => {
+  const {t} = useTranslation();
   return (
     <View>
       <View style={styles.container}>
         <Icon name={'comment'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          Neueste Bewertungen
+          {t('review.title')}
         </Text>
       </View>
       <View style={styles.reviewList}>

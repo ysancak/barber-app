@@ -1,5 +1,6 @@
 import {useFormik} from 'formik';
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 
 import {Button, Input, Text, View} from '@/components';
@@ -9,6 +10,7 @@ import {getCategoriesService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const [categories, setCategories] = useState([]);
   const formik = useFormik({
@@ -33,21 +35,37 @@ const SearchSaloons = () => {
     setCategories(result ?? []);
   };
 
+  const generateTitle = () => {
+    const fullText = t('search.highlightedTitle');
+    const textParts = fullText.split('*');
+
+    return (
+      <View>
+        <Text variant="title">
+          {textParts.map((part, index) =>
+            index % 2 === 0 ? (
+              part
+            ) : (
+              <Text
+                key={index}
+                variant="title"
+                style={{color: colors.primaryColor}}>
+                {part}
+              </Text>
+            ),
+          )}
+        </Text>
+      </View>
+    );
+  };
+
   return (
     <View gap={20}>
       <View style={styles.highlightedText}>
-        <Text color={colors.whiteColor}>
-          Entdecken Sie erstklassige Limousinen
-        </Text>
+        <Text color={colors.whiteColor}>{t('search.topTitle')}</Text>
       </View>
 
-      <Text variant="title">
-        Wir stehen{' '}
-        <Text variant="title" color={colors.primaryColor}>
-          dahinter
-        </Text>{' '}
-        Jeder Termin
-      </Text>
+      {generateTitle()}
 
       <View gap={10}>
         <Input.Gender
@@ -56,7 +74,7 @@ const SearchSaloons = () => {
         />
         {categories.length > 0 && (
           <Input.Select
-            placeholder="Kategorie auswahlen"
+            placeholder={t('search.categoryPlaceholder')}
             options={categories}
             optionLabel="categoryName"
             optionValue="_id"
@@ -67,11 +85,15 @@ const SearchSaloons = () => {
           />
         )}
         <Input.Address
-          placeholder="Ort wahlen"
+          placeholder={t('search.addressPlaceholder')}
           onChange={coordinate => formik.setFieldValue('address', coordinate)}
           error={formik.touched.address && formik.errors.address}
         />
-        <Button prefixIcon="search" label="Ara" onPress={formik.handleSubmit} />
+        <Button
+          prefixIcon="search"
+          label={t('search.buttonLabel')}
+          onPress={formik.handleSubmit}
+        />
       </View>
     </View>
   );

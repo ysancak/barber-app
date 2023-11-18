@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const GenderInput: React.FC<Props> = ({selected = Gender.Man, onChange}) => {
+  const {t} = useTranslation();
   const getIconColor = (gender: Gender) =>
     selected === gender ? colors.whiteColor : colors.secondaryColor;
   const getTextColor = (gender: Gender) =>
@@ -35,7 +37,7 @@ const GenderInput: React.FC<Props> = ({selected = Gender.Man, onChange}) => {
             color={getIconColor(gender)}
           />
           <Text medium color={getTextColor(gender)}>
-            {gender}
+            {t(`gender.${gender}`)}
           </Text>
         </TouchableOpacity>
       ))}

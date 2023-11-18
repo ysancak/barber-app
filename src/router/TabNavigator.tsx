@@ -40,8 +40,16 @@ function TabNavigator(): JSX.Element {
           fontSize: 12,
         },
       }}>
-      <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
-      <Tab.Screen name="Campaigns" component={Campaigns} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false, title: t('home.title')}}
+      />
+      <Tab.Screen
+        name="Campaigns"
+        component={Campaigns}
+        options={{title: t('campaigns.title')}}
+      />
       <Tab.Screen
         name="MyAccount"
         options={{

@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   Image,
   SafeAreaView,
@@ -21,6 +22,7 @@ import {useNavigation} from '@/hooks/useNavigation';
 import {colors} from '@/utils';
 
 const SaloonDetail = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -75,9 +77,12 @@ const SaloonDetail = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.actionButtonsScrollView}>
-        <ActionButton icon="near-me" text="Get Directions" />
-        <ActionButton icon="public" text="Website" />
-        <ActionButton icon="call" text="Call" />
+        <ActionButton
+          icon="near-me"
+          text={t('saloonDetail.directionsAction')}
+        />
+        <ActionButton icon="public" text={t('saloonDetail.websiteAction')} />
+        <ActionButton icon="call" text={t('saloonDetail.callAction')} />
       </ScrollView>
     </View>
   );

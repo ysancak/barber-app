@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {ScrollView} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ServiceItem from './ServiceItem';
 
@@ -9,6 +9,7 @@ import {View, Text, Button} from '@/components';
 import {colors} from '@/utils';
 
 const ServiceList = () => {
+  const {t} = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -66,7 +67,7 @@ const ServiceList = () => {
               style={
                 selectedCategory === category && styles.selectedCategoryText
               }>
-              {category === 'all' ? 'Tümü' : category}
+              {category === 'all' ? t('general.all') : category}
             </Text>
           </TouchableOpacity>
         ))}
@@ -89,7 +90,7 @@ const ServiceList = () => {
         ))}
         {filteredServices.length > SHOW_COUNT && (
           <Button
-            label={showAll ? 'Daha Az Göster' : 'Tümünü Gör'}
+            label={showAll ? t('general.seeLess') : t('general.seeMore')}
             variant="secondary"
             onPress={() => setShowAll(!showAll)}
           />

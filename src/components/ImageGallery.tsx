@@ -1,5 +1,6 @@
 import {ImageGallery as Gallery} from '@georstat/react-native-image-gallery';
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const ImageGallery: React.FC<Props> = ({images}) => {
+  const {t} = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [imageList, setImageList] = useState([]);
   const [initialIndex, setInitialIndex] = useState(0);
@@ -44,7 +46,7 @@ const ImageGallery: React.FC<Props> = ({images}) => {
       <View flexDirection="row" alignItems="center" gap={6}>
         <Icon name={'photo'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          Galeri
+          {t('imageGallery.title')}
         </Text>
       </View>
       <View style={styles.photoContainer}>
