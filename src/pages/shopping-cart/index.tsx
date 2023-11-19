@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -7,14 +7,38 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, ListItem, Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
+import {addToCart, clearCart, removeFromCart} from '@/store/cart';
 import {colors} from '@/utils';
 
 const ShoppingCart = () => {
-  const businessID = 'businessOrnek1';
+  const businessID = 'businessOrnek2';
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const businessCart = useSelector(state => state.cart.carts[businessID]);
+
+  const services = useMemo(
+    () =>
+      businessCart ? businessCart.items.filter(item => item.serviceName) : [],
+    [businessCart],
+  );
+
+  const products = useMemo(
+    () =>
+      businessCart ? businessCart.items.filter(item => item.productName) : [],
+    [businessCart],
+  );
+
+  const totalPrice = useMemo(() => {
+    const calculatedTotalPrice = businessCart
+      ? Math.abs(businessCart.totalPrice)
+      : 0;
+    const _totalPrice = calculatedTotalPrice < 0.01 ? 0 : calculatedTotalPrice;
+    return _totalPrice;
+  }, [businessCart]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -22,81 +46,157 @@ const ShoppingCart = () => {
     });
   }, [navigation]);
 
+  useEffect(() => {
+    if (totalPrice <= 0) {
+      navigation.goBack();
+    }
+  }, [totalPrice, navigation]);
+
+  const handleAddToCart = (item: Product | Service) => {
+    dispatch(addToCart({businessId: businessID, item}));
+  };
+
+  const handleRemoveFromCart = (item: Product | Service) => {
+    dispatch(removeFromCart({businessId: businessID, itemId: item._id}));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart({businessId: businessID}));
+  };
+
   const HeaderRightComponent = () => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleClearCart}>
       <View style={styles.headerRight}>
         <Icon name="delete-outline" size={26} color={colors.primaryColor} />
       </View>
     </TouchableOpacity>
   );
 
+  const renderServices = useMemo(() => {
+    if (services.length > 0) {
+      return (
+        <>
+          <View style={styles.sectionHeader}>
+            <Text variant="title" fontSize={16}>
+              Servisler
+            </Text>
+          </View>
+
+          {services.map((service: Service) => (
+            <View key={`service-${service._id}`} style={styles.serviceItem}>
+              <View style={styles.serviceItemTextContainer}>
+                <Text>{service.serviceName}</Text>
+                <Text semibold fontSize={18} color={colors.primaryColor}>
+                  {service.price} {service.currency}
+                </Text>
+                <View style={styles.iconTextContainer}>
+                  <Icon
+                    name="timer"
+                    size={22}
+                    color={colors.captionTextColor}
+                  />
+                  <Text variant="caption">{service.durationMinutes}</Text>
+                </View>
+              </View>
+              <TouchableOpacity onPress={() => handleRemoveFromCart(service)}>
+                <Icon
+                  name="delete-outline"
+                  size={26}
+                  color={colors.primaryColor}
+                />
+              </TouchableOpacity>
+            </View>
+          ))}
+        </>
+      );
+    }
+
+    return <></>;
+  }, [services]);
+
+  const renderProducts = useMemo(() => {
+    if (products.length > 0) {
+      const uniqueProductsMap = new Map();
+
+      businessCart.items
+        .filter(item => item.productName)
+        .forEach((product: Product) => {
+          if (!uniqueProductsMap.has(product._id)) {
+            uniqueProductsMap.set(product._id, {product, quantity: 1});
+          } else {
+            const existingProduct = uniqueProductsMap.get(product._id);
+            uniqueProductsMap.set(product._id, {
+              product,
+              quantity: existingProduct.quantity + 1,
+            });
+          }
+        });
+
+      return (
+        <>
+          <View style={styles.sectionHeader}>
+            <Text variant="title" fontSize={16}>
+              Ürünler
+            </Text>
+          </View>
+          {Array.from(uniqueProductsMap.values()).map(({product, quantity}) => {
+            return (
+              <View key={product._id} style={styles.productItem}>
+                <View style={styles.productItemInnerContainer}>
+                  <Image
+                    source={{uri: product.productImage}}
+                    style={styles.productImage}
+                  />
+                  <View style={styles.productDescription}>
+                    <Text>{product.productName}</Text>
+                    <Text semibold fontSize={18} color={colors.primaryColor}>
+                      {product.price} {product.currency}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.quantityContainer}>
+                  <TouchableOpacity
+                    style={styles.decreaseButton}
+                    onPress={() => handleRemoveFromCart(product)}>
+                    <Icon name="remove" size={22} color={colors.whiteColor} />
+                  </TouchableOpacity>
+
+                  <Text medium fontSize={18} color={colors.whiteColor}>
+                    {quantity}
+                  </Text>
+
+                  <TouchableOpacity
+                    style={styles.increaseButton}
+                    onPress={() => handleAddToCart(product)}>
+                    <Icon name="add" size={22} color={colors.whiteColor} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            );
+          })}
+        </>
+      );
+    }
+    return <></>;
+  }, [products, businessCart]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.sectionHeader}>
-          <Text variant="title" fontSize={16}>
-            Servisler
-          </Text>
-        </View>
+        {renderServices}
 
-        <View style={styles.serviceItem}>
-          <View style={styles.serviceItemTextContainer}>
-            <Text>LPG Targeted Treatment</Text>
-            <Text semibold fontSize={18} color={colors.primaryColor}>
-              164.34 TL
-            </Text>
-            <View style={styles.iconTextContainer}>
-              <Icon name="timer" size={22} color={colors.captionTextColor} />
-              <Text variant="caption">24 min</Text>
-            </View>
-          </View>
-          <TouchableOpacity>
-            <Icon name="delete-outline" size={26} color={colors.primaryColor} />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.sectionHeader}>
-          <Text variant="title" fontSize={16}>
-            Ürünler
-          </Text>
-        </View>
-
-        <View style={styles.productItem}>
-          <View style={styles.productItemInnerContainer}>
-            <Image
-              source={{
-                uri: 'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892098219-642483261.webp',
-              }}
-              style={styles.productImage}
-            />
-            <View style={styles.productDescription}>
-              <Text>LPG Targeted Treatment and must be</Text>
-              <Text semibold fontSize={18} color={colors.primaryColor}>
-                164.34 TL
-              </Text>
-            </View>
-          </View>
-          <View style={styles.quantityContainer}>
-            <TouchableOpacity style={styles.decreaseButton}>
-              <Icon name="remove" size={22} color={colors.whiteColor} />
-            </TouchableOpacity>
-
-            <Text medium fontSize={18} color={colors.whiteColor}>
-              1
-            </Text>
-
-            <TouchableOpacity style={styles.increaseButton}>
-              <Icon name="add" size={22} color={colors.whiteColor} />
-            </TouchableOpacity>
-          </View>
-        </View>
+        {renderProducts}
 
         <View style={styles.sectionHeader}>
           <Text variant="title" fontSize={16}>
             Fiyat
           </Text>
         </View>
-        <ListItem icon="credit-card" label="Total price" value="1124.55" />
+        <ListItem
+          icon="credit-card"
+          label="Total price"
+          value={`${totalPrice.toFixed(2)} TL`}
+        />
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button label="Devam et" />

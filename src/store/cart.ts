@@ -23,9 +23,11 @@ const cartSlice = createSlice({
       if (!state.carts[businessId]) {
         state.carts[businessId] = {...initialCartState};
       }
-      state.carts[businessId].items.push(item);
-      state.carts[businessId].totalPrice += Number(item.price);
-      console.log(state);
+      state.carts[businessId] = {
+        ...state.carts[businessId],
+        items: [...state.carts[businessId].items, item],
+        totalPrice: state.carts[businessId].totalPrice + Number(item.price),
+      };
     },
     removeFromCart: (
       state,
@@ -46,9 +48,7 @@ const cartSlice = createSlice({
     },
     clearCart: (state, action: PayloadAction<{businessId: string}>) => {
       const {businessId} = action.payload;
-      if (state.carts[businessId]) {
-        state.carts[businessId] = {...initialCartState};
-      }
+      delete state.carts[businessId];
     },
   },
 });
