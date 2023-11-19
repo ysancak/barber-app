@@ -199,7 +199,10 @@ const ShoppingCart = () => {
         />
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button label="Devam et" />
+        <Button
+          label="Devam et"
+          onPress={() => navigation.navigate('Calendar')}
+        />
       </View>
     </SafeAreaView>
   );
@@ -210,10 +213,11 @@ export default ShoppingCart;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.bgColor,
+    backgroundColor: colors.whiteColor,
   },
   scrollView: {
     flex: 1,
+    backgroundColor: colors.bgColor,
   },
   sectionHeader: {
     paddingHorizontal: 16,
@@ -299,5 +303,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+    borderTopWidth: 1,
+    borderColor: colors.borderColor3,
+    backgroundColor: colors.whiteColor,
   },
 });

@@ -1,3 +1,4 @@
+import Calendar from './calendar';
 import MapListing from './map-listing';
 import SaloonDetail from './saloon-detail';
 import Settings from './settings';
@@ -29,4 +30,5 @@ export {
   MapListing,
   AddressInputDetail,
   ShoppingCart,
+  Calendar,
 };

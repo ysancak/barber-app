@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {HeaderTitle} from '@/components';
 import {
   AddressInputDetail,
+  Calendar,
   EditProfile,
   Faq,
   LanguageSettings,
@@ -109,6 +110,11 @@ function MainNavigator(): JSX.Element {
         name="ShoppingCart"
         component={ShoppingCart}
         options={{title: 'Sepet'}}
+      />
+      <Stack.Screen
+        name="Calendar"
+        component={Calendar}
+        options={{title: 'Rezervasyonu planlayın'}}
       />
     </Stack.Navigator>
   );
