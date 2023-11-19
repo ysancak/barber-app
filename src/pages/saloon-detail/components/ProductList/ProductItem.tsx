@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useMemo} from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
@@ -20,7 +20,7 @@ const ProductItem: React.FC<Product> = product => {
   const dispatch = useDispatch();
   const businessCart = useSelector(state => state.cart.carts[businessID]);
 
-  const productQuantity = useCallback(
+  const productQuantity = useMemo(
     () =>
       businessCart
         ? businessCart.items.filter(item => item._id === _id).length
@@ -33,7 +33,7 @@ const ProductItem: React.FC<Product> = product => {
   };
 
   const handleRemoveFromCart = () => {
-    if (productQuantity() > 0) {
+    if (productQuantity > 0) {
       dispatch(removeFromCart({businessId: businessID, itemId: _id}));
     }
   };
@@ -65,7 +65,7 @@ const ProductItem: React.FC<Product> = product => {
               {price} {currency}
             </Text>
           </View>
-          {productQuantity() > 0 ? (
+          {productQuantity > 0 ? (
             <View style={styles.quantityContainer}>
               <TouchableOpacity
                 style={styles.decreaseButton}
@@ -74,7 +74,7 @@ const ProductItem: React.FC<Product> = product => {
               </TouchableOpacity>
 
               <Text medium fontSize={18} color={colors.whiteColor}>
-                {productQuantity()}
+                {productQuantity}
               </Text>
 
               <TouchableOpacity
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     height: 150,
   },
   addButton: {
-    padding: 14,
+    padding: 12,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primaryColor,
@@ -133,16 +133,16 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   decreaseButton: {
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
     alignItems: 'center',
     justifyContent: 'center',
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
   },
   increaseButton: {
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
     alignItems: 'center',
     justifyContent: 'center',
     borderTopRightRadius: 8,

@@ -15,6 +15,7 @@ import {
   SaloonDetail,
   SelectInputDetail,
   Settings,
+  ShoppingCart,
 } from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
 import {colors} from '@/utils';
@@ -103,6 +104,11 @@ function MainNavigator(): JSX.Element {
         name="AddressInputDetail"
         component={AddressInputDetail}
         options={{presentation: 'modal'}}
+      />
+      <Stack.Screen
+        name="ShoppingCart"
+        component={ShoppingCart}
+        options={{title: 'Sepet'}}
       />
     </Stack.Navigator>
   );

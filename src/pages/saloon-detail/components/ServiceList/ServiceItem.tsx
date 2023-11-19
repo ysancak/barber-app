@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -22,13 +22,13 @@ const ServiceItem: React.FC<Service> = service => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const businessCart = useSelector(state => state.cart.carts[businessID]);
-  const isInCart = useCallback(
+  const isInCart = useMemo(
     () => businessCart && businessCart.items.some(item => item._id === _id),
     [businessCart, _id],
   );
 
   const handleAddRemoveService = () => {
-    if (isInCart()) {
+    if (isInCart) {
       dispatch(removeFromCart({businessId: businessID, itemId: _id}));
     } else {
       dispatch(addToCart({businessId: businessID, item: service}));
@@ -56,17 +56,17 @@ const ServiceItem: React.FC<Service> = service => {
           </View>
         </View>
         <TouchableOpacity
-          style={isInCart() ? styles.removeButton : styles.addButton}
+          style={isInCart ? styles.removeButton : styles.addButton}
           onPress={handleAddRemoveService}>
           <Icon
             name="shopping-cart"
             size={22}
-            color={isInCart() ? colors.primaryColor : colors.whiteColor}
+            color={isInCart ? colors.primaryColor : colors.whiteColor}
           />
           <Text
             variant="caption"
-            color={isInCart() ? colors.primaryColor : colors.whiteColor}>
-            {isInCart() ? t('general.remove') : t('general.add')}
+            color={isInCart ? colors.primaryColor : colors.whiteColor}>
+            {isInCart ? t('general.remove') : t('general.add')}
           </Text>
         </TouchableOpacity>
       </View>

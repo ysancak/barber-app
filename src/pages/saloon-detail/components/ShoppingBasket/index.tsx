@@ -1,9 +1,10 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
+import {useNavigation} from '@/hooks/useNavigation';
 import {colors} from '@/utils';
 
 type Props = {
@@ -11,16 +12,18 @@ type Props = {
 };
 
 const ShoppingBasket: React.FC<Props> = ({businessID}) => {
+  const navigation = useNavigation();
   const businessCart = useSelector(state => state.cart.carts[businessID]);
 
-  const totalServices = useCallback(
+  const totalServices = useMemo(
     () =>
       businessCart
         ? businessCart.items.filter(item => item.serviceName).length
         : 0,
     [businessCart],
   );
-  const totalProducts = useCallback(
+
+  const totalProducts = useMemo(
     () =>
       businessCart
         ? businessCart.items.filter(item => item.productName).length
@@ -28,7 +31,7 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
     [businessCart],
   );
 
-  const totalPrice = useCallback(() => {
+  const totalPrice = useMemo(() => {
     const calculatedTotalPrice = businessCart
       ? Math.abs(businessCart.totalPrice)
       : 0;
@@ -36,15 +39,13 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
     return _totalPrice;
   }, [businessCart]);
 
-  console.log(totalPrice());
-
   const animatedValue = useRef(
-    new Animated.Value(totalPrice() > 0 ? 0 : 1),
+    new Animated.Value(totalPrice > 0 ? 0 : 1),
   ).current;
 
   useEffect(() => {
     Animated.timing(animatedValue, {
-      toValue: totalPrice() > 0 ? 1 : 0,
+      toValue: totalPrice > 0 ? 1 : 0,
       duration: 200,
       useNativeDriver: false,
     }).start();
@@ -68,26 +69,26 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
         <View style={styles.infoWrapper}>
           <View style={styles.infoSection}>
             <View style={styles.iconTextWrapper}>
-              <Icon
-                name={'content-cut'}
-                size={22}
-                color={colors.primaryColor}
-              />
-              <Text>{totalServices()} servis</Text>
+              <Icon name={'content-cut'} size={22} color={colors.textColor} />
+              <Text color={colors.textColor}>{totalServices} servis</Text>
             </View>
             <View style={styles.iconTextWrapper}>
-              <Icon name={'storefront'} size={22} color={colors.primaryColor} />
-              <Text>{totalProducts()} ürün</Text>
+              <Icon name={'storefront'} size={22} color={colors.textColor} />
+              <Text color={colors.textColor}>{totalProducts} ürün</Text>
             </View>
           </View>
-          <Text variant="title" fontSize={22}>
-            {totalPrice().toFixed(2)}
+          <Text variant="title" fontSize={22} color={colors.textColor}>
+            {totalPrice.toFixed(2)}
           </Text>
         </View>
         <View style={styles.buttonWrapper}>
-          <TouchableOpacity style={styles.button}>
-            <Text medium>Sepete git</Text>
-            <Icon name={'chevron-right'} size={30} color={colors.textColor} />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('ShoppingCart')}>
+            <Text medium color={colors.whiteColor}>
+              Sepete git
+            </Text>
+            <Icon name={'chevron-right'} size={30} color={colors.whiteColor} />
           </TouchableOpacity>
         </View>
       </View>
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     marginHorizontal: 0,
-    backgroundColor: colors.whiteColor,
+    backgroundColor: colors.bgColor,
     borderColor: colors.borderColor3,
     borderRadius: 0,
     borderTopWidth: 1,
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.bgColor,
+    backgroundColor: colors.primaryColor,
     paddingLeft: 16,
     paddingRight: 6,
     paddingVertical: 8,

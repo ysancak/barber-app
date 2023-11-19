@@ -45,6 +45,7 @@ type RootStackParamList = {
     title: string;
     onChange: (label: string, coordinate: Coordinate) => void;
   };
+  ShoppingCart: undefined;
 };
 
 type Coordinate = {

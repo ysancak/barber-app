@@ -2,6 +2,7 @@ import MapListing from './map-listing';
 import SaloonDetail from './saloon-detail';
 import Settings from './settings';
 import LanguageSettings from './settings/Language';
+import ShoppingCart from './shopping-cart';
 import Campaigns from './tab/campaigns';
 import MyAccount from './tab/my-account';
 import EditProfile from './tab/my-account/EditProfile';
@@ -27,4 +28,5 @@ export {
   SelectInputDetail,
   MapListing,
   AddressInputDetail,
+  ShoppingCart,
 };
