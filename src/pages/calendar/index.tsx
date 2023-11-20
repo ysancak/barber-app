@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
-import {Button, Input, Text, View} from '@/components';
+import {Button, CustomCalendar, Input, Text, View} from '@/components';
 import {colors} from '@/utils';
 
 const Calendar = () => {
@@ -21,13 +21,13 @@ const Calendar = () => {
                 options={workers}
                 optionLabel="name"
                 optionValue="_id"
-                placeholder="Bir worker seçin"
+                placeholder="Bir çalışan seçin"
                 onChange={item => setSelectedWorker(item)}
                 value={selectedWorker}
               />
             </View>
           </View>
-          <View>{/* Buraya takvim */}</View>
+          <CustomCalendar />
         </View>
         <View style={styles.buttonContainer}>
           <Button label="Devam et" />

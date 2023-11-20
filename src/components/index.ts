@@ -1,4 +1,5 @@
 import Button from './Button';
+import CustomCalendar from './CustomCalendar';
 import HeaderTitle from './HeaderTitle';
 import ImageGallery from './ImageGallery';
 import Input from './inputs';
@@ -28,4 +29,5 @@ export {
   Rating,
   ImageGallery,
   ListMapView,
+  CustomCalendar,
 };

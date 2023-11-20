@@ -78,7 +78,7 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
             </View>
           </View>
           <Text variant="title" fontSize={22} color={colors.textColor}>
-            {totalPrice.toFixed(2)}
+            {totalPrice.toFixed(2)} TL
           </Text>
         </View>
         <View style={styles.buttonWrapper}>

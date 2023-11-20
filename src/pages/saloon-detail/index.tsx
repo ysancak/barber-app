@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   actionButtonsScrollView: {
     paddingHorizontal: 16,
     paddingVertical: 20,
-    gap: 20,
+    gap: 24,
   },
   actionButton: {
     flexDirection: 'row',
