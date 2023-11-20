@@ -21,7 +21,4 @@ export const updateUserProfileSchema = Yup.object().shape({
 export const searchValidationSchema = Yup.object().shape({
   gender: Yup.string(),
   category: Yup.string(),
-  address: Yup.object()
-    .shape({latitude: Yup.number(), longitude: Yup.number()})
-    .required('Adres alanı gereklidir'),
 });

@@ -35,11 +35,15 @@ const MapMarker: React.FC<Props> = ({coordinate, rating, active, onPress}) => {
     setTimeout(() => setTracksViewChanges(false), 500);
   }, [active]);
 
+  const handleOnPress = (event: any) => {
+    event.stopPropagation();
+    if (onPress) {
+      onPress(event);
+    }
+  };
+
   return (
-    <Marker
-      tracksViewChanges={tracksViewChanges}
-      coordinate={coordinate}
-      onPress={onPress}>
+    <Marker coordinate={coordinate} onPress={handleOnPress}>
       <View style={styles.pin}>
         <View style={dynamicStyles.pinHead}>
           <Icon

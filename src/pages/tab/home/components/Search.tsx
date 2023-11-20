@@ -17,7 +17,6 @@ const SearchSaloons = () => {
     initialValues: {
       gender: 'Man',
       category: '',
-      address: null,
     },
     validationSchema: searchValidationSchema,
     onSubmit: values => {
@@ -84,11 +83,6 @@ const SearchSaloons = () => {
             value={formik.values.category}
           />
         )}
-        <Input.Address
-          placeholder={t('search.addressPlaceholder')}
-          onChange={coordinate => formik.setFieldValue('address', coordinate)}
-          error={formik.touched.address && formik.errors.address}
-        />
         <Button
           prefixIcon="search"
           label={t('search.buttonLabel')}

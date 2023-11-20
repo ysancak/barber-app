@@ -1,13 +1,15 @@
+import Geolocation from '@react-native-community/geolocation';
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {Animated, StyleSheet, View} from 'react-native';
+import MapView from 'react-native-map-clustering';
+import {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import {MapMarker, SaloonListItem} from '@/components';
 import {colors, mapStyle} from '@/utils';
 
 const MapListing = () => {
   const mapRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const markers = [
     {
       _id: '1',
@@ -43,17 +45,64 @@ const MapListing = () => {
     },
   ];
 
+  const initialRegion = {
+    latitude: 40.78825,
+    longitude: 29.4225,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+
+  const edgePadding = {top: 100, right: 100, bottom: 300, left: 100};
+
+  const animatedValue = useRef(
+    new Animated.Value(activeIndex != null ? 1 : 0),
+  ).current;
+
+  useEffect(() => {
+    Animated.timing(animatedValue, {
+      toValue: activeIndex !== null ? 1 : 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [activeIndex, animatedValue]);
+
+  const animatedStyle = {
+    opacity: animatedValue,
+    transform: [
+      {
+        translateY: animatedValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: [100, 0],
+        }),
+      },
+    ],
+  };
+
   useEffect(() => {
     if (mapRef.current && markers.length > 0) {
-      mapRef.current.fitToCoordinates(
-        markers.map(marker => marker.coordinate),
-        {
-          edgePadding: {top: 100, right: 100, bottom: 300, left: 100},
-          animated: true,
+      Geolocation.getCurrentPosition(
+        position => {
+          const userLocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          };
+          mapRef.current.animateToRegion(userLocation, 500);
         },
+        error => {
+          mapRef.current.fitToCoordinates(
+            markers.map(marker => marker.coordinate),
+            {
+              edgePadding,
+              animated: true,
+            },
+          );
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
       );
     }
-  }, [mapRef, activeIndex]);
+  }, [mapRef, markers]);
 
   return (
     <View style={styles.container}>
@@ -61,9 +110,14 @@ const MapListing = () => {
         ref={mapRef}
         style={styles.map}
         provider={PROVIDER_GOOGLE}
+        initialRegion={initialRegion}
         customMapStyle={mapStyle}
         showsUserLocation
+        edgePadding={edgePadding}
         showsMyLocationButton={false}
+        clusterColor={colors.primaryColor}
+        animationEnabled={false}
+        onPress={() => setActiveIndex(null)}
         showsScale={false}
         showsCompass={false}>
         {markers.map((value, index) => (
@@ -76,9 +130,9 @@ const MapListing = () => {
           />
         ))}
       </MapView>
-      <View style={styles.bottomView}>
-        {activeIndex != null && <SaloonListItem {...markers[activeIndex]} />}
-      </View>
+      <Animated.View style={[styles.bottomView, animatedStyle]}>
+        <SaloonListItem {...markers[activeIndex || 0]} />
+      </Animated.View>
     </View>
   );
 };
