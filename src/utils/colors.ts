@@ -17,3 +17,12 @@ export const errorColor = '#F44336';
 export const successColor = '#4CAF50';
 export const warningColor = '#FFC107';
 export const infoColor = '#2196F3';
+
+//rating colors
+export const ratingColor = {
+  low: '#dc2626',
+  mediumLow: '#ea580c',
+  medium: '#ca8a04',
+  mediumHigh: '#65a30d',
+  high: '#15803d',
+};

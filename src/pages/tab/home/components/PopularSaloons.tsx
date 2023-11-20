@@ -8,7 +8,7 @@ import {colors} from '@/utils';
 
 const PopularSaloons = () => {
   const {t} = useTranslation();
-  const [popularSaloons, setPopularSaloons] = useState<Category[]>([]);
+  const [popularSaloons, setPopularSaloons] = useState<Saloon[]>([]);
 
   useEffect(() => {
     getPopularSaloons();

@@ -24,12 +24,22 @@ type Saloon = {
   businessID: string;
   businessImage: string;
   businessName: string;
-  businessTel: string;
-  businessMail: string;
-  businessWebsite: string;
-  socialFacebook: string;
-  socialInstagram: string;
-  businessImages: string[];
+  businessTel?: string;
+  businessMail?: string;
+  businessWebsite?: string;
+  businessLat: number;
+  businessLong: number;
+  socialFacebook?: string;
+  socialInstagram?: string;
+  businessImages?: string[];
+  businessFirstName?: string;
+  businessNr?: string;
+  businessOrt?: string;
+  businessPostCode?: string;
+  businessSurname?: string;
+  businessDescription?: string;
+  averageReviewPoint?: number;
+  reviewCount?: number;
 };
 
 type Review = {

@@ -13,6 +13,8 @@ const SaloonListItem: React.FC<Saloon> = ({
   businessImage,
   businessName,
   businessLocation,
+  averageReviewPoint,
+  reviewCount,
 }) => {
   const navigation = useNavigation();
   return (
@@ -31,7 +33,11 @@ const SaloonListItem: React.FC<Saloon> = ({
           <Icon name={'location-on'} size={22} color={colors.borderColor} />
           <Text>{businessLocation}</Text>
         </View>
-        <Rating score={4.3} variant="compact" reviewCount={24} />
+        <Rating
+          score={averageReviewPoint}
+          variant="compact"
+          reviewCount={reviewCount}
+        />
       </View>
     </TouchableOpacity>
   );

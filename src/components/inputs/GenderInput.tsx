@@ -7,8 +7,8 @@ import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
 enum Gender {
-  Man = 'Man',
-  Woman = 'Woman',
+  Male = 'Male',
+  Female = 'Female',
 }
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   onChange: (value: Gender) => void;
 };
 
-const GenderInput: React.FC<Props> = ({selected = Gender.Man, onChange}) => {
+const GenderInput: React.FC<Props> = ({selected = Gender.Male, onChange}) => {
   const {t} = useTranslation();
   const getIconColor = (gender: Gender) =>
     selected === gender ? colors.whiteColor : colors.secondaryColor;
@@ -32,7 +32,7 @@ const GenderInput: React.FC<Props> = ({selected = Gender.Man, onChange}) => {
           style={[styles.option, selected === gender && styles.active]}
           onPress={() => onChange(gender)}>
           <Icon
-            name={gender === Gender.Man ? 'man' : 'woman'}
+            name={gender === Gender.Male ? 'man' : 'woman'}
             size={30}
             color={getIconColor(gender)}
           />

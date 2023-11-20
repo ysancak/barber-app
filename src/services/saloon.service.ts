@@ -11,6 +11,18 @@ export const getPopularSaloonsService = async () => {
   }
 };
 
+export const getMapSaloonsService = async (params: {
+  gender: string;
+  category: string;
+}) => {
+  try {
+    const response = await api.post<Saloon[]>('/listing-map', params);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+  }
+};
+
 export const getSaloonDetailService = async (params: {id: string}) => {
   try {
     const response = await api.get<SaloonDetail>(

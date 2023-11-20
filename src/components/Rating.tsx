@@ -9,7 +9,7 @@ import View from './View';
 import {colors} from '@/utils';
 
 interface RatingProps {
-  score: number;
+  score?: number; // score opsiyonel
   reviewCount?: number;
   variant?: 'compact' | 'star';
 }
@@ -20,19 +20,54 @@ const Rating: React.FC<RatingProps> = ({
   variant = 'star',
 }) => {
   const {t} = useTranslation();
-  const fullStars = Math.floor(score);
-  const halfStar = score % 1 !== 0;
+
+  if (
+    score === undefined ||
+    score <= 0 ||
+    reviewCount === undefined ||
+    reviewCount <= 0
+  ) {
+    return (
+      <View style={styles.container}>
+        <Text variant="caption">{t('rating.noReviews')}</Text>
+      </View>
+    );
+  }
+
+  const badgeColor = score => {
+    if (score < 2) {
+      return colors.ratingColor.low;
+    }
+    if (score < 3) {
+      return colors.ratingColor.mediumLow;
+    }
+    if (score < 4) {
+      return colors.ratingColor.medium;
+    }
+    if (score < 4.5) {
+      return colors.ratingColor.mediumHigh;
+    }
+    return colors.ratingColor.high;
+  };
 
   return (
     <View style={styles.container}>
       {variant === 'star' && (
         <View style={styles.ratingContainer}>
-          {[...Array(fullStars)].map((_, index) => (
-            <Icon key={index} size={22} name="star" style={styles.starIcon} />
+          {[...Array(5)].map((_, index) => (
+            <Icon
+              key={index}
+              size={22}
+              name={
+                index < score
+                  ? index < Math.floor(score)
+                    ? 'star'
+                    : 'star-half'
+                  : 'star-border'
+              }
+              style={styles.starIcon}
+            />
           ))}
-          {halfStar && (
-            <Icon name="star-half" size={22} style={styles.starIcon} />
-          )}
           {reviewCount !== undefined && (
             <Text variant="caption" style={styles.reviewText}>
               ({t('rating.comment', {reviewCount})})
@@ -42,7 +77,8 @@ const Rating: React.FC<RatingProps> = ({
       )}
       {variant === 'compact' && (
         <View style={styles.ratingRow}>
-          <View style={styles.ratingBadge}>
+          <View
+            style={[styles.ratingBadge, {backgroundColor: badgeColor(score)}]}>
             <Text style={styles.ratingText}>{score.toFixed(1)}</Text>
           </View>
           {reviewCount !== undefined && (
@@ -77,7 +113,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingBadge: {
-    backgroundColor: 'orange',
     alignSelf: 'baseline',
     paddingHorizontal: 8,
     paddingVertical: 4,

@@ -115,14 +115,15 @@
         "default": "Bir şey seçin"
     },
     "gender": {
-        "Man": "Man",
-        "Woman": "Woman"
+        "Male": "Male",
+        "Female": "Female"
     },
     "imageGallery": {
         "title": "Galeri"
     },
     "rating": {
-        "comment": "{{reviewCount}} yorum"
+        "comment": "{{reviewCount}} yorum",
+        "noReviews": "Değerlendirme yok"
     },
     "product": {
         "title": "Ürünler"

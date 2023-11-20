@@ -2,26 +2,37 @@ import {useFormik} from 'formik';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {Button, Input, Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
 import {searchValidationSchema} from '@/schemas/validations';
 import {getCategoriesService} from '@/services/common.service';
+import {getMapSaloonsService} from '@/services/saloon.service';
+import {setSaloons} from '@/store/search';
 import {colors} from '@/utils';
 
 const SearchSaloons = () => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const formik = useFormik({
     initialValues: {
-      gender: 'Man',
+      gender: 'Male',
       category: '',
     },
     validationSchema: searchValidationSchema,
-    onSubmit: values => {
-      console.log(values);
-      navigation.navigate('MapListing');
+    onSubmit: async values => {
+      try {
+        const result = await getMapSaloonsService(values);
+        if (result) {
+          dispatch(setSaloons(result));
+          navigation.navigate('MapListing');
+        }
+      } finally {
+        formik.setSubmitting(false);
+      }
     },
   });
 
@@ -30,8 +41,13 @@ const SearchSaloons = () => {
   }, []);
 
   const fetchCategories = async () => {
-    const result = await getCategoriesService();
-    setCategories(result ?? []);
+    try {
+      const result = await getCategoriesService();
+      if (result) {
+        setCategories(result);
+      }
+    } finally {
+    }
   };
 
   const generateTitle = () => {
@@ -87,6 +103,7 @@ const SearchSaloons = () => {
           prefixIcon="search"
           label={t('search.buttonLabel')}
           onPress={formik.handleSubmit}
+          loading={formik.isSubmitting}
         />
       </View>
     </View>

@@ -8,16 +8,18 @@ import {persistReducer, persistStore} from 'redux-persist';
 
 import authReducer from '@/store/auth';
 import cartReducer from '@/store/cart';
+import searchReducer from '@/store/search';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'cart'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

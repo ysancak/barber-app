@@ -16,12 +16,10 @@ function Register(): JSX.Element {
   const navigation = useNavigation();
   const {t} = useTranslation();
 
-  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {email: '', password: ''},
     validationSchema: registerAndLoginValidationSchema,
     onSubmit: async values => {
-      setLoading(true);
       try {
         const result = await registerService(values);
         if (result) {
@@ -34,7 +32,7 @@ function Register(): JSX.Element {
           navigation.navigate('MyAccount');
         }
       } finally {
-        setLoading(false);
+        formik.setSubmitting(false);
       }
     },
   });
@@ -68,7 +66,7 @@ function Register(): JSX.Element {
         <Button
           label={t('loginAndRegister.register')}
           onPress={formik.handleSubmit}
-          loading={loading}
+          loading={formik.isSubmitting}
         />
         <Space />
         <Text textAlign="center" variant="caption">
