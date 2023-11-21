@@ -21,8 +21,6 @@ const Rating: React.FC<RatingProps> = ({
 }) => {
   const {t} = useTranslation();
 
-  console.log(score, reviewCount);
-
   if (
     (score === undefined || score <= 0) &&
     (reviewCount === undefined || reviewCount <= 0)

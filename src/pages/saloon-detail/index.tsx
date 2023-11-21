@@ -8,22 +8,31 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  RefreshControl,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BusinessInfo from './components/BusinessInfo';
-import ProductList from './components/ProductList';
-import Reviews from './components/Reviews';
-import ServiceList from './components/ServiceList';
+import SaloonFavorite from './components/SaloonFavorite';
 import ShoppingBasket from './components/ShoppingBasket';
 
-import {SkeletonLoading} from '@/components';
-import ImageGallery from '@/components/ImageGallery';
-import Rating from '@/components/Rating';
-import Text from '@/components/Text';
+import {
+  SkeletonLoading,
+  ImageGallery,
+  Rating,
+  Text,
+  Reviews,
+  ProductList,
+  ServiceList,
+} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
 import {getSaloonDetailService} from '@/services/saloon.service';
 import {colors} from '@/utils';
+import {
+  makePhoneCall,
+  openNativeMapWithAddress,
+  openUrl,
+} from '@/utils/helpers';
 
 const SaloonDetail = () => {
   const {t} = useTranslation();
@@ -31,150 +40,151 @@ const SaloonDetail = () => {
     params: {id: businessID},
   } = useRoute();
   const navigation = useNavigation();
+  const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [saloonDetail, setSaloonDetail] = useState<SaloonDetail>();
+  const [saloonDetail, setSaloonDetail] = useState<SaloonDetail>(null);
 
   useEffect(() => {
-    navigation.setOptions({
-      title: saloonDetail?.business.businessName,
-      headerRight: HeaderRightComponent,
-    });
-  }, [saloonDetail]);
-
-  useEffect(() => {
-    getSaloonDetail();
+    fetchSaloonDetail();
   }, [businessID]);
 
-  const getSaloonDetail = async () => {
-    setTimeout(async () => {
-      setLoading(true);
-      try {
-        const result = await getSaloonDetailService({id: businessID});
-        if (result) {
-          setSaloonDetail(result);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }, 1000);
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchSaloonDetail();
   };
 
-  if (loading) {
+  useEffect(() => {
+    if (saloonDetail) {
+      navigation.setOptions({
+        title: saloonDetail?.business?.businessName || '',
+        headerRight: () => (
+          <SaloonFavorite
+            initialValue={saloonDetail?.business?.isFavorite}
+            businessID={businessID}
+          />
+        ),
+      });
+    }
+  }, [saloonDetail]);
+
+  const fetchSaloonDetail = async () => {
+    try {
+      const result = await getSaloonDetailService({id: businessID});
+      if (result) {
+        setSaloonDetail(result);
+      }
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  if (loading || !saloonDetail) {
     return <SkeletonLoading.SaloonDetail />;
   }
 
-  const HeaderRightComponent = () => (
-    <TouchableOpacity>
-      <View style={styles.headerRight}>
-        <Icon
-          name="favorite-border"
-          size={30}
-          color={colors.captionTextColor}
-        />
-      </View>
-    </TouchableOpacity>
-  );
-
-  const HeaderImage = () => (
-    <Image
-      style={styles.headerImage}
-      source={{
-        uri: saloonDetail?.business.businessImages[0],
-      }}
-    />
-  );
-
-  const DetailContainer = () => (
-    <View style={styles.detailContainer}>
-      {saloonDetail?.business.businessImage ? (
-        <Image
-          style={styles.avatarImage}
-          source={{
-            uri: saloonDetail?.business.businessImage,
-          }}
-        />
-      ) : (
-        <Image
-          style={styles.avatarImage}
-          source={require('@/assets/images/defaultSaloonAvatarImage.png')}
-        />
-      )}
-      <View style={styles.detailTextContainer}>
-        <Text variant="title" fontSize={20} style={styles.title}>
-          {saloonDetail?.business.businessName}
-        </Text>
-        <Text style={styles.subtitle}>
-          {saloonDetail?.business.businessLocation}
-        </Text>
-        <Rating
-          score={saloonDetail?.business.averageReviewPoint}
-          reviewCount={saloonDetail?.business.reviewCount}
-        />
-      </View>
-    </View>
-  );
-
-  const ActionButtons = () => (
-    <View style={styles.actionButtonsContainer}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.actionButtonsScrollView}>
-        <ActionButton
-          icon="near-me"
-          text={t('saloonDetail.directionsAction')}
-        />
-        <ActionButton icon="public" text={t('saloonDetail.websiteAction')} />
-        <ActionButton icon="call" text={t('saloonDetail.callAction')} />
-      </ScrollView>
-    </View>
-  );
-
-  const ActionButton = ({icon, text}) => (
-    <TouchableOpacity>
-      <View style={styles.actionButton}>
-        <Icon name={icon} size={22} color={colors.primaryColor} />
-        <Text medium>{text}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
-  const Content = () => (
-    <View style={styles.content}>
-      {saloonDetail?.services.length > 0 && (
-        <ServiceList services={saloonDetail.services} />
-      )}
-      {saloonDetail?.products.length > 0 && (
-        <ProductList products={saloonDetail.products} />
-      )}
-      <View style={styles.galleryAndReviews}>
-        {saloonDetail?.business.businessImages?.length > 0 && (
-          <ImageGallery images={saloonDetail?.business.businessImages} />
-        )}
-        {saloonDetail?.reviews.length > 0 && (
-          <Reviews reviews={saloonDetail.reviews} />
-        )}
-        <BusinessInfo
-          coordinate={{
-            latitude: saloonDetail?.business.businessLat,
-            longitude: saloonDetail?.business.businessLong,
-          }}
-          address={saloonDetail?.business.businessLocation}
-          phone={saloonDetail?.business.businessTel}
-          mail={saloonDetail?.business.businessMail}
-          website={saloonDetail?.business.businessWebsite}
-        />
-      </View>
-    </View>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        {saloonDetail?.business.businessImages && <HeaderImage />}
-        <DetailContainer />
-        <ActionButtons />
-        <Content />
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
+        {saloonDetail?.business.businessImages && (
+          <Image
+            style={styles.headerImage}
+            source={{uri: saloonDetail?.business.businessImages[0]}}
+          />
+        )}
+
+        <View style={styles.detailContainer}>
+          <Image
+            style={styles.avatarImage}
+            source={{
+              uri: saloonDetail?.business.businessImage,
+            }}
+          />
+          <View style={styles.detailTextContainer}>
+            <Text variant="title" fontSize={20} style={styles.title}>
+              {saloonDetail?.business.businessName}
+            </Text>
+            <Text style={styles.subtitle}>
+              {saloonDetail?.business.businessLocation}
+            </Text>
+            <Rating
+              score={saloonDetail?.business.averageReviewPoint}
+              reviewCount={saloonDetail?.business.reviewCount}
+            />
+          </View>
+        </View>
+
+        <View style={styles.actionButtonsContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.actionButtonsScrollView}>
+            {saloonDetail?.business.businessLocation && (
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() =>
+                  openNativeMapWithAddress(
+                    saloonDetail.business.businessLocation,
+                    saloonDetail.business.businessName,
+                  )
+                }>
+                <Icon name={'near-me'} size={22} color={colors.primaryColor} />
+                <Text medium>{t('saloonDetail.directionsAction')}</Text>
+              </TouchableOpacity>
+            )}
+
+            {saloonDetail?.business.businessWebsite && (
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => openUrl(saloonDetail.business.businessWebsite)}>
+                <Icon name={'public'} size={22} color={colors.primaryColor} />
+                <Text medium>{t('saloonDetail.websiteAction')}</Text>
+              </TouchableOpacity>
+            )}
+
+            {saloonDetail?.business.businessTel && (
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() =>
+                  makePhoneCall(saloonDetail.business.businessTel)
+                }>
+                <Icon name={'call'} size={22} color={colors.primaryColor} />
+                <Text medium>{t('saloonDetail.callAction')}</Text>
+              </TouchableOpacity>
+            )}
+          </ScrollView>
+        </View>
+
+        <View style={styles.content}>
+          {saloonDetail?.services.length > 0 && (
+            <ServiceList services={saloonDetail.services} />
+          )}
+          {saloonDetail?.products.length > 0 && (
+            <ProductList products={saloonDetail.products} />
+          )}
+          <View style={styles.galleryAndReviews}>
+            {saloonDetail?.business?.businessImages?.length > 0 && (
+              <ImageGallery images={saloonDetail?.business.businessImages} />
+            )}
+            {saloonDetail?.reviews.length > 0 && (
+              <Reviews reviews={saloonDetail.reviews} />
+            )}
+            <BusinessInfo
+              coordinate={{
+                latitude: saloonDetail?.business?.businessLat,
+                longitude: saloonDetail?.business?.businessLong,
+              }}
+              address={saloonDetail?.business?.businessLocation}
+              phone={saloonDetail?.business?.businessTel}
+              mail={saloonDetail?.business?.businessMail}
+              website={saloonDetail?.business?.businessWebsite}
+            />
+          </View>
+        </View>
       </ScrollView>
       <ShoppingBasket businessID={businessID} />
     </SafeAreaView>
@@ -188,9 +198,6 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     paddingBottom: 40,
-  },
-  headerRight: {
-    paddingHorizontal: 16,
   },
   headerImage: {
     width: '100%',

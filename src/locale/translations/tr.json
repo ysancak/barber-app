@@ -16,6 +16,7 @@
             "title": "Bilgilendirme"
         }
     },
+    "nativeMapDefaultLabel": "Hedef konum",
     "general": {
         "or": "yada",
         "back": "Geri",

@@ -20,8 +20,6 @@ const MapListing = () => {
     longitudeDelta: 0.421,
   };
 
-  console.log(saloons);
-
   const edgePadding = {top: 100, right: 100, bottom: 300, left: 100};
 
   const animatedValue = useRef(

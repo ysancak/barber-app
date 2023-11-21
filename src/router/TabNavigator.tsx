@@ -15,6 +15,12 @@ function TabNavigator(): JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
+        tabBarActiveTintColor: colors.primaryColor,
+        tabBarInactiveTintColor: colors.captionTextColor,
+        tabBarLabelStyle: {
+          fontFamily: 'EncodeSans-Medium',
+          fontSize: 12,
+        },
         headerTitle(props) {
           return <HeaderTitle title={props.children} />;
         },
@@ -31,15 +37,7 @@ function TabNavigator(): JSX.Element {
 
           return <Icon name={iconName as string} size={24} color={color} />;
         },
-      })}
-      tabBarOptions={{
-        activeTintColor: colors.primaryColor,
-        inactiveTintColor: colors.captionTextColor,
-        labelStyle: {
-          fontFamily: 'EncodeSans-Medium',
-          fontSize: 12,
-        },
-      }}>
+      })}>
       <Tab.Screen
         name="Home"
         component={Home}

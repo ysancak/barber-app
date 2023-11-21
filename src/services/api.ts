@@ -27,6 +27,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response: any) => response,
   async (error: any) => {
+    console.log(error);
+
     const originalRequest = error.config;
     const state = store.getState();
 
@@ -44,11 +46,9 @@ api.interceptors.response.use(
         store.dispatch(clearTokens());
       }
     }
-
     if (error.response.status === 401) {
       store.dispatch(clearTokens());
     }
-
     return Promise.reject(error);
   },
 );

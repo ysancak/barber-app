@@ -19,7 +19,9 @@ const PopularSaloons = () => {
     setLoading(true);
     try {
       const result = await getPopularSaloonsService();
-      setPopularSaloons(result);
+      if (result) {
+        setPopularSaloons(result);
+      }
     } finally {
       setLoading(false);
     }
@@ -48,7 +50,7 @@ const PopularSaloons = () => {
     );
   };
 
-  if (loading) {
+  if (loading || popularSaloons) {
     return <SkeletonLoading.PopularSaloons />;
   }
 

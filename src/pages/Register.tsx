@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import React, {useState} from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux';
 import {Button, Input, Space, Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
 import {registerAndLoginValidationSchema} from '@/schemas/validations';
-import {registerService} from '@/services/auth.service';
+import {registerService} from '@/services/user.service';
 import {setTokens} from '@/store/auth';
 import {colors} from '@/utils';
 

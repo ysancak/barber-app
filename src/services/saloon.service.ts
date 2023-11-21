@@ -33,3 +33,14 @@ export const getSaloonDetailService = async (params: {id: string}) => {
     showAPIErrorToast(error);
   }
 };
+
+export const toggleSaloonFavoriteService = async (params: {
+  businessID: string;
+}) => {
+  try {
+    await api.post('/mark-fav', params);
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};

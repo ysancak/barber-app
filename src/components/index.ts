@@ -7,10 +7,13 @@ import ListItem from './ListItem';
 import ListMapView from './ListMapView';
 import SkeletonLoading from './loadings';
 import MapMarker from './MapMarker';
+import ProductList from './ProductList';
 import RadioListItem from './RadioListItem';
 import Rating from './Rating';
+import Reviews from './Reviews';
 import SafeAreaView from './SafeAreaView';
 import SaloonListItem from './SaloonListItem';
+import ServiceList from './ServiceList';
 import Space from './Space';
 import Text from './Text';
 import View from './View';
@@ -32,4 +35,7 @@ export {
   ListMapView,
   CustomCalendar,
   SkeletonLoading,
+  ProductList,
+  ServiceList,
+  Reviews,
 };

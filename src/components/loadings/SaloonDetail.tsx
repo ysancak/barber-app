@@ -8,86 +8,108 @@ import {colors} from '@/utils';
 
 const SaloonDetailLoading = () => {
   return (
-    <SkeletonPlaceholder
-      borderRadius={4}
-      highlightColor={'#d5d9de'}
-      backgroundColor={'#d5d9de90'}>
-      <View>
-        <SkeletonPlaceholder.Item width={'100%'} height={140} />
+    <View style={styles.container}>
+      <SkeletonPlaceholder
+        borderRadius={4}
+        highlightColor={'#d5d9de'}
+        backgroundColor={'#d5d9de90'}>
+        <View>
+          <SkeletonPlaceholder.Item width={'100%'} height={140} />
 
-        <View style={styles.detailContainer}>
-          <SkeletonPlaceholder.Item width={86} height={86} borderRadius={99} />
-          <View style={styles.detailTextContainer}>
+          <View style={styles.detailContainer}>
             <SkeletonPlaceholder.Item
-              width={160}
-              height={30}
-              borderRadius={12}
+              width={86}
+              height={86}
+              borderRadius={99}
             />
-            <SkeletonPlaceholder.Item
-              width={195}
-              height={16}
-              borderRadius={12}
-            />
-            <SkeletonPlaceholder.Item
-              width={60}
-              height={16}
-              borderRadius={12}
-            />
+            <View style={styles.detailTextContainer}>
+              <SkeletonPlaceholder.Item
+                width={160}
+                height={30}
+                borderRadius={12}
+              />
+              <SkeletonPlaceholder.Item
+                width={195}
+                height={16}
+                borderRadius={12}
+              />
+              <SkeletonPlaceholder.Item
+                width={60}
+                height={16}
+                borderRadius={12}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.actionButtonsContainer}>
-          <SkeletonPlaceholder.Item width={100} height={33} borderRadius={99} />
-          <SkeletonPlaceholder.Item width={100} height={33} borderRadius={99} />
-          <SkeletonPlaceholder.Item width={100} height={33} borderRadius={99} />
-        </View>
-
-        <View style={styles.contentContainer}>
-          <View style={styles.row}>
+          <View style={styles.actionButtonsContainer}>
+            <SkeletonPlaceholder.Item
+              width={100}
+              height={33}
+              borderRadius={99}
+            />
+            <SkeletonPlaceholder.Item
+              width={100}
+              height={33}
+              borderRadius={99}
+            />
             <SkeletonPlaceholder.Item
               width={100}
               height={33}
               borderRadius={99}
             />
           </View>
-          <SkeletonPlaceholder.Item
-            height={160}
-            borderRadius={12}
-            marginHorizontal={16}
-          />
-          <SkeletonPlaceholder.Item
-            height={160}
-            borderRadius={12}
-            marginHorizontal={16}
-          />
-        </View>
 
-        <View style={styles.contentContainer}>
-          <View style={styles.row}>
+          <View style={styles.contentContainer}>
+            <View style={styles.row}>
+              <SkeletonPlaceholder.Item
+                width={100}
+                height={33}
+                borderRadius={99}
+              />
+            </View>
             <SkeletonPlaceholder.Item
-              width={100}
-              height={33}
-              borderRadius={99}
+              height={160}
+              borderRadius={12}
+              marginHorizontal={16}
+            />
+            <SkeletonPlaceholder.Item
+              height={160}
+              borderRadius={12}
+              marginHorizontal={16}
             />
           </View>
-          <SkeletonPlaceholder.Item
-            height={160}
-            borderRadius={12}
-            marginHorizontal={16}
-          />
-          <SkeletonPlaceholder.Item
-            height={160}
-            borderRadius={12}
-            marginHorizontal={16}
-          />
+
+          <View style={styles.contentContainer}>
+            <View style={styles.row}>
+              <SkeletonPlaceholder.Item
+                width={100}
+                height={33}
+                borderRadius={99}
+              />
+            </View>
+            <SkeletonPlaceholder.Item
+              height={160}
+              borderRadius={12}
+              marginHorizontal={16}
+            />
+            <SkeletonPlaceholder.Item
+              height={160}
+              borderRadius={12}
+              marginHorizontal={16}
+            />
+          </View>
         </View>
-      </View>
-    </SkeletonPlaceholder>
+      </SkeletonPlaceholder>
+    </View>
   );
 };
 
 export default SaloonDetailLoading;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.whiteColor,
+  },
   detailContainer: {
     paddingHorizontal: 16,
     paddingVertical: 16,

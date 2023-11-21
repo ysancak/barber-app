@@ -40,6 +40,7 @@ type Saloon = {
   businessDescription?: string;
   averageReviewPoint?: number;
   reviewCount?: number;
+  isFavorite: boolean;
 };
 
 type Review = {
