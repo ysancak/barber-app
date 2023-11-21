@@ -21,7 +21,7 @@ const SaloonListItem: React.FC<Saloon> = ({
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.container}
-      onPress={() => navigation.navigate('SaloonDetail', {id: _id})}>
+      onPress={() => navigation.navigate('SaloonDetail', {businessID: _id})}>
       <View style={styles.imageContainer}>
         <Image source={{uri: businessImage}} style={styles.businessImage} />
       </View>

@@ -5,6 +5,7 @@ import Settings from './settings';
 import LanguageSettings from './settings/Language';
 import ShoppingCart from './shopping-cart';
 import Campaigns from './tab/campaigns';
+import Favorites from './tab/favorites';
 import MyAccount from './tab/my-account';
 import EditProfile from './tab/my-account/EditProfile';
 import Faq from './tab/my-account/Faq';
@@ -19,6 +20,7 @@ export {
   Login,
   Register,
   Home,
+  Favorites,
   MyAccount,
   EditProfile,
   Settings,

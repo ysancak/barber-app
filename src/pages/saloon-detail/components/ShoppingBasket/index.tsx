@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
-import {colors} from '@/utils';
+import {colors, constants} from '@/utils';
 
 type Props = {
   businessID: string;
@@ -78,13 +78,13 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
             </View>
           </View>
           <Text variant="title" fontSize={22} color={colors.textColor}>
-            {totalPrice.toFixed(2)} TL
+            {totalPrice.toFixed(2)} {constants.CURRENCY}
           </Text>
         </View>
         <View style={styles.buttonWrapper}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('ShoppingCart')}>
+            onPress={() => navigation.navigate('ShoppingCart', {businessID})}>
             <Text medium color={colors.whiteColor}>
               Sepete git
             </Text>

@@ -66,6 +66,7 @@ type Service = {
   businessID: string;
   mwstName: string;
   mwstValue: string;
+  mwstPrice: string;
   inCampaign: boolean;
 };
 
@@ -88,5 +89,6 @@ type Product = {
   businessID: string;
   mwstName: string;
   mwstValue: string;
+  mwstPrice: string;
   inCampaign: boolean;
 };

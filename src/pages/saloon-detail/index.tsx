@@ -37,7 +37,7 @@ import {
 const SaloonDetail = () => {
   const {t} = useTranslation();
   const {
-    params: {id: businessID},
+    params: {businessID},
   } = useRoute();
   const navigation = useNavigation();
   const [refreshing, setRefreshing] = useState(false);

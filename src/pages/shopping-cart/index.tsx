@@ -1,3 +1,4 @@
+import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useMemo} from 'react';
 import {
   Image,
@@ -12,10 +13,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, ListItem, Text, View} from '@/components';
 import {useNavigation} from '@/hooks/useNavigation';
 import {addToCart, clearCart, removeFromCart} from '@/store/cart';
-import {colors} from '@/utils';
+import {colors, constants} from '@/utils';
 
 const ShoppingCart = () => {
-  const businessID = 'businessOrnek2';
+  const {
+    params: {businessID},
+  } = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const businessCart = useSelector(state => state.cart.carts[businessID]);
@@ -39,6 +42,32 @@ const ShoppingCart = () => {
     const _totalPrice = calculatedTotalPrice < 0.01 ? 0 : calculatedTotalPrice;
     return _totalPrice;
   }, [businessCart]);
+
+  const calculateMwstTotals = () => {
+    const mwstTotals = new Map();
+    let totalMwst = 0;
+
+    businessCart?.items.forEach(item => {
+      const currentTotal = mwstTotals.get(item.mwstName) || 0;
+      const mwstValue = parseFloat(item.mwstPrice);
+      totalMwst += mwstValue;
+      mwstTotals.set(item.mwstName, currentTotal + mwstValue);
+    });
+
+    return {
+      mwstList: Array.from(mwstTotals).map(([name, total]) => ({
+        mwstName: name,
+        total: total.toFixed(2),
+      })),
+      totalMwst,
+    };
+  };
+
+  const {mwstList, totalMwst} = useMemo(calculateMwstTotals, [businessCart]);
+
+  const subtotal = useMemo(() => {
+    return totalPrice - totalMwst;
+  }, [totalPrice, totalMwst]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -87,7 +116,7 @@ const ShoppingCart = () => {
               <View style={styles.serviceItemTextContainer}>
                 <Text>{service.serviceName}</Text>
                 <Text semibold fontSize={18} color={colors.primaryColor}>
-                  {service.price} {service.currency}
+                  {service.price} {constants.CURRENCY}
                 </Text>
                 <View style={styles.iconTextContainer}>
                   <Icon
@@ -150,7 +179,7 @@ const ShoppingCart = () => {
                   <View style={styles.productDescription}>
                     <Text>{product.productName}</Text>
                     <Text semibold fontSize={18} color={colors.primaryColor}>
-                      {product.price} {product.currency}
+                      {product.price} {constants.CURRENCY}
                     </Text>
                   </View>
                 </View>
@@ -193,9 +222,20 @@ const ShoppingCart = () => {
           </Text>
         </View>
         <ListItem
+          label="Subtotal"
+          value={`${subtotal.toFixed(2)} ${constants.CURRENCY}`}
+        />
+        {mwstList.map(mwst => (
+          <ListItem
+            key={mwst.mwstName}
+            label={mwst.mwstName}
+            value={`${mwst.total} ${constants.CURRENCY}`}
+          />
+        ))}
+        <ListItem
           icon="credit-card"
           label="Total price"
-          value={`${totalPrice.toFixed(2)} TL`}
+          value={`${totalPrice.toFixed(2)} ${constants.CURRENCY}`}
         />
       </ScrollView>
       <View style={styles.buttonContainer}>

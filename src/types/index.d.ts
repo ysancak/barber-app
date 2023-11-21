@@ -31,7 +31,7 @@ type RootStackParamList = {
   Settings: undefined;
   LanguageSettings: undefined;
   Faq: undefined;
-  SaloonDetail: {id: string};
+  SaloonDetail: {businessID: string};
   SelectInputDetail: {
     title: string;
     options: SelectOption[];
@@ -45,7 +45,7 @@ type RootStackParamList = {
     title: string;
     onChange: (label: string, coordinate: Coordinate) => void;
   };
-  ShoppingCart: undefined;
+  ShoppingCart: {businessID: string};
   Calendar: undefined;
 };
 

@@ -3,8 +3,8 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {HeaderTitle, Text} from '@/components';
-import {Campaigns, Home, MyAccount} from '@/pages';
+import {HeaderTitle} from '@/components';
+import {Campaigns, Favorites, Home, MyAccount} from '@/pages';
 import {colors} from '@/utils';
 
 const Tab = createBottomTabNavigator();
@@ -31,6 +31,8 @@ function TabNavigator(): JSX.Element {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Campaigns') {
             iconName = focused ? 'pricetag' : 'pricetag-outline';
+          } else if (route.name === 'Favorites') {
+            iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'MyAccount') {
             iconName = focused ? 'person' : 'person-outline';
           }
@@ -47,6 +49,11 @@ function TabNavigator(): JSX.Element {
         name="Campaigns"
         component={Campaigns}
         options={{title: t('campaigns.title')}}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{title: 'Favoriler'}}
       />
       <Tab.Screen
         name="MyAccount"
