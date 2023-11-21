@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 
-import {SaloonListItem, Text, View} from '@/components';
+import {SaloonListItem, SkeletonLoading, Text, View} from '@/components';
 import {getPopularSaloonsService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const PopularSaloons = () => {
   const {t} = useTranslation();
+  const [loading, setLoading] = useState(true);
   const [popularSaloons, setPopularSaloons] = useState<Saloon[]>([]);
 
   useEffect(() => {
@@ -15,10 +16,12 @@ const PopularSaloons = () => {
   }, []);
 
   const getPopularSaloons = async () => {
+    setLoading(true);
     try {
       const result = await getPopularSaloonsService();
       setPopularSaloons(result);
     } finally {
+      setLoading(false);
     }
   };
 
@@ -45,6 +48,10 @@ const PopularSaloons = () => {
     );
   };
 
+  if (loading) {
+    return <SkeletonLoading.PopularSaloons />;
+  }
+
   return (
     <View style={styles.container}>
       {generateTitle()}
@@ -60,9 +67,7 @@ const PopularSaloons = () => {
 export default PopularSaloons;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 40,
-  },
+  container: {},
   centered: {
     flexDirection: 'row',
     alignItems: 'center',

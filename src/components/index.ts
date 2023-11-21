@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery';
 import Input from './inputs';
 import ListItem from './ListItem';
 import ListMapView from './ListMapView';
+import SkeletonLoading from './loadings';
 import MapMarker from './MapMarker';
 import RadioListItem from './RadioListItem';
 import Rating from './Rating';
@@ -30,4 +31,5 @@ export {
   ImageGallery,
   ListMapView,
   CustomCalendar,
+  SkeletonLoading,
 };

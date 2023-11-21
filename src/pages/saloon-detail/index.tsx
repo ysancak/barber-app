@@ -17,6 +17,7 @@ import Reviews from './components/Reviews';
 import ServiceList from './components/ServiceList';
 import ShoppingBasket from './components/ShoppingBasket';
 
+import {SkeletonLoading} from '@/components';
 import ImageGallery from '@/components/ImageGallery';
 import Rating from '@/components/Rating';
 import Text from '@/components/Text';
@@ -30,6 +31,7 @@ const SaloonDetail = () => {
     params: {id: businessID},
   } = useRoute();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(true);
   const [saloonDetail, setSaloonDetail] = useState<SaloonDetail>();
 
   useEffect(() => {
@@ -44,14 +46,22 @@ const SaloonDetail = () => {
   }, [businessID]);
 
   const getSaloonDetail = async () => {
-    try {
-      const result = await getSaloonDetailService({id: businessID});
-      if (result) {
-        setSaloonDetail(result);
+    setTimeout(async () => {
+      setLoading(true);
+      try {
+        const result = await getSaloonDetailService({id: businessID});
+        if (result) {
+          setSaloonDetail(result);
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-    }
+    }, 1000);
   };
+
+  if (loading) {
+    return <SkeletonLoading.SaloonDetail />;
+  }
 
   const HeaderRightComponent = () => (
     <TouchableOpacity>
