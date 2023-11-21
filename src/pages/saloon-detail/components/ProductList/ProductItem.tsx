@@ -5,14 +5,14 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {addToCart, removeFromCart} from '@/store/cart';
-import {colors} from '@/utils';
+import {colors, constants} from '@/utils';
 
 const ProductItem: React.FC<Product> = product => {
   const {
     _id,
     description,
     price,
-    currency,
+    oldprice,
     productImage,
     productName,
     businessID,
@@ -50,20 +50,23 @@ const ProductItem: React.FC<Product> = product => {
           <Text fontSize={17} semibold>
             {productName}
           </Text>
-          <Text>{description}</Text>
+          {description && <Text>{description}</Text>}
         </View>
         <View flexDirection="row" alignItems="center" gap={22}>
           <View flex gap={4}>
             <Text variant="title" fontSize={20} color={colors.primaryColor}>
-              {price} {currency}
+              {price} {constants.CURRENCY}
             </Text>
-            <Text
-              variant="title"
-              fontSize={16}
-              style={styles.oldPrice}
-              color={colors.captionTextColor}>
-              {price} {currency}
-            </Text>
+
+            {oldprice && (
+              <Text
+                variant="title"
+                fontSize={16}
+                style={styles.oldPrice}
+                color={colors.captionTextColor}>
+                {oldprice} {constants.CURRENCY}
+              </Text>
+            )}
           </View>
           {productQuantity > 0 ? (
             <View style={styles.quantityContainer}>

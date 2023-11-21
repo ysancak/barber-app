@@ -93,7 +93,13 @@ function MainNavigator(): JSX.Element {
         component={SelectInputDetail}
         options={{presentation: 'modal'}}
       />
-      <Stack.Screen name="SaloonDetail" component={SaloonDetail} />
+      <Stack.Screen
+        name="SaloonDetail"
+        component={SaloonDetail}
+        options={{
+          title: '',
+        }}
+      />
       <Stack.Screen
         name="MapListing"
         component={MapListing}

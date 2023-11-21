@@ -6,7 +6,21 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ListItem, ListMapView, Text, View} from '@/components';
 import {colors} from '@/utils';
 
-const BusinessInfo = () => {
+type Props = {
+  coordinate?: Coordinate;
+  address?: string;
+  phone?: string;
+  mail?: string;
+  website?: string;
+};
+
+const BusinessInfo: React.FC<Props> = ({
+  coordinate,
+  address,
+  phone,
+  mail,
+  website,
+}) => {
   const {t} = useTranslation();
   return (
     <View>
@@ -17,28 +31,28 @@ const BusinessInfo = () => {
         </Text>
       </View>
       <View style={styles.mapViewContainer}>
-        <ListMapView coordinate={{latitude: 37.79, longitude: -122.42}} />
+        {coordinate && <ListMapView coordinate={coordinate} />}
         <View style={styles.listContainer}>
-          <ListItem
-            icon="location-on"
-            label={t('general.address')}
-            value="Alfred-Escherstrasse 64, 8002, Zürich"
-          />
-          <ListItem
-            icon="call"
-            label={t('general.phone')}
-            value="+44 6633 6526"
-          />
-          <ListItem
-            icon="mail"
-            label={t('general.email')}
-            value="info@coiffeur.ch"
-          />
-          <ListItem
-            icon="public"
-            label={t('general.website')}
-            value="www.coiffeur.ch"
-          />
+          {address && (
+            <ListItem
+              icon="location-on"
+              label={t('general.address')}
+              value={address}
+            />
+          )}
+          {phone && (
+            <ListItem icon="call" label={t('general.phone')} value={phone} />
+          )}
+          {mail && (
+            <ListItem icon="mail" label={t('general.email')} value={mail} />
+          )}
+          {website && (
+            <ListItem
+              icon="public"
+              label={t('general.website')}
+              value={website}
+            />
+          )}
         </View>
 
         <View style={styles.listContainer}>

@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import {useRoute} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Image,
@@ -20,19 +21,37 @@ import ImageGallery from '@/components/ImageGallery';
 import Rating from '@/components/Rating';
 import Text from '@/components/Text';
 import {useNavigation} from '@/hooks/useNavigation';
+import {getSaloonDetailService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const SaloonDetail = () => {
-  const businessID = 'businessOrnek2';
   const {t} = useTranslation();
+  const {
+    params: {id: businessID},
+  } = useRoute();
   const navigation = useNavigation();
+  const [saloonDetail, setSaloonDetail] = useState<SaloonDetail>();
 
   useEffect(() => {
     navigation.setOptions({
-      title: 'Chic Coiffeour',
+      title: saloonDetail?.business.businessName,
       headerRight: HeaderRightComponent,
     });
-  }, [navigation]);
+  }, [saloonDetail]);
+
+  useEffect(() => {
+    getSaloonDetail();
+  }, [businessID]);
+
+  const getSaloonDetail = async () => {
+    try {
+      const result = await getSaloonDetailService({id: businessID});
+      if (result) {
+        setSaloonDetail(result);
+      }
+    } finally {
+    }
+  };
 
   const HeaderRightComponent = () => (
     <TouchableOpacity>
@@ -50,25 +69,37 @@ const SaloonDetail = () => {
     <Image
       style={styles.headerImage}
       source={{
-        uri: 'https://barberscout-8c49e53c42dc.herokuapp.com/assets/img/upload/b-2.webp',
+        uri: saloonDetail?.business.businessImages[0],
       }}
     />
   );
 
   const DetailContainer = () => (
     <View style={styles.detailContainer}>
-      <Image
-        style={styles.avatarImage}
-        source={{
-          uri: 'https://barberscout-8c49e53c42dc.herokuapp.com/assets/img/upload/b-1.webp',
-        }}
-      />
+      {saloonDetail?.business.businessImage ? (
+        <Image
+          style={styles.avatarImage}
+          source={{
+            uri: saloonDetail?.business.businessImage,
+          }}
+        />
+      ) : (
+        <Image
+          style={styles.avatarImage}
+          source={require('@/assets/images/defaultSaloonAvatarImage.png')}
+        />
+      )}
       <View style={styles.detailTextContainer}>
-        <Text variant="title" fontSize={22} style={styles.title}>
-          Chic Coiffeour
+        <Text variant="title" fontSize={20} style={styles.title}>
+          {saloonDetail?.business.businessName}
         </Text>
-        <Text style={styles.subtitle}>Kreis 1,Zürich</Text>
-        <Rating score={4.5} reviewCount={23} />
+        <Text style={styles.subtitle}>
+          {saloonDetail?.business.businessLocation}
+        </Text>
+        <Rating
+          score={saloonDetail?.business.averageReviewPoint}
+          reviewCount={saloonDetail?.business.reviewCount}
+        />
       </View>
     </View>
   );
@@ -100,16 +131,29 @@ const SaloonDetail = () => {
 
   const Content = () => (
     <View style={styles.content}>
-      <ServiceList businessID={businessID} />
-      <ProductList businessID={businessID} />
+      {saloonDetail?.services.length > 0 && (
+        <ServiceList services={saloonDetail.services} />
+      )}
+      {saloonDetail?.products.length > 0 && (
+        <ProductList products={saloonDetail.products} />
+      )}
       <View style={styles.galleryAndReviews}>
-        <ImageGallery
-          images={[
-            'https://barberscout-8c49e53c42dc.herokuapp.com/assets/img/upload/b-2.webp',
-          ]}
+        {saloonDetail?.business.businessImages?.length > 0 && (
+          <ImageGallery images={saloonDetail?.business.businessImages} />
+        )}
+        {saloonDetail?.reviews.length > 0 && (
+          <Reviews reviews={saloonDetail.reviews} />
+        )}
+        <BusinessInfo
+          coordinate={{
+            latitude: saloonDetail?.business.businessLat,
+            longitude: saloonDetail?.business.businessLong,
+          }}
+          address={saloonDetail?.business.businessLocation}
+          phone={saloonDetail?.business.businessTel}
+          mail={saloonDetail?.business.businessMail}
+          website={saloonDetail?.business.businessWebsite}
         />
-        <Reviews />
-        <BusinessInfo />
       </View>
     </View>
   );
@@ -117,7 +161,7 @@ const SaloonDetail = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <HeaderImage />
+        {saloonDetail?.business.businessImages && <HeaderImage />}
         <DetailContainer />
         <ActionButtons />
         <Content />
@@ -154,9 +198,11 @@ const styles = StyleSheet.create({
   avatarImage: {
     width: 86,
     height: 86,
+    backgroundColor: colors.borderColor3,
     borderRadius: 99,
   },
   detailTextContainer: {
+    flex: 1,
     marginLeft: 16,
   },
   title: {

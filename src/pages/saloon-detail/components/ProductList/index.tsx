@@ -9,46 +9,18 @@ import {View, Text} from '@/components';
 import {colors} from '@/utils';
 
 type Props = {
-  businessID: string;
+  products: Product[];
 };
 
-const ProductList: React.FC<Props> = ({businessID}) => {
+const ProductList: React.FC<Props> = ({products}) => {
   const {t} = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    setProducts([
-      {
-        _id: '65524dc4940e10c58ce122ce',
-        productName: 'Maybelline Color sensational',
-        description: '122 Brick Beat',
-        price: 164.34,
-        currency: 'TL',
-        category: 'Face',
-        productImage:
-          'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892098219-642483261.webp',
-        businessID: 'businessOrnek2',
-      },
-      {
-        _id: '65524dc4940e10c3ce122ce',
-        productName: "L'Oreal Paris Perfect Match",
-        description: 'Getöntes Serum',
-        price: 164.34,
-        currency: 'TL',
-        category: 'Nails',
-        productImage:
-          'https://barberscout-8c49e53c42dc.herokuapp.com/assets/images/business/productImage-1699892056878-592017763.webp',
-        businessID: 'businessOrnek2',
-      },
-    ]);
-  }, []);
 
   useEffect(() => {
     const uniqueCategories = [
       'all',
-      ...new Set(products.map(product => product.category)),
+      ...new Set(products.map(product => product.categoryName)),
     ];
     setCategories(uniqueCategories);
   }, [products]);
@@ -83,7 +55,7 @@ const ProductList: React.FC<Props> = ({businessID}) => {
   const renderProducts = () => {
     const filteredProducts = products.filter(
       product =>
-        selectedCategory === 'all' || product.category === selectedCategory,
+        selectedCategory === 'all' || product.categoryName === selectedCategory,
     );
     return (
       <ScrollView

@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {addToCart, removeFromCart} from '@/store/cart';
-import {colors} from '@/utils';
+import {colors, constants} from '@/utils';
 
 const ServiceItem: React.FC<Service> = service => {
   const {
@@ -14,7 +14,7 @@ const ServiceItem: React.FC<Service> = service => {
     description,
     durationMinutes,
     price,
-    currency,
+    oldprice,
     serviceName,
     serviceType,
     businessID,
@@ -44,15 +44,17 @@ const ServiceItem: React.FC<Service> = service => {
           </Text>
           <View flexDirection="row" gap={8} alignItems="flex-end">
             <Text variant="title" fontSize={20} color={colors.primaryColor}>
-              {price} {currency}
+              {price} {constants.CURRENCY}
             </Text>
-            <Text
-              variant="title"
-              fontSize={16}
-              style={styles.oldPrice}
-              color={colors.captionTextColor}>
-              {price} {currency}
-            </Text>
+            {oldprice && (
+              <Text
+                variant="title"
+                fontSize={16}
+                style={styles.oldPrice}
+                color={colors.captionTextColor}>
+                {oldprice} {constants.CURRENCY}
+              </Text>
+            )}
           </View>
         </View>
         <TouchableOpacity
@@ -70,7 +72,7 @@ const ServiceItem: React.FC<Service> = service => {
           </Text>
         </TouchableOpacity>
       </View>
-      <Text>{description}</Text>
+      {description && <Text>{description}</Text>}
       <View flexDirection="row" gap={12} alignItems="center">
         <View flexDirection="row" alignItems="center" gap={6}>
           <Icon name="timer" size={22} color={colors.captionTextColor} />

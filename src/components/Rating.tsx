@@ -9,7 +9,7 @@ import View from './View';
 import {colors} from '@/utils';
 
 interface RatingProps {
-  score?: number; // score opsiyonel
+  score?: number;
   reviewCount?: number;
   variant?: 'compact' | 'star';
 }
@@ -21,11 +21,11 @@ const Rating: React.FC<RatingProps> = ({
 }) => {
   const {t} = useTranslation();
 
+  console.log(score, reviewCount);
+
   if (
-    score === undefined ||
-    score <= 0 ||
-    reviewCount === undefined ||
-    reviewCount <= 0
+    (score === undefined || score <= 0) &&
+    (reviewCount === undefined || reviewCount <= 0)
   ) {
     return (
       <View style={styles.container}>

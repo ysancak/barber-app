@@ -44,9 +44,9 @@ type Saloon = {
 
 type Review = {
   _id: string;
-  reviewsDetails: string;
+  reviewDetails: string;
   businessID: string;
-  reviewPoint: string;
+  reviewPoint: number;
   reviewOwner: string;
   reviewDate: string;
   userID: string;
@@ -57,26 +57,35 @@ type Service = {
   serviceName: string;
   description: string;
   price: number;
-  currency: string;
+  oldprice?: number;
   durationMinutes: string;
   category: string;
+  categoryName: string;
   serviceType: string;
   businessID: string;
+  mwstName: string;
+  mwstValue: string;
+  inCampaign: boolean;
 };
 
 type SaloonDetail = {
   business: Saloon;
   reviews: Review[];
   services: Service[];
+  products: Product[];
 };
 
 type Product = {
   _id: string;
   productName: string;
   price: number;
-  currency: string;
+  oldprice?: number;
   category: string;
+  categoryName: string;
   description: string;
   productImage: string;
   businessID: string;
+  mwstName: string;
+  mwstValue: string;
+  inCampaign: boolean;
 };

@@ -5,22 +5,25 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Rating, Text, View} from '@/components';
 import {colors} from '@/utils';
 
-const ReviewItem = () => {
+const ReviewItem: React.FC<Review> = ({
+  reviewOwner,
+  reviewPoint,
+  reviewDate,
+  reviewDetails,
+}) => {
   return (
     <View style={styles.reviewItem}>
       <Text variant="title" fontSize={18}>
-        Claire Redfield
+        {reviewOwner}
       </Text>
       <View style={styles.ratingRow}>
-        <Rating score={4.2} />
+        <Rating score={reviewPoint} />
         <View style={styles.dateRow}>
           <Icon name="calendar-month" size={24} color={colors.primaryColor} />
-          <Text fontSize={16}>11.09.2023</Text>
+          <Text fontSize={16}>{reviewDate}</Text>
         </View>
       </View>
-      <Text>
-        I recently visited Chic Coiffeur, and I'm thrilled with the results!...
-      </Text>
+      <Text>{reviewDetails}</Text>
     </View>
   );
 };

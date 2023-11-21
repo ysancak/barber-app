@@ -9,8 +9,13 @@ import ReviewItem from './ReviewItem';
 import {Text, View} from '@/components';
 import {colors} from '@/utils';
 
-const Reviews = () => {
+type Props = {
+  reviews: Review[];
+};
+
+const Reviews: React.FC<Props> = ({reviews}) => {
   const {t} = useTranslation();
+
   return (
     <View>
       <View style={styles.container}>
@@ -20,8 +25,9 @@ const Reviews = () => {
         </Text>
       </View>
       <View style={styles.reviewList}>
-        <ReviewItem />
-        <ReviewItem />
+        {reviews.map((review, index) => (
+          <ReviewItem key={`review-${index}`} {...review} />
+        ))}
       </View>
     </View>
   );

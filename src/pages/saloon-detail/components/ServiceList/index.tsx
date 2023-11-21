@@ -9,50 +9,22 @@ import {View, Text, Button} from '@/components';
 import {colors} from '@/utils';
 
 type Props = {
-  businessID: string;
+  services: Service[];
 };
 
-const ServiceList: React.FC<Props> = ({businessID}) => {
+const ServiceList: React.FC<Props> = ({services}) => {
   const {t} = useTranslation();
 
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
-  const [services, setServices] = useState<Service[]>([]);
 
   const SHOW_COUNT = 1;
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    setServices([
-      {
-        _id: '65524dc4940310c58ce122ce',
-        serviceName: 'LPG Targeted Treatment',
-        description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
-        price: 164.34,
-        currency: 'TL',
-        durationMinutes: '23 mins',
-        category: 'Face',
-        serviceType: 'Female',
-        businessID: 'businessOrnek2',
-      },
-      {
-        _id: '65524dc4940s0c58ce122ce',
-        serviceName: '23 Targeted Treatment',
-        description: 'Mit dem ersten verfügbaren Stylisten / Mitarbeiter',
-        price: 20.34,
-        currency: 'TL',
-        durationMinutes: '15 mins',
-        category: 'Nails',
-        serviceType: 'Male',
-        businessID: 'businessOrnek2',
-      },
-    ]);
-  }, []);
-
-  useEffect(() => {
     const uniqueCategories = [
       'all',
-      ...new Set(services.map(service => service.category)),
+      ...new Set(services.map(service => service.categoryName)),
     ];
     setCategories(uniqueCategories);
   }, [services]);
@@ -87,7 +59,7 @@ const ServiceList: React.FC<Props> = ({businessID}) => {
   const renderServices = () => {
     const filteredServices = services.filter(
       service =>
-        selectedCategory === 'all' || service.category === selectedCategory,
+        selectedCategory === 'all' || service.categoryName === selectedCategory,
     );
     const servicesToShow = showAll
       ? filteredServices
