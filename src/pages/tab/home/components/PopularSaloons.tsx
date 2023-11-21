@@ -50,7 +50,7 @@ const PopularSaloons = () => {
     );
   };
 
-  if (loading || popularSaloons) {
+  if (loading || !popularSaloons) {
     return <SkeletonLoading.PopularSaloons />;
   }
 
