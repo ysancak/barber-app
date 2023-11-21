@@ -15,6 +15,13 @@ type KeyboardType =
   | 'web-search'
   | 'visible-password';
 
+interface ButtonProps {
+  text: string;
+  onPress?: () => void;
+  type: 'default' | 'secondary' | 'text';
+  labelStyle?: StyleProp<TextStyle>;
+}
+
 type SelectOption = {
   [key: string]: any;
 };

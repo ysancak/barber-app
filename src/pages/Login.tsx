@@ -5,7 +5,7 @@ import {Image, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {Button, Input, Space, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {registerAndLoginValidationSchema} from '@/schemas/validations';
 import {loginService} from '@/services/user.service';
 import {setTokens} from '@/store/auth';
@@ -29,7 +29,7 @@ function Login(): JSX.Element {
               refreshToken: result.refreshToken,
             }),
           );
-          navigation.navigate('MyAccount');
+          navigation.goBack();
         }
       } finally {
         formik.setSubmitting(false);

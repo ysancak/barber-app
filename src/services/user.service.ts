@@ -11,6 +11,7 @@ export const loginService = async (params: {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };
 
@@ -23,5 +24,6 @@ export const registerService = async (params: {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };

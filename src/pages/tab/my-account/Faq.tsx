@@ -5,26 +5,16 @@ import {ActivityIndicator} from 'react-native';
 import FaqListItem from './components/FaqListItem';
 
 import {View} from '@/components';
+import {useFetch} from '@/hooks';
 import {getFaqService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 function Faq(): JSX.Element {
-  const [loading, setLoading] = useState(true);
-  const [faq, setFaq] = useState<FaqResponse[]>();
+  const {fetch, loading, data} = useFetch(getFaqService);
 
   useEffect(() => {
-    getFaqList();
+    fetch();
   }, []);
-
-  const getFaqList = async () => {
-    setLoading(true);
-    try {
-      const result = await getFaqService();
-      setFaq(result);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -33,7 +23,7 @@ function Faq(): JSX.Element {
           <ActivityIndicator />
         </View>
       ) : (
-        faq?.map(item => <FaqListItem key={`faq_${item._id}`} {...item} />)
+        data?.map(item => <FaqListItem key={`faq_${item._id}`} {...item} />)
       )}
     </ScrollView>
   );

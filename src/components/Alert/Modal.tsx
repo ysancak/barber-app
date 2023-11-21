@@ -5,13 +5,6 @@ import Modal from 'react-native-modal';
 import Button from '../Button';
 import Text from '../Text';
 
-export interface ButtonProps {
-  text: string;
-  onPress?: () => void;
-  type: 'default' | 'secondary' | 'text';
-  labelStyle?: StyleProp<TextStyle>;
-}
-
 export type AlertProps = {
   title: string;
   content: string;

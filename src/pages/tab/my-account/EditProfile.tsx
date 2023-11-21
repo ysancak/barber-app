@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
 import {Button, Input} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useFetch, useNavigation} from '@/hooks';
 import {updateUserProfileSchema} from '@/schemas/validations';
 import {updateUserProfile, userMeService} from '@/services/account.service';
 import {colors} from '@/utils';
@@ -13,24 +13,27 @@ import {showSuccessToast} from '@/utils/toast';
 function EditProfile(): JSX.Element {
   const {t} = useTranslation();
   const navigation = useNavigation();
+  const {fetch, data, loading} = useFetch(userMeService);
 
   useEffect(() => {
-    getUserDetail();
+    fetch();
   }, []);
 
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    formik.setValues({email: data?.email});
+  }, [data]);
+
   const formik = useFormik({
     initialValues: {email: ''},
     validationSchema: updateUserProfileSchema,
     onSubmit: async values => {
-      setLoading(true);
       try {
         const result = await updateUserProfile(values);
         if (result) {
           showSuccessToast(t('editProfile.toast.savedSuccess'));
         }
       } finally {
-        setLoading(false);
+        formik.setSubmitting(false);
       }
     },
   });
@@ -47,18 +50,6 @@ function EditProfile(): JSX.Element {
       );
     },
   });
-
-  const getUserDetail = async () => {
-    setLoading(true);
-    try {
-      const result = await userMeService();
-      formik.setValues({
-        email: result?.email ?? '',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <ScrollView style={styles.container}>

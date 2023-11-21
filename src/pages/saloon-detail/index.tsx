@@ -1,5 +1,5 @@
 import {useRoute} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Image,
@@ -24,8 +24,9 @@ import {
   Reviews,
   ProductList,
   ServiceList,
+  ErrorResult,
 } from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useFetch, useNavigation} from '@/hooks';
 import {getSaloonDetailService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 import {
@@ -40,46 +41,33 @@ const SaloonDetail = () => {
     params: {businessID},
   } = useRoute();
   const navigation = useNavigation();
-  const [refreshing, setRefreshing] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [saloonDetail, setSaloonDetail] = useState<SaloonDetail>(null);
+  const {fetch, loading, data, retry, error, refresh, refreshing} = useFetch(
+    getSaloonDetailService,
+  );
 
   useEffect(() => {
-    fetchSaloonDetail();
-  }, [businessID]);
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    fetchSaloonDetail();
-  };
+    fetch({id: businessID});
+  }, [businessID, fetch]);
 
   useEffect(() => {
-    if (saloonDetail) {
+    if (data) {
       navigation.setOptions({
-        title: saloonDetail?.business?.businessName || '',
+        title: data?.business?.businessName || '',
         headerRight: () => (
           <SaloonFavorite
-            initialValue={saloonDetail?.business?.isFavorite}
+            initialValue={data?.business?.isFavorite}
             businessID={businessID}
           />
         ),
       });
     }
-  }, [saloonDetail]);
+  }, [data]);
 
-  const fetchSaloonDetail = async () => {
-    try {
-      const result = await getSaloonDetailService({id: businessID});
-      if (result) {
-        setSaloonDetail(result);
-      }
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  };
+  if (!loading && error) {
+    <ErrorResult onPress={retry} />;
+  }
 
-  if (loading || !saloonDetail) {
+  if (loading || !data) {
     return <SkeletonLoading.SaloonDetail />;
   }
 
@@ -88,12 +76,12 @@ const SaloonDetail = () => {
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
         }>
-        {saloonDetail?.business.businessImages && (
+        {data?.business.businessImages && (
           <Image
             style={styles.headerImage}
-            source={{uri: saloonDetail?.business.businessImages[0]}}
+            source={{uri: data?.business.businessImages[0]}}
           />
         )}
 
@@ -101,19 +89,19 @@ const SaloonDetail = () => {
           <Image
             style={styles.avatarImage}
             source={{
-              uri: saloonDetail?.business.businessImage,
+              uri: data?.business.businessImage,
             }}
           />
           <View style={styles.detailTextContainer}>
             <Text variant="title" fontSize={20} style={styles.title}>
-              {saloonDetail?.business.businessName}
+              {data?.business.businessName}
             </Text>
             <Text style={styles.subtitle}>
-              {saloonDetail?.business.businessLocation}
+              {data?.business.businessLocation}
             </Text>
             <Rating
-              score={saloonDetail?.business.averageReviewPoint}
-              reviewCount={saloonDetail?.business.reviewCount}
+              score={data?.business.averageReviewPoint}
+              reviewCount={data?.business.reviewCount}
             />
           </View>
         </View>
@@ -123,13 +111,13 @@ const SaloonDetail = () => {
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.actionButtonsScrollView}>
-            {saloonDetail?.business.businessLocation && (
+            {data?.business.businessLocation && (
               <TouchableOpacity
                 style={styles.actionButton}
                 onPress={() =>
                   openNativeMapWithAddress(
-                    saloonDetail.business.businessLocation,
-                    saloonDetail.business.businessName,
+                    data.business.businessLocation,
+                    data.business.businessName,
                   )
                 }>
                 <Icon name={'near-me'} size={22} color={colors.primaryColor} />
@@ -137,21 +125,19 @@ const SaloonDetail = () => {
               </TouchableOpacity>
             )}
 
-            {saloonDetail?.business.businessWebsite && (
+            {data?.business.businessWebsite && (
               <TouchableOpacity
                 style={styles.actionButton}
-                onPress={() => openUrl(saloonDetail.business.businessWebsite)}>
+                onPress={() => openUrl(data.business.businessWebsite)}>
                 <Icon name={'public'} size={22} color={colors.primaryColor} />
                 <Text medium>{t('saloonDetail.websiteAction')}</Text>
               </TouchableOpacity>
             )}
 
-            {saloonDetail?.business.businessTel && (
+            {data?.business.businessTel && (
               <TouchableOpacity
                 style={styles.actionButton}
-                onPress={() =>
-                  makePhoneCall(saloonDetail.business.businessTel)
-                }>
+                onPress={() => makePhoneCall(data.business.businessTel)}>
                 <Icon name={'call'} size={22} color={colors.primaryColor} />
                 <Text medium>{t('saloonDetail.callAction')}</Text>
               </TouchableOpacity>
@@ -160,28 +146,26 @@ const SaloonDetail = () => {
         </View>
 
         <View style={styles.content}>
-          {saloonDetail?.services.length > 0 && (
-            <ServiceList services={saloonDetail.services} />
+          {data?.services.length > 0 && (
+            <ServiceList services={data.services} />
           )}
-          {saloonDetail?.products.length > 0 && (
-            <ProductList products={saloonDetail.products} />
+          {data?.products.length > 0 && (
+            <ProductList products={data.products} />
           )}
           <View style={styles.galleryAndReviews}>
-            {saloonDetail?.business?.businessImages?.length > 0 && (
-              <ImageGallery images={saloonDetail?.business.businessImages} />
+            {data?.business?.businessImages?.length > 0 && (
+              <ImageGallery images={data?.business.businessImages} />
             )}
-            {saloonDetail?.reviews.length > 0 && (
-              <Reviews reviews={saloonDetail.reviews} />
-            )}
+            {data?.reviews.length > 0 && <Reviews reviews={data.reviews} />}
             <BusinessInfo
               coordinate={{
-                latitude: saloonDetail?.business?.businessLat,
-                longitude: saloonDetail?.business?.businessLong,
+                latitude: data?.business?.businessLat,
+                longitude: data?.business?.businessLong,
               }}
-              address={saloonDetail?.business?.businessLocation}
-              phone={saloonDetail?.business?.businessTel}
-              mail={saloonDetail?.business?.businessMail}
-              website={saloonDetail?.business?.businessWebsite}
+              address={data?.business?.businessLocation}
+              phone={data?.business?.businessTel}
+              mail={data?.business?.businessMail}
+              website={data?.business?.businessWebsite}
             />
           </View>
         </View>

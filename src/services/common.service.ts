@@ -8,6 +8,7 @@ export const getFaqService = async () => {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };
 
@@ -17,5 +18,16 @@ export const getCategoriesService = async () => {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const getCampaignsService = async () => {
+  try {
+    const response = await api.get('/campaigns');
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
   }
 };

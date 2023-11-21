@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import useAuth from '@/hooks/useAuth';
+import {useAuth, useFetch} from '@/hooks';
 import {toggleSaloonFavoriteService} from '@/services/saloon.service';
 import {alerts, colors} from '@/utils';
 
@@ -15,16 +15,16 @@ type Props = {
 const SaloonFavorite: React.FC<Props> = ({initialValue, businessID}) => {
   const isAuthenticated = useAuth();
   const [isFavorite, setIsFavorite] = useState(initialValue);
+  const {fetch} = useFetch(toggleSaloonFavoriteService);
 
   const onToggleHandler = async () => {
     if (!isAuthenticated) {
       return alerts.authWarningAlert();
     }
-
     const originalValue = isFavorite;
     setIsFavorite(!originalValue);
     try {
-      await toggleSaloonFavoriteService({businessID});
+      await fetch({businessID});
     } catch {
       setIsFavorite(originalValue);
     }

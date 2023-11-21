@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
 import {Button, RadioListItem} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import i18n from '@/locale/i18n.config';
 import {colors} from '@/utils';
 import {showSuccessToast} from '@/utils/toast';

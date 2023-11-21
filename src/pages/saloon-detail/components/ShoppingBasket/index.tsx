@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors, constants} from '@/utils';
 
 type Props = {

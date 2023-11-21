@@ -31,6 +31,7 @@ export const getSaloonDetailService = async (params: {id: string}) => {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };
 
@@ -41,6 +42,15 @@ export const toggleSaloonFavoriteService = async (params: {
     await api.post('/mark-fav', params);
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const getFavoriteSaloonsService = async () => {
+  try {
+    const response = await api.get<Saloon[]>('/favorites');
+    return response.data;
+  } catch (error) {
     throw error;
   }
 };

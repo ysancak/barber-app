@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Space, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 type Props = {

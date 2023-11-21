@@ -6,7 +6,7 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {View, Text} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors, typography} from '@/utils';
 import {MAPS_API_KEY} from '@/utils/constants';
 

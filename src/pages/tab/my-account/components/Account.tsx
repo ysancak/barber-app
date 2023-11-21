@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, ListItem, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {clearTokens} from '@/store/auth';
 
 function Account(): JSX.Element {

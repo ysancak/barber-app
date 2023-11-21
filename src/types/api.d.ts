@@ -92,3 +92,12 @@ type Product = {
   mwstPrice: string;
   inCampaign: boolean;
 };
+
+type Campaign = {
+  _id: string;
+  businessID: string;
+  campaignName: string;
+  campaignDescription: string;
+  campaignEndDate: string;
+  campaignType: string;
+};

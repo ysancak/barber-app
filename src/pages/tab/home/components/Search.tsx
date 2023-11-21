@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {Button, Input, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {searchValidationSchema} from '@/schemas/validations';
 import {getCategoriesService} from '@/services/common.service';
 import {getMapSaloonsService} from '@/services/saloon.service';

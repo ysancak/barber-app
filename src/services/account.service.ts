@@ -8,6 +8,7 @@ export const userMeService = async () => {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };
 
@@ -17,5 +18,6 @@ export const updateUserProfile = async (params: {email: string}) => {
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };

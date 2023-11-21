@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Rating from './Rating';
 import Text from './Text';
 
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 const SaloonListItem: React.FC<Saloon> = ({

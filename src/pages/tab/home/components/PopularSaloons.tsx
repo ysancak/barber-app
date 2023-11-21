@@ -1,31 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 
 import {SaloonListItem, SkeletonLoading, Text, View} from '@/components';
+import {useFetch} from '@/hooks';
 import {getPopularSaloonsService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const PopularSaloons = () => {
   const {t} = useTranslation();
-  const [loading, setLoading] = useState(true);
-  const [popularSaloons, setPopularSaloons] = useState<Saloon[]>([]);
+  const {fetch, loading, data} = useFetch(getPopularSaloonsService);
 
   useEffect(() => {
-    getPopularSaloons();
+    fetch();
   }, []);
-
-  const getPopularSaloons = async () => {
-    setLoading(true);
-    try {
-      const result = await getPopularSaloonsService();
-      if (result) {
-        setPopularSaloons(result);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const generateTitle = () => {
     const fullText = t('home.popularSaloons');
@@ -50,7 +38,7 @@ const PopularSaloons = () => {
     );
   };
 
-  if (loading || !popularSaloons) {
+  if (loading || !data) {
     return <SkeletonLoading.PopularSaloons />;
   }
 
@@ -58,7 +46,7 @@ const PopularSaloons = () => {
     <View style={styles.container}>
       {generateTitle()}
       <View style={styles.listContainer}>
-        {popularSaloons?.map((item, index) => (
+        {data?.map((item, index) => (
           <SaloonListItem key={index} {...item} />
         ))}
       </View>

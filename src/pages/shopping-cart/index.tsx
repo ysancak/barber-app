@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, ListItem, Text, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {addToCart, clearCart, removeFromCart} from '@/store/cart';
 import {colors, constants} from '@/utils';
 

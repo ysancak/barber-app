@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
 import {ListItem, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 function Settings(): JSX.Element {

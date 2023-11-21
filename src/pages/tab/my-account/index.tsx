@@ -5,7 +5,7 @@ import {ScrollView, StyleSheet} from 'react-native';
 import Account from './components/Account';
 
 import {ListItem, View} from '@/components';
-import {useNavigation} from '@/hooks/useNavigation';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 function MyAccount(): JSX.Element {

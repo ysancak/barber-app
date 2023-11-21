@@ -1,5 +1,7 @@
 import Button from './Button';
 import CustomCalendar from './CustomCalendar';
+import EmptyPage from './EmptyPage';
+import ErrorResult from './ErrorResult';
 import HeaderTitle from './HeaderTitle';
 import ImageGallery from './ImageGallery';
 import Input from './inputs';
@@ -24,6 +26,7 @@ export {
   View,
   RadioListItem,
   SafeAreaView,
+  EmptyPage,
   Space,
   Input,
   Button,
@@ -38,4 +41,5 @@ export {
   ProductList,
   ServiceList,
   Reviews,
+  ErrorResult,
 };

@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 
 import CampaignListItem from './components/CampaignListItem';
 
+import {useFetch} from '@/hooks';
+import {getCampaignsService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const Campaigns = () => {
+  const {fetch, data} = useFetch(getCampaignsService);
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  console.log(data);
+
   return (
     <ScrollView
       style={styles.container}
