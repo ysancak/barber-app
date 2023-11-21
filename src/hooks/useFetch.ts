@@ -32,9 +32,7 @@ const useFetch = <T, P = void>(fetchFunction: (params: P) => Promise<T>) => {
 
   const refresh = () => {
     setRefreshing(true);
-    if (initialParams.current !== undefined) {
-      fetch(initialParams.current as P);
-    }
+    fetch(initialParams.current as P);
   };
 
   const retry = () => {
