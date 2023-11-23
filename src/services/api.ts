@@ -14,8 +14,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config: any) => {
-    console.log(config);
-
     const state = store.getState();
     const accessToken = state.auth.accessToken;
     if (accessToken) {
@@ -29,8 +27,6 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response: any) => response,
   async (error: any) => {
-    console.log(error);
-
     const originalRequest = error.config;
     const state = store.getState();
 

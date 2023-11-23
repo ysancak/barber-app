@@ -52,7 +52,7 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
   }, [totalPrice, animatedValue]);
 
   const animatedStyle = {
-    opacity: animatedValue,
+    opacity: totalPrice > 0 ? animatedValue : 0,
     transform: [
       {
         translateY: animatedValue.interpolate({

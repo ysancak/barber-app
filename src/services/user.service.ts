@@ -27,3 +27,38 @@ export const registerService = async (params: {
     throw error;
   }
 };
+
+// TODO:: Bunu bağla
+export const passwordConfirmationService = async (params: {
+  password: string;
+  passwordConfirmation: string;
+}) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 3000);
+  }).catch(error => {
+    showAPIErrorToast(error);
+    throw error;
+  });
+};
+
+export const userMeService = async () => {
+  try {
+    const response = await api.get<UserResponse>('/user-me');
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const updateUserProfileService = async (params: {email: string}) => {
+  try {
+    const response = await api.post('/user-update', params);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};

@@ -88,10 +88,72 @@
             }
         }
     },
+    "passwordConfirmation": {
+        "title": "Şifrenizi doğrulayın",
+        "form": {
+            "password": {
+                "placeholder": "Yeni şifre girin",
+                "error": {
+                    "match": "Şifreler eşleşmiyor",
+                    "notEmpty": "Şifre boş olamaz"
+                }
+            },
+            "passwordConfirmation": {
+                "placeholder": "Yeni şifrenizi doğrulayın girin"
+            }
+        }
+    },
+    "couponCode": {
+        "form": {
+            "placeholder": "Bir kod girin",
+            "error": {
+                "notEmpty": "Kupon kodu boş olamaz"
+            }
+        }
+    },
     "editProfile": {
         "title": "Profili düzenle",
         "toast": {
             "savedSuccess": "Profil güncellendi"
+        },
+        "form": {
+            "name": {
+                "placeholder": "İsim"
+            },
+            "surname": {
+                "placeholder": "Soyisim"
+            },
+            "email": {
+                "placeholder": "Email adresinizi girin",
+                "error": {
+                    "invalid": "Email adresi geçersiz",
+                    "notEmpty": "Email adresi boş olamaz"
+                }
+            },
+            "gsm": {
+                "placeholder": "Telefon"
+            },
+            "password": {
+                "placeholder": "Yeni şifre girin",
+                "error": {
+                    "match": "Şifreler eşleşmiyor"
+                }
+            },
+            "passwordConfirmation": {
+                "placeholder": "Yeni şifrenizi doğrulayın girin"
+            },
+            "street": {
+                "placeholder": "Sokak"
+            },
+            "no": {
+                "placeholder": "No."
+            },
+            "postcode": {
+                "placeholder": "Posta kodu"
+            },
+            "ort": {
+                "placeholder": "Ort. (Opsiyonel)"
+            }
         }
     },
     "settings": {

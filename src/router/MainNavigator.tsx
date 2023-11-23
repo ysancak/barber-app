@@ -15,6 +15,7 @@ import {
   LanguageSettings,
   Login,
   MapListing,
+  PasswordConfirmation,
   Register,
   SaloonDetail,
   SelectInputDetail,
@@ -125,6 +126,14 @@ function MainNavigator(): JSX.Element {
           name="Calendar"
           component={Calendar}
           options={{title: 'Rezervasyonu planlayın'}}
+        />
+        <Stack.Screen
+          name="PasswordConfirmation"
+          options={{
+            title: t('passwordConfirmation.title'),
+            presentation: 'modal',
+          }}
+          component={PasswordConfirmation}
         />
       </Stack.Navigator>
     </NavigationContainer>

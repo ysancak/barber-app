@@ -14,11 +14,33 @@ export const registerAndLoginValidationSchema = Yup.object().shape({
 
 export const updateUserProfileSchema = Yup.object().shape({
   email: Yup.string()
-    .email(() => t('loginAndRegister.form.email.error.invalid'))
-    .required(() => t('loginAndRegister.form.email.error.notEmpty')),
+    .email(() => t('editProfile.form.email.error.invalid'))
+    .required(() => t('editProfile.form.email.error.notEmpty')),
+  name: Yup.string(),
+  surname: Yup.string(),
+  gsm: Yup.string(),
+  password: Yup.string(),
+  passwordConfirmation: Yup.string(),
+  street: Yup.string(),
+  no: Yup.string(),
+  postcode: Yup.string(),
+  ort: Yup.string(),
+});
+
+export const passwordConfirmationSchema = Yup.object().shape({
+  password: Yup.string().required(() =>
+    t('passwordConfirmation.form.password.error.notEmpty'),
+  ),
+  passwordConfirmation: Yup.string().required(() =>
+    t('passwordConfirmation.form.password.error.notEmpty'),
+  ),
 });
 
 export const searchValidationSchema = Yup.object().shape({
   gender: Yup.string(),
   category: Yup.string(),
+});
+
+export const couponCodeSchema = Yup.object().shape({
+  couponCode: Yup.string().required(() => t('couponCode.form.error.notEmpty')),
 });

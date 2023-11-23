@@ -96,9 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 12,
   },
-  flexible: {
-    flex: 1,
-  },
+  flexible: {},
   iconWrapper: {
     width: 30,
     paddingHorizontal: 5,

@@ -26,7 +26,7 @@ const Favorites = () => {
   if (!isAuthenticated) {
     return (
       <EmptyPage
-        animation="heart"
+        icon="favorite"
         title="Giriş yap"
         description="Salonları favoriye eklemek
         için veya favorileri görüntülemek için giriş yapmalısın"
@@ -45,18 +45,18 @@ const Favorites = () => {
     return <ErrorResult onPress={retry} />;
   }
 
-  if (!loading && !error && data) {
+  if (!loading && !error && data?.length <= 0) {
     return (
       <EmptyPage
-        animation="heart"
+        icon="favorite"
         title="Favori yok"
         description="Favoriye eklenmiş bir salon bulunmuyor"
       />
     );
   }
 
-  if (loading || data) {
-    return <SkeletonLoading.Favorites />;
+  if (loading) {
+    return <SkeletonLoading.List />;
   }
 
   return (

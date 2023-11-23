@@ -1,40 +1,62 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Text} from '@/components';
 import View from '@/components/View';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
-const CampaignListItem = () => {
+const CampaignListItem: React.FC<Campaign> = ({
+  businessID,
+  businessDetails,
+  campaignName,
+  campaignDescription,
+  campaignEndDate,
+}) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('SaloonDetail', {businessID})}>
       <View style={styles.imageContainer}>
         <Image
           source={{
-            uri: 'https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            uri: businessDetails?.businessImages[0],
           }}
           style={styles.image}
         />
       </View>
       <View style={styles.textContainer}>
         <Text variant="title" fontSize={18} style={styles.title}>
-          Haftasonu indirimi
+          {campaignName}
         </Text>
-        <Text style={styles.description}>
-          16 Ekim - 18 Ekim tarihleri arasında "Saç kesimi" kategorisinde %10
-          indirim fırsatı
-        </Text>
+        <Text style={styles.description}>{campaignDescription}</Text>
+
+        <View flexDirection="row" alignItems="center" gap={10}>
+          <Text variant="caption" numberOfLines={1} style={{flex: 1}}>
+            {businessDetails.businessName}
+          </Text>
+
+          {campaignEndDate && (
+            <View flexDirection="row" alignItems="center" gap={6}>
+              <Icon
+                name="calendar-month"
+                size={20}
+                color={colors.captionTextColor}
+              />
+              <Text variant="caption">{campaignEndDate}</Text>
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export default CampaignListItem;
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    paddingBottom: 16,
-  },
   imageContainer: {
     borderLeftWidth: 1,
     borderRightWidth: 1,
@@ -46,7 +68,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 120,
+    height: 100,
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
   },

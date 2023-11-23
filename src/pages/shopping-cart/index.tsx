@@ -10,7 +10,15 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button, ListItem, Text, View} from '@/components';
+import {
+  Button,
+  Input,
+  KeyboardAvoidingView,
+  ListItem,
+  SectionHeader,
+  Text,
+  View,
+} from '@/components';
 import {useNavigation} from '@/hooks';
 import {addToCart, clearCart, removeFromCart} from '@/store/cart';
 import {colors, constants} from '@/utils';
@@ -69,6 +77,27 @@ const ShoppingCart = () => {
     return totalPrice - totalMwst;
   }, [totalPrice, totalMwst]);
 
+  const calculatedDiscount = useMemo(() => {
+    if (businessCart.discount) {
+      if (businessCart.discount.type === '%') {
+        return (totalPrice * businessCart.discount.value) / 100;
+      } else if (businessCart.discount.type === 'CHF') {
+        return businessCart.discount.value;
+      } else {
+        return 0;
+      }
+    }
+    return null;
+  }, [businessCart]);
+
+  const totalPriceAfterDiscount = useMemo(() => {
+    if (totalPrice - calculatedDiscount <= 0) {
+      return 0;
+    } else {
+      return totalPrice - calculatedDiscount;
+    }
+  }, [totalPrice, calculatedDiscount]);
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: HeaderRightComponent,
@@ -105,11 +134,7 @@ const ShoppingCart = () => {
     if (services.length > 0) {
       return (
         <>
-          <View style={styles.sectionHeader}>
-            <Text variant="title" fontSize={16}>
-              Servisler
-            </Text>
-          </View>
+          <SectionHeader title="Servisler" />
 
           {services.map((service: Service) => (
             <View key={`service-${service._id}`} style={styles.serviceItem}>
@@ -163,11 +188,8 @@ const ShoppingCart = () => {
 
       return (
         <>
-          <View style={styles.sectionHeader}>
-            <Text variant="title" fontSize={16}>
-              Ürünler
-            </Text>
-          </View>
+          <SectionHeader title="Ürünler" />
+
           {Array.from(uniqueProductsMap.values()).map(({product, quantity}) => {
             return (
               <View key={product._id} style={styles.productItem}>
@@ -209,18 +231,10 @@ const ShoppingCart = () => {
     return <></>;
   }, [products, businessCart]);
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        {renderServices}
-
-        {renderProducts}
-
-        <View style={styles.sectionHeader}>
-          <Text variant="title" fontSize={16}>
-            Fiyat
-          </Text>
-        </View>
+  const renderPrice = useMemo(() => {
+    return (
+      <>
+        <SectionHeader title="Fiyat" />
         <ListItem
           label="Subtotal"
           value={`${subtotal.toFixed(2)} ${constants.CURRENCY}`}
@@ -232,12 +246,53 @@ const ShoppingCart = () => {
             value={`${mwst.total} ${constants.CURRENCY}`}
           />
         ))}
+        {calculatedDiscount && (
+          <ListItem
+            icon="savings"
+            label="İndirim"
+            value={`${calculatedDiscount.toFixed(2)} ${constants.CURRENCY}`}
+          />
+        )}
         <ListItem
           icon="credit-card"
           label="Total price"
-          value={`${totalPrice.toFixed(2)} ${constants.CURRENCY}`}
+          value={`${
+            calculatedDiscount
+              ? totalPriceAfterDiscount.toFixed(2)
+              : totalPrice.toFixed(2)
+          } ${constants.CURRENCY}`}
         />
-      </ScrollView>
+      </>
+    );
+  }, [totalPrice, calculatedDiscount, totalPriceAfterDiscount]);
+
+  const renderCouponCode = useMemo(() => {
+    return (
+      <>
+        <SectionHeader title="Kupon kodu" />
+        <View
+          paddingHorizontal={16}
+          paddingVertical={12}
+          style={{backgroundColor: colors.whiteColor}}>
+          <Input.Coupon businessID={businessID} />
+        </View>
+      </>
+    );
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView>
+        <ScrollView style={styles.scrollView}>
+          {renderServices}
+
+          {renderProducts}
+
+          {renderPrice}
+
+          {renderCouponCode}
+        </ScrollView>
+      </KeyboardAvoidingView>
       <View style={styles.buttonContainer}>
         <Button
           label="Devam et"

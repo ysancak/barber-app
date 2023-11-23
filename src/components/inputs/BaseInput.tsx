@@ -16,6 +16,7 @@ interface BaseInputProps extends ViewProps {
   value?: string;
   onChange?: (text: string) => void;
   onBlur?: () => void;
+  editable: boolean;
   keyboardType?: KeyboardType;
   error?: string | undefined | false;
 }
@@ -28,6 +29,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
   value,
   onChange,
   onBlur,
+  editable,
   keyboardType,
   error,
   ...props
@@ -46,7 +48,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
   }, [error]);
 
   return (
-    <View>
+    <View flex>
       <View
         flexDirection="row"
         alignItems="center"
@@ -62,6 +64,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
           placeholder={placeholder}
           secureTextEntry={secureTextEntry}
           value={value}
+          editable={editable}
           autoCapitalize="none"
           onChangeText={onChange}
           keyboardType={keyboardType}

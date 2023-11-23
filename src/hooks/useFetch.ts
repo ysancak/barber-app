@@ -1,7 +1,7 @@
 import {useState, useCallback, useRef} from 'react';
 
 const useFetch = <T, P = void>(fetchFunction: (params: P) => Promise<T>) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState<T | null>(null);
@@ -10,6 +10,10 @@ const useFetch = <T, P = void>(fetchFunction: (params: P) => Promise<T>) => {
 
   const fetch = useCallback(
     async (params: P) => {
+      if (loading) {
+        return;
+      }
+      setLoading(true);
       try {
         const response = await fetchFunction(params);
         if (response) {
@@ -21,6 +25,7 @@ const useFetch = <T, P = void>(fetchFunction: (params: P) => Promise<T>) => {
         }
       } catch (e) {
         setError(true);
+        throw e;
       } finally {
         setLoading(false);
         setRefreshing(false);

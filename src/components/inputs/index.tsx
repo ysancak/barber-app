@@ -1,4 +1,5 @@
 import AddressInput from './AddressInput';
+import CouponInput from './CouponInput';
 import GenderInput from './GenderInput';
 import PasswordInput from './PasswordInput';
 import SelectInput from './SelectInput';
@@ -10,6 +11,7 @@ const Input = {
   Select: SelectInput,
   Address: AddressInput,
   Gender: GenderInput,
+  Coupon: CouponInput,
 };
 
 export default Input;

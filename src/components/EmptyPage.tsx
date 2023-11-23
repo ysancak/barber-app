@@ -7,13 +7,13 @@ import Button from './Button';
 import Text from './Text';
 import View from './View';
 
-import {error, heart} from '@/assets/animations';
+import {empty, error, heart, success} from '@/assets/animations';
 import {colors} from '@/utils';
 import {wp} from '@/utils/responsive';
 
 type Props = {
   icon?: string;
-  animation?: 'heart' | 'error';
+  animation?: 'success' | 'error' | 'empty' | 'heart';
   title: string;
   description: string;
   buttons?: ButtonProps[];
@@ -28,8 +28,12 @@ const EmptyPage: React.FC<Props> = ({
 }) => {
   const animationSource = useMemo(() => {
     switch (animation) {
+      case 'success':
+        return success;
       case 'error':
         return error;
+      case 'empty':
+        return empty;
       case 'heart':
         return heart;
     }
@@ -49,7 +53,12 @@ const EmptyPage: React.FC<Props> = ({
             style={animationStyle}
           />
         ) : icon ? (
-          <Icon name={icon} size={90} color={colors.captionTextColor} />
+          <Icon
+            name={icon}
+            size={90}
+            color={colors.captionTextColor}
+            style={styles.icon}
+          />
         ) : undefined}
       </View>
       <Text textAlign="center" fontSize={22} semibold>
@@ -84,5 +93,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '100%',
     marginTop: 20,
+  },
+  icon: {
+    marginBottom: 20,
   },
 });

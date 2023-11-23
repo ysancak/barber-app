@@ -54,6 +54,9 @@ type RootStackParamList = {
   };
   ShoppingCart: {businessID: string};
   Calendar: undefined;
+  PasswordConfirmation: {
+    onSuccess: () => void;
+  };
 };
 
 type Coordinate = {

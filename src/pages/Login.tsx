@@ -1,11 +1,11 @@
 import {useFormik} from 'formik';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {Button, Input, Space, Text, View} from '@/components';
-import {useNavigation} from '@/hooks';
+import {useFetch, useNavigation} from '@/hooks';
 import {registerAndLoginValidationSchema} from '@/schemas/validations';
 import {loginService} from '@/services/user.service';
 import {setTokens} from '@/store/auth';
@@ -15,27 +15,23 @@ function Login(): JSX.Element {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {t} = useTranslation();
+  const {fetch, data, loading} = useFetch(loginService);
 
   const formik = useFormik({
     initialValues: {email: '', password: ''},
     validationSchema: registerAndLoginValidationSchema,
-    onSubmit: async values => {
-      try {
-        const result = await loginService(values);
-        if (result) {
-          dispatch(
-            setTokens({
-              accessToken: result.accessToken,
-              refreshToken: result.refreshToken,
-            }),
-          );
-          navigation.goBack();
-        }
-      } finally {
-        formik.setSubmitting(false);
-      }
-    },
+    onSubmit: async values => fetch(values),
   });
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setTokens(data));
+      navigation.reset({
+        index: 1,
+        routes: [{name: 'Home'}],
+      });
+    }
+  }, [data]);
 
   return (
     <View style={styles.container}>
@@ -66,7 +62,7 @@ function Login(): JSX.Element {
         <Button
           label={t('loginAndRegister.login')}
           onPress={formik.handleSubmit}
-          loading={formik.isSubmitting}
+          loading={loading}
         />
         <Space />
         <Text textAlign="center" variant="caption">

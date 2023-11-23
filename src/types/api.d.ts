@@ -13,6 +13,16 @@ type FaqResponse = {
   answer: string;
 };
 
+type DiscountType = {
+  type: string; // "%" ya da "CHF"
+  value: number;
+};
+
+type CouponCodeResponse = {
+  couponValue: DiscountType;
+  couponMinValue: string;
+};
+
 type Category = {
   _id: string;
   categoryName: string;
@@ -100,4 +110,28 @@ type Campaign = {
   campaignDescription: string;
   campaignEndDate: string;
   campaignType: string;
+  businessDetails: Saloon;
+};
+
+type WorkerShift = {
+  start: string;
+  end: string;
+  offday: string;
+};
+
+type Worker = {
+  _id: string;
+  name: string;
+  surname: string;
+  availability: string;
+  businessID: string;
+  hours: {
+    0: WorkerShift;
+    1: WorkerShift;
+    2: WorkerShift;
+    3: WorkerShift;
+    4: WorkerShift;
+    5: WorkerShift;
+    6: WorkerShift;
+  };
 };

@@ -1,15 +1,38 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
-import {Button, CustomCalendar, Input, Text, View} from '@/components';
+import {
+  Button,
+  CustomCalendar,
+  EmptyPage,
+  Input,
+  Text,
+  View,
+} from '@/components';
+import {useFetch} from '@/hooks';
+import {getSaloonWorkers} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const Calendar = () => {
+  const businessID = '655e3ac4240b2fbdf7a2a7c9';
   const [workers, setWorkers] = useState([
     {_id: '1', name: 'Yusuf'},
     {_id: '2', name: 'John'},
   ]);
   const [selectedWorker, setSelectedWorker] = useState();
+
+  //get-calendar-data-worker/:businessID/:workerID/:startDate
+  //
+
+  if (false) {
+    return (
+      <EmptyPage
+        animation="empty"
+        title="Çalışan bulunamadı"
+        description="Bu işletmede hizmet verecek bir çalışan bulunmuyor"
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>

@@ -5,6 +5,7 @@ import ErrorResult from './ErrorResult';
 import HeaderTitle from './HeaderTitle';
 import ImageGallery from './ImageGallery';
 import Input from './inputs';
+import KeyboardAvoidingView from './KeyboardAvoidingView';
 import ListItem from './ListItem';
 import ListMapView from './ListMapView';
 import SkeletonLoading from './loadings';
@@ -15,6 +16,7 @@ import Rating from './Rating';
 import Reviews from './Reviews';
 import SafeAreaView from './SafeAreaView';
 import SaloonListItem from './SaloonListItem';
+import SectionHeader from './SectionHeader';
 import ServiceList from './ServiceList';
 import Space from './Space';
 import Text from './Text';
@@ -42,4 +44,6 @@ export {
   ServiceList,
   Reviews,
   ErrorResult,
+  SectionHeader,
+  KeyboardAvoidingView,
 };

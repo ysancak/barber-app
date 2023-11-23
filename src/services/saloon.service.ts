@@ -55,3 +55,12 @@ export const getFavoriteSaloonsService = async () => {
     throw error;
   }
 };
+
+export const getSaloonWorkers = async (params: {businessID: string}) => {
+  try {
+    const response = await api.get<Worker[]>(`/workers/${params.businessID}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

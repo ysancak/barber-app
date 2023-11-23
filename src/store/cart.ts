@@ -5,6 +5,7 @@ type CartItem = Product | Service;
 const initialCartState = {
   items: [] as CartItem[],
   totalPrice: 0,
+  discount: null as DiscountType | null,
 };
 
 const initialState = {
@@ -50,9 +51,17 @@ const cartSlice = createSlice({
       const {businessId} = action.payload;
       delete state.carts[businessId];
     },
+    applyDiscount: (
+      state,
+      action: PayloadAction<{businessId: string; discount: DiscountType}>,
+    ) => {
+      const {businessId, discount} = action.payload;
+      state.carts[businessId].discount = discount;
+    },
   },
 });
 
-export const {addToCart, removeFromCart, clearCart} = cartSlice.actions;
+export const {addToCart, removeFromCart, clearCart, applyDiscount} =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,5 +1,6 @@
 import Calendar from './calendar';
 import MapListing from './map-listing';
+import PasswordConfirmation from './password-confirmation';
 import SaloonDetail from './saloon-detail';
 import Settings from './settings';
 import LanguageSettings from './settings/Language';
@@ -33,4 +34,5 @@ export {
   AddressInputDetail,
   ShoppingCart,
   Calendar,
+  PasswordConfirmation,
 };
