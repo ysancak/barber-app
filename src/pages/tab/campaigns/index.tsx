@@ -8,13 +8,11 @@ import {getCampaignsService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const Campaigns = () => {
-  const {fetch, data} = useFetch(getCampaignsService);
+  const {fetch} = useFetch(getCampaignsService);
 
   useEffect(() => {
     fetch();
   }, []);
-
-  console.log(data);
 
   return (
     <ScrollView

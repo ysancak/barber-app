@@ -42,10 +42,10 @@ const Favorites = () => {
   }
 
   if (!loading && error) {
-    <ErrorResult onPress={retry} />;
+    return <ErrorResult onPress={retry} />;
   }
 
-  if (!loading && !error && data.length <= 0) {
+  if (!loading && !error && data) {
     return (
       <EmptyPage
         animation="heart"
@@ -55,7 +55,7 @@ const Favorites = () => {
     );
   }
 
-  if (loading || data.length <= 0) {
+  if (loading || data) {
     return <SkeletonLoading.Favorites />;
   }
 
