@@ -1,5 +1,5 @@
 import {useRoute} from '@react-navigation/native';
-import React, {useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {
   Button,
@@ -19,7 +19,7 @@ import {
   Text,
   View,
 } from '@/components';
-import {useNavigation} from '@/hooks';
+import {useNavigation, useShoppingCart} from '@/hooks';
 import {addToCart, clearCart, removeFromCart} from '@/store/cart';
 import {colors, constants} from '@/utils';
 
@@ -27,76 +27,18 @@ const ShoppingCart = () => {
   const {
     params: {businessID},
   } = useRoute();
+  const {
+    items,
+    services,
+    products,
+    totalPrice,
+    totalPriceAfterDiscount,
+    calculatedDiscount,
+    mwstList,
+    subtotal,
+  } = useShoppingCart(businessID);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const businessCart = useSelector(state => state.cart.carts[businessID]);
-
-  const services = useMemo(
-    () =>
-      businessCart ? businessCart.items.filter(item => item.serviceName) : [],
-    [businessCart],
-  );
-
-  const products = useMemo(
-    () =>
-      businessCart ? businessCart.items.filter(item => item.productName) : [],
-    [businessCart],
-  );
-
-  const totalPrice = useMemo(() => {
-    const calculatedTotalPrice = businessCart
-      ? Math.abs(businessCart.totalPrice)
-      : 0;
-    const _totalPrice = calculatedTotalPrice < 0.01 ? 0 : calculatedTotalPrice;
-    return _totalPrice;
-  }, [businessCart]);
-
-  const calculateMwstTotals = () => {
-    const mwstTotals = new Map();
-    let totalMwst = 0;
-
-    businessCart?.items.forEach(item => {
-      const currentTotal = mwstTotals.get(item.mwstName) || 0;
-      const mwstValue = parseFloat(item.mwstPrice);
-      totalMwst += mwstValue;
-      mwstTotals.set(item.mwstName, currentTotal + mwstValue);
-    });
-
-    return {
-      mwstList: Array.from(mwstTotals).map(([name, total]) => ({
-        mwstName: name,
-        total: total.toFixed(2),
-      })),
-      totalMwst,
-    };
-  };
-
-  const {mwstList, totalMwst} = useMemo(calculateMwstTotals, [businessCart]);
-
-  const subtotal = useMemo(() => {
-    return totalPrice - totalMwst;
-  }, [totalPrice, totalMwst]);
-
-  const calculatedDiscount = useMemo(() => {
-    if (businessCart.discount) {
-      if (businessCart.discount.type === '%') {
-        return (totalPrice * businessCart.discount.value) / 100;
-      } else if (businessCart.discount.type === 'CHF') {
-        return businessCart.discount.value;
-      } else {
-        return 0;
-      }
-    }
-    return null;
-  }, [businessCart]);
-
-  const totalPriceAfterDiscount = useMemo(() => {
-    if (totalPrice - calculatedDiscount <= 0) {
-      return 0;
-    } else {
-      return totalPrice - calculatedDiscount;
-    }
-  }, [totalPrice, calculatedDiscount]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -110,13 +52,19 @@ const ShoppingCart = () => {
     }
   }, [totalPrice, navigation]);
 
-  const handleAddToCart = (item: Product | Service) => {
-    dispatch(addToCart({businessId: businessID, item}));
-  };
+  const handleAddToCart = useCallback(
+    (item: Product | Service) => {
+      dispatch(addToCart({businessId: businessID, item}));
+    },
+    [businessID, dispatch],
+  );
 
-  const handleRemoveFromCart = (item: Product | Service) => {
-    dispatch(removeFromCart({businessId: businessID, itemId: item._id}));
-  };
+  const handleRemoveFromCart = useCallback(
+    (item: Product | Service) => {
+      dispatch(removeFromCart({businessId: businessID, itemId: item._id}));
+    },
+    [businessID, dispatch],
+  );
 
   const handleClearCart = () => {
     dispatch(clearCart({businessId: businessID}));
@@ -166,13 +114,13 @@ const ShoppingCart = () => {
     }
 
     return <></>;
-  }, [services]);
+  }, [services, handleRemoveFromCart]);
 
   const renderProducts = useMemo(() => {
     if (products.length > 0) {
       const uniqueProductsMap = new Map();
 
-      businessCart.items
+      items
         .filter(item => item.productName)
         .forEach((product: Product) => {
           if (!uniqueProductsMap.has(product._id)) {
@@ -229,7 +177,7 @@ const ShoppingCart = () => {
       );
     }
     return <></>;
-  }, [products, businessCart]);
+  }, [products, items, handleAddToCart, handleRemoveFromCart]);
 
   const renderPrice = useMemo(() => {
     return (
@@ -264,7 +212,13 @@ const ShoppingCart = () => {
         />
       </>
     );
-  }, [totalPrice, calculatedDiscount, totalPriceAfterDiscount]);
+  }, [
+    totalPrice,
+    calculatedDiscount,
+    mwstList,
+    subtotal,
+    totalPriceAfterDiscount,
+  ]);
 
   const renderCouponCode = useMemo(() => {
     return (
@@ -278,18 +232,15 @@ const ShoppingCart = () => {
         </View>
       </>
     );
-  }, []);
+  }, [businessID]);
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView>
         <ScrollView style={styles.scrollView}>
           {renderServices}
-
           {renderProducts}
-
           {renderPrice}
-
           {renderCouponCode}
         </ScrollView>
       </KeyboardAvoidingView>

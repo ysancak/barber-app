@@ -1,14 +1,14 @@
 import {useFormik} from 'formik';
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Input from '.';
 import Button from '../Button';
 import View from '../View';
 
-import {useFetch} from '@/hooks';
+import {useFetch, useShoppingCart} from '@/hooks';
 import {couponCodeSchema} from '@/schemas/validations';
 import {checkCouponCodeService} from '@/services/common.service';
 import {applyDiscount} from '@/store/cart';
@@ -21,6 +21,7 @@ type Props = {
 const CouponInput: React.FC<Props> = ({businessID}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
+  const {totalPrice} = useShoppingCart(businessID);
   const {fetch, data, loading} = useFetch(checkCouponCodeService);
 
   const formik = useFormik({
@@ -34,13 +35,14 @@ const CouponInput: React.FC<Props> = ({businessID}) => {
   });
 
   useEffect(() => {
-    if (data?.couponValue) {
+    if (data?.couponValue && totalPrice >= data?.couponMinValue) {
       showSuccessToast('Kupon kodu');
       dispatch(
         applyDiscount({businessId: businessID, discount: data.couponValue}),
       );
+      formik.resetForm();
     }
-  }, [data, dispatch, businessID]);
+  }, [data]);
 
   return (
     <View flexDirection="row" gap={10}>

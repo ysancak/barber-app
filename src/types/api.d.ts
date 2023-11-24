@@ -20,7 +20,7 @@ type DiscountType = {
 
 type CouponCodeResponse = {
   couponValue: DiscountType;
-  couponMinValue: string;
+  couponMinValue: number;
 };
 
 type Category = {
