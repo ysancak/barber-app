@@ -48,7 +48,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
   }, [error]);
 
   return (
-    <View flex>
+    <View>
       <View
         flexDirection="row"
         alignItems="center"

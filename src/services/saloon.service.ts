@@ -51,7 +51,6 @@ export const getFavoriteSaloonsService = async () => {
     const response = await api.get<Saloon[]>('/favorites');
     return response.data;
   } catch (error) {
-    showAPIErrorToast(error);
     throw error;
   }
 };

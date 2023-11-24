@@ -27,16 +27,7 @@ const ShoppingCart = () => {
   const {
     params: {businessID},
   } = useRoute();
-  const {
-    items,
-    services,
-    products,
-    totalPrice,
-    totalPriceAfterDiscount,
-    calculatedDiscount,
-    mwstList,
-    subtotal,
-  } = useShoppingCart(businessID);
+  const cart = useShoppingCart(businessID);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -47,10 +38,10 @@ const ShoppingCart = () => {
   }, [navigation]);
 
   useEffect(() => {
-    if (totalPrice <= 0) {
+    if (cart.totalPrice <= 0) {
       navigation.goBack();
     }
-  }, [totalPrice, navigation]);
+  }, [cart.totalPrice, navigation]);
 
   const handleAddToCart = useCallback(
     (item: Product | Service) => {
@@ -79,12 +70,12 @@ const ShoppingCart = () => {
   );
 
   const renderServices = useMemo(() => {
-    if (services.length > 0) {
+    if (cart.services.length > 0) {
       return (
         <>
           <SectionHeader title="Servisler" />
 
-          {services.map((service: Service) => (
+          {cart.services.map((service: Service) => (
             <View key={`service-${service._id}`} style={styles.serviceItem}>
               <View style={styles.serviceItemTextContainer}>
                 <Text>{service.serviceName}</Text>
@@ -114,25 +105,23 @@ const ShoppingCart = () => {
     }
 
     return <></>;
-  }, [services, handleRemoveFromCart]);
+  }, [cart.services, handleRemoveFromCart]);
 
   const renderProducts = useMemo(() => {
-    if (products.length > 0) {
+    if (cart.products.length > 0) {
       const uniqueProductsMap = new Map();
 
-      items
-        .filter(item => item.productName)
-        .forEach((product: Product) => {
-          if (!uniqueProductsMap.has(product._id)) {
-            uniqueProductsMap.set(product._id, {product, quantity: 1});
-          } else {
-            const existingProduct = uniqueProductsMap.get(product._id);
-            uniqueProductsMap.set(product._id, {
-              product,
-              quantity: existingProduct.quantity + 1,
-            });
-          }
-        });
+      cart.products.forEach((product: Product) => {
+        if (!uniqueProductsMap.has(product._id)) {
+          uniqueProductsMap.set(product._id, {product, quantity: 1});
+        } else {
+          const existingProduct = uniqueProductsMap.get(product._id);
+          uniqueProductsMap.set(product._id, {
+            product,
+            quantity: existingProduct.quantity + 1,
+          });
+        }
+      });
 
       return (
         <>
@@ -177,7 +166,7 @@ const ShoppingCart = () => {
       );
     }
     return <></>;
-  }, [products, items, handleAddToCart, handleRemoveFromCart]);
+  }, [cart.products, handleAddToCart, handleRemoveFromCart]);
 
   const renderPrice = useMemo(() => {
     return (
@@ -185,39 +174,39 @@ const ShoppingCart = () => {
         <SectionHeader title="Fiyat" />
         <ListItem
           label="Subtotal"
-          value={`${subtotal.toFixed(2)} ${constants.CURRENCY}`}
+          value={`${cart.subtotal.toFixed(2)} ${constants.CURRENCY}`}
         />
-        {mwstList.map(mwst => (
+        {cart.mwstList.map(mwst => (
           <ListItem
             key={mwst.mwstName}
             label={mwst.mwstName}
             value={`${mwst.total} ${constants.CURRENCY}`}
           />
         ))}
-        {calculatedDiscount && (
+        {cart.discount !== 0 && (
           <ListItem
             icon="savings"
             label="İndirim"
-            value={`${calculatedDiscount.toFixed(2)} ${constants.CURRENCY}`}
+            value={`${cart.discount.toFixed(2)} ${constants.CURRENCY}`}
           />
         )}
         <ListItem
           icon="credit-card"
           label="Total price"
           value={`${
-            calculatedDiscount
-              ? totalPriceAfterDiscount.toFixed(2)
-              : totalPrice.toFixed(2)
+            cart.discount !== 0
+              ? cart.totalPriceAfterDiscount.toFixed(2)
+              : cart.totalPrice.toFixed(2)
           } ${constants.CURRENCY}`}
         />
       </>
     );
   }, [
-    totalPrice,
-    calculatedDiscount,
-    mwstList,
-    subtotal,
-    totalPriceAfterDiscount,
+    cart.totalPrice,
+    cart.discount,
+    cart.totalPriceAfterDiscount,
+    cart.subtotal,
+    cart.mwstList,
   ]);
 
   const renderCouponCode = useMemo(() => {

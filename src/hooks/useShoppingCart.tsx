@@ -1,55 +1,34 @@
 import {useMemo} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const useShoppingCart = (businessID: string) => {
-  const businessCart = useSelector(state => state.cart.carts[businessID]);
+import {clearDiscount} from '@/store/cart';
 
-  const items = useMemo(() => businessCart.items, [businessCart]);
+const useShoppingCart = businessID => {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart.carts[businessID] || {});
 
-  const services = useMemo(
-    () =>
-      businessCart ? businessCart.items.filter(item => item.serviceName) : [],
-    [businessCart],
+  const {items = [], totalPrice: initialTotalPrice = 0, discount} = cart;
+
+  const services: Service[] = useMemo(
+    () => items.filter(item => item.serviceName),
+    [items],
+  );
+  const products: Product[] = useMemo(
+    () => items.filter(item => item.productName),
+    [items],
   );
 
-  const products = useMemo(
-    () =>
-      businessCart ? businessCart.items.filter(item => item.productName) : [],
-    [businessCart],
-  );
+  const serviceCount: number = services.length;
+  const productCount: number = products.length;
 
-  const serviceCount = useMemo(
-    () =>
-      businessCart
-        ? businessCart.items.filter(item => item.serviceName).length
-        : 0,
-    [businessCart],
-  );
-
-  const productCount = useMemo(
-    () =>
-      businessCart
-        ? businessCart.items.filter(item => item.productName).length
-        : 0,
-    [businessCart],
-  );
-
-  const totalPrice = useMemo(() => {
-    const calculatedTotalPrice = businessCart
-      ? Math.abs(businessCart.totalPrice)
-      : 0;
-    const _totalPrice = calculatedTotalPrice < 0.01 ? 0 : calculatedTotalPrice;
-    return _totalPrice;
-  }, [businessCart]);
-
-  const calculateMwstTotals = () => {
+  const mwstDetails = useMemo(() => {
     const mwstTotals = new Map();
     let totalMwst = 0;
 
-    businessCart?.items.forEach(item => {
-      const currentTotal = mwstTotals.get(item.mwstName) || 0;
-      const mwstValue = parseFloat(item.mwstPrice);
+    items.forEach(item => {
+      const mwstValue = parseFloat(item.mwstPrice || 0);
       totalMwst += mwstValue;
+      const currentTotal = mwstTotals.get(item.mwstName) || 0;
       mwstTotals.set(item.mwstName, currentTotal + mwstValue);
     });
 
@@ -60,45 +39,49 @@ const useShoppingCart = (businessID: string) => {
       })),
       totalMwst,
     };
-  };
+  }, [items]);
 
-  const {mwstList, totalMwst} = useMemo(calculateMwstTotals, [businessCart]);
+  const {mwstList, totalMwst} = mwstDetails;
 
-  const subtotal = useMemo(() => {
-    return totalPrice - totalMwst;
-  }, [totalPrice, totalMwst]);
+  const subtotal: number = useMemo(
+    () => initialTotalPrice - totalMwst,
+    [initialTotalPrice, totalMwst],
+  );
 
-  const calculatedDiscount = useMemo(() => {
-    if (businessCart.discount) {
-      if (businessCart.discount.type === '%') {
-        return (totalPrice * businessCart.discount.value) / 100;
-      } else if (businessCart.discount.type === 'CHF') {
-        return businessCart.discount.value;
+  const totalPrice: number = useMemo(() => {
+    return Math.max(0, initialTotalPrice);
+  }, [initialTotalPrice]);
+
+  const calculatedDiscount: number = useMemo(() => {
+    if (discount) {
+      if (discount.couponValue.type === '%') {
+        return (totalPrice * discount.couponValue.value) / 100;
+      } else if (discount.couponValue.type === 'CHF') {
+        return discount.couponValue.value;
       } else {
         return 0;
       }
     }
-    return null;
-  }, [businessCart, totalPrice]);
+    return 0;
+  }, [discount, totalPrice]);
 
   const totalPriceAfterDiscount = useMemo(() => {
-    if (totalPrice - calculatedDiscount <= 0) {
-      return 0;
-    } else {
-      return totalPrice - calculatedDiscount;
+    const priceAfterDiscount = Math.max(0, totalPrice - calculatedDiscount);
+    if (discount && totalPrice < discount.couponMinValue) {
+      dispatch(clearDiscount({businessId: businessID}));
     }
-  }, [totalPrice, calculatedDiscount]);
+    return priceAfterDiscount;
+  }, [calculatedDiscount, totalPrice, discount, dispatch, businessID]);
 
   return {
     items,
     services,
     products,
     mwstList,
-    calculatedDiscount,
+    discount: calculatedDiscount,
+    totalPrice,
     totalPriceAfterDiscount,
     subtotal,
-    totalPrice,
-    totalMwst,
     serviceCount,
     productCount,
   };

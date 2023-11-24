@@ -1,7 +1,6 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useSelector} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {useNavigation, useShoppingCart} from '@/hooks';
@@ -13,28 +12,22 @@ type Props = {
 
 const ShoppingBasket: React.FC<Props> = ({businessID}) => {
   const navigation = useNavigation();
-  const {
-    serviceCount,
-    productCount,
-    totalPrice,
-    calculatedDiscount,
-    totalPriceAfterDiscount,
-  } = useShoppingCart(businessID);
+  const cart = useShoppingCart(businessID);
 
   const animatedValue = useRef(
-    new Animated.Value(totalPrice > 0 ? 0 : 1),
+    new Animated.Value(cart.totalPrice > 0 ? 0 : 1),
   ).current;
 
   useEffect(() => {
     Animated.timing(animatedValue, {
-      toValue: totalPrice > 0 ? 1 : 0,
+      toValue: cart.totalPrice > 0 ? 1 : 0,
       duration: 200,
       useNativeDriver: false,
     }).start();
-  }, [totalPrice, animatedValue]);
+  }, [cart.totalPrice, animatedValue]);
 
   const animatedStyle = {
-    opacity: totalPrice > 0 ? animatedValue : 0,
+    opacity: cart.totalPrice > 0 ? animatedValue : 0,
     transform: [
       {
         translateY: animatedValue.interpolate({
@@ -52,17 +45,17 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
           <View style={styles.infoSection}>
             <View style={styles.iconTextWrapper}>
               <Icon name={'content-cut'} size={22} color={colors.textColor} />
-              <Text color={colors.textColor}>{serviceCount} servis</Text>
+              <Text color={colors.textColor}>{cart.serviceCount} servis</Text>
             </View>
             <View style={styles.iconTextWrapper}>
               <Icon name={'storefront'} size={22} color={colors.textColor} />
-              <Text color={colors.textColor}>{productCount} ürün</Text>
+              <Text color={colors.textColor}>{cart.productCount} ürün</Text>
             </View>
           </View>
           <Text variant="title" fontSize={22} color={colors.textColor}>
-            {calculatedDiscount
-              ? totalPriceAfterDiscount.toFixed(2)
-              : totalPrice.toFixed(2)}{' '}
+            {cart.discount
+              ? cart.totalPriceAfterDiscount.toFixed(2)
+              : cart.totalPrice.toFixed(2)}{' '}
             {constants.CURRENCY}
           </Text>
         </View>

@@ -18,7 +18,7 @@ type DiscountType = {
   value: number;
 };
 
-type CouponCodeResponse = {
+type CouponCode = {
   couponValue: DiscountType;
   couponMinValue: number;
 };

@@ -1,8 +1,8 @@
 import {useFormik} from 'formik';
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Input from '.';
 import Button from '../Button';
@@ -21,7 +21,7 @@ type Props = {
 const CouponInput: React.FC<Props> = ({businessID}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const {totalPrice} = useShoppingCart(businessID);
+  const cart = useShoppingCart(businessID);
   const {fetch, data, loading} = useFetch(checkCouponCodeService);
 
   const formik = useFormik({
@@ -35,11 +35,9 @@ const CouponInput: React.FC<Props> = ({businessID}) => {
   });
 
   useEffect(() => {
-    if (data?.couponValue && totalPrice >= data?.couponMinValue) {
+    if (data?.couponValue && cart.totalPrice >= data?.couponMinValue) {
       showSuccessToast('Kupon kodu');
-      dispatch(
-        applyDiscount({businessId: businessID, discount: data.couponValue}),
-      );
+      dispatch(applyDiscount({businessId: businessID, discount: data}));
       formik.resetForm();
     }
   }, [data]);
