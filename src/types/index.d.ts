@@ -34,6 +34,7 @@ type RootStackParamList = {
   Home: undefined;
   Campaigns: undefined;
   MyAccount: undefined;
+  Tabs: undefined;
   EditProfile: undefined;
   Settings: undefined;
   LanguageSettings: undefined;

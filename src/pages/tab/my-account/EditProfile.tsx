@@ -29,7 +29,7 @@ function EditProfile(): JSX.Element {
   }, [navigation]);
 
   useEffect(() => {
-    formik.setValues({...data, password: '', passwordConfirmation: ''});
+    formik.setValues({...data});
   }, [data]);
 
   const formik = useFormik({
@@ -97,24 +97,28 @@ function EditProfile(): JSX.Element {
           <RefreshControl refreshing={refreshing} onRefresh={refresh} />
         }>
         <SectionHeader title="Kişisel bilgiler" />
-        <View paddingHorizontal={16} gap={4} paddingVertical={12}>
+        <View paddingHorizontal={16} gap={10} paddingVertical={12}>
           <View flexDirection="row" gap={10}>
-            <Input.Text
-              icon="person"
-              placeholder={t('editProfile.form.name.placeholder')}
-              onChange={formik.handleChange('name')}
-              onBlur={() => formik.handleBlur('name')}
-              value={formik.values.name}
-              error={formik.touched.name && formik.errors.name}
-            />
-            <Input.Text
-              icon="person"
-              placeholder={t('editProfile.form.surname.placeholder')}
-              onChange={formik.handleChange('surname')}
-              onBlur={() => formik.handleBlur('surname')}
-              value={formik.values.surname}
-              error={formik.touched.surname && formik.errors.surname}
-            />
+            <View flex>
+              <Input.Text
+                icon="person"
+                placeholder={t('editProfile.form.name.placeholder')}
+                onChange={formik.handleChange('name')}
+                onBlur={() => formik.handleBlur('name')}
+                value={formik.values.name}
+                error={formik.touched.name && formik.errors.name}
+              />
+            </View>
+            <View flex>
+              <Input.Text
+                icon="person"
+                placeholder={t('editProfile.form.surname.placeholder')}
+                onChange={formik.handleChange('surname')}
+                onBlur={() => formik.handleBlur('surname')}
+                value={formik.values.surname}
+                error={formik.touched.surname && formik.errors.surname}
+              />
+            </View>
           </View>
           <Input.Text
             icon="email"
@@ -143,7 +147,7 @@ function EditProfile(): JSX.Element {
             value={formik.values.password}
             error={formik.touched.password && formik.errors.password}
           />
-          {formik.values.password.length > 0 && (
+          {formik.values.password?.length > 0 && (
             <Input.Password
               icon="key"
               placeholder={t(
@@ -162,40 +166,48 @@ function EditProfile(): JSX.Element {
         </View>
 
         <SectionHeader title="Adres bilgileri" />
-        <View paddingHorizontal={16} gap={4} paddingVertical={12}>
+        <View paddingHorizontal={16} gap={10} paddingVertical={12}>
           <View flexDirection="row" gap={10}>
-            <Input.Text
-              placeholder={t('editProfile.form.street.placeholder')}
-              onChange={formik.handleChange('street')}
-              onBlur={() => formik.handleBlur('street')}
-              value={formik.values.street}
-              error={formik.touched.street && formik.errors.street}
-            />
-            <Input.Text
-              placeholder={t('editProfile.form.no.placeholder')}
-              onChange={formik.handleChange('no')}
-              onBlur={() => formik.handleBlur('no')}
-              value={formik.values.no}
-              error={formik.touched.no && formik.errors.no}
-            />
+            <View flex>
+              <Input.Text
+                placeholder={t('editProfile.form.street.placeholder')}
+                onChange={formik.handleChange('street')}
+                onBlur={() => formik.handleBlur('street')}
+                value={formik.values.street}
+                error={formik.touched.street && formik.errors.street}
+              />
+            </View>
+            <View flex>
+              <Input.Text
+                placeholder={t('editProfile.form.no.placeholder')}
+                onChange={formik.handleChange('no')}
+                onBlur={() => formik.handleBlur('no')}
+                value={formik.values.no}
+                error={formik.touched.no && formik.errors.no}
+              />
+            </View>
           </View>
           <View flexDirection="row" gap={10}>
-            <Input.Text
-              placeholder={t('editProfile.form.postcode.placeholder')}
-              keyboardType="email-address"
-              onChange={formik.handleChange('postcode')}
-              onBlur={() => formik.handleBlur('postcode')}
-              value={formik.values.postcode}
-              error={formik.touched.postcode && formik.errors.postcode}
-            />
-            <Input.Text
-              placeholder={t('editProfile.form.ort.placeholder')}
-              keyboardType="email-address"
-              onChange={formik.handleChange('ort')}
-              onBlur={() => formik.handleBlur('ort')}
-              value={formik.values.ort}
-              error={formik.touched.ort && formik.errors.ort}
-            />
+            <View flex>
+              <Input.Text
+                placeholder={t('editProfile.form.postcode.placeholder')}
+                keyboardType="email-address"
+                onChange={formik.handleChange('postcode')}
+                onBlur={() => formik.handleBlur('postcode')}
+                value={formik.values.postcode}
+                error={formik.touched.postcode && formik.errors.postcode}
+              />
+            </View>
+            <View flex>
+              <Input.Text
+                placeholder={t('editProfile.form.ort.placeholder')}
+                keyboardType="email-address"
+                onChange={formik.handleChange('ort')}
+                onBlur={() => formik.handleBlur('ort')}
+                value={formik.values.ort}
+                error={formik.touched.ort && formik.errors.ort}
+              />
+            </View>
           </View>
         </View>
       </ScrollView>

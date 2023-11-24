@@ -29,7 +29,7 @@ function Register(): JSX.Element {
       dispatch(setTokens(data));
       navigation.reset({
         index: 1,
-        routes: [{name: 'Home'}],
+        routes: [{name: 'Tabs'}],
       });
     }
   }, [data]);
@@ -41,7 +41,7 @@ function Register(): JSX.Element {
         style={styles.logo}
         resizeMode="contain"
       />
-      <View gap={8}>
+      <View gap={10}>
         <Input.Text
           icon="email"
           placeholder={t('loginAndRegister.form.email.placeholder')}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     gap: 16,
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: colors.bgColor,
+    backgroundColor: colors.whiteColor,
   },
   logo: {
     width: '100%',

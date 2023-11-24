@@ -1,14 +1,13 @@
-import React, {useMemo, useState} from 'react';
-import {TextInput as RNTextInput, StyleSheet, ViewProps} from 'react-native';
+import React, {useState} from 'react';
+import {TextInput as RNTextInput, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Space from '../Space';
+import View from '../View';
 
 import Text from '@/components/Text';
-import View from '@/components/View';
 import {colors} from '@/utils';
 
-interface BaseInputProps extends ViewProps {
+interface BaseInputProps {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   placeholder?: string;
@@ -36,19 +35,8 @@ const BaseInput: React.FC<BaseInputProps> = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const renderErrorView = useMemo(() => {
-    return (
-      <View flexDirection="row" alignItems="center" gap={2}>
-        <Icon name="error" size={22} color={colors.errorColor} />
-        <Text color={colors.errorColor} fontSize={14}>
-          {error}
-        </Text>
-      </View>
-    );
-  }, [error]);
-
   return (
-    <View>
+    <>
       <View
         flexDirection="row"
         alignItems="center"
@@ -79,9 +67,15 @@ const BaseInput: React.FC<BaseInputProps> = ({
         />
         {suffix && <View marginLeft={10}>{suffix}</View>}
       </View>
-      <Space size={6} />
-      {error && renderErrorView}
-    </View>
+      {error && (
+        <View flexDirection="row" alignItems="center" gap={2}>
+          <Icon name="error" size={22} color={colors.errorColor} />
+          <Text color={colors.errorColor} fontSize={14}>
+            {error}
+          </Text>
+        </View>
+      )}
+    </>
   );
 };
 

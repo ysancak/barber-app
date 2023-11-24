@@ -11,7 +11,7 @@ interface TextInputProps {
   onChange?: (text: string) => void;
   onBlur?: () => void;
   keyboardType?: KeyboardType;
-  editable: boolean;
+  editable?: boolean;
   icon?: string;
   error?: string | undefined | false;
 }
@@ -27,7 +27,11 @@ const TextInput: React.FC<TextInputProps> = props => {
   };
 
   return (
-    <BaseInput prefix={renderPrefix()} editable={props.editable} {...props} />
+    <BaseInput
+      prefix={renderPrefix()}
+      editable={props.editable ? props.editable : true}
+      {...props}
+    />
   );
 };
 

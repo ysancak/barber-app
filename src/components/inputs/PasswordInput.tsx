@@ -38,6 +38,7 @@ const PasswordInput: React.FC<PasswordInputProps> = props => {
   return (
     <BaseInput
       {...props}
+      editable={true}
       secureTextEntry={!showPassword}
       prefix={renderPrefix}
       suffix={renderSuffix}
