@@ -1,21 +1,21 @@
-import Calendar from './calendar';
-import MapListing from './map-listing';
-import PasswordConfirmation from './password-confirmation';
-import SaloonDetail from './saloon-detail';
-import Settings from './settings';
-import LanguageSettings from './settings/Language';
-import ShoppingCart from './shopping-cart';
-import Campaigns from './tab/campaigns';
-import Favorites from './tab/favorites';
-import MyAccount from './tab/my-account';
-import EditProfile from './tab/my-account/EditProfile';
-import Faq from './tab/my-account/Faq';
+import Calendar from './Calendar';
+import MapListing from './MapListing';
+import PasswordConfirmation from './PasswordConfirmation';
+import SaloonDetail from './SaloonDetail';
+import Settings from './Settings';
+import LanguageSettings from './Settings/Language';
+import ShoppingCart from './ShoppingCart';
+import Campaigns from './Tabs/Campaigns';
+import Favorites from './Tabs/Favorites';
+import MyAccount from './Tabs/MyAccount';
+import EditProfile from './Tabs/MyAccount/EditProfile';
+import Faq from './Tabs/MyAccount/Faq';
 
 import AddressInputDetail from '@/components/inputs/AddressInput/detail';
 import SelectInputDetail from '@/components/inputs/SelectInput/detail';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
-import Home from '@/pages/tab/home';
+import Home from '@/pages/Tabs/Home';
 
 export {
   Login,
