@@ -64,6 +64,9 @@ const cartSlice = createSlice({
         state.carts[businessId].discount = null;
       }
     },
+    clearAllCarts: state => {
+      state.carts = {};
+    },
   },
 });
 
@@ -73,6 +76,7 @@ export const {
   clearCart,
   applyDiscount,
   clearDiscount,
+  clearAllCarts,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

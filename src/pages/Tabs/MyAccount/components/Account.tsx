@@ -5,12 +5,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, ListItem, Text, View} from '@/components';
 import {useNavigation} from '@/hooks';
 import {clearTokens} from '@/store/auth';
+import {clearAllCarts} from '@/store/cart';
 
 function Account(): JSX.Element {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {accessToken} = useSelector((state: RootState) => state.auth);
+
+  const logoutHandler = () => {
+    dispatch(clearTokens());
+    dispatch(clearAllCarts());
+  };
 
   if (accessToken) {
     return (
@@ -24,7 +30,7 @@ function Account(): JSX.Element {
           <ListItem
             icon="logout"
             label={t('myAccount.options.logout')}
-            onPress={() => dispatch(clearTokens())}
+            onPress={logoutHandler}
           />
         </View>
       </>
