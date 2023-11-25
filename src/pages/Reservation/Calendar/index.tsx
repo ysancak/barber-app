@@ -1,6 +1,8 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import CalendarView from './components/CalendarView';
 
@@ -12,16 +14,18 @@ import {
   SkeletonLoading,
   View,
 } from '@/components';
-import {useFetch, useNavigation} from '@/hooks';
+import {useFetch, useNavigation, useShoppingCart} from '@/hooks';
 import {getSaloonWorkers} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const Calendar = () => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const {
     params: {businessID},
   } = useRoute();
-  const [selectedWorker, setSelectedWorker] = useState<string>('');
+  const cart = useShoppingCart(businessID);
+  const [selectedWorker, setSelectedWorker] = useState<string | null>(null);
   const saloonWorkersFetch = useFetch(getSaloonWorkers);
 
   useEffect(() => {
@@ -33,6 +37,22 @@ const Calendar = () => {
       setSelectedWorker(saloonWorkersFetch.data[0]._id);
     }
   }, [saloonWorkersFetch.data]);
+
+  navigation.setOptions({
+    headerRight() {
+      return (
+        <Button
+          variant="text"
+          label={t('general.save')}
+          loading={saloonWorkersFetch.loading}
+          disabled={!cart.detail.date}
+          onPress={() =>
+            navigation.navigate('ReservationUserInfo', {businessID})
+          }
+        />
+      );
+    },
+  });
 
   if (saloonWorkersFetch.loading) {
     return <SkeletonLoading.Calendar />;
@@ -72,14 +92,6 @@ const Calendar = () => {
           {selectedWorker && (
             <CalendarView businessID={businessID} workerID={selectedWorker} />
           )}
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            label="Devam et"
-            onPress={() =>
-              navigation.navigate('ReservationUserInfo', {businessID})
-            }
-          />
         </View>
       </SafeAreaView>
     </View>

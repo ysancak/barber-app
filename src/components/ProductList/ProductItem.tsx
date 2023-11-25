@@ -29,12 +29,12 @@ const ProductItem: React.FC<Product> = product => {
   );
 
   const handleAddToCart = () => {
-    dispatch(addToCart({businessId: businessID, item: product}));
+    dispatch(addToCart({businessID, item: product}));
   };
 
   const handleRemoveFromCart = () => {
     if (productQuantity > 0) {
-      dispatch(removeFromCart({businessId: businessID, itemId: _id}));
+      dispatch(removeFromCart({businessID, itemId: _id}));
     }
   };
 

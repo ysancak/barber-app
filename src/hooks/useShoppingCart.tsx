@@ -5,9 +5,12 @@ import {clearDiscount} from '@/store/cart';
 
 const useShoppingCart = businessID => {
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart.carts[businessID] || {});
-
-  const {items = [], totalPrice: initialTotalPrice = 0, discount} = cart;
+  const {
+    items = [],
+    totalPrice: initialTotalPrice = 0,
+    discount,
+    date,
+  } = useSelector(state => state.cart.carts[businessID] || {});
 
   const services: Service[] = useMemo(
     () => items.filter(item => item.serviceName),
@@ -20,6 +23,10 @@ const useShoppingCart = businessID => {
 
   const serviceCount: number = services.length;
   const productCount: number = products.length;
+
+  // ::TODO
+  //const serviceTotalMinutes = services.reduce((total, service) => total + service.durationMinutes, 0);
+  const serviceTotalMinutes = 10;
 
   const mwstDetails = useMemo(() => {
     const mwstTotals = new Map();
@@ -68,7 +75,7 @@ const useShoppingCart = businessID => {
   const totalPriceAfterDiscount = useMemo(() => {
     const priceAfterDiscount = Math.max(0, totalPrice - calculatedDiscount);
     if (discount && totalPrice < discount.couponMinValue) {
-      dispatch(clearDiscount({businessId: businessID}));
+      dispatch(clearDiscount({businessID}));
     }
     return priceAfterDiscount;
   }, [calculatedDiscount, totalPrice, discount, dispatch, businessID]);
@@ -84,6 +91,10 @@ const useShoppingCart = businessID => {
     subtotal,
     serviceCount,
     productCount,
+    serviceTotalMinutes,
+    detail: {
+      date,
+    },
   };
 };
 

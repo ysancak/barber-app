@@ -45,20 +45,28 @@ const ShoppingCart = () => {
 
   const handleAddToCart = useCallback(
     (item: Product | Service) => {
-      dispatch(addToCart({businessId: businessID, item}));
+      dispatch(addToCart({businessID, item}));
     },
     [businessID, dispatch],
   );
 
   const handleRemoveFromCart = useCallback(
     (item: Product | Service) => {
-      dispatch(removeFromCart({businessId: businessID, itemId: item._id}));
+      dispatch(removeFromCart({businessID, itemId: item._id}));
     },
     [businessID, dispatch],
   );
 
   const handleClearCart = () => {
-    dispatch(clearCart({businessId: businessID}));
+    dispatch(clearCart({businessID}));
+  };
+
+  const saveAndCountinue = () => {
+    if (cart.serviceTotalMinutes > 0) {
+      navigation.navigate('Calendar', {businessID});
+    } else {
+      navigation.navigate('ReservationUserInfo', {businessID});
+    }
   };
 
   const HeaderRightComponent = () => (
@@ -234,10 +242,7 @@ const ShoppingCart = () => {
         </ScrollView>
       </KeyboardAvoidingView>
       <View style={styles.buttonContainer}>
-        <Button
-          label="Devam et"
-          onPress={() => navigation.navigate('Calendar', {businessID})}
-        />
+        <Button label="Devam et" onPress={saveAndCountinue} />
       </View>
     </SafeAreaView>
   );

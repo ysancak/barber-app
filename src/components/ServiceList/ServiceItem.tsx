@@ -29,9 +29,9 @@ const ServiceItem: React.FC<Service> = service => {
 
   const handleAddRemoveService = () => {
     if (isInCart) {
-      dispatch(removeFromCart({businessId: businessID, itemId: _id}));
+      dispatch(removeFromCart({businessID, itemId: _id}));
     } else {
-      dispatch(addToCart({businessId: businessID, item: service}));
+      dispatch(addToCart({businessID, item: service}));
     }
   };
 

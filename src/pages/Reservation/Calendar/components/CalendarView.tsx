@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import 'moment/min/locales';
+import {useDispatch} from 'react-redux';
 
 import {
   View,
@@ -13,8 +13,9 @@ import {
   SkeletonLoading,
   ErrorResult,
 } from '@/components';
-import {useFetch} from '@/hooks';
+import {useFetch, useShoppingCart} from '@/hooks';
 import {getWorkerCalendarEvents} from '@/services/saloon.service';
+import {setCartDate, setCartWorker} from '@/store/cart';
 import {colors} from '@/utils';
 
 type Props = {
@@ -23,13 +24,14 @@ type Props = {
 };
 
 const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
+  const dispatch = useDispatch();
   const workerEventFetch = useFetch(getWorkerCalendarEvents);
+  const cart = useShoppingCart(businessID);
 
   const [selectedDate, setSelectedDate] = useState(moment());
   const [openedHour, setOpenedHour] = useState<string | null>(null);
   const timeFrequency = 15;
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const selectedServiceLength = 45;
 
   const dayOfWeek = useMemo(() => (selectedDate.day() + 6) % 7, [selectedDate]);
   const currentShift = useMemo(() => {
@@ -38,9 +40,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   }, [workerEventFetch.data, dayOfWeek]);
 
   useEffect(() => {
-    setSelectedTime(null);
-    setOpenedHour(null);
-  }, [workerID]);
+    moment.locale(i18next.language);
+    setOpenedHour(moment().format('HH'));
+  }, []);
 
   useEffect(() => {
     workerEventFetch.fetch({
@@ -48,16 +50,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       workerID,
       startDate: selectedDate.format('YYYY-mm-dd'),
     });
-  }, [selectedDate]);
-
-  useEffect(() => {
-    setSelectedDate(moment());
-  }, [workerID]);
-
-  useEffect(() => {
-    moment.locale(i18next.language);
-    setOpenedHour(moment().format('HH'));
-  }, []);
+    setSelectedTime(null);
+    dispatch(setCartDate({businessID, workerID: null, date: null}));
+  }, [selectedDate, workerID]);
 
   const previousDay = () => {
     let newDate = moment(selectedDate).subtract(1, 'days');
@@ -80,110 +75,78 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
         return [];
       }
 
-      let currentTime = moment(selectedDate).hour(hour).minute(0);
-      let untilEnd = moment(currentTime).add(1, 'hour');
-      let slots = [];
-
-      let shiftEndTime = moment(selectedDate);
-      shiftEndTime.hour(moment(currentShift.end, 'HH:mm').hour());
-      shiftEndTime.minute(moment(currentShift.end, 'HH:mm').minute());
+      const currentTime = moment(selectedDate).hour(hour).minute(0);
+      const untilEnd = currentTime.clone().add(1, 'hour');
+      const shiftEndTime = moment(selectedDate).set({
+        hour: moment(currentShift.end, 'HH:mm').hour(),
+        minute: moment(currentShift.end, 'HH:mm').minute(),
+      });
 
       const processedEvents = workerEventFetch?.data?.events.map(event => ({
         start: moment(event.start),
         end: moment(event.end),
       }));
 
-      // Eğer selectedDate bugünün tarihiyse, şu anki zamandan önce olan slotları döndürme
-      const now = moment();
-      if (moment(selectedDate).isSame(now, 'day')) {
-        while (currentTime.isBefore(untilEnd)) {
-          const formattedTime = currentTime.format('HH:mm');
-          const serviceEndTime = currentTime
-            .clone()
-            .add(selectedServiceLength, 'minute');
+      let slots = [];
+      while (currentTime.isBefore(untilEnd)) {
+        const formattedTime = currentTime.format('HH:mm');
+        const serviceEndTime = currentTime
+          .clone()
+          .add(cart.serviceTotalMinutes, 'minute');
+        let isTimeSlotAvailable = processedEvents.every(
+          event =>
+            !currentTime.isBetween(event.start, event.end, null, '[]') &&
+            !serviceEndTime.isBetween(event.start, event.end, null, '[]') &&
+            !(
+              event.start.isAfter(currentTime) &&
+              event.start.isBefore(serviceEndTime)
+            ),
+        );
 
-          let isTimeSlotAvailable = !processedEvents.some(
-            event =>
-              currentTime.isBetween(event.start, event.end, null, '[]') ||
-              serviceEndTime.isBetween(event.start, event.end, null, '[]') ||
-              (event.start.isAfter(currentTime) &&
-                event.start.isBefore(serviceEndTime)),
-          );
-
-          if (
-            isTimeSlotAvailable &&
-            serviceEndTime.isSameOrBefore(shiftEndTime) &&
-            currentTime.isSameOrAfter(now)
-          ) {
-            slots.push(formattedTime);
-          }
-
-          currentTime.add(timeFrequency, 'minutes');
+        if (
+          isTimeSlotAvailable &&
+          serviceEndTime.isSameOrBefore(shiftEndTime) &&
+          (!moment(selectedDate).isSame(moment(), 'day') ||
+            currentTime.isSameOrAfter(moment()))
+        ) {
+          slots.push(formattedTime);
         }
-      } else {
-        // selectedDate bugünün tarihi değilse, normal slot oluşturma işlemini yap
-        while (currentTime.isBefore(untilEnd)) {
-          const formattedTime = currentTime.format('HH:mm');
-          const serviceEndTime = currentTime
-            .clone()
-            .add(selectedServiceLength, 'minute');
 
-          let isTimeSlotAvailable = !processedEvents.some(
-            event =>
-              currentTime.isBetween(event.start, event.end, null, '[]') ||
-              serviceEndTime.isBetween(event.start, event.end, null, '[]') ||
-              (event.start.isAfter(currentTime) &&
-                event.start.isBefore(serviceEndTime)),
-          );
-
-          if (
-            isTimeSlotAvailable &&
-            serviceEndTime.isSameOrBefore(shiftEndTime)
-          ) {
-            slots.push(formattedTime);
-          }
-
-          currentTime.add(timeFrequency, 'minutes');
-        }
+        currentTime.add(timeFrequency, 'minutes');
       }
 
       return slots;
     },
-    [currentShift, selectedDate, workerEventFetch.data],
+    [
+      currentShift,
+      selectedDate,
+      workerEventFetch.data,
+      cart.serviceTotalMinutes,
+      timeFrequency,
+    ],
   );
 
-  const generateHours = () => {
+  const generatedHours = useMemo(() => {
     if (!currentShift || currentShift?.offday === 'on') {
       return [];
     }
 
-    let startHourInt = parseInt(
+    let startHour = parseInt(
       moment(currentShift?.start, 'HH:mm').format('HH'),
       10,
     );
-    const endHourInt = parseInt(
+    const endHour = parseInt(
       moment(currentShift?.end, 'HH:mm').format('HH'),
       10,
     );
-    const hours = [];
-    if (
-      selectedDate.isSame(moment(), 'day') &&
-      moment().hour() > startHourInt
-    ) {
-      startHourInt = moment().hour();
+    if (selectedDate.isSame(moment(), 'day') && moment().hour() > startHour) {
+      startHour = moment().hour();
     }
-    for (
-      let currentHour = startHourInt;
-      currentHour < endHourInt;
-      currentHour++
-    ) {
-      const slots = generateTimeSlots(currentHour);
-      if (slots.length > 0) {
-        hours.push(moment().hour(currentHour).format('HH'));
-      }
-    }
-    return hours;
-  };
+
+    return Array.from({length: endHour - startHour}, (_, i) => startHour + i)
+      .filter(hour => generateTimeSlots(hour).length > 0)
+      .map(hour => hour.toString().padStart(2, '0'));
+  }, [currentShift, selectedDate, generateTimeSlots]);
 
   const toggleHour = (hour: string) => {
     setOpenedHour(openedHour === hour ? null : hour);
@@ -191,6 +154,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 
   const onTimeSelect = (time: string) => {
     setSelectedTime(time);
+    dispatch(setCartDate({businessID, workerID, date: time}));
   };
 
   const renderContent = useMemo(() => {
@@ -202,7 +166,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       return <ErrorResult onPress={workerEventFetch.retry} />;
     }
 
-    if (generateHours().length <= 0) {
+    if (generatedHours.length <= 0) {
       return (
         <EmptyPage
           animation="empty"
@@ -214,7 +178,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 
     return (
       <ScrollView style={styles.scrollView}>
-        {generateHours().map((hour, index) => (
+        {generatedHours.map((hour, index) => (
           <View key={index}>
             <TouchableOpacity
               style={styles.hourToggle}
@@ -247,7 +211,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
     workerEventFetch.data,
     workerEventFetch.loading,
     workerEventFetch.error,
-    generateHours,
+    generatedHours,
     generateTimeSlots,
     openedHour,
     selectedTime,

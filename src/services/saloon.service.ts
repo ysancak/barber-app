@@ -75,8 +75,8 @@ export const getWorkerCalendarEvents = async (params: {
       resolve({
         events: [
           {
-            start: '2023-11-25 13:20',
-            end: '2023-11-25 14:00',
+            start: '2023-11-25T11:30:00.000+00:00',
+            end: '2023-11-25T12:30:00.000+00:00',
           },
         ],
         hours: {

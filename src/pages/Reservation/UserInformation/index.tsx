@@ -25,6 +25,19 @@ const ReservationUserInfo = () => {
     fetch();
   }, []);
 
+  navigation.setOptions({
+    headerRight() {
+      return (
+        <Button
+          variant="text"
+          label={t('general.save')}
+          loading={formik.isSubmitting || loading}
+          onPress={formik.submitForm}
+        />
+      );
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       name: data?.name ?? '',
@@ -123,7 +136,7 @@ const ReservationUserInfo = () => {
               <View flex>
                 <Input.Text
                   placeholder={t(
-                    'edireservationUserInfotProfile.form.postcode.placeholder',
+                    'reservationUserInfo.form.postcode.placeholder',
                   )}
                   keyboardType="email-address"
                   onChange={formik.handleChange('postcode')}
@@ -145,13 +158,6 @@ const ReservationUserInfo = () => {
             </View>
           </View>
         </ScrollView>
-        <View style={styles.buttonContainer}>
-          <Button
-            label="Devam et"
-            loading={formik.isSubmitting || loading}
-            onPress={formik.submitForm}
-          />
-        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

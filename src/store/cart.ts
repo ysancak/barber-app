@@ -6,7 +6,7 @@ const initialCartState = {
   items: [] as CartItem[],
   totalPrice: 0,
   discount: null as CouponCode | null,
-  worker: null as Worker | null,
+  worker: null as string | null,
   date: null as string | null,
   user: null as User | null,
 };
@@ -21,54 +21,68 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (
       state,
-      action: PayloadAction<{businessId: string; item: CartItem}>,
+      action: PayloadAction<{businessID: string; item: CartItem}>,
     ) => {
-      const {businessId, item} = action.payload;
-      if (!state.carts[businessId]) {
-        state.carts[businessId] = {...initialCartState};
+      const {businessID, item} = action.payload;
+      if (!state.carts[businessID]) {
+        state.carts[businessID] = {...initialCartState};
       }
-      state.carts[businessId] = {
-        ...state.carts[businessId],
-        items: [...state.carts[businessId].items, item],
-        totalPrice: state.carts[businessId].totalPrice + Number(item.price),
+      state.carts[businessID] = {
+        ...state.carts[businessID],
+        items: [...state.carts[businessID].items, item],
+        totalPrice: state.carts[businessID].totalPrice + Number(item.price),
       };
     },
     removeFromCart: (
       state,
-      action: PayloadAction<{businessId: string; itemId: string}>,
+      action: PayloadAction<{businessID: string; itemId: string}>,
     ) => {
-      const {businessId, itemId} = action.payload;
-      if (state.carts[businessId]) {
-        const itemIndex = state.carts[businessId].items.findIndex(
+      const {businessID, itemId} = action.payload;
+      if (state.carts[businessID]) {
+        const itemIndex = state.carts[businessID].items.findIndex(
           item => item._id === itemId,
         );
         if (itemIndex !== -1) {
-          state.carts[businessId].totalPrice -= Number(
-            state.carts[businessId].items[itemIndex].price,
+          state.carts[businessID].totalPrice -= Number(
+            state.carts[businessID].items[itemIndex].price,
           );
-          state.carts[businessId].items.splice(itemIndex, 1);
+          state.carts[businessID].items.splice(itemIndex, 1);
         }
       }
     },
-    clearCart: (state, action: PayloadAction<{businessId: string}>) => {
-      const {businessId} = action.payload;
-      delete state.carts[businessId];
+    clearCart: (state, action: PayloadAction<{businessID: string}>) => {
+      const {businessID} = action.payload;
+      delete state.carts[businessID];
     },
     applyDiscount: (
       state,
-      action: PayloadAction<{businessId: string; discount: CouponCode}>,
+      action: PayloadAction<{businessID: string; discount: CouponCode}>,
     ) => {
-      const {businessId, discount} = action.payload;
-      state.carts[businessId].discount = discount;
+      const {businessID, discount} = action.payload;
+      state.carts[businessID].discount = discount;
     },
-    clearDiscount: (state, action: PayloadAction<{businessId: string}>) => {
-      const {businessId} = action.payload;
-      if (state.carts[businessId]) {
-        state.carts[businessId].discount = null;
+    clearDiscount: (state, action: PayloadAction<{businessID: string}>) => {
+      const {businessID} = action.payload;
+      if (state.carts[businessID]) {
+        state.carts[businessID].discount = null;
       }
     },
     clearAllCarts: state => {
       state.carts = {};
+    },
+    setCartDate: (
+      state,
+      action: PayloadAction<{
+        businessID: string;
+        date: string | null;
+        workerID: string | null;
+      }>,
+    ) => {
+      const {businessID, date, workerID} = action.payload;
+      if (state.carts[businessID]) {
+        state.carts[businessID].date = date;
+        state.carts[businessID].worker = workerID;
+      }
     },
   },
 });
@@ -80,6 +94,7 @@ export const {
   applyDiscount,
   clearDiscount,
   clearAllCarts,
+  setCartDate,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
