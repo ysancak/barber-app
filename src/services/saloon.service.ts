@@ -83,7 +83,7 @@ export const getWorkerCalendarEvents = async (params: {
           '1': {start: '12:00', end: '19:00', offday: 'offday'},
           '2': {start: '12:00', end: '19:00', offday: 'offday'},
           '3': {start: '12:00', end: '19:00', offday: 'offday'},
-          '4': {start: '05:00', end: '11:00', offday: 'offday'},
+          '5': {start: '05:00', end: '11:00', offday: 'offday'},
         },
       });
     }, 600);

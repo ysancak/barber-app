@@ -39,8 +39,6 @@ const EmptyPage: React.FC<Props> = ({
     }
   }, [animation]);
 
-  const animationStyle = {width: 160, height: 160};
-
   return (
     <View style={styles.container}>
       <View>
@@ -48,9 +46,8 @@ const EmptyPage: React.FC<Props> = ({
           <LottieView
             source={animationSource}
             autoPlay
-            loop
             resizeMode="cover"
-            style={animationStyle}
+            style={styles.animation}
           />
         ) : icon ? (
           <Icon
@@ -96,5 +93,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginBottom: 20,
+  },
+  animation: {
+    width: 140,
+    height: 140,
   },
 });
