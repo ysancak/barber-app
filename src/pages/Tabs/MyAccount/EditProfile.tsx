@@ -6,6 +6,7 @@ import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
 import {
   Button,
+  HeaderRightButton,
   Input,
   KeyboardAvoidingView,
   SectionHeader,
@@ -73,9 +74,8 @@ function EditProfile(): JSX.Element {
   navigation.setOptions({
     headerRight() {
       return (
-        <Button
-          variant="text"
-          label={t('general.save')}
+        <HeaderRightButton
+          title={t('general.save')}
           loading={loading || refreshing}
           onPress={formik.submitForm}
         />

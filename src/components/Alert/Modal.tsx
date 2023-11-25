@@ -25,8 +25,6 @@ const Alert: React.FC<AlertProps> = ({
   onHide,
   isBackdropPress = false,
   customStyles = {},
-  customTitleStyles = {},
-  customContentStyles = {},
 }) => {
   const onPressHandler = (onPress?: () => void) => {
     if (onHide) {

@@ -15,7 +15,7 @@ const OrderResult = () => {
   const {
     params: {businessID},
   } = useRoute();
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   const navigation = useNavigation();
   const cart = useShoppingCart(businessID);
 
@@ -27,7 +27,7 @@ const OrderResult = () => {
     if (cart.services.length > 0) {
       return (
         <>
-          <SectionHeader title="Servisler" />
+          <SectionHeader title={t('orderResult.section.services')} />
 
           {cart.services.map((service: Service) => (
             <View
@@ -53,7 +53,7 @@ const OrderResult = () => {
     if (cart.uniqueProducts.length > 0) {
       return (
         <>
-          <SectionHeader title="Ürünler" />
+          <SectionHeader title={t('orderResult.section.products')} />
 
           {cart.uniqueProducts.map(({product, quantity}) => (
             <View
@@ -108,9 +108,7 @@ const OrderResult = () => {
             cart.detail.date.start,
           ).format('dddd')}`}
         </Text>
-        <Text textAlign="center">
-          Rezervasyon saatinizden önce lütfen belirtilen adreste olun
-        </Text>
+        <Text textAlign="center">{t('orderResult.serviceDateInfo')}</Text>
       </View>
     );
   }, [cart.detail.date]);
@@ -122,7 +120,7 @@ const OrderResult = () => {
     } ${user.postcode} ${user.ort || ''} \n${user.gsm}\n${user.email}`;
     return (
       <View>
-        <SectionHeader title="Fatura Bilgileri" />
+        <SectionHeader title={t('orderResult.section.billingAddress')} />
         <View paddingHorizontal={16} paddingVertical={12}>
           <Text>{userInfoString}</Text>
         </View>
@@ -132,9 +130,9 @@ const OrderResult = () => {
 
   const renderTitle = useMemo(() => {
     if (cart.serviceCount <= 0 && cart.productCount > 0) {
-      return 'Sipariş oluşturuldu';
+      return t('orderResult.title.order');
     } else {
-      return 'Rezervasyon oluşturuldu';
+      return t('orderResult.title.reservation');
     }
   }, []);
 
@@ -172,7 +170,7 @@ const OrderResult = () => {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button label="Devam et" onPress={onFinishHandler} />
+        <Button label={t('general.continue')} onPress={onFinishHandler} />
       </View>
     </SafeAreaView>
   );

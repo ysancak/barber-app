@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 
 import EmptyPage from './EmptyPage';
@@ -8,14 +9,15 @@ type Props = {
 };
 
 const ErrorResult: React.FC<Props> = ({onPress}) => {
+  const {t} = useTranslation();
   return (
     <EmptyPage
       animation="error"
-      title="Hata"
-      description="Beklenmeyen bir hata oluştu. Daha sonra tekrar deneyiniz"
+      title={t('errorResult.title')}
+      description={t('errorResult.description')}
       buttons={[
         {
-          text: 'Yeniden dene',
+          text: t('errorResult.action'),
           type: 'default',
           onPress: onPress,
         },

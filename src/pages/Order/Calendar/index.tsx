@@ -9,6 +9,7 @@ import {
   Button,
   EmptyPage,
   ErrorResult,
+  HeaderRightButton,
   Input,
   SkeletonLoading,
   View,
@@ -40,9 +41,8 @@ const Calendar = () => {
   navigation.setOptions({
     headerRight() {
       return (
-        <Button
-          variant="text"
-          label={t('general.save')}
+        <HeaderRightButton
+          title={t('general.save')}
           loading={saloonWorkersFetch.loading}
           disabled={!cart.detail.date}
           onPress={() => navigation.navigate('OrderUserInfo', {businessID})}
@@ -63,8 +63,8 @@ const Calendar = () => {
     return (
       <EmptyPage
         animation="empty"
-        title="Çalışan bulunamadı"
-        description="Bu işletmede hizmet verecek bir çalışan bulunmuyor"
+        title={t('calendar.error.workerNotFounc.title')}
+        description={t('calendar.error.workerNotFounc.description')}
       />
     );
   }
@@ -79,7 +79,7 @@ const Calendar = () => {
                 options={saloonWorkersFetch.data}
                 optionLabel="fullname"
                 optionValue="_id"
-                placeholder="Bir çalışan seçin"
+                placeholder={t('calendar.form.worker.placeholder')}
                 onChange={id => setSelectedWorker(id)}
                 value={selectedWorker}
                 loading={saloonWorkersFetch.loading}

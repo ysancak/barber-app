@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
-import {Button, RadioListItem} from '@/components';
+import {HeaderRightButton, RadioListItem} from '@/components';
 import {useNavigation} from '@/hooks';
 import i18n from '@/locale/i18n.config';
 import {colors} from '@/utils';
@@ -17,11 +17,7 @@ function LanguageSettings(): JSX.Element {
   navigation.setOptions({
     headerRight() {
       return (
-        <Button
-          variant="text"
-          label={t('general.save')}
-          onPress={() => saveLanguage()}
-        />
+        <HeaderRightButton title={t('general.save')} onPress={saveLanguage} />
       );
     },
   });
@@ -38,9 +34,9 @@ function LanguageSettings(): JSX.Element {
   return (
     <ScrollView style={styles.container}>
       <RadioListItem
-        label={t('languageSettings.languages.tr')}
-        active={selectedLanguage === 'tr'}
-        onPress={() => changeLanguage('tr')}
+        label={t('languageSettings.languages.de')}
+        active={selectedLanguage === 'de'}
+        onPress={() => changeLanguage('de')}
       />
     </ScrollView>
   );

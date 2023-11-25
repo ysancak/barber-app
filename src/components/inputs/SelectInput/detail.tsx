@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {StyleSheet, FlatList} from 'react-native';
 
 import Button from '@/components/Button';
+import HeaderRightButton from '@/components/HeaderRightButton';
 import RadioListItem from '@/components/RadioListItem';
 
 const SelectInputDetail = () => {
@@ -25,10 +26,9 @@ const SelectInputDetail = () => {
     title: params.title || t('selectInput.default'),
     headerRight() {
       return (
-        <Button
-          variant="text"
+        <HeaderRightButton
+          title={t('general.save')}
           disabled={!selectedValue}
-          label={t('general.save')}
           onPress={saveAndGoBack}
         />
       );

@@ -74,7 +74,7 @@ const ProductList: React.FC<Props> = ({products}) => {
       <View style={styles.titleContainer}>
         <Icon name={'storefront'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          {t('product.title')}
+          {t('saloonDetail.section.products')}
         </Text>
       </View>
       {renderCategories()}

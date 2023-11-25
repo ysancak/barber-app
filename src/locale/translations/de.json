@@ -1,0 +1,324 @@
+{
+    "toast": {
+        "apiErrorDefaultMessage": "Bei einem Fehler im Dienst, bitte später erneut versuchen",
+        "error": {
+            "title": "Fehlgeschlagen",
+            "message": "Bitte später erneut versuchen"
+        },
+        "success": {
+            "title": "Erfolgreich",
+            "message": "Erfolgreich abgeschlossen"
+        },
+        "info": {
+            "title": "Warnung"
+        },
+        "warning": {
+            "title": "Information"
+        }
+    },
+    "nativeMapDefaultLabel": "Zielort",
+    "general": {
+        "or": "oder",
+        "back": "Zurück",
+        "save": "Speichern",
+        "all": "Alle",
+        "seeMore": "Mehr anzeigen",
+        "seeLess": "Weniger anzeigen",
+        "add": "Hinzufügen",
+        "remove": "Entfernen",
+        "error": "Fehler",
+        "address": "Adresse",
+        "continue": "Fortsetzen",
+        "phone": "Telefon",
+        "email": "E-Mail",
+        "website": "Webseite",
+        "paymentMethods": "Zahlungsmethoden",
+        "spokenLanguages": "Gesprochene Sprachen"
+    },
+    "home": {
+        "title": "Startseite",
+        "popularSaloons": "Belie*bte* Salons"
+    },
+    "search": {
+        "title": "Suchen",
+        "topTitle": "Ein stilvoller Touch ist nah",
+        "highlightedTitle": "Entdecken Sie die *nächstgelegenen* Friseure!",
+        "categoryPlaceholder": "Kategorie wählen",
+        "addressPlaceholder": "Adresse wählen",
+        "buttonLabel": "Suchen"
+    },
+    "campaigns": {
+        "title": "Kampagnen"
+    },
+    "favorites": {
+        "title": "Favoriten"
+    },
+    "myAccount": {
+        "title": "Mein Konto",
+        "options": {
+            "editProfile": "Profil bearbeiten",
+            "logout": "Abmelden",
+            "reservations": "Reservierungen",
+            "myOrders": "Meine Bestellungen",
+            "settings": "Einstellungen",
+            "faq": "Häufig gestellte Fragen"
+        },
+        "account": {
+            "title": "Loggen Sie sich in Ihr Konto ein",
+            "description": "Loggen Sie sich in Ihr Konto ein, um Reservierungen vorzunehmen und von Rabatten zu profitieren"
+        }
+    },
+    "loginAndRegister": {
+        "login": "Anmelden",
+        "register": "Registrieren",
+        "form": {
+            "email": {
+                "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+                "error": {
+                    "invalid": "E-Mail-Adresse ist ungültig",
+                    "notEmpty": "E-Mail-Adresse darf nicht leer sein"
+                }
+            },
+            "password": {
+                "placeholder": "Geben Sie Ihr Passwort ein",
+                "error": {
+                    "notEmpty": "Passwort darf nicht leer sein",
+                    "min": "Das Passwort muss mindestens 6 Zeichen lang sein"
+                }
+            }
+        }
+    },
+    "passwordConfirmation": {
+        "title": "Bestätigen Sie Ihr Passwort",
+        "description": "Geben Sie Ihr aktuelles Passwort ein, um diesen Vorgang durchzuführen",
+        "form": {
+            "password": {
+                "placeholder": "Neues Passwort eingeben",
+                "error": {
+                    "match": "Passwörter stimmen nicht überein",
+                    "notEmpty": "Passwort darf nicht leer sein"
+                }
+            },
+            "passwordConfirmation": {
+                "placeholder": "Bestätigen Sie Ihr neues Passwort"
+            }
+        }
+    },
+    "couponCode": {
+        "toastSuccess": "Gutscheincode",
+        "form": {
+            "placeholder": "Geben Sie einen Code ein",
+            "error": {
+                "notEmpty": "Gutscheincode darf nicht leer sein"
+            }
+        }
+    },
+    "shoppingCart": {
+        "title": "Warenkorb",
+        "section": {
+            "services": "Dienstleistungen",
+            "products": "Produkte",
+            "price": "Preis",
+            "coupon": "Gutscheincode"
+        },
+        "prices": {
+            "subtotal": "Zwischensumme",
+            "discount": "Rabatt",
+            "totalPrice": "Gesamtpreis"
+        }
+    },  
+    "errorResult": {
+        "title": "Fehler",
+        "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut",
+        "action": "Erneut versuchen"
+    },
+    "orderResult": {
+        "serviceDateInfo": "Bitte seien Sie vor Ihrer Reservierungszeit an der angegebenen Adresse",
+        "title": {
+            "reservation": "Reservierung erstellt",
+            "order": "Bestellung erstellt"
+        },
+        "section": {
+            "products": "Produkte",
+            "services": "Dienstleistungen",
+            "billingAddress": "Rechnungsadresse"
+        }
+    },  
+    "calendar": {
+        "title": "Planen Reservierung",
+        "error": {
+            "workerNotFounc": {
+                "title": "Mitarbeiter nicht gefunden",
+                "description": "In diesem Unternehmen ist kein Mitarbeiter für die Erbringung von Dienstleistungen verfügbar"
+            },
+            "slotNotFound": {
+                "title": "Keine passende Zeit gefunden",
+                "description": "Für diesen Mitarbeiter gibt es zu diesem Datum keine passenden Zeiten"
+            }
+        },
+        "form": {
+            "worker": {
+                "placeholder": "Wählen Sie einen Mitarbeiter aus"
+            }
+        }
+    },
+    "editProfile": {
+        "title": "Profil bearbeiten",
+        "toast": {
+            "savedSuccess": "Profil aktualisiert"
+        },
+        "form": {
+            "name": {
+                "placeholder": "Name"
+            },
+            "surname": {
+                "placeholder": "Nachname"
+            },
+            "email": {
+                "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+                "error": {
+                    "invalid": "E-Mail-Adresse ist ungültig",
+                    "notEmpty": "E-Mail-Adresse darf nicht leer sein"
+                }
+            },
+            "gsm": {
+                "placeholder": "Telefon"
+            },
+            "password": {
+                "placeholder": "Neues Passwort eingeben",
+                "error": {
+                    "match": "Passwörter stimmen nicht überein"
+                }
+            },
+            "passwordConfirmation": {
+                "placeholder": "Bestätigen Sie Ihr neues Passwort"
+            },
+            "street": {
+                "placeholder": "Straße"
+            },
+            "no": {
+                "placeholder": "Nr."
+            },
+            "postcode": {
+                "placeholder": "Postleitzahl"
+            },
+            "ort": {
+                "placeholder": "Ort. (Optional)"
+            }
+        }
+    },
+    "orderUserInfo": {
+        "title": "Überprüfen Informationen",
+        "section": {
+            "personal": "Persönliche Informationen",
+            "address": "Adressinformationen"
+        },
+        "form": {
+            "name": {
+                "placeholder": "Name",
+                "error": {
+                    "notEmpty": "Name ist erforderlich"
+                }
+            },
+            "surname": {
+                "placeholder": "Nachname",
+                "error": {
+                    "notEmpty": "Nachname ist erforderlich"
+                }
+            },
+            "email": {
+                "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+                "error": {
+                    "invalid": "E-Mail-Adresse ist ungültig",
+                    "notEmpty": "E-Mail-Adresse darf nicht leer sein"
+                }
+            },
+            "gsm": {
+                "placeholder": "Telefon",
+                "error": {
+                    "notEmpty": "Telefon ist erforderlich"
+                }
+            },
+            "street": {
+                "placeholder": "Straße",
+                "error": {
+                    "notEmpty": "Straße ist erforderlich"
+                }
+            },
+            "no": {
+                "placeholder": "Nr.",
+                "error": {
+                    "notEmpty": "Nr. ist erforderlich"
+                }
+            },
+            "postcode": {
+                "placeholder": "Postleitzahl",
+                "error": {
+                    "notEmpty": "Postleitzahl ist erforderlich"
+                }
+            },
+            "ort": {
+                "placeholder": "Ort. (Optional)"
+            },
+            "note": {
+                "placeholder": "Ihre Notiz (Optional)"
+            }
+        }
+    },
+    "settings": {
+        "title": "Einstellungen"
+    },
+    "languageSettings": {
+        "title": "Spracheinstellungen",
+        "languages": {
+            "tr": "Türkisch",
+            "en": "Englisch",
+            "de": "Deutsch"
+        },
+        "toast": {
+            "savedSuccess": "Sprache geändert"
+        }
+    },
+    "addressInput": {
+        "default": "Wählen Sie eine Adresse",
+        "searchPlaceholder": "Beginnen Sie mit einem Gebiets- oder Stadtteilnamen...",
+        "notFound": "Keine Ergebnisse gefunden",
+        "searchResultTitle": "Suchergebnisse"
+      },
+      "selectInput": {
+        "default": "Wählen Sie etwas aus"
+      },
+      "gender": {
+        "Male": "Männlich",
+        "Female": "Weiblich"
+      },
+      "imageGallery": {
+        "title": "Galerie"
+      },
+      "rating": {
+        "comment": "{{reviewCount}} Bewertungen",
+        "noReviews": "Keine Bewertungen"
+      },
+      "saloonDetail": {
+        "directionsAction": "Wegbeschreibung",
+        "callAction": "Anrufen",
+        "websiteAction": "Webseite anzeigen",
+        "section": {
+          "products": "Produkte",
+          "services": "Dienstleistungen",
+          "reviews": "Bewertungen",
+          "businessInfo": "Geschäftsinformationen"
+        },
+        "shoppingBasket": {
+            "productCount": "{{ productCount }} Artikel",
+            "serviceCount": "{{ serviceCount }} Services",
+            "action": "Warenkorb"
+        }
+      },
+      "mapListing": {
+        "title": "Suchergebnisse"
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen"
+      }
+}

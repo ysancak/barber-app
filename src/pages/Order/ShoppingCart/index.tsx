@@ -1,5 +1,6 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   Image,
   SafeAreaView,
@@ -27,6 +28,7 @@ const ShoppingCart = () => {
   const {
     params: {businessID},
   } = useRoute();
+  const {t} = useTranslation();
   const cart = useShoppingCart(businessID);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const ShoppingCart = () => {
     if (cart.services.length > 0) {
       return (
         <>
-          <SectionHeader title="Servisler" />
+          <SectionHeader title={t('shoppingCart.section.services')} />
 
           {cart.services.map((service: Service) => (
             <View key={`service-${service._id}`} style={styles.serviceItem}>
@@ -119,7 +121,7 @@ const ShoppingCart = () => {
     if (cart.uniqueProducts.length > 0) {
       return (
         <>
-          <SectionHeader title="Ürünler" />
+          <SectionHeader title={t('shoppingCart.section.products')} />
 
           {cart.uniqueProducts.map(({product, quantity}) => {
             return (
@@ -165,9 +167,9 @@ const ShoppingCart = () => {
   const renderPrice = useMemo(() => {
     return (
       <>
-        <SectionHeader title="Fiyat" />
+        <SectionHeader title={t('shoppingCart.section.price')} />
         <ListItem
-          label="Subtotal"
+          label={t('shoppingCart.prices.subtotal')}
           value={`${cart.subtotal.toFixed(2)} ${constants.CURRENCY}`}
         />
         {cart.mwstList.map(mwst => (
@@ -180,13 +182,13 @@ const ShoppingCart = () => {
         {cart.discount !== 0 && (
           <ListItem
             icon="savings"
-            label="İndirim"
+            label={t('shoppingCart.prices.discount')}
             value={`${cart.discount.toFixed(2)} ${constants.CURRENCY}`}
           />
         )}
         <ListItem
           icon="credit-card"
-          label="Total price"
+          label={t('shoppingCart.prices.totalPrice')}
           value={`${
             cart.discount !== 0
               ? cart.totalPriceAfterDiscount.toFixed(2)
@@ -228,7 +230,7 @@ const ShoppingCart = () => {
         </ScrollView>
       </KeyboardAvoidingView>
       <View style={styles.buttonContainer}>
-        <Button label="Devam et" onPress={saveAndCountinue} />
+        <Button label={t('general.continue')} onPress={saveAndCountinue} />
       </View>
     </SafeAreaView>
   );

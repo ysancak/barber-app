@@ -25,9 +25,9 @@ type Props = {
 };
 
 const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
+  const {t, i18n} = useTranslation();
   const dispatch = useDispatch();
   const workerEventFetch = useFetch(getWorkerCalendarEvents);
-  const {i18n} = useTranslation();
   const cart = useShoppingCart(businessID);
 
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -187,8 +187,8 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       return (
         <EmptyPage
           animation="empty"
-          title="Uygun saat bulunamadı"
-          description="Bu çalışan için bu tarihte uygun saat bulunmuyor"
+          title={t('calendar.error.slotNotFound.title')}
+          description={t('calendar.error.slotNotFound.description')}
         />
       );
     }

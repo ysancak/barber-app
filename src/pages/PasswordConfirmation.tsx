@@ -4,7 +4,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
-import {Button, Input, Text, View} from '@/components';
+import {Button, HeaderRightButton, Input, Text, View} from '@/components';
 import {useNavigation} from '@/hooks';
 import {passwordConfirmationSchema} from '@/schemas/validations';
 import {passwordConfirmationService} from '@/services/user.service';
@@ -56,9 +56,8 @@ const PasswordConfirmation = () => {
   navigation.setOptions({
     headerRight() {
       return (
-        <Button
-          variant="text"
-          label={t('general.save')}
+        <HeaderRightButton
+          title={t('general.save')}
           loading={formik.isSubmitting}
           onPress={formik.submitForm}
         />
@@ -69,7 +68,7 @@ const PasswordConfirmation = () => {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{gap: 4}}>
       <View paddingBottom={16}>
-        <Text>Bu işlemi yapabilmek için mevcut şifrenizi girin</Text>
+        <Text>{t('passwordConfirmation.description')}</Text>
       </View>
       <Input.Password
         icon="key"

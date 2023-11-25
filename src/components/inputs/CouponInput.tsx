@@ -33,7 +33,7 @@ const CouponInput: React.FC<Props> = ({businessID}) => {
 
   useEffect(() => {
     if (data?.couponValue && cart.totalPrice >= data?.couponMinValue) {
-      showSuccessToast('Kupon kodu');
+      showSuccessToast(t('couponCode.toastSuccess'));
       dispatch(
         applyDiscount({
           businessID,
@@ -62,7 +62,7 @@ const CouponInput: React.FC<Props> = ({businessID}) => {
         loading={loading}
         disabled={loading}
         variant="secondary"
-        label="Uygula"
+        label={t('general.save')}
         onPress={formik.submitForm}
       />
     </View>

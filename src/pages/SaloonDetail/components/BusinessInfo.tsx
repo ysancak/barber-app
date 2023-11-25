@@ -27,7 +27,7 @@ const BusinessInfo: React.FC<Props> = ({
       <View style={styles.container}>
         <Icon name={'business-center'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          {t('businessInfo.title')}
+          {t('saloonDetail.section.businessInfo')}
         </Text>
       </View>
       <View style={styles.mapViewContainer}>

@@ -122,12 +122,12 @@ function MainNavigator(): JSX.Element {
         <Stack.Screen
           name="ShoppingCart"
           component={ShoppingCart}
-          options={{title: 'Sepet'}}
+          options={{title: t('shoppingCart.title')}}
         />
         <Stack.Screen
           name="Calendar"
           component={Calendar}
-          options={{title: 'Rezervasyonu planlayın'}}
+          options={{title: t('calendar.title')}}
         />
         <Stack.Screen
           name="PasswordConfirmation"
@@ -140,7 +140,7 @@ function MainNavigator(): JSX.Element {
         <Stack.Screen
           name="OrderUserInfo"
           component={OrderUserInfo}
-          options={{title: 'Bilgilerinizi kontrol edin'}}
+          options={{title: t('orderUserInfo.title')}}
         />
         <Stack.Screen
           name="OrderResult"

@@ -53,7 +53,7 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen
         name="Favorites"
         component={Favorites}
-        options={{title: 'Favoriler'}}
+        options={{title: t('favorites.title')}}
       />
       <Tab.Screen
         name="MyAccount"

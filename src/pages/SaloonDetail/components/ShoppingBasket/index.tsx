@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import {useTranslation} from 'react-i18next';
 import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const ShoppingBasket: React.FC<Props> = ({businessID}) => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const cart = useShoppingCart(businessID);
 
@@ -45,11 +47,19 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
           <View style={styles.infoSection}>
             <View style={styles.iconTextWrapper}>
               <Icon name={'content-cut'} size={22} color={colors.textColor} />
-              <Text color={colors.textColor}>{cart.serviceCount} servis</Text>
+              <Text color={colors.textColor}>
+                {t('saloonDetail.shoppingBasket.serviceCount', {
+                  serviceCount: cart.serviceCount,
+                })}
+              </Text>
             </View>
             <View style={styles.iconTextWrapper}>
               <Icon name={'storefront'} size={22} color={colors.textColor} />
-              <Text color={colors.textColor}>{cart.productCount} ürün</Text>
+              <Text color={colors.textColor}>
+                {t('saloonDetail.shoppingBasket.productCount', {
+                  productCount: cart.productCount,
+                })}
+              </Text>
             </View>
           </View>
           <Text variant="title" fontSize={22} color={colors.textColor}>
@@ -64,7 +74,7 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
             style={styles.button}
             onPress={() => navigation.navigate('ShoppingCart', {businessID})}>
             <Text medium color={colors.whiteColor}>
-              Sepete git
+              {t('saloonDetail.shoppingBasket.action')}
             </Text>
             <Icon name={'chevron-right'} size={30} color={colors.whiteColor} />
           </TouchableOpacity>

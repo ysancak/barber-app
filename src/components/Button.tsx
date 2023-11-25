@@ -96,6 +96,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 12,
   },
+  textVariantStyle: {
+    fontSize: 22,
+  },
   flexible: {},
   iconWrapper: {
     width: 30,

@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux';
 
 import {
   Button,
+  HeaderRightButton,
   Input,
   KeyboardAvoidingView,
   SectionHeader,
@@ -36,9 +37,8 @@ const OrderUserInfo = () => {
   navigation.setOptions({
     headerRight() {
       return (
-        <Button
-          variant="text"
-          label={t('general.save')}
+        <HeaderRightButton
+          title={t('general.save')}
           loading={formik.isSubmitting || loading}
           onPress={formik.submitForm}
         />
@@ -74,7 +74,7 @@ const OrderUserInfo = () => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={retry} />
           }>
-          <SectionHeader title="Kişisel bilgiler" />
+          <SectionHeader title={t('orderUserInfo.section.personal')} />
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <View flexDirection="row" gap={10}>
               <View flex>
@@ -118,7 +118,7 @@ const OrderUserInfo = () => {
             />
           </View>
 
-          <SectionHeader title="Adres bilgileri" />
+          <SectionHeader title={t('orderUserInfo.section.address')} />
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <View flexDirection="row" gap={10}>
               <View flex>

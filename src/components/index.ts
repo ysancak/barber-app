@@ -1,6 +1,7 @@
 import Button from './Button';
 import EmptyPage from './EmptyPage';
 import ErrorResult from './ErrorResult';
+import HeaderRightButton from './HeaderRightButton';
 import HeaderTitle from './HeaderTitle';
 import ImageGallery from './ImageGallery';
 import Input from './Inputs';
@@ -44,4 +45,5 @@ export {
   ErrorResult,
   SectionHeader,
   KeyboardAvoidingView,
+  HeaderRightButton,
 };

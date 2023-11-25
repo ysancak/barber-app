@@ -21,7 +21,7 @@ const Reviews: React.FC<Props> = ({reviews}) => {
       <View style={styles.container}>
         <Icon name={'comment'} size={30} color={colors.primaryColor} />
         <Text variant="title" fontSize={22}>
-          {t('review.title')}
+          {t('saloonDetail.section.reviews')}
         </Text>
       </View>
       <View style={styles.reviewList}>
