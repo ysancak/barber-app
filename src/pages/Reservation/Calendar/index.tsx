@@ -1,30 +1,48 @@
+import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
+import CalendarView from './components/CalendarView';
+
 import {
   Button,
-  CustomCalendar,
   EmptyPage,
+  ErrorResult,
   Input,
-  Text,
+  SkeletonLoading,
   View,
 } from '@/components';
-import {useFetch} from '@/hooks';
+import {useFetch, useNavigation} from '@/hooks';
 import {getSaloonWorkers} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const Calendar = () => {
-  const businessID = '655e3ac4240b2fbdf7a2a7c9';
-  const [workers, setWorkers] = useState([
-    {_id: '1', name: 'Yusuf'},
-    {_id: '2', name: 'John'},
-  ]);
-  const [selectedWorker, setSelectedWorker] = useState();
+  const navigation = useNavigation();
+  const {
+    params: {businessID},
+  } = useRoute();
+  const [selectedWorker, setSelectedWorker] = useState<string>('');
+  const saloonWorkersFetch = useFetch(getSaloonWorkers);
 
-  //get-calendar-data-worker/:businessID/:workerID/:startDate
-  //
+  useEffect(() => {
+    saloonWorkersFetch.fetch({businessID});
+  }, []);
 
-  if (false) {
+  useEffect(() => {
+    if (saloonWorkersFetch.data?.length) {
+      setSelectedWorker(saloonWorkersFetch.data[0]._id);
+    }
+  }, [saloonWorkersFetch.data]);
+
+  if (saloonWorkersFetch.loading) {
+    return <SkeletonLoading.Calendar />;
+  }
+
+  if (saloonWorkersFetch.error) {
+    return <ErrorResult onPress={saloonWorkersFetch.retry} />;
+  }
+
+  if (!saloonWorkersFetch.data?.length) {
     return (
       <EmptyPage
         animation="empty"
@@ -41,19 +59,27 @@ const Calendar = () => {
           <View style={styles.workerSelectorContainer}>
             <View style={styles.selectContainer}>
               <Input.Select
-                options={workers}
-                optionLabel="name"
+                options={saloonWorkersFetch.data}
+                optionLabel="fullname"
                 optionValue="_id"
                 placeholder="Bir çalışan seçin"
-                onChange={item => setSelectedWorker(item)}
+                onChange={id => setSelectedWorker(id)}
                 value={selectedWorker}
+                loading={saloonWorkersFetch.loading}
               />
             </View>
           </View>
-          <CustomCalendar />
+          {selectedWorker && (
+            <CalendarView businessID={businessID} workerID={selectedWorker} />
+          )}
         </View>
         <View style={styles.buttonContainer}>
-          <Button label="Devam et" />
+          <Button
+            label="Devam et"
+            onPress={() =>
+              navigation.navigate('ReservationUserInfo', {businessID})
+            }
+          />
         </View>
       </SafeAreaView>
     </View>

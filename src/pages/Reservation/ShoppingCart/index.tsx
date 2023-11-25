@@ -236,7 +236,7 @@ const ShoppingCart = () => {
       <View style={styles.buttonContainer}>
         <Button
           label="Devam et"
-          onPress={() => navigation.navigate('Calendar')}
+          onPress={() => navigation.navigate('Calendar', {businessID})}
         />
       </View>
     </SafeAreaView>

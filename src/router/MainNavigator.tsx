@@ -17,6 +17,7 @@ import {
   MapListing,
   PasswordConfirmation,
   Register,
+  ReservationUserInfo,
   SaloonDetail,
   SelectInputDetail,
   Settings,
@@ -134,6 +135,11 @@ function MainNavigator(): JSX.Element {
             presentation: 'modal',
           }}
           component={PasswordConfirmation}
+        />
+        <Stack.Screen
+          name="ReservationUserInfo"
+          component={ReservationUserInfo}
+          options={{title: 'Bilgilerinizi kontrol edin'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

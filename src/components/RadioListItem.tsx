@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteColor,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderColor2,
-    height: 50,
+    height: 56,
     paddingHorizontal: 12,
   },
 });

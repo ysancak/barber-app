@@ -156,6 +156,57 @@
             }
         }
     },
+    "reservationUserInfo": {
+        "title": "Bilgilerinizi kontrol edin",
+        "form": {
+            "name": {
+                "placeholder": "İsim",
+                "error": {
+                    "notEmpty": "İsim zorunlu"
+                }
+            },
+            "surname": {
+                "placeholder": "Soyisim",
+                "error": {
+                    "notEmpty": "Soyisim zorunlu"
+                }
+            },
+            "email": {
+                "placeholder": "Email adresinizi girin",
+                "error": {
+                    "invalid": "Email adresi geçersiz",
+                    "notEmpty": "Email adresi boş olamaz"
+                }
+            },
+            "gsm": {
+                "placeholder": "Telefon",
+                "error": {
+                    "notEmpty": "Telefon zorunlu"
+                }
+            },
+            "street": {
+                "placeholder": "Sokak",
+                "error": {
+                    "notEmpty": "Sokak zorunlu"
+                }
+            },
+            "no": {
+                "placeholder": "No.",
+                "error": {
+                    "notEmpty": "No. zorunlu"
+                }
+            },
+            "postcode": {
+                "placeholder": "Posta kodu",
+                "error": {
+                    "notEmpty": "Posta kodu zorunlu"
+                }
+            },
+            "ort": {
+                "placeholder": "Ort. (Opsiyonel)"
+            }
+        }
+    },
     "settings": {
         "title": "Ayarlar"
     },

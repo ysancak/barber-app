@@ -33,19 +33,19 @@ export const passwordConfirmationService = async (params: {
   password: string;
   passwordConfirmation: string;
 }) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 3000);
-  }).catch(error => {
+  try {
+    const response = await api.post('/password-confirmation', params);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
     showAPIErrorToast(error);
     throw error;
-  });
+  }
 };
 
 export const userMeService = async () => {
   try {
-    const response = await api.get<UserResponse>('/user-me');
+    const response = await api.get<User>('/user-me');
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);

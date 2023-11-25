@@ -6,6 +6,9 @@ const initialCartState = {
   items: [] as CartItem[],
   totalPrice: 0,
   discount: null as CouponCode | null,
+  worker: null as Worker | null,
+  date: null as string | null,
+  user: null as User | null,
 };
 
 const initialState = {

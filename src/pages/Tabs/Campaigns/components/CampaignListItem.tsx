@@ -11,7 +11,6 @@ const CampaignListItem: React.FC<Campaign> = ({
   businessID,
   businessDetails,
   campaignName,
-  campaignDescription,
   campaignEndDate,
 }) => {
   const navigation = useNavigation();
@@ -31,7 +30,6 @@ const CampaignListItem: React.FC<Campaign> = ({
         <Text variant="title" fontSize={18} style={styles.title}>
           {campaignName}
         </Text>
-        <Text style={styles.description}>{campaignDescription}</Text>
 
         <View flexDirection="row" alignItems="center" gap={10}>
           <Text variant="caption" numberOfLines={1} style={{flex: 1}}>

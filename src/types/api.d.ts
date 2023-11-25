@@ -3,8 +3,16 @@ type AuthResponse = {
   refreshToken: string;
 };
 
-type UserResponse = {
+type User = {
   email: string;
+  name: string;
+  surname: string;
+  email: string;
+  gsm: string;
+  street: string;
+  no: string;
+  postcode: string;
+  ort: string;
 };
 
 type FaqResponse = {
@@ -14,7 +22,7 @@ type FaqResponse = {
 };
 
 type DiscountType = {
-  type: string; // "%" ya da "CHF"
+  type: '%' | 'CHF';
   value: number;
 };
 
@@ -116,13 +124,14 @@ type Campaign = {
 type WorkerShift = {
   start: string;
   end: string;
-  offday: string;
+  offday: 'on' | 'off';
 };
 
 type Worker = {
   _id: string;
   name: string;
   surname: string;
+  fullname: string;
   availability: string;
   businessID: string;
   hours: {

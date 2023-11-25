@@ -25,7 +25,7 @@ const PasswordConfirmation = () => {
       const {password, passwordConfirmation} = values;
 
       if (
-        (password.length > 0 || passwordConfirmation.length > 0) &&
+        (password?.length > 0 || passwordConfirmation?.length > 0) &&
         password !== passwordConfirmation
       ) {
         formik.setErrors({

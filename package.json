@@ -9,7 +9,8 @@
     "start": "react-native start",
     "test": "jest",
     "clean": "rm -rf node_modules/ && rm yarn.lock && rm -rf ios/Pods/ && rm ios/Podfile.lock",
-    "postclean": "yarn install && cd ios && pod install"
+    "postclean": "yarn install && cd ios && pod install",
+    "android::apk": "cd android && ./gradlew clean && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@georstat/react-native-image-gallery": "^1.1.0",
@@ -24,7 +25,9 @@
     "axios": "^1.5.1",
     "formik": "^2.4.5",
     "i18next": "^23.6.0",
+    "lodash": "^4.17.21",
     "lottie-react-native": "^6.4.1",
+    "moment": "^2.29.4",
     "react": "18.2.0",
     "react-i18next": "^13.3.1",
     "react-native": "0.72.6",

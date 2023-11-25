@@ -1,5 +1,6 @@
 import {useFormik} from 'formik';
-import React, {useEffect} from 'react';
+import isEqual from 'lodash/isEqual';
+import React, {useEffect, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
@@ -22,35 +23,29 @@ function EditProfile(): JSX.Element {
   const {fetch, data, refresh, refreshing, loading} = useFetch(userMeService);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      fetch();
-    });
-    return unsubscribe;
-  }, [navigation]);
-
-  useEffect(() => {
-    formik.setValues({...data});
-  }, [data]);
+    fetch();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      surname: '',
-      email: '',
-      gsm: '',
+      name: data?.name ?? '',
+      surname: data?.surname ?? '',
+      email: data?.email ?? '',
+      gsm: data?.gsm ?? '',
       password: '',
       passwordConfirmation: '',
-      street: '',
-      no: '',
-      postcode: '',
-      ort: '',
+      street: data?.street ?? '',
+      no: data?.no ?? '',
+      postcode: data?.postcode ?? '',
+      ort: data?.ort ?? '',
     },
+    enableReinitialize: true,
     validationSchema: updateUserProfileSchema,
     onSubmit: values => {
       const {password, passwordConfirmation} = values;
 
       if (
-        (password.length > 0 || passwordConfirmation.length > 0) &&
+        (password?.length > 0 || passwordConfirmation?.length > 0) &&
         password !== passwordConfirmation
       ) {
         formik.setErrors({
@@ -66,7 +61,6 @@ function EditProfile(): JSX.Element {
 
   const onUpdateHandler = async () => {
     try {
-      console.log(formik.values);
       const result = await updateUserProfileService(formik.values);
       if (result) {
         showSuccessToast(t('editProfile.toast.savedSuccess'));
@@ -147,7 +141,7 @@ function EditProfile(): JSX.Element {
             value={formik.values.password}
             error={formik.touched.password && formik.errors.password}
           />
-          {formik.values.password?.length > 0 && (
+          {formik.values.password && (
             <Input.Password
               icon="key"
               placeholder={t(

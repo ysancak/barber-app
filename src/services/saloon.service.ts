@@ -63,3 +63,36 @@ export const getSaloonWorkers = async (params: {businessID: string}) => {
     throw error;
   }
 };
+
+// TODO:: Bunu bağla
+export const getWorkerCalendarEvents = async (params: {
+  businessID: string;
+  workerID: string;
+  startDate: string;
+}) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        events: [
+          {
+            start: '2023-11-25 13:20',
+            end: '2023-11-25 14:00',
+          },
+        ],
+        hours: {
+          '5': {start: '12:00', end: '19:00', offday: 'offday'},
+          '6': {start: '05:00', end: '11:00', offday: 'offday'},
+        },
+      });
+    }, 600);
+  });
+  try {
+    const response = await api.get<Worker[]>(
+      `/get-calendar-data-worker/
+      ${params.businessID}/${params.workerID}/${params.startDate}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

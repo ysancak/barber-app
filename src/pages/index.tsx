@@ -1,8 +1,9 @@
-import Calendar from './Calendar';
 import MapListing from './MapListing';
 import PasswordConfirmation from './PasswordConfirmation';
+import Calendar from './Reservation/Calendar';
+import ShoppingCart from './Reservation/ShoppingCart';
+import ReservationUserInfo from './Reservation/UserInformation';
 import SaloonDetail from './SaloonDetail';
-import ShoppingCart from './ShoppingCart';
 import Campaigns from './Tabs/Campaigns';
 import Favorites from './Tabs/Favorites';
 import MyAccount from './Tabs/MyAccount';
@@ -11,8 +12,8 @@ import Faq from './Tabs/MyAccount/Faq';
 import Settings from './Tabs/MyAccount/Settings';
 import LanguageSettings from './Tabs/MyAccount/Settings/Language';
 
-import AddressInputDetail from '@/components/inputs/AddressInput/detail';
-import SelectInputDetail from '@/components/inputs/SelectInput/detail';
+import AddressInputDetail from '@/components/Inputs/AddressInput/detail';
+import SelectInputDetail from '@/components/Inputs/SelectInput/detail';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Home from '@/pages/Tabs/Home';
@@ -35,4 +36,5 @@ export {
   ShoppingCart,
   Calendar,
   PasswordConfirmation,
+  ReservationUserInfo,
 };

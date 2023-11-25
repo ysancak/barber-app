@@ -1,11 +1,11 @@
 import {useFormik} from 'formik';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {Button, Input, Text, View} from '@/components';
-import {useNavigation} from '@/hooks';
+import {useFetch, useNavigation} from '@/hooks';
 import {searchValidationSchema} from '@/schemas/validations';
 import {getCategoriesService} from '@/services/common.service';
 import {getMapSaloonsService} from '@/services/saloon.service';
@@ -16,7 +16,8 @@ const SearchSaloons = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const categoriesFetch = useFetch(getCategoriesService);
+
   const formik = useFormik({
     initialValues: {
       gender: 'Male',
@@ -37,18 +38,8 @@ const SearchSaloons = () => {
   });
 
   useEffect(() => {
-    fetchCategories();
+    categoriesFetch.fetch();
   }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const result = await getCategoriesService();
-      if (result) {
-        setCategories(result);
-      }
-    } finally {
-    }
-  };
 
   const generateTitle = () => {
     const fullText = t('search.highlightedTitle');
@@ -87,18 +78,15 @@ const SearchSaloons = () => {
           selected={formik.values.gender}
           onChange={formik.handleChange('gender')}
         />
-        {categories.length > 0 && (
-          <Input.Select
-            placeholder={t('search.categoryPlaceholder')}
-            options={categories}
-            optionLabel="categoryName"
-            optionValue="_id"
-            onChange={item =>
-              formik.setFieldValue('category', item ? item : '')
-            }
-            value={formik.values.category}
-          />
-        )}
+        <Input.Select
+          placeholder={t('search.categoryPlaceholder')}
+          options={categoriesFetch.data || []}
+          optionLabel="categoryName"
+          optionValue="_id"
+          onChange={item => formik.setFieldValue('category', item ? item : '')}
+          value={formik.values.category}
+          loading={categoriesFetch.loading}
+        />
         <Button
           prefixIcon="search"
           label={t('search.buttonLabel')}

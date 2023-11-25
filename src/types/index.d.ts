@@ -54,10 +54,11 @@ type RootStackParamList = {
     onChange: (label: string, coordinate: Coordinate) => void;
   };
   ShoppingCart: {businessID: string};
-  Calendar: undefined;
+  Calendar: {businessID: string};
   PasswordConfirmation: {
     onSuccess: () => void;
   };
+  ReservationUserInfo: {businessID: string};
 };
 
 type Coordinate = {

@@ -1,14 +1,13 @@
 import Button from './Button';
-import CustomCalendar from './CustomCalendar';
 import EmptyPage from './EmptyPage';
 import ErrorResult from './ErrorResult';
 import HeaderTitle from './HeaderTitle';
 import ImageGallery from './ImageGallery';
-import Input from './inputs';
+import Input from './Inputs';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
 import ListItem from './ListItem';
 import ListMapView from './ListMapView';
-import SkeletonLoading from './loadings';
+import SkeletonLoading from './Loadings';
 import MapMarker from './MapMarker';
 import ProductList from './ProductList';
 import RadioListItem from './RadioListItem';
@@ -38,7 +37,6 @@ export {
   Rating,
   ImageGallery,
   ListMapView,
-  CustomCalendar,
   SkeletonLoading,
   ProductList,
   ServiceList,

@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Text, View} from '@/components';
@@ -12,6 +12,7 @@ type Props = {
   optionValue: string;
   options: SelectOption[];
   value?: SelectValue;
+  loading?: boolean;
   onChange: (item: SelectOption | undefined) => void;
 };
 
@@ -21,6 +22,7 @@ const SelectInput: React.FC<Props> = ({
   optionValue,
   options,
   value,
+  loading,
   onChange,
 }) => {
   const navigation = useNavigation();
@@ -59,6 +61,7 @@ const SelectInput: React.FC<Props> = ({
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.container}
+      disabled={loading}
       onPress={() =>
         navigation.navigate('SelectInputDetail', {
           title: placeholder,
@@ -71,7 +74,13 @@ const SelectInput: React.FC<Props> = ({
       }>
       <View flex>{renderValueView}</View>
       <View>
-        <Icon name={'expand-more'} size={30} color={colors.textColor} />
+        {loading ? (
+          <View paddingHorizontal={4} paddingVertical={5}>
+            <ActivityIndicator />
+          </View>
+        ) : (
+          <Icon name={'expand-more'} size={30} color={colors.textColor} />
+        )}
       </View>
     </TouchableOpacity>
   );

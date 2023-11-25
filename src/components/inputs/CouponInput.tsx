@@ -4,10 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
-import Input from '.';
-import Button from '../Button';
-import View from '../View';
-
+import {Input, Button, View} from '@/components';
 import {useFetch, useShoppingCart} from '@/hooks';
 import {couponCodeSchema} from '@/schemas/validations';
 import {checkCouponCodeService} from '@/services/common.service';
