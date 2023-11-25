@@ -76,7 +76,9 @@ const ServiceItem: React.FC<Service> = service => {
       <View flexDirection="row" gap={12} alignItems="center">
         <View flexDirection="row" alignItems="center" gap={6}>
           <Icon name="timer" size={22} color={colors.captionTextColor} />
-          <Text variant="caption">{durationMinutes}</Text>
+          <Text variant="caption">
+            {t('general.byMinute', {minute: durationMinutes})}
+          </Text>
         </View>
 
         <View flexDirection="row" alignItems="center" gap={6}>

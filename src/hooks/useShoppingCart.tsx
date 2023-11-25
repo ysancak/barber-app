@@ -43,9 +43,10 @@ const useShoppingCart = businessID => {
   const serviceCount: number = services.length;
   const productCount: number = products.length;
 
-  // ::TODO
-  //const serviceTotalMinutes = services.reduce((total, service) => total + service.durationMinutes, 0);
-  const serviceTotalMinutes = 10;
+  const serviceTotalMinutes = services.reduce(
+    (total, service) => total + service.durationMinutes,
+    0,
+  );
 
   const mwstDetails = useMemo(() => {
     const mwstTotals = new Map();

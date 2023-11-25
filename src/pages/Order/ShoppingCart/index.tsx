@@ -98,7 +98,9 @@ const ShoppingCart = () => {
                     size={22}
                     color={colors.captionTextColor}
                   />
-                  <Text variant="caption">{service.durationMinutes}</Text>
+                  <Text variant="caption">
+                    {t('general.byMinute', {minute: service.durationMinutes})}
+                  </Text>
                 </View>
               </View>
               <TouchableOpacity onPress={() => handleRemoveFromCart(service)}>

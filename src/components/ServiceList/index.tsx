@@ -18,7 +18,7 @@ const ServiceList: React.FC<Props> = ({services}) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [categories, setCategories] = useState<string[]>([]);
 
-  const SHOW_COUNT = 1;
+  const SHOW_COUNT = 3;
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {

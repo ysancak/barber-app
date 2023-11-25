@@ -50,7 +50,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
     workerEventFetch.fetch({
       businessID,
       workerID,
-      startDate: selectedDate.format('YYYY-mm-dd'),
+      startDate: selectedDate.format('YYYY-MM-DD'),
     });
     setSelectedTime(null);
     dispatch(resetCartDate({businessID}));

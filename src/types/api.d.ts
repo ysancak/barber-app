@@ -77,7 +77,7 @@ type Service = {
   description: string;
   price: number;
   oldprice?: number;
-  durationMinutes: string;
+  durationMinutes: number;
   category: string;
   categoryName: string;
   serviceType: string;

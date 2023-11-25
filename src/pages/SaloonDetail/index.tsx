@@ -47,7 +47,6 @@ const SaloonDetail = () => {
 
   useEffect(() => {
     fetch({id: businessID});
-    console.log({businessID});
   }, [businessID, fetch]);
 
   useEffect(() => {

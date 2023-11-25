@@ -26,6 +26,7 @@
         "seeLess": "Weniger anzeigen",
         "add": "Hinzufügen",
         "remove": "Entfernen",
+        "byMinute": "{{ minute }} Min",
         "error": "Fehler",
         "address": "Adresse",
         "continue": "Fortsetzen",

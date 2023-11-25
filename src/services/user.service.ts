@@ -28,14 +28,12 @@ export const registerService = async (params: {
   }
 };
 
-// TODO:: Bunu bağla
 export const passwordConfirmationService = async (params: {
   password: string;
   passwordConfirmation: string;
 }) => {
   try {
     const response = await api.post('/password-confirmation', params);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
