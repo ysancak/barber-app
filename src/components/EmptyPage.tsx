@@ -46,6 +46,7 @@ const EmptyPage: React.FC<Props> = ({
           <LottieView
             source={animationSource}
             autoPlay
+            loop={false}
             resizeMode="cover"
             style={styles.animation}
           />
