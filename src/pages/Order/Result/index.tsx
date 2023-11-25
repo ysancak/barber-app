@@ -30,7 +30,9 @@ const OrderResult = () => {
         {cart.services.map(service => (
           <View key={`service-${service._id}`} style={styles.serviceItem}>
             <Text>{service.serviceName}</Text>
-            <Text variant="caption">{service.durationMinutes}</Text>
+            <Text variant="caption">
+              {t('general.byMinute', {minute: service.durationMinutes})}
+            </Text>
           </View>
         ))}
       </>

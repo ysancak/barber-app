@@ -67,12 +67,12 @@ const SaloonDetail = () => {
     <ErrorResult onPress={retry} />;
   }
 
-  if (loading || !data) {
+  if (!refreshing && (loading || !data)) {
     return <SkeletonLoading.SaloonDetail />;
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         refreshControl={
@@ -171,7 +171,7 @@ const SaloonDetail = () => {
         </View>
       </ScrollView>
       <ShoppingBasket businessID={businessID} />
-    </SafeAreaView>
+    </View>
   );
 };
 

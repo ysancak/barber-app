@@ -44,7 +44,7 @@ const useShoppingCart = businessID => {
   const productCount: number = products.length;
 
   const serviceTotalMinutes = services.reduce(
-    (total, service) => total + service.durationMinutes,
+    (total, service) => total + Number(service.durationMinutes),
     0,
   );
 

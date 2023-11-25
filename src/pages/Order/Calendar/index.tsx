@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: colors.whiteColor,
+    backgroundColor: colors.bgColor,
   },
   innerContainer: {
     flex: 1,

@@ -84,6 +84,7 @@ export default Register;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     gap: 16,
     paddingHorizontal: 16,
     paddingVertical: 16,

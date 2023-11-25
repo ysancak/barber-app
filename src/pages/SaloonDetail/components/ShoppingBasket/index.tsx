@@ -34,7 +34,7 @@ const ShoppingBasket: React.FC<Props> = ({businessID}) => {
       {
         translateY: animatedValue.interpolate({
           inputRange: [0, 1],
-          outputRange: [100, 0],
+          outputRange: [140, 0],
         }),
       },
     ],

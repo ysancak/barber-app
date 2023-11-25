@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    backgroundColor: colors.bgColor,
+    backgroundColor: colors.whiteColor,
   },
   sectionHeader: {
     paddingHorizontal: 16,
