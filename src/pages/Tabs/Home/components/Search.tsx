@@ -52,10 +52,7 @@ const SearchSaloons = () => {
             index % 2 === 0 ? (
               part
             ) : (
-              <Text
-                key={index}
-                variant="title"
-                style={{color: colors.primaryColor}}>
+              <Text key={index} variant="title" style={styles.highlightedPart}>
                 {part}
               </Text>
             ),
@@ -67,7 +64,7 @@ const SearchSaloons = () => {
 
   return (
     <View gap={20}>
-      <View style={styles.highlightedText}>
+      <View style={styles.heroTextContainer}>
         <Text color={colors.whiteColor}>{t('search.topTitle')}</Text>
       </View>
 
@@ -101,11 +98,14 @@ const SearchSaloons = () => {
 export default SearchSaloons;
 
 const styles = StyleSheet.create({
-  highlightedText: {
+  heroTextContainer: {
     backgroundColor: colors.secondaryColor,
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 99,
     alignSelf: 'flex-start',
+  },
+  highlightedPart: {
+    color: colors.primaryColor,
   },
 });

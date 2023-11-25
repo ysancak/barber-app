@@ -235,7 +235,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   ]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View style={{width: 30}}>
           {selectedDate.isAfter(moment(), 'day') && (
@@ -284,6 +284,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 export default CalendarView;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',

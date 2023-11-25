@@ -210,7 +210,7 @@ const ShoppingCart = () => {
   const renderCouponCode = useMemo(() => {
     return (
       <>
-        <SectionHeader title="Kupon kodu" />
+        <SectionHeader title={t('shoppingCart.section.coupon')} />
         <View
           paddingHorizontal={16}
           paddingVertical={12}

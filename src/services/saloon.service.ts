@@ -64,7 +64,6 @@ export const getSaloonWorkers = async (params: {businessID: string}) => {
   }
 };
 
-// TODO:: Bunu bağla
 export const getWorkerCalendarEvents = async (params: {
   businessID: string;
   workerID: string;
