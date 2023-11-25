@@ -21,7 +21,12 @@ import {
   View,
 } from '@/components';
 import {useNavigation, useShoppingCart} from '@/hooks';
-import {addToCart, clearCart, removeFromCart} from '@/store/cart';
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+  resetCartDate,
+} from '@/store/cart';
 import {colors, constants} from '@/utils';
 
 const ShoppingCart = () => {
@@ -38,6 +43,10 @@ const ShoppingCart = () => {
       headerRight: HeaderRightComponent,
     });
   }, [navigation]);
+
+  useEffect(() => {
+    dispatch(resetCartDate({businessID}));
+  }, [businessID]);
 
   useEffect(() => {
     if (cart.totalPrice <= 0) {

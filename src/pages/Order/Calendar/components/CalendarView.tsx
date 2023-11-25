@@ -16,7 +16,7 @@ import {
 } from '@/components';
 import {useFetch, useShoppingCart} from '@/hooks';
 import {getWorkerCalendarEvents} from '@/services/saloon.service';
-import {resetCartDate, setCartDate} from '@/store/cart';
+import {setCartDate} from '@/store/cart';
 import {colors} from '@/utils';
 
 type Props = {
@@ -53,7 +53,6 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       startDate: selectedDate.format('YYYY-MM-DD'),
     });
     setSelectedTime(null);
-    dispatch(resetCartDate({businessID}));
   }, [selectedDate, workerID]);
 
   const previousDay = () => {

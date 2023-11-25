@@ -69,7 +69,7 @@ export const getWorkerCalendarEvents = async (params: {
   workerID: string;
   startDate: string;
 }) => {
-  return new Promise((resolve, reject) => {
+  /* return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
         events: [
@@ -79,16 +79,13 @@ export const getWorkerCalendarEvents = async (params: {
           },
         ],
         hours: {
-          '0': {start: '12:00', end: '19:00', offday: 'offday'},
-          '1': {start: '12:00', end: '19:00', offday: 'offday'},
-          '2': {start: '12:00', end: '19:00', offday: 'offday'},
-          '3': {start: '12:00', end: '19:00', offday: 'offday'},
-          '5': {start: '05:00', end: '11:00', offday: 'offday'},
+          '5': {start: '12:00', end: '19:00', offday: 'offday'},
+          '6': {start: '05:00', end: '11:00', offday: 'offday'},
         },
       });
     }, 600);
   });
-
+  */
   try {
     const response = await api.get<Worker[]>(
       `/get-calendar-data-worker/${params.businessID}/${params.workerID}/${params.startDate}`,
