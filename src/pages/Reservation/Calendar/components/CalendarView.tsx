@@ -29,11 +29,6 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   const [openedHour, setOpenedHour] = useState<string | null>(null);
   const timeFrequency = 15;
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const events = [
-    {start: '2023-11-25 13:20', end: '2023-11-25 14:00'},
-    {start: '2023-11-25 14:30', end: '2023-11-25 15:00'},
-    {start: '2023-11-26 06:23', end: '2023-11-26 06:33'},
-  ];
   const selectedServiceLength = 45;
 
   const dayOfWeek = useMemo(() => (selectedDate.day() + 6) % 7, [selectedDate]);
@@ -93,7 +88,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       shiftEndTime.hour(moment(currentShift.end, 'HH:mm').hour());
       shiftEndTime.minute(moment(currentShift.end, 'HH:mm').minute());
 
-      const processedEvents = events.map(event => ({
+      const processedEvents = workerEventFetch?.data?.events.map(event => ({
         start: moment(event.start),
         end: moment(event.end),
       }));
@@ -154,7 +149,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 
       return slots;
     },
-    [currentShift, selectedDate, events],
+    [currentShift, selectedDate, workerEventFetch.data],
   );
 
   const generateHours = () => {
