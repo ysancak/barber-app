@@ -26,7 +26,7 @@ type DiscountType = {
   value: number;
 };
 
-type CouponCode = {
+type Discount = {
   couponValue: DiscountType;
   couponMinValue: number;
 };

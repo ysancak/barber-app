@@ -34,7 +34,13 @@ const CouponInput: React.FC<Props> = ({businessID}) => {
   useEffect(() => {
     if (data?.couponValue && cart.totalPrice >= data?.couponMinValue) {
       showSuccessToast('Kupon kodu');
-      dispatch(applyDiscount({businessID, discount: data}));
+      dispatch(
+        applyDiscount({
+          businessID,
+          code: formik.values.couponCode,
+          discount: data,
+        }),
+      );
       formik.resetForm();
     }
   }, [data]);

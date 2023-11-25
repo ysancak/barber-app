@@ -8,8 +8,9 @@ const useShoppingCart = businessID => {
   const {
     items = [],
     totalPrice: initialTotalPrice = 0,
-    discount,
+    coupon,
     date,
+    user,
   } = useSelector(state => state.cart.carts[businessID] || {});
 
   const services: Service[] = useMemo(
@@ -20,6 +21,24 @@ const useShoppingCart = businessID => {
     () => items.filter(item => item.productName),
     [items],
   );
+
+  const uniqueProducts = useMemo(() => {
+    const uniqueProductsMap = new Map();
+
+    products.forEach((product: Product) => {
+      if (!uniqueProductsMap.has(product._id)) {
+        uniqueProductsMap.set(product._id, {product, quantity: 1});
+      } else {
+        const existingProduct = uniqueProductsMap.get(product._id);
+        uniqueProductsMap.set(product._id, {
+          product,
+          quantity: existingProduct.quantity + 1,
+        });
+      }
+    });
+
+    return Array.from(uniqueProductsMap.values());
+  }, [products]);
 
   const serviceCount: number = services.length;
   const productCount: number = products.length;
@@ -60,30 +79,31 @@ const useShoppingCart = businessID => {
   }, [initialTotalPrice]);
 
   const calculatedDiscount: number = useMemo(() => {
-    if (discount) {
-      if (discount.couponValue.type === '%') {
-        return (totalPrice * discount.couponValue.value) / 100;
-      } else if (discount.couponValue.type === 'CHF') {
-        return discount.couponValue.value;
+    if (coupon) {
+      if (coupon.discount.couponValue.type === '%') {
+        return (totalPrice * coupon.discount.couponValue.value) / 100;
+      } else if (coupon.discount.couponValue.type === 'CHF') {
+        return coupon.discount.couponValue.value;
       } else {
         return 0;
       }
     }
     return 0;
-  }, [discount, totalPrice]);
+  }, [coupon, totalPrice]);
 
   const totalPriceAfterDiscount = useMemo(() => {
     const priceAfterDiscount = Math.max(0, totalPrice - calculatedDiscount);
-    if (discount && totalPrice < discount.couponMinValue) {
+    if (coupon && totalPrice < coupon.discount.couponMinValue) {
       dispatch(clearDiscount({businessID}));
     }
     return priceAfterDiscount;
-  }, [calculatedDiscount, totalPrice, discount, dispatch, businessID]);
+  }, [calculatedDiscount, totalPrice, coupon, dispatch, businessID]);
 
   return {
     items,
     services,
     products,
+    uniqueProducts,
     mwstList,
     discount: calculatedDiscount,
     totalPrice,
@@ -94,6 +114,7 @@ const useShoppingCart = businessID => {
     serviceTotalMinutes,
     detail: {
       date,
+      user,
     },
   };
 };

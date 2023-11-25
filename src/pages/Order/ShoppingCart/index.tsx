@@ -65,7 +65,7 @@ const ShoppingCart = () => {
     if (cart.serviceTotalMinutes > 0) {
       navigation.navigate('Calendar', {businessID});
     } else {
-      navigation.navigate('ReservationUserInfo', {businessID});
+      navigation.navigate('OrderUserInfo', {businessID});
     }
   };
 
@@ -116,26 +116,12 @@ const ShoppingCart = () => {
   }, [cart.services, handleRemoveFromCart]);
 
   const renderProducts = useMemo(() => {
-    if (cart.products.length > 0) {
-      const uniqueProductsMap = new Map();
-
-      cart.products.forEach((product: Product) => {
-        if (!uniqueProductsMap.has(product._id)) {
-          uniqueProductsMap.set(product._id, {product, quantity: 1});
-        } else {
-          const existingProduct = uniqueProductsMap.get(product._id);
-          uniqueProductsMap.set(product._id, {
-            product,
-            quantity: existingProduct.quantity + 1,
-          });
-        }
-      });
-
+    if (cart.uniqueProducts.length > 0) {
       return (
         <>
           <SectionHeader title="Ürünler" />
 
-          {Array.from(uniqueProductsMap.values()).map(({product, quantity}) => {
+          {cart.uniqueProducts.map(({product, quantity}) => {
             return (
               <View key={product._id} style={styles.productItem}>
                 <View style={styles.productItemInnerContainer}>
@@ -174,7 +160,7 @@ const ShoppingCart = () => {
       );
     }
     return <></>;
-  }, [cart.products, handleAddToCart, handleRemoveFromCart]);
+  }, [cart.uniqueProducts, handleAddToCart, handleRemoveFromCart]);
 
   const renderPrice = useMemo(() => {
     return (

@@ -37,7 +37,7 @@ export const checkCouponCodeService = async (params: {
   businessID: string;
 }) => {
   try {
-    const response = await api.get<CouponCode>(
+    const response = await api.get<Discount>(
       `/promotionOrderApp/${params.couponCode}/${params.businessID}`,
     );
     return response.data;

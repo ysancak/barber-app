@@ -58,7 +58,8 @@ type RootStackParamList = {
   PasswordConfirmation: {
     onSuccess: () => void;
   };
-  ReservationUserInfo: {businessID: string};
+  OrderUserInfo: {businessID: string};
+  OrderResult: {businessID: string};
 };
 
 type Coordinate = {

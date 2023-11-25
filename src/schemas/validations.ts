@@ -45,27 +45,23 @@ export const couponCodeSchema = Yup.object().shape({
   couponCode: Yup.string().required(() => t('couponCode.form.error.notEmpty')),
 });
 
-export const reservationUserInfoSchema = Yup.object().shape({
+export const orderUserInfoSchema = Yup.object().shape({
   email: Yup.string()
-    .email(() => t('reservationUserInfo.form.email.error.invalid'))
-    .required(() => t('reservationUserInfo.form.email.error.notEmpty')),
+    .email(() => t('orderUserInfo.form.email.error.invalid'))
+    .required(() => t('orderUserInfo.form.email.error.notEmpty')),
   name: Yup.string().required(() =>
-    t('reservationUserInfo.form.name.error.notEmpty'),
+    t('orderUserInfo.form.name.error.notEmpty'),
   ),
   surname: Yup.string().required(() =>
-    t('reservationUserInfo.form.surname.error.notEmpty'),
+    t('orderUserInfo.form.surname.error.notEmpty'),
   ),
-  gsm: Yup.string().required(() =>
-    t('reservationUserInfo.form.gsm.error.notEmpty'),
-  ),
+  gsm: Yup.string().required(() => t('orderUserInfo.form.gsm.error.notEmpty')),
   street: Yup.string().required(() =>
-    t('reservationUserInfo.form.street.error.notEmpty'),
+    t('orderUserInfo.form.street.error.notEmpty'),
   ),
-  no: Yup.string().required(() =>
-    t('reservationUserInfo.form.no.error.notEmpty'),
-  ),
+  no: Yup.string().required(() => t('orderUserInfo.form.no.error.notEmpty')),
   postcode: Yup.string().required(() =>
-    t('reservationUserInfo.form.postcode.error.notEmpty'),
+    t('orderUserInfo.form.postcode.error.notEmpty'),
   ),
   ort: Yup.string(),
 });

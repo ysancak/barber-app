@@ -5,10 +5,20 @@ type CartItem = Product | Service;
 const initialCartState = {
   items: [] as CartItem[],
   totalPrice: 0,
-  discount: null as CouponCode | null,
+  coupon: null as {code: string; discount: Discount} | null,
   worker: null as string | null,
-  date: null as string | null,
-  user: null as User | null,
+  date: null as {start: string; end: string} | null,
+  user: null as {
+    name: string;
+    surname: string;
+    email: string;
+    gsm: string;
+    street: string;
+    nr: string;
+    postcode: string;
+    ort: string;
+    note: string;
+  } | null,
 };
 
 const initialState = {
@@ -56,15 +66,19 @@ const cartSlice = createSlice({
     },
     applyDiscount: (
       state,
-      action: PayloadAction<{businessID: string; discount: CouponCode}>,
+      action: PayloadAction<{
+        businessID: string;
+        code: string;
+        discount: Discount;
+      }>,
     ) => {
-      const {businessID, discount} = action.payload;
-      state.carts[businessID].discount = discount;
+      const {businessID, code, discount} = action.payload;
+      state.carts[businessID].coupon = {code, discount};
     },
     clearDiscount: (state, action: PayloadAction<{businessID: string}>) => {
       const {businessID} = action.payload;
       if (state.carts[businessID]) {
-        state.carts[businessID].discount = null;
+        state.carts[businessID].coupon = null;
       }
     },
     clearAllCarts: state => {
@@ -74,7 +88,7 @@ const cartSlice = createSlice({
       state,
       action: PayloadAction<{
         businessID: string;
-        date: string | null;
+        date: {start: string; end: string} | null;
         workerID: string | null;
       }>,
     ) => {
@@ -82,6 +96,70 @@ const cartSlice = createSlice({
       if (state.carts[businessID]) {
         state.carts[businessID].date = date;
         state.carts[businessID].worker = workerID;
+      }
+    },
+    resetCartDate: (
+      state,
+      action: PayloadAction<{
+        businessID: string;
+      }>,
+    ) => {
+      const {businessID} = action.payload;
+      if (state.carts[businessID]) {
+        state.carts[businessID].date = null;
+        state.carts[businessID].worker = null;
+      }
+    },
+    setCartUserInfo: (
+      state,
+      action: PayloadAction<{
+        businessID: string;
+        name: string;
+        surname: string;
+        email: string;
+        gsm: string;
+        street: string;
+        nr: string;
+        postcode: string;
+        ort: string;
+        note: string;
+      }>,
+    ) => {
+      const {
+        businessID,
+        name,
+        surname,
+        email,
+        gsm,
+        street,
+        nr,
+        postcode,
+        ort,
+        note,
+      } = action.payload;
+      if (state.carts[businessID]) {
+        state.carts[businessID].user = {
+          name,
+          surname,
+          email,
+          gsm,
+          street,
+          nr,
+          postcode,
+          ort,
+          note,
+        };
+      }
+    },
+    resetCartUserInfo: (
+      state,
+      action: PayloadAction<{
+        businessID: string;
+      }>,
+    ) => {
+      const {businessID} = action.payload;
+      if (state.carts[businessID]) {
+        state.carts[businessID].user = null;
       }
     },
   },
@@ -95,6 +173,9 @@ export const {
   clearDiscount,
   clearAllCarts,
   setCartDate,
+  resetCartDate,
+  setCartUserInfo,
+  resetCartUserInfo,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

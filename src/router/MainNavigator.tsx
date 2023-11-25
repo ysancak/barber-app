@@ -17,11 +17,12 @@ import {
   MapListing,
   PasswordConfirmation,
   Register,
-  ReservationUserInfo,
+  OrderUserInfo,
   SaloonDetail,
   SelectInputDetail,
   Settings,
   ShoppingCart,
+  OrderResult,
 } from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
 import {colors} from '@/utils';
@@ -137,9 +138,14 @@ function MainNavigator(): JSX.Element {
           component={PasswordConfirmation}
         />
         <Stack.Screen
-          name="ReservationUserInfo"
-          component={ReservationUserInfo}
+          name="OrderUserInfo"
+          component={OrderUserInfo}
           options={{title: 'Bilgilerinizi kontrol edin'}}
+        />
+        <Stack.Screen
+          name="OrderResult"
+          component={OrderResult}
+          options={{headerShown: false, gestureEnabled: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

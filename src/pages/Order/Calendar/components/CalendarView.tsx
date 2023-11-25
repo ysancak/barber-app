@@ -1,6 +1,7 @@
-import i18next from 'i18next';
 import moment from 'moment';
+import 'moment/min/locales';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -15,7 +16,7 @@ import {
 } from '@/components';
 import {useFetch, useShoppingCart} from '@/hooks';
 import {getWorkerCalendarEvents} from '@/services/saloon.service';
-import {setCartDate, setCartWorker} from '@/store/cart';
+import {resetCartDate, setCartDate} from '@/store/cart';
 import {colors} from '@/utils';
 
 type Props = {
@@ -26,6 +27,7 @@ type Props = {
 const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   const dispatch = useDispatch();
   const workerEventFetch = useFetch(getWorkerCalendarEvents);
+  const {i18n} = useTranslation();
   const cart = useShoppingCart(businessID);
 
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -40,9 +42,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   }, [workerEventFetch.data, dayOfWeek]);
 
   useEffect(() => {
-    moment.locale(i18next.language);
+    moment.locale(i18n.language);
     setOpenedHour(moment().format('HH'));
-  }, []);
+  }, [i18n.language]);
 
   useEffect(() => {
     workerEventFetch.fetch({
@@ -51,7 +53,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       startDate: selectedDate.format('YYYY-mm-dd'),
     });
     setSelectedTime(null);
-    dispatch(setCartDate({businessID, workerID: null, date: null}));
+    dispatch(resetCartDate({businessID}));
   }, [selectedDate, workerID]);
 
   const previousDay = () => {
@@ -154,7 +156,22 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 
   const onTimeSelect = (time: string) => {
     setSelectedTime(time);
-    dispatch(setCartDate({businessID, workerID, date: time}));
+    const dateTime = moment(selectedDate).format('YYYY-MM-DD') + ' ' + time;
+    const fullDateStart = moment(dateTime, 'YYYY-MM-DD HH:mm');
+    const fullDateEnd = moment(dateTime, 'YYYY-MM-DD HH:mm').add(
+      cart.serviceTotalMinutes,
+      'minute',
+    );
+    dispatch(
+      setCartDate({
+        businessID,
+        workerID,
+        date: {
+          start: fullDateStart.toISOString(),
+          end: fullDateEnd.toISOString(),
+        },
+      }),
+    );
   };
 
   const renderContent = useMemo(() => {

@@ -1,8 +1,9 @@
 import MapListing from './MapListing';
+import Calendar from './Order/Calendar';
+import OrderResult from './Order/Result';
+import ShoppingCart from './Order/ShoppingCart';
+import OrderUserInfo from './Order/UserInformation';
 import PasswordConfirmation from './PasswordConfirmation';
-import Calendar from './Reservation/Calendar';
-import ShoppingCart from './Reservation/ShoppingCart';
-import ReservationUserInfo from './Reservation/UserInformation';
 import SaloonDetail from './SaloonDetail';
 import Campaigns from './Tabs/Campaigns';
 import Favorites from './Tabs/Favorites';
@@ -36,5 +37,6 @@ export {
   ShoppingCart,
   Calendar,
   PasswordConfirmation,
-  ReservationUserInfo,
+  OrderUserInfo,
+  OrderResult,
 };

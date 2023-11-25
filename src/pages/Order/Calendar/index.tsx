@@ -2,7 +2,6 @@ import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
 
 import CalendarView from './components/CalendarView';
 
@@ -46,9 +45,7 @@ const Calendar = () => {
           label={t('general.save')}
           loading={saloonWorkersFetch.loading}
           disabled={!cart.detail.date}
-          onPress={() =>
-            navigation.navigate('ReservationUserInfo', {businessID})
-          }
+          onPress={() => navigation.navigate('OrderUserInfo', {businessID})}
         />
       );
     },

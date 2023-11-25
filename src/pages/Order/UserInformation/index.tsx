@@ -1,3 +1,4 @@
+import {useRoute} from '@react-navigation/native';
 import {useFormik} from 'formik';
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
@@ -12,13 +13,16 @@ import {
   View,
 } from '@/components';
 import {useFetch, useNavigation} from '@/hooks';
-import {reservationUserInfoSchema} from '@/schemas/validations';
+import {orderUserInfoSchema} from '@/schemas/validations';
 import {userMeService} from '@/services/user.service';
 import {colors} from '@/utils';
 
-const ReservationUserInfo = () => {
+const OrderUserInfo = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
+  const {
+    params: {businessID},
+  } = useRoute();
   const {fetch, data, retry, refreshing, loading} = useFetch(userMeService);
 
   useEffect(() => {
@@ -48,11 +52,12 @@ const ReservationUserInfo = () => {
       no: data?.no ?? '',
       postcode: data?.postcode ?? '',
       ort: data?.ort ?? '',
+      note: '',
     },
     enableReinitialize: true,
-    validationSchema: reservationUserInfoSchema,
+    validationSchema: orderUserInfoSchema,
     onSubmit: values => {
-      console.log(values);
+      navigation.navigate('OrderResult', {businessID});
     },
   });
 
@@ -70,7 +75,7 @@ const ReservationUserInfo = () => {
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={t('reservationUserInfo.form.name.placeholder')}
+                  placeholder={t('orderUserInfo.form.name.placeholder')}
                   onChange={formik.handleChange('name')}
                   onBlur={() => formik.handleBlur('name')}
                   value={formik.values.name}
@@ -80,9 +85,7 @@ const ReservationUserInfo = () => {
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={t(
-                    'reservationUserInfo.form.surname.placeholder',
-                  )}
+                  placeholder={t('orderUserInfo.form.surname.placeholder')}
                   onChange={formik.handleChange('surname')}
                   onBlur={() => formik.handleBlur('surname')}
                   value={formik.values.surname}
@@ -92,7 +95,7 @@ const ReservationUserInfo = () => {
             </View>
             <Input.Text
               icon="email"
-              placeholder={t('reservationUserInfo.form.email.placeholder')}
+              placeholder={t('orderUserInfo.form.email.placeholder')}
               keyboardType="email-address"
               onChange={formik.handleChange('email')}
               onBlur={() => formik.handleBlur('email')}
@@ -101,7 +104,7 @@ const ReservationUserInfo = () => {
             />
             <Input.Text
               icon="phone"
-              placeholder={t('reservationUserInfo.form.gsm.placeholder')}
+              placeholder={t('orderUserInfo.form.gsm.placeholder')}
               keyboardType="phone-pad"
               onChange={formik.handleChange('gsm')}
               onBlur={() => formik.handleBlur('gsm')}
@@ -115,7 +118,7 @@ const ReservationUserInfo = () => {
             <View flexDirection="row" gap={10}>
               <View flex>
                 <Input.Text
-                  placeholder={t('reservationUserInfo.form.street.placeholder')}
+                  placeholder={t('orderUserInfo.form.street.placeholder')}
                   onChange={formik.handleChange('street')}
                   onBlur={() => formik.handleBlur('street')}
                   value={formik.values.street}
@@ -124,7 +127,7 @@ const ReservationUserInfo = () => {
               </View>
               <View flex>
                 <Input.Text
-                  placeholder={t('reservationUserInfo.form.no.placeholder')}
+                  placeholder={t('orderUserInfo.form.no.placeholder')}
                   onChange={formik.handleChange('no')}
                   onBlur={() => formik.handleBlur('no')}
                   value={formik.values.no}
@@ -135,9 +138,7 @@ const ReservationUserInfo = () => {
             <View flexDirection="row" gap={10}>
               <View flex>
                 <Input.Text
-                  placeholder={t(
-                    'reservationUserInfo.form.postcode.placeholder',
-                  )}
+                  placeholder={t('orderUserInfo.form.postcode.placeholder')}
                   keyboardType="email-address"
                   onChange={formik.handleChange('postcode')}
                   onBlur={() => formik.handleBlur('postcode')}
@@ -147,7 +148,7 @@ const ReservationUserInfo = () => {
               </View>
               <View flex>
                 <Input.Text
-                  placeholder={t('reservationUserInfo.form.ort.placeholder')}
+                  placeholder={t('orderUserInfo.form.ort.placeholder')}
                   keyboardType="email-address"
                   onChange={formik.handleChange('ort')}
                   onBlur={() => formik.handleBlur('ort')}
@@ -156,6 +157,14 @@ const ReservationUserInfo = () => {
                 />
               </View>
             </View>
+            <Input.Text
+              placeholder={t('orderUserInfo.form.note.placeholder')}
+              keyboardType="email-address"
+              onChange={formik.handleChange('note')}
+              onBlur={() => formik.handleBlur('note')}
+              value={formik.values.note}
+              error={formik.touched.note && formik.errors.note}
+            />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -163,7 +172,7 @@ const ReservationUserInfo = () => {
   );
 };
 
-export default ReservationUserInfo;
+export default OrderUserInfo;
 
 const styles = StyleSheet.create({
   container: {

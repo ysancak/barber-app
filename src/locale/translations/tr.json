@@ -156,7 +156,7 @@
             }
         }
     },
-    "reservationUserInfo": {
+    "orderUserInfo": {
         "title": "Bilgilerinizi kontrol edin",
         "form": {
             "name": {
@@ -204,6 +204,9 @@
             },
             "ort": {
                 "placeholder": "Ort. (Opsiyonel)"
+            },
+            "note": {
+                "placeholder": "Notunuz (Opsiyonel)"
             }
         }
     },

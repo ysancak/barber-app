@@ -36,7 +36,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <>
+    <View>
       <View
         flexDirection="row"
         alignItems="center"
@@ -68,14 +68,14 @@ const BaseInput: React.FC<BaseInputProps> = ({
         {suffix && <View marginLeft={10}>{suffix}</View>}
       </View>
       {error && (
-        <View flexDirection="row" alignItems="center" gap={2}>
+        <View flexDirection="row" alignItems="center" gap={2} paddingTop={6}>
           <Icon name="error" size={22} color={colors.errorColor} />
           <Text color={colors.errorColor} fontSize={14}>
             {error}
           </Text>
         </View>
       )}
-    </>
+    </View>
   );
 };
 
