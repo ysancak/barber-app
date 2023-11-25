@@ -1,23 +1,14 @@
-import {useRoute} from '@react-navigation/native';
 import 'moment/min/locales';
-
+import {useRoute} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import moment from 'moment';
 import React, {useEffect, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
-import {
-  Button,
-  ErrorResult,
-  ListItem,
-  SafeAreaView,
-  SectionHeader,
-  Text,
-  View,
-} from '@/components';
+import {Button, SafeAreaView, SectionHeader, Text, View} from '@/components';
 import {useNavigation, useShoppingCart} from '@/hooks';
-import {colors, constants} from '@/utils';
+import {colors} from '@/utils';
 import {wp} from '@/utils/responsive';
 
 const OrderResult = () => {
@@ -114,7 +105,7 @@ const OrderResult = () => {
         </Text>
         <Text textAlign="center" fontSize={20} bold>
           {`${moment(cart.detail.date.start).format('LL')} - ${moment(
-            cart.detail.date,
+            cart.detail.date.start,
           ).format('dddd')}`}
         </Text>
         <Text textAlign="center">
@@ -124,27 +115,20 @@ const OrderResult = () => {
     );
   }, [cart.detail.date]);
 
-  const renderBusinessInfo = useMemo(() => {
-    return (
-      <View>
-        <SectionHeader title="Salon bilgileri" />
-        <ListItem label="Kuaför adı" />
-        <ListItem icon="phone" label="+454545454545" />
-        <ListItem icon="map" label="Adres bilgisi" />
-      </View>
-    );
-  }, []);
-
   const renderUserInfo = useMemo(() => {
+    const user = cart.detail.user;
+    const userInfoString = `${user.name} ${user.surname}, ${user.street} ${
+      user.no
+    } ${user.postcode} ${user.ort || ''} \n${user.gsm}\n${user.email}`;
     return (
       <View>
-        <SectionHeader title="Fatura adresi" />
+        <SectionHeader title="Fatura Bilgileri" />
         <View paddingHorizontal={16} paddingVertical={12}>
-          <Text>Yusuf Sancak, Çankaya Mahallesi 34 Sokak Konak, İzmir</Text>
+          <Text>{userInfoString}</Text>
         </View>
       </View>
     );
-  }, []);
+  }, [cart.detail.user]);
 
   const renderTitle = useMemo(() => {
     if (cart.serviceCount <= 0 && cart.productCount > 0) {
@@ -185,7 +169,6 @@ const OrderResult = () => {
           {renderServices}
           {renderProducts}
           {renderUserInfo}
-          {renderBusinessInfo}
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>

@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {RefreshControl, SafeAreaView, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {
   Button,
@@ -15,10 +16,12 @@ import {
 import {useFetch, useNavigation} from '@/hooks';
 import {orderUserInfoSchema} from '@/schemas/validations';
 import {userMeService} from '@/services/user.service';
+import {resetCartUserInfo, setCartUserInfo} from '@/store/cart';
 import {colors} from '@/utils';
 
 const OrderUserInfo = () => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const {
     params: {businessID},
@@ -27,6 +30,7 @@ const OrderUserInfo = () => {
 
   useEffect(() => {
     fetch();
+    dispatch(resetCartUserInfo({businessID}));
   }, []);
 
   navigation.setOptions({
@@ -57,6 +61,7 @@ const OrderUserInfo = () => {
     enableReinitialize: true,
     validationSchema: orderUserInfoSchema,
     onSubmit: values => {
+      dispatch(setCartUserInfo({businessID, ...values}));
       navigation.navigate('OrderResult', {businessID});
     },
   });

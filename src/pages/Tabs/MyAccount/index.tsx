@@ -28,11 +28,6 @@ function MyAccount(): JSX.Element {
             onPress={console.log}
           />
           <ListItem
-            icon="credit-card"
-            label={t('myAccount.options.paymentMethods')}
-            onPress={console.log}
-          />
-          <ListItem
             icon="settings"
             label={t('myAccount.options.settings')}
             onPress={() => navigation.navigate('Settings')}
