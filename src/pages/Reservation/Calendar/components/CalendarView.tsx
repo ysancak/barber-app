@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import moment from 'moment';
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import 'moment/min/locales';
@@ -32,10 +32,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   const events = [
     {start: '2023-11-25 13:20', end: '2023-11-25 14:00'},
     {start: '2023-11-25 14:30', end: '2023-11-25 15:00'},
-    {start: '2023-11-25 15:40', end: '2023-11-25 16:10'},
-    {start: '2023-11-26 06:23', end: '2023-11-26 06:45'},
+    {start: '2023-11-26 06:23', end: '2023-11-26 06:33'},
   ];
-  const selectedServiceLength = 15;
+  const selectedServiceLength = 45;
 
   const dayOfWeek = useMemo(() => (selectedDate.day() + 6) % 7, [selectedDate]);
   const currentShift = useMemo(() => {
@@ -80,42 +79,83 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
     }
   };
 
-  const generateTimeSlots = hour => {
-    if (!currentShift || currentShift?.offday === 'on') {
-      return [];
-    }
-
-    let currentTime = moment(selectedDate).hour(hour).minute(0);
-    let untilEnd = moment(currentTime).add(1, 'hour');
-    let slots = [];
-
-    const processedEvents = events.map(event => ({
-      start: moment(event.start),
-      end: moment(event.end),
-    }));
-
-    while (currentTime.isBefore(untilEnd)) {
-      const formattedTime = currentTime.format('HH:mm');
-      const serviceEndTime = currentTime
-        .clone()
-        .add(selectedServiceLength, 'minute');
-
-      let isTimeSlotAvailable = !processedEvents.some(
-        event =>
-          currentTime.isBetween(event.start, event.end, null, '[]') ||
-          serviceEndTime.isBetween(event.start, event.end, null, '[]') ||
-          (event.start.isAfter(currentTime) &&
-            event.start.isBefore(serviceEndTime)),
-      );
-
-      if (isTimeSlotAvailable) {
-        slots.push(formattedTime);
+  const generateTimeSlots = useCallback(
+    hour => {
+      if (!currentShift || currentShift?.offday === 'on') {
+        return [];
       }
-      currentTime.add(timeFrequency, 'minutes');
-    }
 
-    return slots;
-  };
+      let currentTime = moment(selectedDate).hour(hour).minute(0);
+      let untilEnd = moment(currentTime).add(1, 'hour');
+      let slots = [];
+
+      let shiftEndTime = moment(selectedDate);
+      shiftEndTime.hour(moment(currentShift.end, 'HH:mm').hour());
+      shiftEndTime.minute(moment(currentShift.end, 'HH:mm').minute());
+
+      const processedEvents = events.map(event => ({
+        start: moment(event.start),
+        end: moment(event.end),
+      }));
+
+      // Eğer selectedDate bugünün tarihiyse, şu anki zamandan önce olan slotları döndürme
+      const now = moment();
+      if (moment(selectedDate).isSame(now, 'day')) {
+        while (currentTime.isBefore(untilEnd)) {
+          const formattedTime = currentTime.format('HH:mm');
+          const serviceEndTime = currentTime
+            .clone()
+            .add(selectedServiceLength, 'minute');
+
+          let isTimeSlotAvailable = !processedEvents.some(
+            event =>
+              currentTime.isBetween(event.start, event.end, null, '[]') ||
+              serviceEndTime.isBetween(event.start, event.end, null, '[]') ||
+              (event.start.isAfter(currentTime) &&
+                event.start.isBefore(serviceEndTime)),
+          );
+
+          if (
+            isTimeSlotAvailable &&
+            serviceEndTime.isSameOrBefore(shiftEndTime) &&
+            currentTime.isSameOrAfter(now)
+          ) {
+            slots.push(formattedTime);
+          }
+
+          currentTime.add(timeFrequency, 'minutes');
+        }
+      } else {
+        // selectedDate bugünün tarihi değilse, normal slot oluşturma işlemini yap
+        while (currentTime.isBefore(untilEnd)) {
+          const formattedTime = currentTime.format('HH:mm');
+          const serviceEndTime = currentTime
+            .clone()
+            .add(selectedServiceLength, 'minute');
+
+          let isTimeSlotAvailable = !processedEvents.some(
+            event =>
+              currentTime.isBetween(event.start, event.end, null, '[]') ||
+              serviceEndTime.isBetween(event.start, event.end, null, '[]') ||
+              (event.start.isAfter(currentTime) &&
+                event.start.isBefore(serviceEndTime)),
+          );
+
+          if (
+            isTimeSlotAvailable &&
+            serviceEndTime.isSameOrBefore(shiftEndTime)
+          ) {
+            slots.push(formattedTime);
+          }
+
+          currentTime.add(timeFrequency, 'minutes');
+        }
+      }
+
+      return slots;
+    },
+    [currentShift, selectedDate, events],
+  );
 
   const generateHours = () => {
     if (!currentShift || currentShift?.offday === 'on') {
