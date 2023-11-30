@@ -20,19 +20,20 @@ import {
   Text,
   View,
 } from '@/components';
-import {useNavigation, useShoppingCart} from '@/hooks';
+import {useAuth, useNavigation, useShoppingCart} from '@/hooks';
 import {
   addToCart,
   clearCart,
   removeFromCart,
   resetCartDate,
 } from '@/store/cart';
-import {colors, constants} from '@/utils';
+import {alerts, colors, constants} from '@/utils';
 
 const ShoppingCart = () => {
   const {
     params: {businessID},
   } = useRoute();
+  const isAuthenticated = useAuth();
   const {t} = useTranslation();
   const cart = useShoppingCart(businessID);
   const navigation = useNavigation();
@@ -73,6 +74,10 @@ const ShoppingCart = () => {
   };
 
   const saveAndCountinue = () => {
+    if (!isAuthenticated) {
+      return alerts.authWarningAlert();
+    }
+
     if (cart.serviceTotalMinutes > 0) {
       navigation.navigate('Calendar', {businessID});
     } else {

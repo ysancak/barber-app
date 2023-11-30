@@ -1,7 +1,5 @@
-import i18next from 'i18next';
+import {t} from 'i18next';
 import * as Yup from 'yup';
-
-const {t} = i18next;
 
 export const registerAndLoginValidationSchema = Yup.object().shape({
   email: Yup.string()

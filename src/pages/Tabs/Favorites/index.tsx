@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
 import {
@@ -12,6 +13,7 @@ import {getFavoriteSaloonsService} from '@/services/saloon.service';
 import {colors} from '@/utils';
 
 const Favorites = () => {
+  const {t} = useTranslation();
   const isAuthenticated = useAuth();
   const navigation = useNavigation();
 
@@ -27,12 +29,11 @@ const Favorites = () => {
     return (
       <EmptyPage
         icon="favorite"
-        title="Giriş yap"
-        description="Salonları favoriye eklemek
-        için veya favorileri görüntülemek için giriş yapmalısın"
+        title={t('favorites.login.title')}
+        description={t('favorites.login.description')}
         buttons={[
           {
-            text: 'Giriş yap',
+            text: t('favorites.login.action'),
             type: 'default',
             onPress: () => navigation.navigate('Login'),
           },
@@ -49,8 +50,8 @@ const Favorites = () => {
     return (
       <EmptyPage
         icon="favorite"
-        title="Favori yok"
-        description="Favoriye eklenmiş bir salon bulunmuyor"
+        title={t('favorites.empty.title')}
+        description={t('favorites.empty.description')}
       />
     );
   }

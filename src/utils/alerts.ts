@@ -1,19 +1,21 @@
+import {t} from 'i18next';
+
 import {showAlert} from '@/components/Alert';
 import {navigate} from '@/router/root.navigation';
 
 export const authWarningAlert = () =>
   showAlert({
-    title: 'Giriş yapın',
-    content: 'Bu özelliği kullanmak için giriş yapmalısınız',
+    title: t('alert.auth.title'),
+    content: t('alert.auth.description'),
     buttons: [
       {
-        text: 'Giriş yap',
+        text: t('alert.auth.actions.login'),
         type: 'default',
         onPress: () => navigate('Login'),
       },
       {
-        text: 'İptal',
-        type: 'cancel',
+        text: t('alert.auth.actions.cancel'),
+        type: 'secondary',
       },
     ],
     isBackdropPress: true,

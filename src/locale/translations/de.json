@@ -16,6 +16,16 @@
             "title": "Information"
         }
     },
+    "alert": {
+        "auth": {
+            "title": "Einloggen erforderlich",
+            "description": "Sie müssen sich einloggen, um fortzufahren",
+            "actions": {
+                "login": "Einloggen",
+                "cancel": "Abbrechen"
+            }
+        }
+    },
     "nativeMapDefaultLabel": "Zielort",
     "general": {
         "or": "oder",
@@ -52,7 +62,16 @@
         "title": "Kampagnen"
     },
     "favorites": {
-        "title": "Favoriten"
+        "title": "Favoriten",
+        "empty": {
+            "title": "Keine Favoriten",
+            "description": "Es gibt keinen zu Favoriten hinzugefügten Salon"
+        },
+        "login": {
+            "title": "Einloggen",
+            "description": "Um Salons zu den Favoriten hinzuzufügen oder Favoriten anzuzeigen, musst du dich einloggen",
+            "action": "Einloggen"
+        }
     },
     "myAccount": {
         "title": "Mein Konto",

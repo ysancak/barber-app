@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     margin: 6,
-    borderRadius: 10,
+    borderRadius: 16,
     padding: 20,
     alignItems: 'center',
     gap: 8,

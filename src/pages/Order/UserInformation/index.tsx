@@ -7,7 +7,6 @@ import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {
-  Button,
   HeaderRightButton,
   Input,
   KeyboardAvoidingView,
@@ -32,7 +31,7 @@ const OrderUserInfo = () => {
   useEffect(() => {
     fetch();
     dispatch(resetCartUserInfo({businessID}));
-  }, []);
+  }, [businessID]);
 
   navigation.setOptions({
     headerRight() {
@@ -144,7 +143,6 @@ const OrderUserInfo = () => {
               <View flex>
                 <Input.Text
                   placeholder={t('orderUserInfo.form.postcode.placeholder')}
-                  keyboardType="email-address"
                   onChange={formik.handleChange('postcode')}
                   onBlur={() => formik.handleBlur('postcode')}
                   value={formik.values.postcode}
@@ -154,7 +152,6 @@ const OrderUserInfo = () => {
               <View flex>
                 <Input.Text
                   placeholder={t('orderUserInfo.form.ort.placeholder')}
-                  keyboardType="email-address"
                   onChange={formik.handleChange('ort')}
                   onBlur={() => formik.handleBlur('ort')}
                   value={formik.values.ort}
@@ -164,7 +161,6 @@ const OrderUserInfo = () => {
             </View>
             <Input.Text
               placeholder={t('orderUserInfo.form.note.placeholder')}
-              keyboardType="email-address"
               onChange={formik.handleChange('note')}
               onBlur={() => formik.handleBlur('note')}
               value={formik.values.note}

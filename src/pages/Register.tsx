@@ -27,10 +27,7 @@ function Register(): JSX.Element {
   useEffect(() => {
     if (data) {
       dispatch(setTokens(data));
-      navigation.reset({
-        index: 1,
-        routes: [{name: 'Tabs'}],
-      });
+      navigation.goBack();
     }
   }, [data]);
 

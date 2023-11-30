@@ -185,7 +185,6 @@ function EditProfile(): JSX.Element {
             <View flex>
               <Input.Text
                 placeholder={t('editProfile.form.postcode.placeholder')}
-                keyboardType="email-address"
                 onChange={formik.handleChange('postcode')}
                 onBlur={() => formik.handleBlur('postcode')}
                 value={formik.values.postcode}
@@ -195,7 +194,6 @@ function EditProfile(): JSX.Element {
             <View flex>
               <Input.Text
                 placeholder={t('editProfile.form.ort.placeholder')}
-                keyboardType="email-address"
                 onChange={formik.handleChange('ort')}
                 onBlur={() => formik.handleBlur('ort')}
                 value={formik.values.ort}
