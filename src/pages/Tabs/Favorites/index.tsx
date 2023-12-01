@@ -56,7 +56,7 @@ const Favorites = () => {
     );
   }
 
-  if (loading) {
+  if (loading && !refreshing) {
     return <SkeletonLoading.List />;
   }
 

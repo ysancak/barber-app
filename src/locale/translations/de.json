@@ -56,10 +56,18 @@
         "highlightedTitle": "Entdecken Sie die *nächstgelegenen* Friseure!",
         "categoryPlaceholder": "Kategorie wählen",
         "addressPlaceholder": "Adresse wählen",
-        "buttonLabel": "Suchen"
+        "buttonLabel": "Suchen",
+        "empty": {
+            "title": "Nicht gefunden",
+            "description": "Es wurde kein Friseursalon gefunden, der Ihren Suchkriterien entspricht"
+        }
     },
     "campaigns": {
-        "title": "Kampagnen"
+        "title": "Kampagnen",
+        "empty": {
+            "title": "Keine Kampagne",
+            "description": "Es gibt keine veröffentlichte Kampagne"
+        }
     },
     "favorites": {
         "title": "Favoriten",
@@ -126,6 +134,7 @@
     },
     "couponCode": {
         "toastSuccess": "Gutscheincode",
+        "toastError": "Gutscheincode",
         "form": {
             "placeholder": "Geben Sie einen Code ein",
             "error": {

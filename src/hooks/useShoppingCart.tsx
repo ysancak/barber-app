@@ -107,6 +107,7 @@ const useShoppingCart = businessID => {
     uniqueProducts,
     mwstList,
     discount: calculatedDiscount,
+    coupon,
     totalPrice,
     totalPriceAfterDiscount,
     subtotal,

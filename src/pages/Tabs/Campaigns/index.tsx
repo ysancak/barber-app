@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 import {RefreshControl} from 'react-native-gesture-handler';
 
@@ -10,6 +11,7 @@ import {getCampaignsService} from '@/services/common.service';
 import {colors} from '@/utils';
 
 const Campaigns = () => {
+  const {t} = useTranslation();
   const {fetch, refresh, retry, refreshing, loading, error, data} =
     useFetch(getCampaignsService);
 
@@ -25,13 +27,13 @@ const Campaigns = () => {
     return (
       <EmptyPage
         icon="campaign"
-        title="Kampanya yok"
-        description="Favoriye eklenmiş bir salon bulunmuyor"
+        title={t('campaign.empty.title')}
+        description={t('campaign.empty.description')}
       />
     );
   }
 
-  if (loading) {
+  if (loading && !refreshing) {
     return <SkeletonLoading.List />;
   }
 

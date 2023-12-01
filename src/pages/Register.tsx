@@ -43,6 +43,7 @@ function Register(): JSX.Element {
           icon="email"
           placeholder={t('loginAndRegister.form.email.placeholder')}
           keyboardType="email-address"
+          autoFocus
           onChange={formik.handleChange('email')}
           onBlur={() => formik.handleBlur('email')}
           value={formik.values.email}

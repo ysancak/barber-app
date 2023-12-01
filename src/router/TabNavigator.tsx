@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {HeaderTitle} from '@/components';
-import {Campaigns, Favorites, Home, MyAccount} from '@/pages';
+import {Campaigns, Favorites, Home, MyAccount, Search} from '@/pages';
 import {colors} from '@/utils';
 
 const Tab = createBottomTabNavigator();
@@ -29,6 +29,8 @@ function TabNavigator(): JSX.Element {
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Search') {
+            iconName = focused ? 'search' : 'search-outline';
           } else if (route.name === 'Campaigns') {
             iconName = focused ? 'pricetag' : 'pricetag-outline';
           } else if (route.name === 'Favorites') {
@@ -44,6 +46,11 @@ function TabNavigator(): JSX.Element {
         name="Home"
         component={Home}
         options={{headerShown: false, title: t('home.title')}}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{title: t('search.title')}}
       />
       <Tab.Screen
         name="Campaigns"

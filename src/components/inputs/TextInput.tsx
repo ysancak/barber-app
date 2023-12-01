@@ -14,6 +14,7 @@ interface TextInputProps {
   editable?: boolean;
   icon?: string;
   error?: string | undefined | false;
+  autoFocus?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = props => {

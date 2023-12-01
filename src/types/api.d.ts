@@ -144,3 +144,22 @@ type Worker = {
     6: WorkerShift;
   };
 };
+
+type OrderRequestParams = {
+  name: string;
+  surname: string;
+  email: string;
+  gsm: string;
+  street: string;
+  nr: string;
+  postcode: string;
+  ort: string;
+  note?: string;
+  businessID: string;
+  workerID: string;
+  orderItems: [Product | Service];
+  startDate: string; // Z00.0
+  endDate: string; // Z00.0
+  couponCode: string; // DFJD845
+  orderPrice: string; // 100 CHF
+};

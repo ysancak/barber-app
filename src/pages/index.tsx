@@ -18,6 +18,7 @@ import SelectInputDetail from '@/components/Inputs/SelectInput/detail';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Home from '@/pages/Tabs/Home';
+import Search from '@/pages/Tabs/Search';
 
 export {
   Login,
@@ -39,4 +40,5 @@ export {
   PasswordConfirmation,
   OrderUserInfo,
   OrderResult,
+  Search,
 };

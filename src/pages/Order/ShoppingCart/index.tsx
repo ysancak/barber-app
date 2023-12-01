@@ -199,7 +199,7 @@ const ShoppingCart = () => {
           <ListItem
             icon="savings"
             label={t('shoppingCart.prices.discount')}
-            value={`${cart.discount.toFixed(2)} ${constants.CURRENCY}`}
+            value={`${cart.discount} ${constants.CURRENCY}`}
           />
         )}
         <ListItem

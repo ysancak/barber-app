@@ -12,14 +12,16 @@ export const getPopularSaloonsService = async () => {
 };
 
 export const getMapSaloonsService = async (params: {
-  gender: string;
-  category: string;
+  gender?: string;
+  category?: string;
+  searchKey?: string;
 }) => {
   try {
     const response = await api.post<Saloon[]>('/listing-map', params);
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
+    throw error;
   }
 };
 
@@ -90,8 +92,19 @@ export const getWorkerCalendarEvents = async (params: {
     const response = await api.get<Worker[]>(
       `/get-calendar-data-worker/${params.businessID}/${params.workerID}/${params.startDate}`,
     );
+    console.log(JSON.stringify(response.data));
     return response.data;
   } catch (error) {
+    throw error;
+  }
+};
+
+export const createOrderService = async (params: OrderRequestParams) => {
+  try {
+    const response = await api.post('/place-order', params);
+    console.log(response);
+  } catch (error) {
+    showAPIErrorToast(error);
     throw error;
   }
 };

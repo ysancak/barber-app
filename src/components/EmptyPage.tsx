@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 16,
     paddingHorizontal: wp(10),
-    backgroundColor: colors.bgColor,
     justifyContent: 'center',
     alignItems: 'center',
   },

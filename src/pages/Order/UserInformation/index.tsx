@@ -13,7 +13,7 @@ import {
   SectionHeader,
   View,
 } from '@/components';
-import {useFetch, useNavigation} from '@/hooks';
+import {useFetch, useNavigation, useShoppingCart} from '@/hooks';
 import {orderUserInfoSchema} from '@/schemas/validations';
 import {userMeService} from '@/services/user.service';
 import {resetCartUserInfo, setCartUserInfo} from '@/store/cart';
@@ -27,6 +27,7 @@ const OrderUserInfo = () => {
     params: {businessID},
   } = useRoute();
   const {fetch, data, retry, refreshing, loading} = useFetch(userMeService);
+  const cart = useShoppingCart(businessID);
 
   useEffect(() => {
     fetch();
@@ -59,9 +60,10 @@ const OrderUserInfo = () => {
     },
     enableReinitialize: true,
     validationSchema: orderUserInfoSchema,
-    onSubmit: values => {
+    onSubmit: async values => {
       dispatch(setCartUserInfo({businessID, ...values}));
-      navigation.navigate('OrderResult', {businessID});
+      const params = console.log(JSON.stringify(cart));
+      //navigation.navigate('OrderResult', {businessID});
     },
   });
 
