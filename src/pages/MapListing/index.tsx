@@ -29,7 +29,7 @@ const MapListing = () => {
   useEffect(() => {
     Animated.timing(animatedValue, {
       toValue: activeIndex !== null ? 1 : 0,
-      duration: 200,
+      duration: 400,
       useNativeDriver: false,
     }).start();
   }, [activeIndex, animatedValue]);
@@ -40,7 +40,7 @@ const MapListing = () => {
       {
         translateY: animatedValue.interpolate({
           inputRange: [0, 1],
-          outputRange: [100, 0],
+          outputRange: [280, 0],
         }),
       },
     ],

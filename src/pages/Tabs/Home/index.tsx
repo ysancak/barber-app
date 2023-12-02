@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native';
+import {ScrollView, SafeAreaView, StyleSheet, Platform} from 'react-native';
 
 import PopularSaloons from './components/PopularSaloons';
 import SearchSaloons from './components/Search';
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   contentContainer: {
-    paddingTop: 16,
+    paddingTop: Platform.OS === 'android' ? 60 : 16,
     paddingBottom: 20,
     gap: 36,
   },

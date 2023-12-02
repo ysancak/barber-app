@@ -16,7 +16,7 @@ const KeyboardAvoidingView: React.FC<Props> = ({style, children}) => {
     <RNKeyboardAvoidingView
       style={[styles.container, style]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+      keyboardVerticalOffset={100}>
       {children}
     </RNKeyboardAvoidingView>
   );

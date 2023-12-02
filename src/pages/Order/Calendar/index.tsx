@@ -6,7 +6,6 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import CalendarView from './components/CalendarView';
 
 import {
-  Button,
   EmptyPage,
   ErrorResult,
   HeaderRightButton,
