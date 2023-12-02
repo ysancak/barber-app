@@ -90,7 +90,7 @@ function EditProfile(): JSX.Element {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={refresh} />
         }>
-        <SectionHeader title="Kişisel bilgiler" />
+        <SectionHeader title={t('editProfile.section.personal')} />
         <View paddingHorizontal={16} gap={10} paddingVertical={12}>
           <View flexDirection="row" gap={10}>
             <View flex>
@@ -159,7 +159,7 @@ function EditProfile(): JSX.Element {
           )}
         </View>
 
-        <SectionHeader title="Adres bilgileri" />
+        <SectionHeader title={t('editProfile.section.address')} />
         <View paddingHorizontal={16} gap={10} paddingVertical={12}>
           <View flexDirection="row" gap={10}>
             <View flex>

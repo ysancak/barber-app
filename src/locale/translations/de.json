@@ -197,6 +197,10 @@
         "toast": {
             "savedSuccess": "Profil aktualisiert"
         },
+        "section": {
+            "personal": "Persönliche Informationen",
+            "address": "Adressinformationen"
+        },
         "form": {
             "name": {
                 "placeholder": "Name"
