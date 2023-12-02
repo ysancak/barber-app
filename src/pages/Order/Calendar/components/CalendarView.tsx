@@ -36,9 +36,9 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const dayOfWeek = useMemo(() => (selectedDate.day() + 6) % 7, [selectedDate]);
-  const currentShift = useMemo(() => {
+  const currentShifts = useMemo(() => {
     const shifts = workerEventFetch?.data?.hours;
-    return shifts ? shifts[dayOfWeek] : null;
+    return shifts ? shifts[dayOfWeek] || [] : [];
   }, [workerEventFetch.data, dayOfWeek]);
 
   useEffect(() => {
@@ -72,16 +72,12 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
 
   const generateTimeSlots = useCallback(
     hour => {
-      if (!currentShift || currentShift?.offday === 'on') {
+      if (currentShifts.length === 0) {
         return [];
       }
 
       const currentTime = moment(selectedDate).hour(hour).minute(0);
       const untilEnd = currentTime.clone().add(1, 'hour');
-      const shiftEndTime = moment(selectedDate).set({
-        hour: moment(currentShift.end, 'HH:mm').hour(),
-        minute: moment(currentShift.end, 'HH:mm').minute(),
-      });
 
       const processedEvents = workerEventFetch?.data?.events.map(event => ({
         start: moment(event.start),
@@ -94,19 +90,34 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
         const serviceEndTime = currentTime
           .clone()
           .add(cart.serviceTotalMinutes, 'minute');
-        let isTimeSlotAvailable = processedEvents.every(
-          event =>
-            !currentTime.isBetween(event.start, event.end, null, '[]') &&
-            !serviceEndTime.isBetween(event.start, event.end, null, '[]') &&
-            !(
-              event.start.isAfter(currentTime) &&
-              event.start.isBefore(serviceEndTime)
-            ),
-        );
+
+        let isTimeSlotAvailable = currentShifts.some(shift => {
+          const shiftStartTime = moment(selectedDate).set({
+            hour: moment(shift.start, 'HH:mm').hour(),
+            minute: moment(shift.start, 'HH:mm').minute(),
+          });
+          const shiftEndTime = moment(selectedDate).set({
+            hour: moment(shift.end, 'HH:mm').hour(),
+            minute: moment(shift.end, 'HH:mm').minute(),
+          });
+
+          return (
+            currentTime.isBetween(shiftStartTime, shiftEndTime, null, '[]') &&
+            serviceEndTime.isSameOrBefore(shiftEndTime) &&
+            processedEvents.every(
+              event =>
+                !currentTime.isBetween(event.start, event.end, null, '[]') &&
+                !serviceEndTime.isBetween(event.start, event.end, null, '[]') &&
+                !(
+                  event.start.isAfter(currentTime) &&
+                  event.start.isBefore(serviceEndTime)
+                ),
+            )
+          );
+        });
 
         if (
           isTimeSlotAvailable &&
-          serviceEndTime.isSameOrBefore(shiftEndTime) &&
           (!moment(selectedDate).isSame(moment(), 'day') ||
             currentTime.isSameOrAfter(moment()))
         ) {
@@ -119,7 +130,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       return slots;
     },
     [
-      currentShift,
+      currentShifts,
       selectedDate,
       workerEventFetch.data,
       cart.serviceTotalMinutes,
@@ -128,26 +139,27 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
   );
 
   const generatedHours = useMemo(() => {
-    if (!currentShift || currentShift?.offday === 'on') {
+    if (currentShifts.length === 0) {
       return [];
     }
 
-    let startHour = parseInt(
-      moment(currentShift?.start, 'HH:mm').format('HH'),
-      10,
-    );
-    const endHour = parseInt(
-      moment(currentShift?.end, 'HH:mm').format('HH'),
-      10,
-    );
-    if (selectedDate.isSame(moment(), 'day') && moment().hour() > startHour) {
-      startHour = moment().hour();
-    }
+    let hours = [];
+    currentShifts.forEach(shift => {
+      let startHour = parseInt(moment(shift.start, 'HH:mm').format('HH'), 10);
+      const endHour = parseInt(moment(shift.end, 'HH:mm').format('HH'), 10);
+      if (selectedDate.isSame(moment(), 'day') && moment().hour() > startHour) {
+        startHour = moment().hour();
+      }
 
-    return Array.from({length: endHour - startHour}, (_, i) => startHour + i)
-      .filter(hour => generateTimeSlots(hour).length > 0)
-      .map(hour => hour.toString().padStart(2, '0'));
-  }, [currentShift, selectedDate, generateTimeSlots]);
+      for (let hour = startHour; hour < endHour; hour++) {
+        if (generateTimeSlots(hour).length > 0) {
+          hours.push(hour.toString().padStart(2, '0'));
+        }
+      }
+    });
+
+    return [...new Set(hours)]; // Tekrar eden saatleri kaldır
+  }, [currentShifts, selectedDate, generateTimeSlots]);
 
   const toggleHour = (hour: string) => {
     setOpenedHour(openedHour === hour ? null : hour);

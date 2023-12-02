@@ -66,7 +66,7 @@ const Search = () => {
       <View style={style.inputContainer}>
         <Input.Text
           autoFocus
-          placeholder="Bir salonu arayın..."
+          placeholder={t('search.placeholder')}
           value={searchTerm}
           onChange={setSearchTerm}
         />

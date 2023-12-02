@@ -71,28 +71,53 @@ export const getWorkerCalendarEvents = async (params: {
   workerID: string;
   startDate: string;
 }) => {
-  /* return new Promise((resolve, reject) => {
+  /*
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
         events: [
           {
-            start: '2023-11-25T11:30:00.000+00:00',
-            end: '2023-11-25T12:30:00.000+00:00',
+            start: '2023-12-02T21:30:00.000+03:00',
+            end: '2023-12-02T21:45:00.000+03:00',
           },
         ],
         hours: {
-          '5': {start: '12:00', end: '19:00', offday: 'offday'},
-          '6': {start: '05:00', end: '11:00', offday: 'offday'},
+          '0': [
+            {start: '08:00', end: '13:00'},
+            {start: '13:00', end: '17:00'},
+          ],
+          '1': [{start: '05:00', end: '11:00'}],
+          '2': [
+            {start: '08:00', end: '13:00'},
+            {start: '13:00', end: '17:00'},
+          ],
+          '3': [
+            {start: '08:00', end: '13:00'},
+            {start: '13:00', end: '17:00'},
+          ],
+          '4': [
+            {start: '08:00', end: '13:00'},
+            {start: '13:00', end: '17:00'},
+          ],
+          '5': [
+            {start: '08:00', end: '13:00'},
+            {start: '13:00', end: '17:00'},
+            {start: '18:00', end: '23:00'},
+          ],
+          '6': [
+            {start: '08:00', end: '13:00'},
+            {start: '15:00', end: '17:00'},
+          ],
         },
       });
     }, 600);
   });
-  */
+*/
+
   try {
     const response = await api.get<Worker[]>(
       `/get-calendar-data-worker/${params.businessID}/${params.workerID}/${params.startDate}`,
     );
-    console.log(JSON.stringify(response.data));
     return response.data;
   } catch (error) {
     throw error;

@@ -57,6 +57,7 @@
         "categoryPlaceholder": "Kategorie wählen",
         "addressPlaceholder": "Adresse wählen",
         "buttonLabel": "Suchen",
+        "placeholder": "Suchen Sie einen Friseur...",
         "empty": {
             "title": "Nicht gefunden",
             "description": "Es wurde kein Friseursalon gefunden, der Ihren Suchkriterien entspricht"
