@@ -63,7 +63,7 @@ const OrderUserInfo = () => {
     onSubmit: async values => {
       dispatch(setCartUserInfo({businessID, ...values}));
       const params = console.log(JSON.stringify(cart));
-      //navigation.navigate('OrderResult', {businessID});
+      navigation.navigate('OrderResult', {businessID});
     },
   });
 

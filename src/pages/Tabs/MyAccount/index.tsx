@@ -18,16 +18,6 @@ function MyAccount(): JSX.Element {
         <Account />
         <View>
           <ListItem
-            icon="content-cut"
-            label={t('myAccount.options.reservations')}
-            onPress={console.log}
-          />
-          <ListItem
-            icon="shopping-bag"
-            label={t('myAccount.options.myOrders')}
-            onPress={console.log}
-          />
-          <ListItem
             icon="settings"
             label={t('myAccount.options.settings')}
             onPress={() => navigation.navigate('Settings')}
