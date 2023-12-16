@@ -1,4 +1,4 @@
-package com.barberapp;
+package com.metime.schweiz;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

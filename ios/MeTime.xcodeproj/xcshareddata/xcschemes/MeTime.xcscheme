@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "BarberApp.app"
-               BlueprintName = "BarberApp"
-               ReferencedContainer = "container:BarberApp.xcodeproj">
+               BuildableName = "MeTime.app"
+               BlueprintName = "MeTime"
+               ReferencedContainer = "container:MeTime.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "BarberAppTests.xctest"
-               BlueprintName = "BarberAppTests"
-               ReferencedContainer = "container:BarberApp.xcodeproj">
+               BuildableName = "MeTimeTests.xctest"
+               BlueprintName = "MeTimeTests"
+               ReferencedContainer = "container:MeTime.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "BarberApp.app"
-            BlueprintName = "BarberApp"
-            ReferencedContainer = "container:BarberApp.xcodeproj">
+            BuildableName = "MeTime.app"
+            BlueprintName = "MeTime"
+            ReferencedContainer = "container:MeTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "BarberApp.app"
-            BlueprintName = "BarberApp"
-            ReferencedContainer = "container:BarberApp.xcodeproj">
+            BuildableName = "MeTime.app"
+            BlueprintName = "MeTime"
+            ReferencedContainer = "container:MeTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
