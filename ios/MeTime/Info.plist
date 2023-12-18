@@ -41,7 +41,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Wir verwenden Ihren Standort, um Ihnen die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden nur genutzt, während Sie die App aktiv verwenden.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Ihr Standort wird ständig genutzt, um Ihnen jederzeit die nächstgelegenen Friseursalons anzeigen zu können. Diese Daten ermöglichen es uns, Ihnen auch im Hintergrund standortbezogene Dienste anzubieten.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>

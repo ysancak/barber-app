@@ -11,6 +11,7 @@ const useShoppingCart = businessID => {
     coupon,
     date,
     user,
+    worker,
   } = useSelector(state => state.cart.carts[businessID] || {});
 
   const services: Service[] = useMemo(
@@ -21,6 +22,23 @@ const useShoppingCart = businessID => {
     () => items.filter(item => item.productName),
     [items],
   );
+
+  const uniqueItems = useMemo(() => {
+    const aggregatedItems = {};
+
+    items.forEach(item => {
+      const id = item._id;
+      const type = item.productName ? 'Product' : 'Service';
+
+      if (!aggregatedItems[id]) {
+        aggregatedItems[id] = {_id: id, type, quantity: 1};
+      } else {
+        aggregatedItems[id].quantity += 1;
+      }
+    });
+
+    return Object.values(aggregatedItems);
+  }, [items]);
 
   const uniqueProducts = useMemo(() => {
     const uniqueProductsMap = new Map();
@@ -102,6 +120,7 @@ const useShoppingCart = businessID => {
 
   return {
     items,
+    uniqueItems,
     services,
     products,
     uniqueProducts,
@@ -114,10 +133,9 @@ const useShoppingCart = businessID => {
     serviceCount,
     productCount,
     serviceTotalMinutes,
-    detail: {
-      date,
-      user,
-    },
+    date,
+    user,
+    worker,
   };
 };
 

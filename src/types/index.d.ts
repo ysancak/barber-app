@@ -60,6 +60,7 @@ type RootStackParamList = {
   };
   OrderUserInfo: {businessID: string};
   OrderResult: {businessID: string};
+  Payment: {businessID: string; link: string};
 };
 
 type Coordinate = {

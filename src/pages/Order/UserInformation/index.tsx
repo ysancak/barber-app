@@ -15,9 +15,11 @@ import {
 } from '@/components';
 import {useFetch, useNavigation, useShoppingCart} from '@/hooks';
 import {orderUserInfoSchema} from '@/schemas/validations';
+import {createOrderService} from '@/services/saloon.service';
 import {userMeService} from '@/services/user.service';
-import {resetCartUserInfo, setCartUserInfo} from '@/store/cart';
+import {clearCart, resetCartUserInfo, setCartUserInfo} from '@/store/cart';
 import {colors} from '@/utils';
+import {showErrorToast} from '@/utils/toast';
 
 const OrderUserInfo = () => {
   const {t} = useTranslation();
@@ -61,9 +63,28 @@ const OrderUserInfo = () => {
     enableReinitialize: true,
     validationSchema: orderUserInfoSchema,
     onSubmit: async values => {
-      dispatch(setCartUserInfo({businessID, ...values}));
-      const params = console.log(JSON.stringify(cart));
-      navigation.navigate('OrderResult', {businessID});
+      const body = {
+        ...values,
+        businessID,
+        orderItems: cart.uniqueItems,
+        startDate: cart.date.start ?? null,
+        endDate: cart.date.end ?? null,
+        couponCode: cart.coupon ?? null,
+        workerID: cart.worker ?? null,
+        orderPrice: cart.coupon
+          ? cart.totalPriceAfterDiscount
+          : cart.totalPrice,
+      };
+
+      const response = await createOrderService(body);
+
+      if (response.delete) {
+        dispatch(clearCart({businessID}));
+        showErrorToast(t('shoppingCart.alert.cartContentChanged.title'));
+        navigation.navigate('SaloonDetail', {businessID});
+      } else if (response.link) {
+        navigation.navigate('Payment', {businessID, link: response.link});
+      }
     },
   });
 

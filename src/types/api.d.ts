@@ -151,13 +151,13 @@ type OrderRequestParams = {
   email: string;
   gsm: string;
   street: string;
-  nr: string;
+  no: string;
   postcode: string;
   ort: string;
   note?: string;
   businessID: string;
   workerID: string;
-  orderItems: [Product | Service];
+  orderItems: [any];
   startDate: string; // Z00.0
   endDate: string; // Z00.0
   couponCode: string; // DFJD845

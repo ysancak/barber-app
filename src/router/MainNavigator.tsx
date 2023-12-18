@@ -23,6 +23,7 @@ import {
   Settings,
   ShoppingCart,
   OrderResult,
+  Payment,
 } from '@/pages';
 import TabNavigator from '@/router/TabNavigator';
 import {colors} from '@/utils';
@@ -146,6 +147,14 @@ function MainNavigator(): JSX.Element {
           name="OrderResult"
           component={OrderResult}
           options={{headerShown: false, gestureEnabled: false}}
+        />
+        <Stack.Screen
+          name="Payment"
+          options={{
+            presentation: 'modal',
+            headerShown: false,
+          }}
+          component={Payment}
         />
       </Stack.Navigator>
     </NavigationContainer>

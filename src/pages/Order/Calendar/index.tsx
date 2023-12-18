@@ -43,7 +43,7 @@ const Calendar = () => {
         <HeaderRightButton
           title={t('general.save')}
           loading={saloonWorkersFetch.loading}
-          disabled={!cart.detail.date}
+          disabled={!cart.date}
           onPress={() => navigation.navigate('OrderUserInfo', {businessID})}
         />
       );

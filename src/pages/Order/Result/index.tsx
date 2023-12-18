@@ -4,9 +4,11 @@ import moment from 'moment';
 import React, {useEffect, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {Button, SafeAreaView, SectionHeader, View, Text} from '@/components';
 import {useNavigation, useShoppingCart} from '@/hooks';
+import {clearCart} from '@/store/cart';
 import {colors} from '@/utils';
 import {wp} from '@/utils/responsive';
 
@@ -15,6 +17,7 @@ const OrderResult = () => {
     params: {businessID},
   } = useRoute();
 
+  const dispatch = useDispatch();
   const {t, i18n} = useTranslation();
   const navigation = useNavigation();
   const cart = useShoppingCart(businessID);
@@ -56,23 +59,24 @@ const OrderResult = () => {
   }, [cart.uniqueProducts, t]);
 
   const renderServiceDate = useMemo(() => {
-    return cart.detail.date ? (
+    return cart.date ? (
       <View style={styles.serviceDateContainer}>
         <Text textAlign="center" fontSize={40} bold>
-          {moment(cart.detail.date.start).format('HH:mm')}
+          {moment(cart.date.start).format('HH:mm')}
         </Text>
         <Text textAlign="center" fontSize={20} bold>
-          {`${moment(cart.detail.date.start).format('LL')} - ${moment(
-            cart.detail.date.start,
+          {`${moment(cart.date.start).format('LL')} - ${moment(
+            cart.date.start,
           ).format('dddd')}`}
         </Text>
         <Text textAlign="center">{t('orderResult.serviceDateInfo')}</Text>
       </View>
     ) : null;
-  }, [cart.detail.date, t]);
+  }, [cart.date, t]);
 
   const renderUserInfo = useMemo(() => {
-    const user = cart.detail.user;
+    return;
+    const user = cart.user;
     const userInfoString = `${user.name} ${user.surname}, ${user.street} ${
       user.no
     } ${user.postcode} ${user.ort || ''} \n${user.gsm}\n${user.email}`;
@@ -84,7 +88,7 @@ const OrderResult = () => {
         </View>
       </View>
     );
-  }, [cart.detail.user, t]);
+  }, [cart.user, t]);
 
   const renderTitle = useMemo(() => {
     return cart.serviceCount <= 0 && cart.productCount > 0
@@ -93,6 +97,7 @@ const OrderResult = () => {
   }, [cart.productCount, cart.serviceCount, t]);
 
   const onFinishHandler = () => {
+    dispatch(clearCart({businessID}));
     navigation.reset({
       index: 1,
       routes: [{name: 'Tabs'}],

@@ -33,7 +33,7 @@ function Login(): JSX.Element {
   return (
     <View style={styles.container}>
       <Image
-        source={require('@/assets/images/logo.png')}
+        source={require('@/assets/logo.png')}
         style={styles.logo}
         resizeMode="contain"
       />

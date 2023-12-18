@@ -62,6 +62,7 @@ export const getSaloonWorkers = async (params: {businessID: string}) => {
     const response = await api.get<Worker[]>(`/workers/${params.businessID}`);
     return response.data;
   } catch (error) {
+    showAPIErrorToast(error);
     throw error;
   }
 };
@@ -71,55 +72,13 @@ export const getWorkerCalendarEvents = async (params: {
   workerID: string;
   startDate: string;
 }) => {
-  /*
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({
-        events: [
-          {
-            start: '2023-12-02T21:30:00.000+03:00',
-            end: '2023-12-02T21:45:00.000+03:00',
-          },
-        ],
-        hours: {
-          '0': [
-            {start: '08:00', end: '13:00'},
-            {start: '13:00', end: '17:00'},
-          ],
-          '1': [{start: '05:00', end: '11:00'}],
-          '2': [
-            {start: '08:00', end: '13:00'},
-            {start: '13:00', end: '17:00'},
-          ],
-          '3': [
-            {start: '08:00', end: '13:00'},
-            {start: '13:00', end: '17:00'},
-          ],
-          '4': [
-            {start: '08:00', end: '13:00'},
-            {start: '13:00', end: '17:00'},
-          ],
-          '5': [
-            {start: '08:00', end: '13:00'},
-            {start: '13:00', end: '17:00'},
-            {start: '18:00', end: '23:00'},
-          ],
-          '6': [
-            {start: '08:00', end: '13:00'},
-            {start: '15:00', end: '17:00'},
-          ],
-        },
-      });
-    }, 600);
-  });
-*/
-
   try {
     const response = await api.get<Worker[]>(
       `/get-calendar-data-worker/${params.businessID}/${params.workerID}/${params.startDate}`,
     );
     return response.data;
   } catch (error) {
+    showAPIErrorToast(error);
     throw error;
   }
 };
@@ -127,7 +86,7 @@ export const getWorkerCalendarEvents = async (params: {
 export const createOrderService = async (params: OrderRequestParams) => {
   try {
     const response = await api.post('/place-order', params);
-    console.log(response);
+    return response.data;
   } catch (error) {
     showAPIErrorToast(error);
     throw error;

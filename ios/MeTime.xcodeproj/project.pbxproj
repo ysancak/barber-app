@@ -12,13 +12,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		237B8271F11F4D20832A52BB /* EncodeSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03652F75789F4C7B9BC72091 /* EncodeSans-SemiBold.ttf */; };
+		42ECE784999D6DA25268E677 /* libPods-MeTime-MeTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31138FB007F3874733E16B54 /* libPods-MeTime-MeTimeTests.a */; };
 		57A5C53CE4644975AA2025DB /* EncodeSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A248A00EA0354FB0979794E8 /* EncodeSans-Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		93E812C3EAA54007AAF92121 /* EncodeSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 015290DFB54542F28D96B738 /* EncodeSans-Bold.ttf */; };
 		AB6624847CA04245B058C014 /* EncodeSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43BC55F0104C41B6894F0F8F /* EncodeSans-Medium.ttf */; };
-		AF152BFD7507290308C88E73 /* libPods-MeTime-MeTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4324E03037969186D90DCA6B /* libPods-MeTime-MeTimeTests.a */; };
 		B32F1A2F4A1A4DD193E57A7E /* EncodeSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6586ADB2AD1473D86E0FD68 /* EncodeSans-Light.ttf */; };
-		FD0EAC54F78FB57F34351723 /* libPods-MeTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 508AA70CAF0C0442C4EA3D7D /* libPods-MeTime.a */; };
+		D2E6C14C30020CB955C33DC3 /* libPods-MeTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCD62E252FF5EF92B33234E /* libPods-MeTime.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 		00E356EE1AD99517003FC87E /* MeTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MeTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeTimeTests.m; sourceTree = "<group>"; };
-		014E0C2F370EFB313E51A4A2 /* Pods-MeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.release.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.release.xcconfig"; sourceTree = "<group>"; };
 		015290DFB54542F28D96B738 /* EncodeSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Bold.ttf"; path = "../src/assets/fonts/EncodeSans-Bold.ttf"; sourceTree = "<group>"; };
 		03652F75789F4C7B9BC72091 /* EncodeSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-SemiBold.ttf"; path = "../src/assets/fonts/EncodeSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		0643877E2AEBB90C00E2C48A /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -44,20 +43,21 @@
 		064387842AEBB93200E2C48A /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf"; sourceTree = "<group>"; };
 		064387852AEBB93200E2C48A /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		064387862AEBB93200E2C48A /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		0C991882C99D58BBD8032F00 /* Pods-MeTime-MeTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MeTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MeTime/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MeTime/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MeTime/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeTime/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MeTime/main.m; sourceTree = "<group>"; };
-		4324E03037969186D90DCA6B /* libPods-MeTime-MeTimeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime-MeTimeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ED1C5A92CDF2ABD33D68B9F /* Pods-MeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.debug.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		31138FB007F3874733E16B54 /* libPods-MeTime-MeTimeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime-MeTimeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DCD62E252FF5EF92B33234E /* libPods-MeTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BC55F0104C41B6894F0F8F /* EncodeSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Medium.ttf"; path = "../src/assets/fonts/EncodeSans-Medium.ttf"; sourceTree = "<group>"; };
-		508AA70CAF0C0442C4EA3D7D /* libPods-MeTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		687EA08BFD9565A6B36772F4 /* Pods-MeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.debug.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.debug.xcconfig"; sourceTree = "<group>"; };
+		6D7CD475D159CEF1346BFE60 /* Pods-MeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.release.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MeTime/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		887D4F60DFFB2E370FF65CEB /* Pods-MeTime-MeTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A248A00EA0354FB0979794E8 /* EncodeSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Regular.ttf"; path = "../src/assets/fonts/EncodeSans-Regular.ttf"; sourceTree = "<group>"; };
-		D1E569BDAB2AAD292A874AD4 /* Pods-MeTime-MeTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.release.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		BEC1847B83E2372699238A03 /* Pods-MeTime-MeTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.release.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		E6586ADB2AD1473D86E0FD68 /* EncodeSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Light.ttf"; path = "../src/assets/fonts/EncodeSans-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF152BFD7507290308C88E73 /* libPods-MeTime-MeTimeTests.a in Frameworks */,
+				42ECE784999D6DA25268E677 /* libPods-MeTime-MeTimeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD0EAC54F78FB57F34351723 /* libPods-MeTime.a in Frameworks */,
+				D2E6C14C30020CB955C33DC3 /* libPods-MeTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				508AA70CAF0C0442C4EA3D7D /* libPods-MeTime.a */,
-				4324E03037969186D90DCA6B /* libPods-MeTime-MeTimeTests.a */,
+				3DCD62E252FF5EF92B33234E /* libPods-MeTime.a */,
+				31138FB007F3874733E16B54 /* libPods-MeTime-MeTimeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,10 +175,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				687EA08BFD9565A6B36772F4 /* Pods-MeTime.debug.xcconfig */,
-				014E0C2F370EFB313E51A4A2 /* Pods-MeTime.release.xcconfig */,
-				887D4F60DFFB2E370FF65CEB /* Pods-MeTime-MeTimeTests.debug.xcconfig */,
-				D1E569BDAB2AAD292A874AD4 /* Pods-MeTime-MeTimeTests.release.xcconfig */,
+				2ED1C5A92CDF2ABD33D68B9F /* Pods-MeTime.debug.xcconfig */,
+				6D7CD475D159CEF1346BFE60 /* Pods-MeTime.release.xcconfig */,
+				0C991882C99D58BBD8032F00 /* Pods-MeTime-MeTimeTests.debug.xcconfig */,
+				BEC1847B83E2372699238A03 /* Pods-MeTime-MeTimeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -190,12 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MeTimeTests" */;
 			buildPhases = (
-				9458DE0BDAE88C719FF5F76A /* [CP] Check Pods Manifest.lock */,
+				AD3C55433B1AD8685F75384C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				9DB9490EF3B3D2E53037EF36 /* [CP] Embed Pods Frameworks */,
-				1368F5DFE1C2BF9A38B27C81 /* [CP] Copy Pods Resources */,
+				762C2D1466B85A7A9625134B /* [CP] Embed Pods Frameworks */,
+				B40DFE2B60984EAC88A9523E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,14 +211,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MeTime" */;
 			buildPhases = (
-				206D1518A44786B5E38DD1A6 /* [CP] Check Pods Manifest.lock */,
+				727BA70B010D85437505057E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				6FBFF21073F45CA16A376D83 /* [CP] Embed Pods Frameworks */,
-				A7E60EE2819A34F05582A2BE /* [CP] Copy Pods Resources */,
+				6732EC1561A0DC5D18C95AD5 /* [CP] Embed Pods Frameworks */,
+				BDF1F022130F3BF32B2566F4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,24 +306,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1368F5DFE1C2BF9A38B27C81 /* [CP] Copy Pods Resources */ = {
+		6732EC1561A0DC5D18C95AD5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		206D1518A44786B5E38DD1A6 /* [CP] Check Pods Manifest.lock */ = {
+		727BA70B010D85437505057E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,24 +345,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6FBFF21073F45CA16A376D83 /* [CP] Embed Pods Frameworks */ = {
+		762C2D1466B85A7A9625134B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9458DE0BDAE88C719FF5F76A /* [CP] Check Pods Manifest.lock */ = {
+		AD3C55433B1AD8685F75384C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -384,24 +384,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9DB9490EF3B3D2E53037EF36 /* [CP] Embed Pods Frameworks */ = {
+		B40DFE2B60984EAC88A9523E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7E60EE2819A34F05582A2BE /* [CP] Copy Pods Resources */ = {
+		BDF1F022130F3BF32B2566F4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -470,7 +470,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 887D4F60DFFB2E370FF65CEB /* Pods-MeTime-MeTimeTests.debug.xcconfig */;
+			baseConfigurationReference = 0C991882C99D58BBD8032F00 /* Pods-MeTime-MeTimeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -497,7 +497,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1E569BDAB2AAD292A874AD4 /* Pods-MeTime-MeTimeTests.release.xcconfig */;
+			baseConfigurationReference = BEC1847B83E2372699238A03 /* Pods-MeTime-MeTimeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -521,7 +521,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 687EA08BFD9565A6B36772F4 /* Pods-MeTime.debug.xcconfig */;
+			baseConfigurationReference = 2ED1C5A92CDF2ABD33D68B9F /* Pods-MeTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -552,14 +552,14 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 014E0C2F370EFB313E51A4A2 /* Pods-MeTime.release.xcconfig */;
+			baseConfigurationReference = 6D7CD475D159CEF1346BFE60 /* Pods-MeTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -588,7 +588,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

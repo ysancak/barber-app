@@ -70,6 +70,13 @@
             "description": "Es gibt keine veröffentlichte Kampagne"
         }
     },
+    "payment": {
+        "alert": {
+            "error": {
+                "title": "Der Zahlungsvorgang ist fehlgeschlagen"
+            }
+        }
+    },
     "favorites": {
         "title": "Favoriten",
         "empty": {
@@ -155,6 +162,11 @@
             "subtotal": "Zwischensumme",
             "discount": "Rabatt",
             "totalPrice": "Gesamtpreis"
+        },
+        "alert": {
+            "cartContentChanged": {
+                "title": "Einige Artikel in Ihrem Warenkorb haben sich geändert"
+            }
         }
     },  
     "errorResult": {
@@ -237,7 +249,7 @@
                 "placeholder": "Postleitzahl"
             },
             "ort": {
-                "placeholder": "Ort. (Optional)"
+                "placeholder": "Ort."
             }
         }
     },
@@ -292,7 +304,7 @@
                 }
             },
             "ort": {
-                "placeholder": "Ort. (Optional)"
+                "placeholder": "Ort."
             },
             "note": {
                 "placeholder": "Ihre Notiz (Optional)"

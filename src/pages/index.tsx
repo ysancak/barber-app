@@ -1,5 +1,6 @@
 import MapListing from './MapListing';
 import Calendar from './Order/Calendar';
+import Payment from './Order/Payment';
 import OrderResult from './Order/Result';
 import ShoppingCart from './Order/ShoppingCart';
 import OrderUserInfo from './Order/UserInformation';
@@ -41,4 +42,5 @@ export {
   OrderUserInfo,
   OrderResult,
   Search,
+  Payment,
 };
