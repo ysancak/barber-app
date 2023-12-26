@@ -10,7 +10,8 @@
     "test": "jest",
     "clean": "rm -rf node_modules/ && rm yarn.lock && rm -rf ios/Pods/ && rm ios/Podfile.lock",
     "postclean": "yarn install && cd ios && pod install",
-    "android::apk": "cd android && ./gradlew clean && ./gradlew assembleRelease"
+    "android::apk": "cd android && ./gradlew clean && ./gradlew assembleRelease",
+    "android::bundle": "cd android && ./gradlew clean && ./gradlew bundleRelease"
   },
   "dependencies": {
     "@georstat/react-native-image-gallery": "^1.1.0",
