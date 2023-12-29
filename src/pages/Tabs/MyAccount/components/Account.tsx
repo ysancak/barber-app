@@ -3,15 +3,43 @@ import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, ListItem, Text, View} from '@/components';
+import {showAlert} from '@/components/Alert';
 import {useNavigation} from '@/hooks';
+import {deleteAccountService} from '@/services/user.service';
 import {clearTokens} from '@/store/auth';
 import {clearAllCarts} from '@/store/cart';
+import {showSuccessToast} from '@/utils/toast';
 
 function Account(): JSX.Element {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {accessToken} = useSelector((state: RootState) => state.auth);
+
+  const deleteAccountHandler = () => {
+    showAlert({
+      title: t('myAccount.options.deleteAccount.alert.title'),
+      content: t('myAccount.options.deleteAccount.alert.content'),
+      buttons: [
+        {
+          text: t('myAccount.options.deleteAccount.alert.action'),
+          type: 'default',
+          onPress: async () => {
+            try {
+              const response = await deleteAccountService();
+              if (response) {
+                logoutHandler();
+                showSuccessToast(
+                  t('myAccount.options.deleteAccount.toastSuccess'),
+                );
+              }
+            } catch {}
+          },
+        },
+        {text: t('general.cancel'), type: 'secondary'},
+      ],
+    });
+  };
 
   const logoutHandler = () => {
     dispatch(clearTokens());
@@ -26,6 +54,10 @@ function Account(): JSX.Element {
             icon="edit"
             label={t('myAccount.options.editProfile')}
             onPress={() => navigation.navigate('EditProfile')}
+          />
+          <ListItem
+            label={t('myAccount.options.deleteAccount.label')}
+            onPress={deleteAccountHandler}
           />
           <ListItem
             icon="logout"

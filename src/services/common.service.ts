@@ -46,3 +46,13 @@ export const checkCouponCodeService = async (params: {
     throw error;
   }
 };
+
+export const homeSlidesService = async () => {
+  try {
+    const response = await api.get<Slide[]>('/slides');
+    return response.data.map(e => e.image_path);
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};

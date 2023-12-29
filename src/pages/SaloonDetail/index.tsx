@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Image,
-  SafeAreaView,
   ScrollView,
   TouchableOpacity,
   View,
@@ -122,24 +121,6 @@ const SaloonDetail = () => {
                 }>
                 <Icon name={'near-me'} size={22} color={colors.primaryColor} />
                 <Text medium>{t('saloonDetail.directionsAction')}</Text>
-              </TouchableOpacity>
-            )}
-
-            {data?.business.businessWebsite && (
-              <TouchableOpacity
-                style={styles.actionButton}
-                onPress={() => openUrl(data.business.businessWebsite)}>
-                <Icon name={'public'} size={22} color={colors.primaryColor} />
-                <Text medium>{t('saloonDetail.websiteAction')}</Text>
-              </TouchableOpacity>
-            )}
-
-            {data?.business.businessTel && (
-              <TouchableOpacity
-                style={styles.actionButton}
-                onPress={() => makePhoneCall(data.business.businessTel)}>
-                <Icon name={'call'} size={22} color={colors.primaryColor} />
-                <Text medium>{t('saloonDetail.callAction')}</Text>
               </TouchableOpacity>
             )}
           </ScrollView>

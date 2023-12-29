@@ -163,3 +163,8 @@ type OrderRequestParams = {
   couponCode: string; // DFJD845
   orderPrice: string; // 100 CHF
 };
+
+type Slide = {
+  _id: string;
+  image_path: string;
+};

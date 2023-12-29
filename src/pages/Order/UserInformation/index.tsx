@@ -1,8 +1,9 @@
+import CheckBox from '@react-native-community/checkbox';
 import {useRoute} from '@react-navigation/native';
 import {useFormik} from 'formik';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {RefreshControl, SafeAreaView, StyleSheet} from 'react-native';
+import {Linking, RefreshControl, SafeAreaView, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 
@@ -11,6 +12,7 @@ import {
   Input,
   KeyboardAvoidingView,
   SectionHeader,
+  Text,
   View,
 } from '@/components';
 import {useFetch, useNavigation, useShoppingCart} from '@/hooks';
@@ -19,6 +21,7 @@ import {createOrderService} from '@/services/saloon.service';
 import {userMeService} from '@/services/user.service';
 import {clearCart, resetCartUserInfo, setCartUserInfo} from '@/store/cart';
 import {colors} from '@/utils';
+import {AGB_URL} from '@/utils/constants';
 import {showErrorToast} from '@/utils/toast';
 
 const OrderUserInfo = () => {
@@ -43,6 +46,7 @@ const OrderUserInfo = () => {
           title={t('general.save')}
           loading={formik.isSubmitting || loading}
           onPress={formik.submitForm}
+          disabled={formik.isValid}
         />
       );
     },
@@ -59,6 +63,7 @@ const OrderUserInfo = () => {
       postcode: data?.postcode ?? '',
       ort: data?.ort ?? '',
       note: '',
+      agb: false,
     },
     enableReinitialize: true,
     validationSchema: orderUserInfoSchema,
@@ -189,6 +194,29 @@ const OrderUserInfo = () => {
               value={formik.values.note}
               error={formik.touched.note && formik.errors.note}
             />
+          </View>
+
+          <View
+            flexDirection="row"
+            gap={10}
+            alignItems="center"
+            paddingHorizontal={16}
+            paddingTop={10}>
+            <CheckBox
+              disabled={false}
+              value={formik.values.agb}
+              lineWidth={2}
+              tintColor={colors.primaryColor}
+              onCheckColor={colors.whiteColor}
+              boxType="square"
+              onFillColor={colors.primaryColor}
+              onTintColor={colors.primaryColor}
+              animationDuration={0}
+              onValueChange={newValue => formik.setFieldValue('agb', newValue)}
+            />
+            <Text onPress={() => Linking.openURL(AGB_URL)}>
+              {t('orderUserInfo.form.agb.placeholder')}
+            </Text>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

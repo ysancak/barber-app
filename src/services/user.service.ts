@@ -60,3 +60,13 @@ export const updateUserProfileService = async (params: {email: string}) => {
     throw error;
   }
 };
+
+export const deleteAccountService = async () => {
+  try {
+    const response = await api.post('/user-delete');
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};

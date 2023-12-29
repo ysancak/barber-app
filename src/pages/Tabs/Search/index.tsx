@@ -1,8 +1,9 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
+import {Keyboard, RefreshControl, ScrollView, StyleSheet} from 'react-native';
 
 import {
+  Button,
   EmptyPage,
   Input,
   SaloonListItem,
@@ -18,6 +19,28 @@ const Search = () => {
   const {fetch, data, loading, error, refresh, refreshing} =
     useFetch(getMapSaloonsService);
   const [searchTerm, setSearchTerm] = useState('');
+  const [keyboardShow, setKeyboardShow] = useState(false);
+
+  useEffect(() => {
+    const keyboardWillShowListener = Keyboard.addListener(
+      'keyboardWillShow',
+      () => {
+        setKeyboardShow(true);
+      },
+    );
+
+    const keyboardWillHideListener = Keyboard.addListener(
+      'keyboardWillHide',
+      () => {
+        setKeyboardShow(false);
+      },
+    );
+
+    return () => {
+      keyboardWillShowListener.remove();
+      keyboardWillHideListener.remove();
+    };
+  }, []);
 
   useEffect(() => {
     fetchSaloons();
@@ -64,12 +87,23 @@ const Search = () => {
   return (
     <View flex style={style.container}>
       <View style={style.inputContainer}>
-        <Input.Text
-          autoFocus
-          placeholder={t('search.placeholder')}
-          value={searchTerm}
-          onChange={setSearchTerm}
-        />
+        <View flex>
+          <Input.Text
+            autoFocus
+            placeholder={t('search.placeholder')}
+            value={searchTerm}
+            onChange={setSearchTerm}
+          />
+        </View>
+        {keyboardShow && (
+          <View paddingLeft={12}>
+            <Button
+              variant="text"
+              label={t('general.cancel')}
+              onPress={() => Keyboard.dismiss()}
+            />
+          </View>
+        )}
       </View>
       {renderContent}
     </View>
@@ -83,6 +117,7 @@ const style = StyleSheet.create({
     backgroundColor: colors.bgColor,
   },
   inputContainer: {
+    flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 12,
     backgroundColor: colors.whiteColor,

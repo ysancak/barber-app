@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  ScrollView,
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  Image,
-} from 'react-native';
+import {ScrollView, SafeAreaView, StyleSheet, Image} from 'react-native';
 
 import PopularSaloons from './components/PopularSaloons';
 import SearchSaloons from './components/Search';
+import Slider from './components/Slider';
 
 import {View} from '@/components';
 import {colors} from '@/utils';
@@ -32,11 +27,14 @@ function Home(): JSX.Element {
             resizeMode="contain"
           />
         </View>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}>
-          <SearchSaloons />
-          <PopularSaloons />
+        <ScrollView>
+          <View style={{paddingBottom: 20}}>
+            <Slider />
+          </View>
+          <View style={styles.container}>
+            <SearchSaloons />
+            <PopularSaloons />
+          </View>
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -53,9 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-  },
-  contentContainer: {
-    paddingTop: Platform.OS === 'android' ? 60 : 16,
     paddingBottom: 20,
     gap: 36,
   },

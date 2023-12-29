@@ -35,6 +35,7 @@
         "seeMore": "Mehr anzeigen",
         "seeLess": "Weniger anzeigen",
         "add": "Hinzufügen",
+        "cancel": "Stornieren",
         "remove": "Entfernen",
         "byMinute": "{{ minute }} Min",
         "error": "Fehler",
@@ -97,7 +98,18 @@
             "reservations": "Reservierungen",
             "myOrders": "Meine Bestellungen",
             "settings": "Einstellungen",
-            "faq": "Häufig gestellte Fragen"
+            "faq": "Häufig gestellte Fragen",
+            "agb": "AGB",
+            "impressum": "Impressum",
+            "deleteAccount": {
+                "label":  "Lösche deinen Account",
+                "alert": {
+                    "title": "Lösche deinen Account",
+                    "content": "Sind Sie sicher, dass Sie Ihr Account löschen möchten?",
+                    "action": "Ja, löschen"
+                },
+                "toastSuccess": "Ihr Account wurde erfolgreich gelöscht"
+            }
         },
         "account": {
             "title": "Loggen Sie sich in Ihr Konto ein",
@@ -129,14 +141,14 @@
         "description": "Geben Sie Ihr aktuelles Passwort ein, um diesen Vorgang durchzuführen",
         "form": {
             "password": {
-                "placeholder": "Neues Passwort eingeben",
+                "placeholder": "Aktuelle Password eingeben",
                 "error": {
                     "match": "Passwörter stimmen nicht überein",
                     "notEmpty": "Passwort darf nicht leer sein"
                 }
             },
             "passwordConfirmation": {
-                "placeholder": "Bestätigen Sie Ihr neues Passwort"
+                "placeholder": "Password Bestätigen"
             }
         }
     },
@@ -308,6 +320,12 @@
             },
             "note": {
                 "placeholder": "Ihre Notiz (Optional)"
+            },
+            "agb": {
+                "placeholder": "Ich habe die AGB gelesen und akzeptiere sie",
+                "error": {
+                    "notEmpty": "AGB ist erforderlich"
+                }
             }
         }
     },

@@ -9,18 +9,9 @@ import {colors} from '@/utils';
 type Props = {
   coordinate?: Coordinate;
   address?: string;
-  phone?: string;
-  mail?: string;
-  website?: string;
 };
 
-const BusinessInfo: React.FC<Props> = ({
-  coordinate,
-  address,
-  phone,
-  mail,
-  website,
-}) => {
+const BusinessInfo: React.FC<Props> = ({coordinate, address}) => {
   const {t} = useTranslation();
   return (
     <View>
@@ -40,30 +31,6 @@ const BusinessInfo: React.FC<Props> = ({
               value={address}
             />
           )}
-          {phone && (
-            <ListItem icon="call" label={t('general.phone')} value={phone} />
-          )}
-          {mail && (
-            <ListItem icon="mail" label={t('general.email')} value={mail} />
-          )}
-          {website && (
-            <ListItem
-              icon="public"
-              label={t('general.website')}
-              value={website}
-            />
-          )}
-        </View>
-
-        <View style={styles.listContainer}>
-          <ListItem
-            label={t('general.paymentMethods')}
-            value="Cash & Credit cards"
-          />
-          <ListItem
-            label={t('general.spokenLanguages')}
-            value="English and German"
-          />
         </View>
       </View>
     </View>
