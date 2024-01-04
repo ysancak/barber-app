@@ -25,7 +25,7 @@ const Button: React.FC<Props> = ({
   suffixIcon,
   prefixIcon,
 }) => {
-  const {background, color} = stylesVariants[variant];
+  const {background, color, disabledBackground} = stylesVariants[variant];
   const isTextVariant = variant === 'text';
 
   const renderIcon = (iconName: string) => (
@@ -40,7 +40,10 @@ const Button: React.FC<Props> = ({
       activeOpacity={0.8}
       style={[
         styles.buttonBase,
-        {backgroundColor: background},
+        {
+          backgroundColor:
+            disabled && variant === 'default' ? disabledBackground : background,
+        },
         isTextVariant && styles.buttonText,
       ]}
       disabled={loading || disabled}>
@@ -73,6 +76,7 @@ const stylesVariants = {
   default: {
     background: colors.primaryColor,
     color: colors.whiteColor,
+    disabledBackground: colors.borderColor,
   },
   secondary: {
     background: colors.borderColor,

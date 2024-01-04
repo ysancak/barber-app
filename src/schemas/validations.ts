@@ -62,7 +62,7 @@ export const orderUserInfoSchema = Yup.object().shape({
     t('orderUserInfo.form.postcode.error.notEmpty'),
   ),
   ort: Yup.string(),
-  agb: Yup.bool()
-    .isFalse()
+  agb: Yup.boolean()
+    .oneOf([true], () => t('orderUserInfo.form.agb.error.notEmpty'))
     .required(() => t('orderUserInfo.form.agb.error.notEmpty')),
 });

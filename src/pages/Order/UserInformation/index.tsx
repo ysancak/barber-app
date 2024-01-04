@@ -8,7 +8,7 @@ import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {
-  HeaderRightButton,
+  Button,
   Input,
   KeyboardAvoidingView,
   SectionHeader,
@@ -19,7 +19,7 @@ import {useFetch, useNavigation, useShoppingCart} from '@/hooks';
 import {orderUserInfoSchema} from '@/schemas/validations';
 import {createOrderService} from '@/services/saloon.service';
 import {userMeService} from '@/services/user.service';
-import {clearCart, resetCartUserInfo, setCartUserInfo} from '@/store/cart';
+import {clearCart, resetCartUserInfo} from '@/store/cart';
 import {colors} from '@/utils';
 import {AGB_URL} from '@/utils/constants';
 import {showErrorToast} from '@/utils/toast';
@@ -39,19 +39,6 @@ const OrderUserInfo = () => {
     dispatch(resetCartUserInfo({businessID}));
   }, [businessID]);
 
-  navigation.setOptions({
-    headerRight() {
-      return (
-        <HeaderRightButton
-          title={t('general.save')}
-          loading={formik.isSubmitting || loading}
-          onPress={formik.submitForm}
-          disabled={formik.isValid}
-        />
-      );
-    },
-  });
-
   const formik = useFormik({
     initialValues: {
       name: data?.name ?? '',
@@ -66,6 +53,7 @@ const OrderUserInfo = () => {
       agb: false,
     },
     enableReinitialize: true,
+    validateOnMount: true,
     validationSchema: orderUserInfoSchema,
     onSubmit: async values => {
       const body = {
@@ -93,11 +81,13 @@ const OrderUserInfo = () => {
     },
   });
 
+  console.log(formik);
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView>
         <ScrollView
-          style={styles.container}
+          style={styles.scrollView}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={retry} />
           }>
@@ -220,6 +210,14 @@ const OrderUserInfo = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      <View style={styles.buttonContainer}>
+        <Button
+          label={t('general.save')}
+          loading={formik.isSubmitting || loading}
+          onPress={formik.submitForm}
+          disabled={!(formik.touched && formik.isValid)}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -228,6 +226,10 @@ export default OrderUserInfo;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: colors.whiteColor,
+  },
+  scrollView: {
     flex: 1,
     backgroundColor: colors.whiteColor,
   },
