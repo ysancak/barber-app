@@ -11,7 +11,7 @@ import {AGB_URL, IMPRESSUM_URL} from '@/utils/constants';
 
 function MyAccount(): JSX.Element {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
 
   return (
     <ScrollView style={styles.container}>
@@ -36,6 +36,10 @@ function MyAccount(): JSX.Element {
           <ListItem
             label={t('myAccount.options.impressum')}
             onPress={() => Linking.openURL(IMPRESSUM_URL)}
+          />
+          <ListItem
+            label={t('myAccount.options.adminLogin')}
+            onPress={() => navigation.navigate('AdminLogin')}
           />
         </View>
       </View>

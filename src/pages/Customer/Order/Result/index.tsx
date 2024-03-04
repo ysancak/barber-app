@@ -19,7 +19,7 @@ const OrderResult = () => {
 
   const dispatch = useDispatch();
   const {t, i18n} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const cart = useShoppingCart(businessID);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import '@/locale/i18n.config';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import AlertController from '@/components/Alert';
-import AdminMainNavigator from '@/router/Admin/MainNavigator';
+import MainNavigator from '@/router/MainNavigator';
 import {store, persistor} from '@/store';
 import toastConfig from '@/utils/toast/config';
 
@@ -21,7 +21,7 @@ function App(): JSX.Element {
       />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <AdminMainNavigator />
+          <MainNavigator />
           <Toast config={toastConfig} />
           <AlertController />
         </PersistGate>

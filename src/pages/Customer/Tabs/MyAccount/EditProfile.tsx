@@ -20,7 +20,7 @@ import {showSuccessToast} from '@/utils/toast';
 
 function EditProfile(): JSX.Element {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const {fetch, data, refresh, refreshing, loading} = useFetch(userMeService);
 
   useEffect(() => {

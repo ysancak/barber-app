@@ -9,7 +9,7 @@ import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 export default function Dashboard() {
-  const navigation = useNavigation<AdminStackParamList>();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,7 +36,7 @@ export default function Dashboard() {
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.gridItemContainer}
-          onPress={() => navigation.navigate('Calendar')}>
+          onPress={() => navigation.navigate('AdminCalendar')}>
           <Icon name="calendar-month" size={36} color={colors.primaryColor} />
           <Text variant="subtitle" fontSize={16}>
             Takvim
@@ -45,7 +45,7 @@ export default function Dashboard() {
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.gridItemContainer}
-          onPress={() => navigation.navigate('WorkerManagement')}>
+          onPress={() => navigation.navigate('AdminWorkerManagement')}>
           <Icon name="person" size={36} color={colors.primaryColor} />
           <Text variant="subtitle" fontSize={16}>
             Çalışan yönetimi

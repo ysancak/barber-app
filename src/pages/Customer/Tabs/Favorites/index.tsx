@@ -15,7 +15,7 @@ import {colors} from '@/utils';
 const Favorites = () => {
   const {t} = useTranslation();
   const isAuthenticated = useAuth();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
 
   const {fetch, refresh, retry, refreshing, loading, error, data} = useFetch(
     getFavoriteSaloonsService,

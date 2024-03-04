@@ -35,7 +35,7 @@ const SaloonDetail = () => {
   const {
     params: {businessID},
   } = useRoute();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const {fetch, loading, data, retry, error, refresh, refreshing} = useFetch(
     getSaloonDetailService,
   );

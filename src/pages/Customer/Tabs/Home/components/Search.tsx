@@ -15,7 +15,7 @@ import {colors} from '@/utils';
 const SearchSaloons = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const categoriesFetch = useFetch(getCategoriesService);
 
   const formik = useFormik({

@@ -8,7 +8,7 @@ import {colors} from '@/utils';
 
 function Settings(): JSX.Element {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View fullHeight gap={8}>

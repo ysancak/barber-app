@@ -101,6 +101,7 @@
             "faq": "Häufig gestellte Fragen",
             "agb": "AGB",
             "impressum": "Impressum",
+            "adminLogin": "Admin girişi",
             "deleteAccount": {
                 "label":  "Lösche deinen Account",
                 "alert": {
@@ -132,6 +133,24 @@
                 "error": {
                     "notEmpty": "Passwort darf nicht leer sein",
                     "min": "Das Passwort muss mindestens 6 Zeichen lang sein"
+                }
+            }
+        }
+    },
+    "adminLogin": {
+        "login": "Giriş yap",
+        "form": {
+            "username": {
+                "placeholder": "Kullanıcı adı",
+                "error": {
+                    "notEmpty": "Kullanıcı adı boş olamaz"
+                }
+            },
+            "password": {
+                "placeholder": "Şifre",
+                "error": {
+                    "notEmpty": "Şifre boş olamaz",
+                    "min": "Şifre minumum 6 karakterden oluşmalıdır"
                 }
             }
         }

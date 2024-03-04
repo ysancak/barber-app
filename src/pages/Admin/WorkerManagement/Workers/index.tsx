@@ -7,7 +7,7 @@ import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 export default function Workers() {
-  const navigation = useNavigation<AdminStackParamList>();
+  const navigation = useNavigation();
 
   const data = [
     {

@@ -13,7 +13,7 @@ import {colors} from '@/utils';
 const PasswordConfirmation = () => {
   const {t} = useTranslation();
   const {params} = useRoute();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
 
   const formik = useFormik({
     initialValues: {

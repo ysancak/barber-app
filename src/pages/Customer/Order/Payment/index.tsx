@@ -11,7 +11,7 @@ import {showErrorToast} from '@/utils/toast';
 const Payment = () => {
   const {t} = useTranslation();
   const route = useRoute();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
 
   const renderLoading = useMemo(() => {

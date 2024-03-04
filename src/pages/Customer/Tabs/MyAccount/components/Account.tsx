@@ -12,7 +12,7 @@ import {showSuccessToast} from '@/utils/toast';
 
 function Account(): JSX.Element {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {accessToken} = useSelector((state: RootState) => state.auth);
 

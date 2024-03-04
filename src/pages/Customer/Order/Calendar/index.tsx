@@ -19,7 +19,7 @@ import {colors} from '@/utils';
 
 const Calendar = () => {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const {
     params: {businessID},
   } = useRoute();

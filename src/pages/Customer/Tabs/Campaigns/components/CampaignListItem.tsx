@@ -13,7 +13,7 @@ const CampaignListItem: React.FC<Campaign> = ({
   campaignName,
   campaignEndDate,
 }) => {
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity

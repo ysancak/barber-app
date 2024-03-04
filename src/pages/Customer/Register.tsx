@@ -13,7 +13,7 @@ import {colors} from '@/utils';
 
 function Register(): JSX.Element {
   const dispatch = useDispatch();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const {t} = useTranslation();
 
   const {fetch, data, loading} = useFetch(registerService);

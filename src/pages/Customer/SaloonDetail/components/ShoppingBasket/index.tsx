@@ -13,7 +13,7 @@ type Props = {
 
 const ShoppingBasket: React.FC<Props> = ({businessID}) => {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const cart = useShoppingCart(businessID);
 
   const animatedValue = useRef(

@@ -67,6 +67,15 @@ export const orderUserInfoSchema = Yup.object().shape({
     .required(() => t('orderUserInfo.form.agb.error.notEmpty')),
 });
 
+export const adminLoginValidation = Yup.object().shape({
+  username: Yup.string().required(() =>
+    t('adminLogin.form.username.error.notEmpty'),
+  ),
+  password: Yup.string()
+    .min(6, () => t('adminLogin.form.password.error.min'))
+    .required(() => t('adminLogin.form.password.error.notEmpty')),
+});
+
 export const createWorkerSchema = Yup.object().shape({
   name: Yup.string().required(() => t('addWorker.form.name.error.notEmpty')),
   surname: Yup.string().required(() =>

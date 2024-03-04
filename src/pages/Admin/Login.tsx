@@ -4,22 +4,22 @@ import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 
-import {Button, Input, Space, Text, View} from '@/components';
+import {Button, Input, View} from '@/components';
 import {useFetch, useNavigation} from '@/hooks';
-import {registerAndLoginValidationSchema} from '@/schemas/validations';
+import {adminLoginValidation} from '@/schemas/validations';
 import {loginService} from '@/services/user.service';
 import {setTokens} from '@/store/auth';
 import {colors} from '@/utils';
 
-function Login(): JSX.Element {
+function AdminLogin(): JSX.Element {
   const dispatch = useDispatch();
-  const navigation = useNavigation<AdminStackParamList>();
+  const navigation = useNavigation();
   const {t} = useTranslation();
   const {fetch, data, loading} = useFetch(loginService);
 
   const formik = useFormik({
-    initialValues: {email: '', password: ''},
-    validationSchema: registerAndLoginValidationSchema,
+    initialValues: {username: '', password: ''},
+    validationSchema: adminLoginValidation,
     onSubmit: async values => fetch(values),
   });
 
@@ -39,18 +39,18 @@ function Login(): JSX.Element {
       />
       <View gap={10}>
         <Input.Text
-          icon="email"
-          placeholder={t('loginAndRegister.form.email.placeholder')}
+          icon="person"
+          placeholder={t('adminLogin.form.username.placeholder')}
           keyboardType="email-address"
           autoFocus
-          onChange={formik.handleChange('email')}
-          onBlur={() => formik.handleBlur('email')}
-          value={formik.values.email}
-          error={formik.touched.email && formik.errors.email}
+          onChange={formik.handleChange('username')}
+          onBlur={() => formik.handleBlur('username')}
+          value={formik.values.username}
+          error={formik.touched.username && formik.errors.username}
         />
         <Input.Password
           icon="lock"
-          placeholder={t('loginAndRegister.form.password.placeholder')}
+          placeholder={t('adminLogin.form.password.placeholder')}
           keyboardType="visible-password"
           onChange={formik.handleChange('password')}
           onBlur={() => formik.handleBlur('password')}
@@ -58,26 +58,16 @@ function Login(): JSX.Element {
           error={formik.touched.password && formik.errors.password}
         />
         <Button
-          label={t('loginAndRegister.login')}
+          label={t('adminLogin.login')}
           onPress={formik.handleSubmit}
           loading={loading}
-        />
-        <Space />
-        <Text textAlign="center" variant="caption">
-          {t('general.or')}
-        </Text>
-        <Space />
-        <Button
-          variant="secondary"
-          label={t('loginAndRegister.register')}
-          onPress={() => navigation.navigate('Register')}
         />
       </View>
     </View>
   );
 }
 
-export default Login;
+export default AdminLogin;
 
 const styles = StyleSheet.create({
   container: {

@@ -3,10 +3,12 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Text} from '@/components';
+import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 import {hp, wp} from '@/utils/responsive';
 
 export default function Menu() {
+  const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -34,7 +36,9 @@ export default function Menu() {
       </TouchableOpacity>
       {isOpen && (
         <View style={styles.dropdown}>
-          <TouchableOpacity style={styles.dropdownItem}>
+          <TouchableOpacity
+            style={styles.dropdownItem}
+            onPress={() => navigation.navigate('Tabs')}>
             <Text variant="title" fontSize={16}>
               Çıkış yap
             </Text>

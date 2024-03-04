@@ -1,11 +1,8 @@
-import {
-  ParamListBase,
-  useNavigation as useBaseNavigation,
-} from '@react-navigation/native';
+import {useNavigation as useBaseNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-function useNavigation<T extends ParamListBase>() {
-  return useBaseNavigation<StackNavigationProp<T>>();
+function useNavigation() {
+  return useBaseNavigation<StackNavigationProp<RootStackParamList>>();
 }
 
 export default useNavigation;

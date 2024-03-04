@@ -11,7 +11,7 @@ export const authWarningAlert = () =>
       {
         text: t('alert.auth.actions.login'),
         type: 'default',
-        onPress: () => navigate<CustomerRootStackParamList>('Login'),
+        onPress: () => navigate('Login'),
       },
       {
         text: t('alert.auth.actions.cancel'),

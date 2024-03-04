@@ -10,7 +10,7 @@ import {showSuccessToast} from '@/utils/toast';
 
 function LanguageSettings(): JSX.Element {
   const {t} = useTranslation();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
 
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 

@@ -36,7 +36,7 @@ const ShoppingCart = () => {
   const isAuthenticated = useAuth();
   const {t} = useTranslation();
   const cart = useShoppingCart(businessID);
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   useEffect(() => {

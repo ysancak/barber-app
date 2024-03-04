@@ -27,7 +27,7 @@ import {showErrorToast} from '@/utils/toast';
 const OrderUserInfo = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const navigation = useNavigation<CustomerRootStackParamList>();
+  const navigation = useNavigation();
   const {
     params: {businessID},
   } = useRoute();
