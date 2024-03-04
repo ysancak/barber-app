@@ -25,7 +25,7 @@ const SelectInput: React.FC<Props> = ({
   loading,
   onChange,
 }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<CustomerRootStackParamList>();
   const [selectedValue, setSelectedValue] = useState<SelectOption | undefined>(
     undefined,
   );

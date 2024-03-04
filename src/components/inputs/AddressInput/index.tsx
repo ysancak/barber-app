@@ -13,7 +13,7 @@ type Props = {
 };
 
 const AddressInput: React.FC<Props> = ({placeholder, onChange, error}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<CustomerRootStackParamList>();
   const [label, setLabel] = useState<string>('');
 
   const _onChange = (_label: string, _coordinate: Coordinate) => {

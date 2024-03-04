@@ -28,7 +28,7 @@ type SelectOption = {
 
 type SelectValue = string | number;
 
-type RootStackParamList = {
+type CustomerRootStackParamList = {
   Login: undefined;
   Register: undefined;
   Home: undefined;
@@ -61,6 +61,17 @@ type RootStackParamList = {
   OrderUserInfo: {businessID: string};
   OrderResult: {businessID: string};
   Payment: {businessID: string; link: string};
+};
+
+type AdminStackParamList = {
+  Calendar: undefined;
+  WorkerManagement: undefined;
+  Workers: undefined;
+  AddWorker: undefined;
+  EditWorker: undefined;
+  DayOffs: undefined;
+  AddDayOff: undefined;
+  EditDayOff: undefined;
 };
 
 type Coordinate = {

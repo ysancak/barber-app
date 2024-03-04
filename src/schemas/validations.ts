@@ -66,3 +66,14 @@ export const orderUserInfoSchema = Yup.object().shape({
     .oneOf([true], () => t('orderUserInfo.form.agb.error.notEmpty'))
     .required(() => t('orderUserInfo.form.agb.error.notEmpty')),
 });
+
+export const createWorkerSchema = Yup.object().shape({
+  name: Yup.string().required(() => t('addWorker.form.name.error.notEmpty')),
+  surname: Yup.string().required(() =>
+    t('addWorker.form.surname.error.notEmpty'),
+  ),
+  color: Yup.string().required(() => t('addWorker.form.color.error.notEmpty')),
+  status: Yup.string()
+    .required(() => t('addWorker.form.status.error.notEmpty'))
+    .oneOf(['active', 'deactive']),
+});

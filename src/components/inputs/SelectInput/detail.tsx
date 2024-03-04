@@ -10,7 +10,7 @@ import RadioListItem from '@/components/RadioListItem';
 const SelectInputDetail = () => {
   const {t} = useTranslation();
   const {params} = useRoute();
-  const navigation = useNavigation();
+  const navigation = useNavigation<CustomerRootStackParamList>();
   const [selectedValue, setSelectedValue] = useState(params.selectedValue);
 
   const handleSelectOption = option => {

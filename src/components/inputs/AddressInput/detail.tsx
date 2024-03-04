@@ -13,7 +13,7 @@ import {MAPS_API_KEY} from '@/utils/constants';
 const AddressInputDetail = () => {
   const ref = useRef(null);
   const {i18n, t} = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<CustomerRootStackParamList>();
   const {params} = useRoute();
   const currentLanguage = i18n.language;
 

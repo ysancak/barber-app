@@ -265,6 +265,35 @@
             }
         }
     },
+    "addWorker": {
+        "title": "Çalışan ekle",
+        "form": {
+            "name": {
+                "placeholder": "Name",
+                "error": {
+                    "notEmpty": "Name ist erforderlich"
+                }
+            },
+            "surname": {
+                "placeholder": "Nachname",
+                "error": {
+                    "notEmpty": "Nachname ist erforderlich"
+                }
+            },
+            "color": {
+                "placeholder": "Color",
+                "error": {
+                    "notEmpty": "Color boş olamaz"
+                }
+            },
+            "status": {
+                "placeholder": "Status",
+                "error": {
+                    "notEmpty": "Status boş olamaz"
+                }
+            }
+        }
+    },
     "orderUserInfo": {
         "title": "Überprüfen Informationen",
         "section": {

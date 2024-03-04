@@ -16,7 +16,7 @@ const SaloonListItem: React.FC<Saloon> = ({
   averageReviewPoint,
   reviewCount,
 }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<CustomerRootStackParamList>();
   return (
     <TouchableOpacity
       activeOpacity={0.8}
