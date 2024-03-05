@@ -47,13 +47,11 @@ export default function AddWorker() {
   });
 
   navigation.setOptions({
-    title: 'Çalışan Ekle',
     headerRight() {
       return (
         <HeaderRightButton
           title={t('general.save')}
-          onPress={console.log}
-          disabled
+          onPress={formik.submitForm}
         />
       );
     },
@@ -94,13 +92,13 @@ export default function AddWorker() {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView>
         <ScrollView style={styles.scrollView}>
-          <SectionHeader title={'Çalışan bilgileri'} />
+          <SectionHeader title={t('addWorker.section.workerInfo')} />
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <View flexDirection="row" gap={10}>
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={'İsim'}
+                  placeholder={t('addWorker.form.name.placeholder')}
                   onChange={formik.handleChange('name')}
                   onBlur={() => formik.handleBlur('name')}
                   value={formik.values.name}
@@ -110,7 +108,7 @@ export default function AddWorker() {
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={'Soyisim'}
+                  placeholder={t('addWorker.form.surname.placeholder')}
                   onChange={formik.handleChange('surname')}
                   onBlur={() => formik.handleBlur('surname')}
                   value={formik.values.surname}
@@ -136,13 +134,13 @@ export default function AddWorker() {
             </View>
           </View>
 
-          <SectionHeader title={'Çalışma saatleri'} />
+          <SectionHeader title={t('addWorker.section.workHours')} />
 
           {Object.keys(formik.values.hours).map((day, index) => (
             <View key={index}>
               <View style={styles.hourToggle}>
                 <Text variant="subtitle" fontSize={16}>
-                  {day}
+                  {t(`addWorker.days.${day}`)}
                 </Text>
                 <View style={styles.toggleSwitchContainer}>
                   {formik.values.hours[day][0].offday === 'off' && (
@@ -164,7 +162,9 @@ export default function AddWorker() {
                     <View key={index}>
                       <View style={styles.timeInputRow}>
                         <Input.Date
-                          placeholder="Başlangıç"
+                          placeholder={t(
+                            'addWorker.form.workHour.startHour.placeholder',
+                          )}
                           mode="time"
                           date={hour.start}
                           onChange={value => {
@@ -172,9 +172,18 @@ export default function AddWorker() {
                             newHours[index].start = value;
                             formik.setFieldValue(`hours.${day}`, newHours);
                           }}
+                          error={
+                            formik.errors.hours &&
+                            formik.errors.hours[day] &&
+                            formik.errors.hours[day][index] &&
+                            formik.touched.hours[day][index] &&
+                            formik.errors.hours[day][index].start
+                          }
                         />
                         <Input.Date
-                          placeholder="Bitiş"
+                          placeholder={t(
+                            'addWorker.form.workHour.endHour.placeholder',
+                          )}
                           mode="time"
                           date={hour.end}
                           onChange={value => {
@@ -182,6 +191,13 @@ export default function AddWorker() {
                             newHours[index].end = value;
                             formik.setFieldValue(`hours.${day}`, newHours);
                           }}
+                          error={
+                            formik.errors.hours &&
+                            formik.errors.hours[day] &&
+                            formik.errors.hours[day][index] &&
+                            formik.touched.hours[day][index] &&
+                            formik.errors.hours[day][index].end
+                          }
                         />
                         <TouchableOpacity
                           style={styles.deleteButton}
@@ -266,7 +282,7 @@ const styles = StyleSheet.create({
   },
   timeInputRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 12,
   },
   deleteButton: {

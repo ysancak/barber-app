@@ -232,6 +232,11 @@
         "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut",
         "action": "Erneut versuchen"
     },
+    "dateInput": {
+        "title": "Seçin",
+        "cancelText": "İptal",
+        "confirmText": "Kaydet"
+    },
     "orderResult": {
         "serviceDateInfo": "Bitte seien Sie vor Ihrer Reservierungszeit an der angegebenen Adresse",
         "title": {
@@ -312,30 +317,45 @@
         }
     },
     "addWorker": {
-        "title": "Çalışan ekle",
+        "title": "Çalışan Ekle",
+        "section": {
+            "workerInfo": "Çalışan Bilgileri",
+            "workHours": "Çalışma Saatleri"
+        },
+        "days": [
+            "Pazartesi",
+            "Salı",
+            "Çarşamba",
+            "Perşembe",
+            "Cuma",
+            "Cumartesi",
+            "Pazar"
+        ],
         "form": {
             "name": {
-                "placeholder": "Name",
+                "placeholder": "İsim",
                 "error": {
-                    "notEmpty": "Name ist erforderlich"
+                    "notEmpty": "Çalışan ismi boş olamaz"
                 }
             },
             "surname": {
-                "placeholder": "Nachname",
+                "placeholder": "Soyisim",
                 "error": {
-                    "notEmpty": "Nachname ist erforderlich"
+                    "notEmpty": "Soyisim boş olamaz"
                 }
             },
-            "color": {
-                "placeholder": "Color",
-                "error": {
-                    "notEmpty": "Color boş olamaz"
-                }
-            },
-            "status": {
-                "placeholder": "Status",
-                "error": {
-                    "notEmpty": "Status boş olamaz"
+            "workHour": {
+                "startHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
+                },
+                "endHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
                 }
             }
         }

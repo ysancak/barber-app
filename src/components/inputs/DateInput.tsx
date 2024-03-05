@@ -38,8 +38,6 @@ const DateInput: React.FC<IDateInput> = ({
   const [open, setOpen] = useState(false);
   const {t} = useTranslation();
 
-  console.log(date);
-
   const onPress = () => {
     if (disabled) {
       return;
@@ -47,7 +45,6 @@ const DateInput: React.FC<IDateInput> = ({
     setOpen(true);
   };
 
-  // Format date or time based on mode
   const formatDisplay = (
     date: Date | string,
     mode: 'date' | 'datetime' | 'time',
@@ -62,7 +59,7 @@ const DateInput: React.FC<IDateInput> = ({
         case 'date':
           return moment(date).format(dateFormat || 'DD/MM/YYYY');
         case 'time':
-          return moment(date).format(dateFormat || 'HH:mm'); // Only time format
+          return moment(date).format(dateFormat || 'HH:mm');
         default:
           return '';
       }
@@ -72,9 +69,9 @@ const DateInput: React.FC<IDateInput> = ({
 
   const handleConfirm = (date: Date) => {
     if (mode === 'time') {
-      onChange(moment(date).format('HH:mm')); // Return time as string
+      onChange(moment(date).format('HH:mm'));
     } else {
-      onChange(date); // Return date as Date object
+      onChange(date);
     }
     setOpen(false);
   };
@@ -93,25 +90,31 @@ const DateInput: React.FC<IDateInput> = ({
 
   return (
     <>
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={onPress}
-        style={[styles.button, style]}>
-        <Icon name="calendar-today" size={22} color={colors.primaryColor} />
-        {date ? (
-          <Text fontSize={14}>{formatDisplay(date, mode, dateFormat)}</Text>
-        ) : (
-          <Text color={colors.captionTextColor}>{placeholder}</Text>
+      <View style={styles.container}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={onPress}
+          style={[styles.button, error && styles.error, style]}>
+          <Icon name="calendar-today" size={22} color={colors.primaryColor} />
+          {date ? (
+            <Text fontSize={14}>{formatDisplay(date, mode, dateFormat)}</Text>
+          ) : (
+            <Text color={colors.captionTextColor}>{placeholder}</Text>
+          )}
+        </TouchableOpacity>
+        {error && (
+          <View flexDirection="row" alignItems="center" gap={2} paddingTop={6}>
+            <Icon name="error" size={22} color={colors.errorColor} />
+            <Text
+              style={{flex: 1}}
+              numberOfLines={1}
+              color={colors.errorColor}
+              fontSize={14}>
+              {error}
+            </Text>
+          </View>
         )}
-      </TouchableOpacity>
-      {error && (
-        <View flexDirection="row" alignItems="center" gap={2} paddingTop={6}>
-          <Icon name="error" size={22} color={colors.errorColor} />
-          <Text color={colors.errorColor} fontSize={14}>
-            {error}
-          </Text>
-        </View>
-      )}
+      </View>
       <DatePicker
         modal
         open={open}
@@ -121,8 +124,8 @@ const DateInput: React.FC<IDateInput> = ({
           setOpen(false);
         }}
         title={t('dateInput.title')}
-        cancelText={t('dateInput.cancel')!}
-        confirmText={t('dateInput.confirm')!}
+        cancelText={t('dateInput.cancelText')!}
+        confirmText={t('dateInput.confirmText')!}
         mode={mode}
         maximumDate={maximumDate}
         minimumDate={minimumDate}
@@ -134,8 +137,14 @@ const DateInput: React.FC<IDateInput> = ({
 export default DateInput;
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
     flex: 1,
+  },
+  error: {
+    borderColor: colors.errorColor,
+  },
+  button: {
+    width: '100%',
     borderWidth: 1,
     padding: 8,
     flexDirection: 'row',

@@ -219,7 +219,7 @@ function MainNavigator(): JSX.Element {
           <Stack.Screen
             name="AdminAddWorker"
             options={{
-              title: 'Çalışan Ekle',
+              title: t('addWorker.title'),
             }}
             component={AdminAddWorker}
           />
