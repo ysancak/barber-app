@@ -19,6 +19,7 @@ import {
 } from '@/components';
 import {useNavigation} from '@/hooks';
 import {createWorkerSchema} from '@/schemas/validations';
+import {adminCreateWorkerService} from '@/services/admin.service';
 import {colors} from '@/utils';
 
 export default function AddWorker() {
@@ -30,8 +31,9 @@ export default function AddWorker() {
       name: '',
       surname: '',
       workerColor: colors.workerColors[0],
+      availability: 'Available',
       hours: {
-        0: [{start: '', end: '', offday: 'on'}],
+        0: [{start: '', end: '', offday: 'off'}],
         1: [{start: '', end: '', offday: 'off'}],
         2: [{start: '', end: '', offday: 'off'}],
         3: [{start: '', end: '', offday: 'off'}],
@@ -41,8 +43,9 @@ export default function AddWorker() {
       },
     },
     validationSchema: createWorkerSchema,
-    onSubmit: values => {
+    onSubmit: async values => {
       console.log(values);
+      const result = await adminCreateWorkerService(values);
     },
   });
 
@@ -52,6 +55,8 @@ export default function AddWorker() {
         <HeaderRightButton
           title={t('general.save')}
           onPress={formik.submitForm}
+          loading={formik.isSubmitting}
+          disabled={!(formik.touched && formik.isValid) || formik.isSubmitting}
         />
       );
     },
@@ -62,7 +67,6 @@ export default function AddWorker() {
       start: '',
       end: '',
       offday: 'off',
-      _id: `new-${Math.random()}`,
     });
     formik.setFieldValue(`hours.${day}`, newHours);
   };
@@ -83,7 +87,6 @@ export default function AddWorker() {
         start: '',
         end: '',
         offday: newStatus,
-        _id: formik.values.hours[day][0]._id,
       },
     ]);
   };
@@ -174,7 +177,9 @@ export default function AddWorker() {
                           }}
                           error={
                             formik.errors.hours &&
+                            formik.touched.hours &&
                             formik.errors.hours[day] &&
+                            formik.touched.hours[day] &&
                             formik.errors.hours[day][index] &&
                             formik.touched.hours[day][index] &&
                             formik.errors.hours[day][index].start
@@ -193,7 +198,9 @@ export default function AddWorker() {
                           }}
                           error={
                             formik.errors.hours &&
+                            formik.touched.hours &&
                             formik.errors.hours[day] &&
+                            formik.touched.hours[day] &&
                             formik.errors.hours[day][index] &&
                             formik.touched.hours[day][index] &&
                             formik.errors.hours[day][index].end

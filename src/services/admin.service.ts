@@ -35,3 +35,13 @@ export const adminGetWorkersService = async () => {
     throw error;
   }
 };
+
+export const adminCreateWorkerService = async (worker: Worker) => {
+  try {
+    const response = await api.post('/save-worker', worker);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};

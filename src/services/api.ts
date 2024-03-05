@@ -34,6 +34,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       const token = state.auth.refreshToken;
       try {
+        // TODO: Refresh token admin ve user arasında nasıl dağılıyor?
         const {data} = await axios.post(`${API_BASE_URL}/refresh`, {
           token,
         });

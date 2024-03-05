@@ -102,6 +102,7 @@ export const createWorkerSchema = Yup.object().shape({
     t('addWorker.form.surname.error.notEmpty'),
   ),
   workerColor: Yup.string(),
+  availability: Yup.string().oneOf(['Available', 'Unavailable']),
   hours: Yup.object().shape({
     '0': daySchema,
     '1': daySchema,
