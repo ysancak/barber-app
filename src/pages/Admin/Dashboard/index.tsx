@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -9,13 +10,14 @@ import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 export default function Dashboard() {
+  const {t} = useTranslation();
   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text variant="title" fontSize={26}>
-          Hoşgeldin Yusuf,
+          {t('adminDashboard.welcomeMessage')}
         </Text>
         <Menu />
       </View>
@@ -39,7 +41,7 @@ export default function Dashboard() {
           onPress={() => navigation.navigate('AdminCalendar')}>
           <Icon name="calendar-month" size={36} color={colors.primaryColor} />
           <Text variant="subtitle" fontSize={16}>
-            Takvim
+            {t('adminDashboard.menu.calendar')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -48,7 +50,7 @@ export default function Dashboard() {
           onPress={() => navigation.navigate('AdminWorkerManagement')}>
           <Icon name="person" size={36} color={colors.primaryColor} />
           <Text variant="subtitle" fontSize={16}>
-            Çalışan yönetimi
+            {t('adminDashboard.menu.workerManagement')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -56,11 +58,13 @@ export default function Dashboard() {
       <View style={styles.gridContainer}>
         <TouchableOpacity
           activeOpacity={0.8}
-          style={{
-            ...styles.gridItemContainer,
-            backgroundColor: colors.borderColor2,
-          }}
-        />
+          style={styles.gridItemContainer}
+          onPress={console.log}>
+          <Icon name="image" size={36} color={colors.primaryColor} />
+          <Text variant="subtitle" fontSize={16}>
+            {t('adminDashboard.menu.slider')}
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.8}
           style={{

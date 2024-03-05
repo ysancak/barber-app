@@ -1,10 +1,10 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {Button, ListItem, Text, View} from '@/components';
 import {showAlert} from '@/components/Alert';
-import {useNavigation} from '@/hooks';
+import {useAuth, useNavigation} from '@/hooks';
 import {deleteAccountService} from '@/services/user.service';
 import {clearTokens} from '@/store/auth';
 import {clearAllCarts} from '@/store/cart';
@@ -14,7 +14,7 @@ function Account(): JSX.Element {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {accessToken} = useSelector((state: RootState) => state.auth);
+  const isAuthenticated = useAuth('User');
 
   const deleteAccountHandler = () => {
     showAlert({
@@ -46,7 +46,7 @@ function Account(): JSX.Element {
     dispatch(clearAllCarts());
   };
 
-  if (accessToken) {
+  if (isAuthenticated) {
     return (
       <>
         <View>

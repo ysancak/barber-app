@@ -76,13 +76,33 @@ export const adminLoginValidation = Yup.object().shape({
     .required(() => t('adminLogin.form.password.error.notEmpty')),
 });
 
+const daySchema = Yup.array().of(
+  Yup.object().shape({
+    start: Yup.string().when('offday', (offday: string[], schema) =>
+      offday[0] === 'on'
+        ? schema.required(() => 'Başlangıç saati boş olamaz')
+        : schema,
+    ),
+    end: Yup.string().when('offday', (offday: string[], schema) =>
+      offday[0] === 'on'
+        ? schema.required(() => 'Bitiş saati boş olamaz')
+        : schema,
+    ),
+    offday: Yup.string().oneOf(['off', 'on']),
+  }),
+);
+
 export const createWorkerSchema = Yup.object().shape({
-  name: Yup.string().required(() => t('addWorker.form.name.error.notEmpty')),
-  surname: Yup.string().required(() =>
-    t('addWorker.form.surname.error.notEmpty'),
-  ),
-  color: Yup.string().required(() => t('addWorker.form.color.error.notEmpty')),
-  status: Yup.string()
-    .required(() => t('addWorker.form.status.error.notEmpty'))
-    .oneOf(['active', 'deactive']),
+  name: Yup.string().required('İsim boş olamaz'),
+  surname: Yup.string().required('Soyisim boş olamaz'),
+  workerColor: Yup.string().required('Renk seçimi yapılmalıdır'),
+  hours: Yup.object().shape({
+    '0': daySchema,
+    '1': daySchema,
+    '2': daySchema,
+    '3': daySchema,
+    '4': daySchema,
+    '5': daySchema,
+    '6': daySchema,
+  }),
 });

@@ -13,7 +13,7 @@ type Props = {
 };
 
 const SaloonFavorite: React.FC<Props> = ({initialValue, businessID}) => {
-  const isAuthenticated = useAuth();
+  const isAuthenticated = useAuth('User');
   const [isFavorite, setIsFavorite] = useState(initialValue);
   const {fetch} = useFetch(toggleSaloonFavoriteService);
 

@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux';
 import {Button, Input, View} from '@/components';
 import {useFetch, useNavigation} from '@/hooks';
 import {adminLoginValidation} from '@/schemas/validations';
-import {loginService} from '@/services/user.service';
+import {loginAdminService} from '@/services/admin.service';
 import {setTokens} from '@/store/auth';
 import {colors} from '@/utils';
 
@@ -15,7 +15,7 @@ function AdminLogin(): JSX.Element {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {t} = useTranslation();
-  const {fetch, data, loading} = useFetch(loginService);
+  const {fetch, data, loading} = useFetch(loginAdminService);
 
   const formik = useFormik({
     initialValues: {username: '', password: ''},
@@ -26,7 +26,7 @@ function AdminLogin(): JSX.Element {
   useEffect(() => {
     if (data) {
       dispatch(setTokens(data));
-      navigation.goBack();
+      navigation.navigate('AdminDashboard');
     }
   }, [data]);
 

@@ -81,8 +81,6 @@ const OrderUserInfo = () => {
     },
   });
 
-  console.log(formik);
-
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView>

@@ -14,7 +14,7 @@ import {colors} from '@/utils';
 
 const Favorites = () => {
   const {t} = useTranslation();
-  const isAuthenticated = useAuth();
+  const isAuthenticated = useAuth('User');
   const navigation = useNavigation();
 
   const {fetch, refresh, retry, refreshing, loading, error, data} = useFetch(

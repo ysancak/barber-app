@@ -406,6 +406,8 @@ PODS:
   - React-jsinspector (0.72.6)
   - React-logger (0.72.6):
     - glog
+  - react-native-date-picker (4.4.0):
+    - React-Core
   - react-native-geolocation (3.1.0):
     - React-Core
   - react-native-google-maps (1.8.4):
@@ -599,6 +601,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
@@ -698,6 +701,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-date-picker:
+    :path: "../node_modules/react-native-date-picker"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-google-maps:
@@ -797,6 +802,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 3bf18ff7cb03cd8dfdce08fbbc0d15058c1d71ae
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
+  react-native-date-picker: ebcb936d72fc3bbde0dea47c6641e913523231ca
   react-native-geolocation: ef66fb798d96284c6043f0b16c15d9d1d4955db4
   react-native-google-maps: 1e3d5bb85a6b9823bf034c4ec68ab096690e24e8
   react-native-maps: e2b78affd8e90c807a87bd042dc6b1af2decbcf1

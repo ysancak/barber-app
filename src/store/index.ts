@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
 
+import workersReducer from '@/store/admin/workers';
 import authReducer from '@/store/auth';
 import cartReducer from '@/store/cart';
 import searchReducer from '@/store/search';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   search: searchReducer,
+  workers: workersReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -33,7 +33,7 @@ const ShoppingCart = () => {
   const {
     params: {businessID},
   } = useRoute();
-  const isAuthenticated = useAuth();
+  const isAuthenticated = useAuth('User');
   const {t} = useTranslation();
   const cart = useShoppingCart(businessID);
   const navigation = useNavigation();

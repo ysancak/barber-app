@@ -8,7 +8,9 @@ import {navigationRef} from './root.navigation';
 import CustomerTabNavigator from './TabNavigator';
 
 import {HeaderTitle} from '@/components';
+import {useAuth} from '@/hooks';
 import {
+  AdminAddWorker,
   AdminCalendar,
   AdminDashboard,
   AdminLogin,
@@ -40,11 +42,14 @@ const Stack = createStackNavigator();
 
 function MainNavigator(): JSX.Element {
   const {t} = useTranslation();
-
+  const isAdminAuthenticated = useAuth('Admin');
+  const startingPage: keyof RootStackParamList = isAdminAuthenticated
+    ? 'AdminDashboard'
+    : 'Tabs';
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName="AdminDashboard"
+        initialRouteName={startingPage}
         screenOptions={() => ({
           headerTintColor: colors.primaryColor,
           headerTitle(props) {
@@ -171,14 +176,14 @@ function MainNavigator(): JSX.Element {
           <Stack.Screen
             name="AdminLogin"
             options={{
-              title: 'Kuaför girişi',
+              title: t('adminLogin.title'),
             }}
             component={AdminLogin}
           />
           <Stack.Screen
             name="AdminDashboard"
             options={{
-              title: 'Yönetim',
+              title: t('adminDashboard.title'),
               headerShown: false,
             }}
             component={AdminDashboard}
@@ -193,14 +198,14 @@ function MainNavigator(): JSX.Element {
           <Stack.Screen
             name="AdminWorkerManagement"
             options={{
-              title: 'Çalışan Yönetimi',
+              title: t('adminWorkerManagement.title'),
             }}
             component={AdminWorkerManagement}
           />
           <Stack.Screen
             name="AdminWorkers"
             options={{
-              title: 'Çalışanlar',
+              title: t('adminWorkers.title'),
             }}
             component={AdminWorkers}
           />
@@ -210,6 +215,13 @@ function MainNavigator(): JSX.Element {
               title: 'İzin günleri',
             }}
             component={AdminWorkerDayOffs}
+          />
+          <Stack.Screen
+            name="AdminAddWorker"
+            options={{
+              title: 'Çalışan Ekle',
+            }}
+            component={AdminAddWorker}
           />
         </Stack.Group>
       </Stack.Navigator>

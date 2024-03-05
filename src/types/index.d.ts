@@ -62,11 +62,13 @@ type RootStackParamList = {
   OrderResult: {businessID: string};
   Payment: {businessID: string; link: string};
   // Admin
+  AdminDashboard: undefined;
   AdminLogin: undefined;
   AdminCalendar: undefined;
   AdminWorkerManagement: undefined;
   AdminWorkers: undefined;
   AdminWorkerDayOffs: undefined;
+  AdminAddWorker: undefined;
 };
 
 type Coordinate = {

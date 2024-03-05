@@ -19,6 +19,7 @@ import SaloonListItem from './SaloonListItem';
 import SectionHeader from './SectionHeader';
 import ServiceList from './ServiceList';
 import Space from './Space';
+import TabView from './TabView';
 import Text from './Text';
 import View from './View';
 
@@ -46,4 +47,5 @@ export {
   SectionHeader,
   KeyboardAvoidingView,
   HeaderRightButton,
+  TabView,
 };

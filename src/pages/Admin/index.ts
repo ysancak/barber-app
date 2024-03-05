@@ -4,6 +4,7 @@ import AdminLogin from '@/pages/Admin/Login';
 import AdminWorkerManagement from '@/pages/Admin/WorkerManagement';
 import AdminWorkerDayOffs from '@/pages/Admin/WorkerManagement/WorkerDayOffs';
 import AdminWorkers from '@/pages/Admin/WorkerManagement/Workers';
+import AdminAddWorker from '@/pages/Admin/WorkerManagement/Workers/AddWorker';
 
 export {
   AdminLogin,
@@ -12,4 +13,5 @@ export {
   AdminWorkerManagement,
   AdminWorkerDayOffs,
   AdminWorkers,
+  AdminAddWorker,
 };

@@ -168,3 +168,11 @@ type Slide = {
   _id: string;
   image_path: string;
 };
+
+type WorkerDayOff = {
+  id: string;
+  name: string;
+  surname: string;
+  startDate: string;
+  endDate: string;
+};

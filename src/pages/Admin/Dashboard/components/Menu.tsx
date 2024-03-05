@@ -1,18 +1,40 @@
-import React, {useState} from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+  Image,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
 
 import {Text} from '@/components';
-import {useNavigation} from '@/hooks';
+import {useFetch, useNavigation} from '@/hooks';
+import {adminBusinessDetailService} from '@/services/admin.service';
+import {clearTokens} from '@/store/auth';
 import {colors} from '@/utils';
 import {hp, wp} from '@/utils/responsive';
 
 export default function Menu() {
+  const {t} = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const {data, fetch} = useFetch(adminBusinessDetailService);
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const handleClose = () => setIsOpen(false);
+
+  const logoutHandler = () => {
+    dispatch(clearTokens());
+    navigation.navigate('Tabs');
+  };
 
   return (
     <View style={styles.menuContainer}>
@@ -27,7 +49,7 @@ export default function Menu() {
         activeOpacity={0.5}
         style={styles.menuButton}
         onPress={toggleMenu}>
-        <View style={styles.avatar} />
+        <Image source={{uri: data?.businessImage}} style={styles.avatar} />
         <Icon
           name={isOpen ? 'expand-less' : 'expand-more'}
           size={28}
@@ -36,11 +58,9 @@ export default function Menu() {
       </TouchableOpacity>
       {isOpen && (
         <View style={styles.dropdown}>
-          <TouchableOpacity
-            style={styles.dropdownItem}
-            onPress={() => navigation.navigate('Tabs')}>
+          <TouchableOpacity style={styles.dropdownItem} onPress={logoutHandler}>
             <Text variant="title" fontSize={16}>
-              Çıkış yap
+              {t('adminDashboard.headerMenu.logout')}
             </Text>
           </TouchableOpacity>
         </View>
@@ -69,7 +89,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colors.primaryColor,
+    backgroundColor: colors.borderColor2,
     borderWidth: 1,
     borderColor: colors.borderColor,
   },

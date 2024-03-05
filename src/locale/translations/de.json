@@ -137,7 +137,34 @@
             }
         }
     },
+    "adminDashboard": {
+        "title": "Yönetim",
+        "welcomeMessage": "Hoşgeldin,",
+        "headerMenu": {
+            "logout": "Çıkış yap"
+        },
+        "menu": {
+            "calendar": "Takvim",
+            "workerManagement": "Çalışan yönetimi",
+            "slider": "Slider görselleri"
+        }
+    },
+    "adminWorkerManagement": {
+        "title": "Çalışan Yönetimi",
+        "options": {
+            "workers": "Çalışanlar",
+            "offdays": "İzin günleri"
+        }
+    },
+    "adminWorkers": {
+        "title": "Çalışanlar",
+        "availablity": {
+            "available": "Çalışıyor",
+            "unavailable": "Uygun değil"
+        }
+    },
     "adminLogin": {
+        "title": "Kuaför girişi",
         "login": "Giriş yap",
         "form": {
             "username": {
