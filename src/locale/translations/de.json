@@ -24,6 +24,14 @@
                 "login": "Einloggen",
                 "cancel": "Abbrechen"
             }
+        },
+        "workerDelete": {
+            "title": "Silmek istediğine emin misin?",
+            "description": "Silmek istediğine emin misin?",
+            "actions": {
+                "delete": "Evet, Sil",
+                "cancel": "İptal"
+            }
         }
     },
     "nativeMapDefaultLabel": "Zielort",
@@ -331,6 +339,9 @@
             "Cumartesi",
             "Pazar"
         ],
+        "toast": {
+            "savedSuccess": "Çalışan eklendi"
+        },
         "form": {
             "name": {
                 "placeholder": "İsim",

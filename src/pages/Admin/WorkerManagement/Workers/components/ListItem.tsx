@@ -1,15 +1,46 @@
 import React, {useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
 
 import {Text, View} from '@/components';
+import {showAlert} from '@/components/Alert';
+import {deleteWorker} from '@/store/admin/workers';
 import {colors} from '@/utils';
 
 export default function ListItem({_id, name, surname, availability}: Worker) {
+  const {t} = useTranslation();
+  const dispatch = useDispatch();
   const isAvailable = useMemo(
     () => availability === 'Available',
     [availability],
   );
+
+  const deleteHandler = () => {
+    try {
+      dispatch(deleteWorker(_id));
+      //TODO: Servise istek atarak silme işlemi yap
+    } catch (error) {}
+  };
+
+  const onDelete = () => {
+    showAlert({
+      title: t('alert.workerDelete.title'),
+      content: t('alert.workerDelete.description'),
+      buttons: [
+        {
+          type: 'default',
+          text: t('alert.workerDelete.actions.delete'),
+          onPress: () => deleteHandler(),
+        },
+        {
+          type: 'secondary',
+          text: t('alert.workerDelete.actions.cancel'),
+        },
+      ],
+    });
+  };
 
   return (
     <View style={styles.workerContainer}>
@@ -34,7 +65,7 @@ export default function ListItem({_id, name, surname, availability}: Worker) {
           <Icon name="edit" size={24} color={colors.textColor} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={onDelete}>
           <Icon name="delete-outline" size={24} color={colors.textColor} />
         </TouchableOpacity>
       </View>

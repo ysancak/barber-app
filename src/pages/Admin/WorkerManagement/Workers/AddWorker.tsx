@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
 
 import {
   HeaderRightButton,
@@ -20,10 +21,13 @@ import {
 import {useNavigation} from '@/hooks';
 import {createWorkerSchema} from '@/schemas/validations';
 import {adminCreateWorkerService} from '@/services/admin.service';
+import {addWorker} from '@/store/admin/workers';
 import {colors} from '@/utils';
+import {showSuccessToast} from '@/utils/toast';
 
 export default function AddWorker() {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const formik = useFormik({
@@ -42,10 +46,19 @@ export default function AddWorker() {
         6: [{start: '', end: '', offday: 'off'}],
       },
     },
+    validateOnChange: false,
+    validateOnBlur: false,
     validationSchema: createWorkerSchema,
     onSubmit: async values => {
-      console.log(values);
-      const result = await adminCreateWorkerService(values);
+      try {
+        const result = await adminCreateWorkerService(values);
+        if (result) {
+          dispatch(addWorker(values));
+          navigation.goBack();
+          showSuccessToast(t('addWorker.toast.savedSuccess'));
+        }
+      } finally {
+      }
     },
   });
 
@@ -55,8 +68,12 @@ export default function AddWorker() {
         <HeaderRightButton
           title={t('general.save')}
           onPress={formik.submitForm}
-          loading={formik.isSubmitting}
-          disabled={!(formik.touched && formik.isValid) || formik.isSubmitting}
+          loading={formik.isSubmitting || formik.isValidating}
+          disabled={
+            !(formik.touched && formik.isValid) ||
+            formik.isValidating ||
+            formik.isSubmitting
+          }
         />
       );
     },
@@ -138,7 +155,6 @@ export default function AddWorker() {
           </View>
 
           <SectionHeader title={t('addWorker.section.workHours')} />
-
           {Object.keys(formik.values.hours).map((day, index) => (
             <View key={index}>
               <View style={styles.hourToggle}>
