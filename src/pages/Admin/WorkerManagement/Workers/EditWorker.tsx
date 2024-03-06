@@ -51,6 +51,7 @@ export default function EditWorker() {
           workerID: worker._id,
           worker: values as Worker,
         });
+        //TODO: dönen nesneyi dön ve dispatch ile ekle
         if (result) {
           dispatch(editWorker(values as Worker));
           navigation.goBack();

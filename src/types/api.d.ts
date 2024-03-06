@@ -171,9 +171,10 @@ type Slide = {
 };
 
 type WorkerDayOff = {
-  id: string;
-  name: string;
-  surname: string;
-  startDate: string;
-  endDate: string;
+  _id: string;
+  businessID: string;
+  HolidayEndDate: string;
+  HolidayStartDate: string;
+  workerID: string;
+  workerName: string;
 };

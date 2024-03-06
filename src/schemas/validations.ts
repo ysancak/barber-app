@@ -143,3 +143,15 @@ export const createWorkerSchema = Yup.object().shape({
     '6': daySchema,
   }),
 });
+
+export const createWorkerDayOffSchema = Yup.object().shape({
+  workerID: Yup.string().required(() =>
+    t('addDayOff.form.workerID.error.notEmpty'),
+  ),
+  HolidayStartDate: Yup.string().required(() =>
+    t('addDayOff.form.holidayStartDate.error.notEmpty'),
+  ),
+  HolidayEndDate: Yup.string().required(() =>
+    t('addDayOff.form.holidayEndDate.error.notEmpty'),
+  ),
+});

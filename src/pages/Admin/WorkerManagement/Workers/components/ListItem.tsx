@@ -24,23 +24,22 @@ export default function ListItem(worker: Worker) {
     try {
       dispatch(deleteWorker(worker._id));
       adminDeleteWorkerService(worker._id);
-      //TODO: Servise istek atarak silme işlemi yap
     } catch (error) {}
   };
 
   const onDelete = () => {
     showAlert({
-      title: t('alert.workerDelete.title'),
-      content: t('alert.workerDelete.description'),
+      title: t('alert.delete.title'),
+      content: t('alert.delete.description'),
       buttons: [
         {
           type: 'default',
-          text: t('alert.workerDelete.actions.delete'),
+          text: t('alert.delete.actions.delete'),
           onPress: () => deleteHandler(),
         },
         {
           type: 'secondary',
-          text: t('alert.workerDelete.actions.cancel'),
+          text: t('alert.delete.actions.cancel'),
         },
       ],
     });

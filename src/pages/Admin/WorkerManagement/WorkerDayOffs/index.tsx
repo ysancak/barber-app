@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, TouchableOpacity, StyleSheet, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -10,10 +11,11 @@ import {useNavigation} from '@/hooks';
 import {colors} from '@/utils';
 
 export default function DayOffs() {
+  const {t} = useTranslation();
   const navigation = useNavigation();
 
   const HeaderRightComponent = () => (
-    <TouchableOpacity onPress={() => navigation.navigate('AddDayOff')}>
+    <TouchableOpacity onPress={() => navigation.navigate('AdminAddDayOff')}>
       <View style={styles.headerRight}>
         <Icon name="add" size={26} color={colors.primaryColor} />
       </View>
@@ -29,10 +31,10 @@ export default function DayOffs() {
   return (
     <SafeAreaView style={styles.container}>
       <TabView.Container activeIndex={0}>
-        <TabView.Content title="Aktif">
+        <TabView.Content title={t('adminDayOffs.tabs.current')}>
           <CurrentList />
         </TabView.Content>
-        <TabView.Content title="Geçmiş">
+        <TabView.Content title={t('adminDayOffs.tabs.past')}>
           <HistoricalList />
         </TabView.Content>
       </TabView.Container>

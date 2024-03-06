@@ -14,6 +14,7 @@ type Props = {
   value?: SelectValue;
   loading?: boolean;
   onChange: (item: SelectOption | undefined) => void;
+  error?: string | undefined | false;
 };
 
 const SelectInput: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const SelectInput: React.FC<Props> = ({
   value,
   loading,
   onChange,
+  error,
 }) => {
   const navigation = useNavigation();
   const [selectedValue, setSelectedValue] = useState<SelectOption | undefined>(
@@ -58,31 +60,41 @@ const SelectInput: React.FC<Props> = ({
   }, [selectedValue]);
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      style={styles.container}
-      disabled={loading}
-      onPress={() =>
-        navigation.navigate('SelectInputDetail', {
-          title: placeholder,
-          options,
-          selectedValue,
-          onOptionChange,
-          optionLabel,
-          optionValue,
-        })
-      }>
-      <View flex>{renderValueView}</View>
-      <View>
-        {loading ? (
-          <View paddingHorizontal={4} paddingVertical={5}>
-            <ActivityIndicator />
-          </View>
-        ) : (
-          <Icon name={'expand-more'} size={30} color={colors.textColor} />
-        )}
-      </View>
-    </TouchableOpacity>
+    <View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={[styles.container, error && styles.error]}
+        disabled={loading}
+        onPress={() =>
+          navigation.navigate('SelectInputDetail', {
+            title: placeholder,
+            options,
+            selectedValue,
+            onOptionChange,
+            optionLabel,
+            optionValue,
+          })
+        }>
+        <View flex>{renderValueView}</View>
+        <View>
+          {loading ? (
+            <View paddingHorizontal={4} paddingVertical={5}>
+              <ActivityIndicator />
+            </View>
+          ) : (
+            <Icon name={'expand-more'} size={30} color={colors.textColor} />
+          )}
+        </View>
+      </TouchableOpacity>
+      {error && (
+        <View flexDirection="row" alignItems="center" gap={2} paddingTop={6}>
+          <Icon name="error" size={22} color={colors.errorColor} />
+          <Text color={colors.errorColor} fontSize={14}>
+            {error}
+          </Text>
+        </View>
+      )}
+    </View>
   );
 };
 
@@ -98,5 +110,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteColor,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+
+  error: {
+    borderColor: colors.errorColor,
   },
 });

@@ -25,7 +25,7 @@
                 "cancel": "Abbrechen"
             }
         },
-        "workerDelete": {
+        "delete": {
             "title": "Silmek istediğine emin misin?",
             "description": "Silmek istediğine emin misin?",
             "actions": {
@@ -169,6 +169,10 @@
         "availablity": {
             "available": "Çalışıyor",
             "unavailable": "Uygun değil"
+        },
+        "empty": {
+            "title": "Çalışan yok",
+            "description": "Listelenecek çalışan bulunamadı"
         }
     },
     "adminLogin": {
@@ -321,6 +325,81 @@
             },
             "ort": {
                 "placeholder": "Ort."
+            }
+        }
+    },
+    "adminDayOffs": {
+        "title": "İzin günleri",
+        "tabs": {
+            "current": "Aktif",
+            "past": "Geçmiş"
+        },
+        "empty": {
+            "title": "İzin yok",
+            "description": "Listelenecek izin bulunamadı"
+        },
+        "upcomingMessage": {
+            "start": "Başlamasına {{ days }} saat kaldı",
+            "end": "Bitmesine {{ days }} saat kaldı"
+        }
+    },
+    "addDayOff": {
+        "title": "İzin ekle",
+        "toast": {
+            "savedSuccess": "İzin eklendi"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Çalışan seçin",
+                "error": {
+                    "notEmpty": "Çalışan boş olamaz"
+                }
+            },
+            "holidayStartDate": {
+                "placeholder": "Başlangıç tarihi",
+                "error": {
+                    "notEmpty": "Başlangıç tarihi boş olamaz"
+                }
+            },
+            "holidayEndDate": {
+                "placeholder": "Bitiş tarihi",
+                "error": {
+                    "notEmpty": "Bitiş tarihi boş olamaz"
+                }
+            }
+        }
+    },
+    "editDayOff": {
+        "title": "İzni düzenle",
+        "toast": {
+            "savedSuccess": "İzin güncellendi"
+        },
+        "form": {
+            "name": {
+                "placeholder": "İsim",
+                "error": {
+                    "notEmpty": "Çalışan ismi boş olamaz"
+                }
+            },
+            "surname": {
+                "placeholder": "Soyisim",
+                "error": {
+                    "notEmpty": "Soyisim boş olamaz"
+                }
+            },
+            "workHour": {
+                "startHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
+                },
+                "endHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
+                }
             }
         }
     },

@@ -10,9 +10,11 @@ import CustomerTabNavigator from './TabNavigator';
 import {HeaderTitle} from '@/components';
 import {useAuth} from '@/hooks';
 import {
+  AdminAddDayOff,
   AdminAddWorker,
   AdminCalendar,
   AdminDashboard,
+  AdminEditDayOff,
   AdminEditWorker,
   AdminLogin,
   AdminWorkerDayOffs,
@@ -211,13 +213,6 @@ function MainNavigator(): JSX.Element {
             component={AdminWorkers}
           />
           <Stack.Screen
-            name="AdminWorkerDayOffs"
-            options={{
-              title: 'İzin günleri',
-            }}
-            component={AdminWorkerDayOffs}
-          />
-          <Stack.Screen
             name="AdminAddWorker"
             options={{
               title: t('addWorker.title'),
@@ -230,6 +225,27 @@ function MainNavigator(): JSX.Element {
               title: t('editWorker.title'),
             }}
             component={AdminEditWorker}
+          />
+          <Stack.Screen
+            name="AdminWorkerDayOffs"
+            options={{
+              title: t('adminDayOffs.title'),
+            }}
+            component={AdminWorkerDayOffs}
+          />
+          <Stack.Screen
+            name="AdminAddDayOff"
+            options={{
+              title: t('addDayOff.title'),
+            }}
+            component={AdminAddDayOff}
+          />
+          <Stack.Screen
+            name="AdminEditDayOff"
+            options={{
+              title: t('editDayOff.title'),
+            }}
+            component={AdminEditDayOff}
           />
         </Stack.Group>
       </Stack.Navigator>

@@ -3,6 +3,8 @@ import {initReactI18next} from 'react-i18next';
 
 import de from './translations/de.json';
 
+//TODO: Admin için dil entegrasyonu yap
+
 i18n.use(initReactI18next).init({
   compatibilityJSON: 'v3',
   lng: 'de',

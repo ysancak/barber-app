@@ -42,6 +42,7 @@ api.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
+        // TODO: Refresh token ile yenileme yapılamadığında adamı ana sayfaya gönder
         store.dispatch(clearTokens());
       }
     }

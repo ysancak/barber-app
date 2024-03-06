@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   ScrollView,
   StyleSheet,
@@ -18,6 +19,7 @@ import {colors} from '@/utils';
 
 export default function Workers() {
   const navigation = useNavigation();
+  const {t} = useTranslation();
   const dispatch = useDispatch();
   const {fetch, data, loading, refresh, refreshing, error, retry} = useFetch(
     adminGetWorkersService,
@@ -48,7 +50,11 @@ export default function Workers() {
 
   if (!workersData?.length) {
     return (
-      <EmptyPage animation="empty" title={'Boş'} description={'Çalışan yok'} />
+      <EmptyPage
+        animation="empty"
+        title={t('adminWorkers.empty.title')}
+        description={t('adminWorkers.empty.description')}
+      />
     );
   }
 

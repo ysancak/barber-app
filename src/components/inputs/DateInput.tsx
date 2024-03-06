@@ -12,10 +12,11 @@ import {colors} from '@/utils';
 
 interface IDateInput {
   placeholder: string;
-  onChange?: (date: string | Date) => void; // Now accepts both Date and string for time mode
-  date?: Date | string; // Can be a Date object or a string for time mode
+  onChange?: (date: string | Date) => void;
+  date?: Date | string;
   error?: string;
   mode?: 'date' | 'datetime' | 'time';
+  size?: 'default' | 'input';
   disabled?: boolean;
   style?: ViewStyle;
   dateFormat?: string;
@@ -29,6 +30,7 @@ const DateInput: React.FC<IDateInput> = ({
   date,
   error,
   mode = 'date',
+  size = 'default',
   disabled = false,
   style,
   dateFormat,
@@ -94,7 +96,12 @@ const DateInput: React.FC<IDateInput> = ({
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={onPress}
-          style={[styles.button, error && styles.error, style]}>
+          style={[
+            styles.button,
+            {height: size == 'default' ? 48 : 55},
+            error && styles.error,
+            style,
+          ]}>
           <Icon name="calendar-today" size={22} color={colors.primaryColor} />
           {date ? (
             <Text fontSize={14}>{formatDisplay(date, mode, dateFormat)}</Text>
@@ -148,6 +155,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 8,
     flexDirection: 'row',
+    backgroundColor: colors.whiteColor,
     alignItems: 'center',
     gap: 8,
     borderColor: colors.borderColor,

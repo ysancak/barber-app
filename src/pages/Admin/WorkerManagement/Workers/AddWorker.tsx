@@ -52,6 +52,7 @@ export default function AddWorker() {
     onSubmit: async values => {
       try {
         const result = await adminCreateWorkerService(values);
+        //TODO: dönen nesneyi dön ve dispatch ile ekle
         if (result) {
           dispatch(addWorker(values));
           navigation.goBack();
