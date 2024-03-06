@@ -6,20 +6,24 @@ import {useDispatch} from 'react-redux';
 
 import {Text, View} from '@/components';
 import {showAlert} from '@/components/Alert';
+import {useNavigation} from '@/hooks';
+import {adminDeleteWorkerService} from '@/services/admin.service';
 import {deleteWorker} from '@/store/admin/workers';
 import {colors} from '@/utils';
 
-export default function ListItem({_id, name, surname, availability}: Worker) {
+export default function ListItem(worker: Worker) {
   const {t} = useTranslation();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const isAvailable = useMemo(
-    () => availability === 'Available',
-    [availability],
+    () => worker.availability === 'Available',
+    [worker.availability],
   );
 
   const deleteHandler = () => {
     try {
-      dispatch(deleteWorker(_id));
+      dispatch(deleteWorker(worker._id));
+      adminDeleteWorkerService(worker._id);
       //TODO: Servise istek atarak silme işlemi yap
     } catch (error) {}
   };
@@ -46,7 +50,7 @@ export default function ListItem({_id, name, surname, availability}: Worker) {
     <View style={styles.workerContainer}>
       <View style={styles.workerInfoContainer}>
         <Text variant="title" fontSize={18} numberOfLines={1}>
-          {name} {surname}
+          {worker.name} {worker.surname}
         </Text>
         <View style={styles.workerStatusContainer}>
           <View
@@ -61,7 +65,9 @@ export default function ListItem({_id, name, surname, availability}: Worker) {
         </View>
       </View>
       <View style={styles.actionButtonsContainer}>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => navigation.navigate('AdminEditWorker', worker)}>
           <Icon name="edit" size={24} color={colors.textColor} />
         </TouchableOpacity>
 

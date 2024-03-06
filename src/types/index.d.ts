@@ -69,6 +69,7 @@ type RootStackParamList = {
   AdminWorkers: undefined;
   AdminWorkerDayOffs: undefined;
   AdminAddWorker: undefined;
+  AdminEditWorker: Worker;
 };
 
 type Coordinate = {

@@ -330,15 +330,6 @@
             "workerInfo": "Çalışan Bilgileri",
             "workHours": "Çalışma Saatleri"
         },
-        "days": [
-            "Pazartesi",
-            "Salı",
-            "Çarşamba",
-            "Perşembe",
-            "Cuma",
-            "Cumartesi",
-            "Pazar"
-        ],
         "toast": {
             "savedSuccess": "Çalışan eklendi"
         },
@@ -348,6 +339,56 @@
                 "error": {
                     "notEmpty": "Çalışan ismi boş olamaz"
                 }
+            },
+            "surname": {
+                "placeholder": "Soyisim",
+                "error": {
+                    "notEmpty": "Soyisim boş olamaz"
+                }
+            },
+            "workHour": {
+                "startHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
+                },
+                "endHour": {
+                    "placeholder": "Başlangıç",
+                    "error": {
+                        "notEmpty": "Saat boş olamaz"
+                    }
+                }
+            }
+        }
+    },
+    "days": [
+        "Pazartesi",
+        "Salı",
+        "Çarşamba",
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar"
+    ],
+    "editWorker": {
+        "title": "Çalışan Düzenle",
+        "section": {
+            "workerInfo": "Çalışan Bilgileri",
+            "workHours": "Çalışma Saatleri"
+        },
+        "toast": {
+            "savedSuccess": "Çalışan düzenlendi"
+        },
+        "form": {
+            "name": {
+                "placeholder": "İsim",
+                "error": {
+                    "notEmpty": "Çalışan ismi boş olamaz"
+                }
+            },
+            "availability": {
+                "placeholder": "Çalışanın uygunluğu"
             },
             "surname": {
                 "placeholder": "Soyisim",

@@ -134,6 +134,7 @@ type Worker = {
   fullname: string;
   availability: string;
   businessID: string;
+  workerColor: string;
   hours: {
     0: WorkerShift;
     1: WorkerShift;

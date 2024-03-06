@@ -18,8 +18,7 @@ export const loginAdminService = async (params: {
 export const adminBusinessDetailService = async () => {
   try {
     const response = await api.get<Saloon>('/getBusiness');
-    // FIXME: Burada array değil tek bir salon gelmeli
-    return response.data[0] as Saloon;
+    return response.data;
   } catch (error) {
     showAPIErrorToast(error);
     throw error;
@@ -39,6 +38,32 @@ export const adminGetWorkersService = async () => {
 export const adminCreateWorkerService = async (worker: Worker) => {
   try {
     const response = await api.post('/save-worker', worker);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const adminEditWorkerService = async (params: {
+  worker: Worker;
+  workerID: string;
+}) => {
+  try {
+    const response = await api.post(
+      `/edit-worker/${params.workerID}`,
+      params.worker,
+    );
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const adminDeleteWorkerService = async (workerID: string) => {
+  try {
+    const response = await api.post(`/delete-worker/${workerID}`);
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);

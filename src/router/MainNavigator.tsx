@@ -13,6 +13,7 @@ import {
   AdminAddWorker,
   AdminCalendar,
   AdminDashboard,
+  AdminEditWorker,
   AdminLogin,
   AdminWorkerDayOffs,
   AdminWorkerManagement,
@@ -222,6 +223,13 @@ function MainNavigator(): JSX.Element {
               title: t('addWorker.title'),
             }}
             component={AdminAddWorker}
+          />
+          <Stack.Screen
+            name="AdminEditWorker"
+            options={{
+              title: t('editWorker.title'),
+            }}
+            component={AdminEditWorker}
           />
         </Stack.Group>
       </Stack.Navigator>

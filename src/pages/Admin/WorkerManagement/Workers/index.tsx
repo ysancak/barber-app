@@ -1,5 +1,10 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, RefreshControl} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  RefreshControl,
+  SafeAreaView,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import HeaderRight from './components/HeaderRight';
@@ -48,20 +53,30 @@ export default function Workers() {
   }
 
   return (
-    <ScrollView
-      style={styles.scrollView}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={refresh} />
-      }>
-      {workersData.map((item: Worker, index: number) => (
-        <ListItem key={index} {...item} />
-      ))}
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }>
+        {workersData.map((item: Worker, index: number) => (
+          <ListItem key={index} {...item} />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.bgColor,
+  },
   scrollView: {
     backgroundColor: colors.bgColor,
+  },
+  scrollContent: {
+    paddingBottom: 20,
   },
 });

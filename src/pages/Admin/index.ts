@@ -5,6 +5,7 @@ import AdminWorkerManagement from '@/pages/Admin/WorkerManagement';
 import AdminWorkerDayOffs from '@/pages/Admin/WorkerManagement/WorkerDayOffs';
 import AdminWorkers from '@/pages/Admin/WorkerManagement/Workers';
 import AdminAddWorker from '@/pages/Admin/WorkerManagement/Workers/AddWorker';
+import AdminEditWorker from '@/pages/Admin/WorkerManagement/Workers/EditWorker';
 
 export {
   AdminLogin,
@@ -14,4 +15,5 @@ export {
   AdminWorkerDayOffs,
   AdminWorkers,
   AdminAddWorker,
+  AdminEditWorker,
 };

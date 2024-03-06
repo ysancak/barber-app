@@ -1,3 +1,4 @@
+import {useRoute} from '@react-navigation/native';
 import {useFormik} from 'formik';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -18,46 +19,44 @@ import {
   Text,
   View,
 } from '@/components';
+import Switch from '@/components/Inputs/Switch';
 import {useNavigation} from '@/hooks';
 import {createWorkerSchema} from '@/schemas/validations';
-import {adminCreateWorkerService} from '@/services/admin.service';
-import {addWorker} from '@/store/admin/workers';
+import {adminEditWorkerService} from '@/services/admin.service';
+import {editWorker} from '@/store/admin/workers';
 import {colors} from '@/utils';
 import {showSuccessToast} from '@/utils/toast';
 
 // TODO: Saatler çakışmasın
 
-export default function AddWorker() {
+export default function EditWorker() {
+  const {params: worker}: {params: Worker} = useRoute();
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      surname: '',
-      workerColor: colors.workerColors[0],
-      availability: 'Available',
-      hours: {
-        0: [{start: '', end: '', offday: 'off'}],
-        1: [{start: '', end: '', offday: 'off'}],
-        2: [{start: '', end: '', offday: 'off'}],
-        3: [{start: '', end: '', offday: 'off'}],
-        4: [{start: '', end: '', offday: 'off'}],
-        5: [{start: '', end: '', offday: 'off'}],
-        6: [{start: '', end: '', offday: 'off'}],
-      },
+      _id: worker._id,
+      name: worker.name,
+      surname: worker.surname,
+      workerColor: worker.workerColor,
+      availability: worker.availability,
+      hours: worker.hours,
     },
     validateOnChange: false,
     validateOnBlur: false,
     validationSchema: createWorkerSchema,
     onSubmit: async values => {
       try {
-        const result = await adminCreateWorkerService(values);
+        const result = await adminEditWorkerService({
+          workerID: worker._id,
+          worker: values as Worker,
+        });
         if (result) {
-          dispatch(addWorker(values));
+          dispatch(editWorker(values as Worker));
           navigation.goBack();
-          showSuccessToast(t('addWorker.toast.savedSuccess'));
+          showSuccessToast(t('editWorker.toast.savedSuccess'));
         }
       } finally {
       }
@@ -110,13 +109,13 @@ export default function AddWorker() {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView>
         <ScrollView style={styles.scrollView}>
-          <SectionHeader title={t('addWorker.section.workerInfo')} />
+          <SectionHeader title={t('editWorker.section.workerInfo')} />
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <View flexDirection="row" gap={10}>
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={t('addWorker.form.name.placeholder')}
+                  placeholder={t('editWorker.form.name.placeholder')}
                   onChange={formik.handleChange('name')}
                   onBlur={() => formik.handleBlur('name')}
                   value={formik.values.name}
@@ -126,13 +125,34 @@ export default function AddWorker() {
               <View flex>
                 <Input.Text
                   icon="person"
-                  placeholder={t('addWorker.form.surname.placeholder')}
+                  placeholder={t('editWorker.form.surname.placeholder')}
                   onChange={formik.handleChange('surname')}
                   onBlur={() => formik.handleBlur('surname')}
                   value={formik.values.surname}
                   error={formik.touched.surname && formik.errors.surname}
                 />
               </View>
+            </View>
+            <View
+              flex
+              paddingTop={6}
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-between">
+              <Text variant="subtitle" fontSize={16}>
+                {t('editWorker.form.availability.placeholder')}
+              </Text>
+              <Switch
+                value={
+                  formik.values.availability === 'Available' ? true : false
+                }
+                onChange={value => {
+                  formik.setFieldValue(
+                    'availability',
+                    value ? 'Available' : 'Unavailable',
+                  );
+                }}
+              />
             </View>
             <View style={styles.colorContainer}>
               {colors.workerColors.map(color => (
@@ -152,7 +172,7 @@ export default function AddWorker() {
             </View>
           </View>
 
-          <SectionHeader title={t('addWorker.section.workHours')} />
+          <SectionHeader title={t('editWorker.section.workHours')} />
           {Object.keys(formik.values.hours).map((day, index) => (
             <View key={index}>
               <View style={styles.hourToggle}>
@@ -180,7 +200,7 @@ export default function AddWorker() {
                       <View style={styles.timeInputRow}>
                         <Input.Date
                           placeholder={t(
-                            'addWorker.form.workHour.startHour.placeholder',
+                            'editWorker.form.workHour.startHour.placeholder',
                           )}
                           mode="time"
                           date={hour.start}
@@ -201,7 +221,7 @@ export default function AddWorker() {
                         />
                         <Input.Date
                           placeholder={t(
-                            'addWorker.form.workHour.endHour.placeholder',
+                            'editWorker.form.workHour.endHour.placeholder',
                           )}
                           mode="time"
                           date={hour.end}
