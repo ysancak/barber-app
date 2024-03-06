@@ -27,8 +27,6 @@ import {editWorker} from '@/store/admin/workers';
 import {colors} from '@/utils';
 import {showSuccessToast} from '@/utils/toast';
 
-// TODO: Saatler çakışmasın
-
 export default function EditWorker() {
   const {params: worker}: {params: Worker} = useRoute();
   const {t} = useTranslation();
@@ -44,8 +42,8 @@ export default function EditWorker() {
       availability: worker.availability,
       hours: worker.hours,
     },
-    validateOnChange: false,
     validateOnBlur: false,
+    validateOnChange: false,
     validationSchema: createWorkerSchema,
     onSubmit: async values => {
       try {
@@ -195,6 +193,12 @@ export default function EditWorker() {
               </View>
               {formik.values.hours[day][0].offday === 'off' && (
                 <View style={styles.expandedSection}>
+                  {formik.errors.hours && formik.errors.hours[day] && (
+                    <View style={styles.hoursWarningContainer}>
+                      <Icon name="warning" size={22} />
+                      <Text>{t('editWorker.hoursErrorMessage')}</Text>
+                    </View>
+                  )}
                   {formik.values.hours[day].map((hour, index) => (
                     <View key={index}>
                       <View style={styles.timeInputRow}>
@@ -205,9 +209,11 @@ export default function EditWorker() {
                           mode="time"
                           date={hour.start}
                           onChange={value => {
-                            const newHours = [...formik.values.hours[day]];
-                            newHours[index].start = value;
-                            formik.setFieldValue(`hours.${day}`, newHours);
+                            formik.setFieldValue(
+                              `hours.${day}.${index}.start`,
+                              value,
+                              true,
+                            );
                           }}
                           error={
                             formik.errors.hours &&
@@ -226,9 +232,11 @@ export default function EditWorker() {
                           mode="time"
                           date={hour.end}
                           onChange={value => {
-                            const newHours = [...formik.values.hours[day]];
-                            newHours[index].end = value;
-                            formik.setFieldValue(`hours.${day}`, newHours);
+                            formik.setFieldValue(
+                              `hours.${day}.${index}.end`,
+                              value,
+                              true,
+                            );
                           }}
                           error={
                             formik.errors.hours &&
@@ -279,6 +287,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+  },
+  hoursWarningContainer: {
+    padding: 12,
+    backgroundColor: '#ffedd5',
+    borderRadius: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   colorBg: {
     position: 'relative',

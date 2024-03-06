@@ -333,6 +333,7 @@
         "toast": {
             "savedSuccess": "Çalışan eklendi"
         },
+        "hoursErrorMessage": "Saat aralıklarını kontrol edin",
         "form": {
             "name": {
                 "placeholder": "İsim",
@@ -380,6 +381,7 @@
         "toast": {
             "savedSuccess": "Çalışan düzenlendi"
         },
+        "hoursErrorMessage": "Saat aralıklarını kontrol edin",
         "form": {
             "name": {
                 "placeholder": "İsim",

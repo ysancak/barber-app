@@ -76,25 +76,55 @@ export const adminLoginValidation = Yup.object().shape({
     .required(() => t('adminLogin.form.password.error.notEmpty')),
 });
 
-const daySchema = Yup.array().of(
-  Yup.object().shape({
-    start: Yup.string().when('offday', (offday: string[], schema) =>
-      offday[0] === 'off'
-        ? schema.required(() =>
-            t('addWorker.form.workHour.startHour.error.notEmpty'),
-          )
-        : schema,
-    ),
-    end: Yup.string().when('offday', (offday: string[], schema) =>
-      offday[0] === 'off'
-        ? schema.required(() =>
-            t('addWorker.form.workHour.endHour.error.notEmpty'),
-          )
-        : schema,
-    ),
-    offday: Yup.string().oneOf(['off', 'on']),
-  }),
-);
+const daySchema = Yup.array()
+  .of(
+    Yup.object().shape({
+      start: Yup.string().when('offday', (offday: string[], schema) =>
+        offday[0] === 'off'
+          ? schema.required(() =>
+              t('addWorker.form.workHour.startHour.error.notEmpty'),
+            )
+          : schema,
+      ),
+      end: Yup.string().when('offday', (offday: string[], schema) =>
+        offday[0] === 'off'
+          ? schema.required(() =>
+              t('addWorker.form.workHour.endHour.error.notEmpty'),
+            )
+          : schema,
+      ),
+      offday: Yup.string().oneOf(['off', 'on']),
+    }),
+  )
+  .test(
+    'time-overlap',
+    () => t('addWorker.form.workHour.error.timeConflict'),
+    function (hours) {
+      return checkTimeOverlap(hours);
+    },
+  );
+
+const checkTimeOverlap = hours => {
+  const sortedHours = hours
+    .filter(hour => hour.offday === 'off')
+    .sort((a, b) => {
+      const startTimeA = new Date(`2021-01-01T${a.start}:00`).getTime();
+      const startTimeB = new Date(`2021-01-01T${b.start}:00`).getTime();
+      return startTimeA - startTimeB;
+    });
+
+  for (let i = 0; i < sortedHours.length - 1; i++) {
+    const end1 = new Date(`2021-01-01T${sortedHours[i].end}:00`).getTime();
+    const start2 = new Date(
+      `2021-01-01T${sortedHours[i + 1].start}:00`,
+    ).getTime();
+    const end2 = new Date(`2021-01-01T${sortedHours[i + 1].end}:00`).getTime();
+    if (end1 > start2 || end2 <= end1) {
+      return false;
+    }
+  }
+  return true;
+};
 
 export const createWorkerSchema = Yup.object().shape({
   name: Yup.string().required(() => t('addWorker.form.name.error.notEmpty')),
