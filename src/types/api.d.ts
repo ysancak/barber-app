@@ -131,7 +131,7 @@ type Worker = {
   _id: string;
   name: string;
   surname: string;
-  fullname: string;
+  fullName: string;
   availability: string;
   businessID: string;
   workerColor: string;

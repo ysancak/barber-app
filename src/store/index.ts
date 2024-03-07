@@ -6,7 +6,8 @@ import {
 } from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
 
-import workerDayOffs from '@/store/admin/dayoffs';
+import calendarReducer from '@/store/admin/calendar';
+import workerDayOffReducer from '@/store/admin/dayoffs';
 import workersReducer from '@/store/admin/workers';
 import authReducer from '@/store/auth';
 import cartReducer from '@/store/cart';
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   search: searchReducer,
   workers: workersReducer,
-  dayOffs: workerDayOffs,
+  dayOffs: workerDayOffReducer,
+  calendar: calendarReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

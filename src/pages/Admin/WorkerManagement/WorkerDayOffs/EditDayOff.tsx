@@ -1,6 +1,5 @@
 import {useRoute} from '@react-navigation/native';
 import {useFormik} from 'formik';
-import moment from 'moment';
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
@@ -50,9 +49,8 @@ export default function EditDayOff() {
           dayOffId: dayOff._id,
           dayOff: values as WorkerDayOff,
         });
-        //TODO: dönen nesneyi dön ve dispatch ile ekle
         if (result) {
-          dispatch(editUpcomingDayOff(values as WorkerDayOff));
+          dispatch(editUpcomingDayOff(result));
           navigation.goBack();
           showSuccessToast(t('editDayOff.toast.savedSuccess'));
         }
@@ -90,7 +88,7 @@ export default function EditDayOff() {
               loading={workersLoading}
               options={workersData}
               onChange={id => formik.setFieldValue('workerID', id)}
-              optionLabel="name"
+              optionLabel="fullName"
               optionValue="_id"
               value={formik.values.workerID}
               error={formik.touched.workerID && formik.errors.workerID}

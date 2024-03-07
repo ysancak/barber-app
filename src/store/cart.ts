@@ -127,7 +127,6 @@ const cartSlice = createSlice({
         note: string;
       }>,
     ) => {
-      console.log(userInfo);
       updateCart(state, businessID, cart => {
         cart.user = userInfo as CartUser;
       });

@@ -1,5 +1,4 @@
 import {useFormik} from 'formik';
-import moment from 'moment';
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet} from 'react-native';
@@ -44,9 +43,8 @@ export default function AddDayOff() {
     onSubmit: async values => {
       try {
         const result = await adminCreateDayOffService(values);
-        //TODO: dönen nesneyi dön ve dispatch ile ekle
         if (result) {
-          dispatch(addUpcomingDayOff(values));
+          dispatch(addUpcomingDayOff(result));
           navigation.goBack();
           showSuccessToast(t('addDayOff.toast.savedSuccess'));
         }
@@ -84,7 +82,7 @@ export default function AddDayOff() {
               loading={workersLoading}
               options={workersData}
               onChange={id => formik.setFieldValue('workerID', id)}
-              optionLabel="name"
+              optionLabel="fullName"
               optionValue="_id"
               value={formik.values.workerID}
               error={formik.touched.workerID && formik.errors.workerID}

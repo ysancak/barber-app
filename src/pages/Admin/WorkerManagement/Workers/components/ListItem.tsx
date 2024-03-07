@@ -49,7 +49,7 @@ export default function ListItem(worker: Worker) {
     <View style={styles.workerContainer}>
       <View style={styles.workerInfoContainer}>
         <Text variant="title" fontSize={18} numberOfLines={1}>
-          {worker.name} {worker.surname}
+          {worker.fullName}
         </Text>
         <View style={styles.workerStatusContainer}>
           <View

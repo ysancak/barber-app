@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import {resetNavigationState} from '@/router/root.navigation';
 import {store} from '@/store';
 import {setTokens, clearTokens} from '@/store/auth';
 import {API_BASE_URL} from '@/utils/constants';
@@ -33,17 +34,26 @@ api.interceptors.response.use(
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       const token = state.auth.refreshToken;
+      const authType = state.auth.authType;
       try {
-        // TODO: Refresh token admin ve user arasında nasıl dağılıyor?
-        const {data} = await axios.post(`${API_BASE_URL}/refresh`, {
+        const refreshUrl =
+          authType === 'Admin'
+            ? `${API_BASE_URL}/refresh-admin`
+            : `${API_BASE_URL}/refresh`;
+        const {data} = await axios.post(refreshUrl, {
           token,
         });
         store.dispatch(setTokens(data));
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
-        // TODO: Refresh token ile yenileme yapılamadığında adamı ana sayfaya gönder
         store.dispatch(clearTokens());
+        if (authType === 'Admin') {
+          resetNavigationState({
+            index: 1,
+            routes: [{name: 'Tabs'}],
+          });
+        }
       }
     }
     if (error.response.status === 401) {

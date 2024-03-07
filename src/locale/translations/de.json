@@ -375,30 +375,22 @@
             "savedSuccess": "İzin güncellendi"
         },
         "form": {
-            "name": {
-                "placeholder": "İsim",
+            "workerID": {
+                "placeholder": "Çalışan seçin",
                 "error": {
-                    "notEmpty": "Çalışan ismi boş olamaz"
+                    "notEmpty": "Çalışan boş olamaz"
                 }
             },
-            "surname": {
-                "placeholder": "Soyisim",
+            "holidayStartDate": {
+                "placeholder": "Başlangıç tarihi",
                 "error": {
-                    "notEmpty": "Soyisim boş olamaz"
+                    "notEmpty": "Başlangıç tarihi boş olamaz"
                 }
             },
-            "workHour": {
-                "startHour": {
-                    "placeholder": "Başlangıç",
-                    "error": {
-                        "notEmpty": "Saat boş olamaz"
-                    }
-                },
-                "endHour": {
-                    "placeholder": "Başlangıç",
-                    "error": {
-                        "notEmpty": "Saat boş olamaz"
-                    }
+            "holidayEndDate": {
+                "placeholder": "Bitiş tarihi",
+                "error": {
+                    "notEmpty": "Bitiş tarihi boş olamaz"
                 }
             }
         }

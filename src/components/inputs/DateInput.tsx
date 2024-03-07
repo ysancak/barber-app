@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment/min/locales';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';

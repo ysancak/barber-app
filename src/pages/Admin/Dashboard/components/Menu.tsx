@@ -1,12 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
 
@@ -33,7 +27,10 @@ export default function Menu() {
 
   const logoutHandler = () => {
     dispatch(clearTokens());
-    navigation.navigate('Tabs');
+    navigation.reset({
+      index: 1,
+      routes: [{name: 'Tabs'}],
+    });
   };
 
   return (

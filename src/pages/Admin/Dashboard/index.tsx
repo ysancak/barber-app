@@ -36,7 +36,6 @@ export default function Dashboard() {
 
       <View style={styles.gridContainer}>
         <TouchableOpacity
-          activeOpacity={0.8}
           style={styles.gridItemContainer}
           onPress={() => navigation.navigate('AdminCalendar')}>
           <Icon name="calendar-month" size={36} color={colors.primaryColor} />

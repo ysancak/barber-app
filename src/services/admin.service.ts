@@ -37,8 +37,7 @@ export const adminGetWorkersService = async () => {
 
 export const adminCreateWorkerService = async (worker: Worker) => {
   try {
-    const response = await api.post('/save-worker', worker);
-    //TODO: dönen nesneyi dön ve dispatch ile ekle
+    const response = await api.post<Worker>('/save-worker', worker);
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
@@ -51,11 +50,10 @@ export const adminEditWorkerService = async (params: {
   workerID: string;
 }) => {
   try {
-    const response = await api.post(
+    const response = await api.post<Worker>(
       `/edit-worker/${params.workerID}`,
       params.worker,
     );
-    //TODO: dönen nesneyi dön ve dispatch ile ekle
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
@@ -85,8 +83,7 @@ export const adminGetUpcomingDayOffsService = async () => {
 
 export const adminCreateDayOffService = async (dayoff: WorkerDayOff) => {
   try {
-    const response = await api.post('/save-holiday', dayoff);
-    //TODO: dönen nesneyi dön ve dispatch ile ekle
+    const response = await api.post<WorkerDayOff>('/save-holiday', dayoff);
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
@@ -109,11 +106,10 @@ export const adminEditDayOffService = async (params: {
   dayOffId: string;
 }) => {
   try {
-    const response = await api.post(
+    const response = await api.post<WorkerDayOff>(
       `/edit-holiday/${params.dayOffId}`,
       params.dayOff,
     );
-    //TODO: dönen nesneyi dön ve dispatch ile ekle
     return response.data;
   } catch (error) {
     showAPIErrorToast(error);
