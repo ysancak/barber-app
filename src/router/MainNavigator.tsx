@@ -10,6 +10,7 @@ import CustomerTabNavigator from './TabNavigator';
 import {HeaderTitle} from '@/components';
 import {useAuth} from '@/hooks';
 import {
+  AdminAddCalendarEvent,
   AdminAddDayOff,
   AdminAddWorker,
   AdminCalendar,
@@ -191,13 +192,7 @@ function MainNavigator(): JSX.Element {
             }}
             component={AdminDashboard}
           />
-          <Stack.Screen
-            name="AdminCalendar"
-            options={{
-              title: 'Takvim',
-            }}
-            component={AdminCalendar}
-          />
+
           <Stack.Screen
             name="AdminWorkerManagement"
             options={{
@@ -246,6 +241,20 @@ function MainNavigator(): JSX.Element {
               title: t('editDayOff.title'),
             }}
             component={AdminEditDayOff}
+          />
+          <Stack.Screen
+            name="AdminCalendar"
+            options={{
+              title: t('adminCalendar.title'),
+            }}
+            component={AdminCalendar}
+          />
+          <Stack.Screen
+            name="AdminAddCalendarEvent"
+            options={{
+              title: t('adminCalendarAddEvent.title'),
+            }}
+            component={AdminAddCalendarEvent}
           />
         </Stack.Group>
       </Stack.Navigator>

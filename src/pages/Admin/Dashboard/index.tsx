@@ -57,13 +57,11 @@ export default function Dashboard() {
       <View style={styles.gridContainer}>
         <TouchableOpacity
           activeOpacity={0.8}
-          style={styles.gridItemContainer}
-          onPress={console.log}>
-          <Icon name="image" size={36} color={colors.primaryColor} />
-          <Text variant="subtitle" fontSize={16}>
-            {t('adminDashboard.menu.slider')}
-          </Text>
-        </TouchableOpacity>
+          style={{
+            ...styles.gridItemContainer,
+            backgroundColor: colors.borderColor2,
+          }}
+        />
         <TouchableOpacity
           activeOpacity={0.8}
           style={{

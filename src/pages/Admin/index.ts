@@ -1,4 +1,5 @@
 import AdminCalendar from '@/pages/Admin/Calendar';
+import AdminAddCalendarEvent from '@/pages/Admin/Calendar/AddEvent';
 import AdminDashboard from '@/pages/Admin/Dashboard';
 import AdminLogin from '@/pages/Admin/Login';
 import AdminWorkerManagement from '@/pages/Admin/WorkerManagement';
@@ -12,7 +13,6 @@ import AdminEditWorker from '@/pages/Admin/WorkerManagement/Workers/EditWorker';
 export {
   AdminLogin,
   AdminDashboard,
-  AdminCalendar,
   AdminWorkerManagement,
   AdminWorkerDayOffs,
   AdminWorkers,
@@ -20,4 +20,6 @@ export {
   AdminEditWorker,
   AdminAddDayOff,
   AdminEditDayOff,
+  AdminCalendar,
+  AdminAddCalendarEvent,
 };

@@ -113,13 +113,23 @@ const checkTimeOverlap = hours => {
       return startTimeA - startTimeB;
     });
 
+  if (sortedHours.length === 1) {
+    const start1 = new Date(`2021-01-01T${sortedHours[0].start}:00`).getTime();
+    const end1 = new Date(`2021-01-01T${sortedHours[0].end}:00`).getTime();
+
+    if (start1 > end1) {
+      return false;
+    }
+  }
+
   for (let i = 0; i < sortedHours.length - 1; i++) {
+    const start1 = new Date(`2021-01-01T${sortedHours[i].start}:00`).getTime();
     const end1 = new Date(`2021-01-01T${sortedHours[i].end}:00`).getTime();
     const start2 = new Date(
       `2021-01-01T${sortedHours[i + 1].start}:00`,
     ).getTime();
     const end2 = new Date(`2021-01-01T${sortedHours[i + 1].end}:00`).getTime();
-    if (end1 > start2 || end2 <= end1) {
+    if (end1 > start2 || end2 <= end1 || start1 > end1 || start2 > end2) {
       return false;
     }
   }
@@ -154,4 +164,17 @@ export const createWorkerDayOffSchema = Yup.object().shape({
   HolidayEndDate: Yup.string().required(() =>
     t('addDayOff.form.holidayEndDate.error.notEmpty'),
   ),
+});
+
+// TODO: dil dosyasını düzelt
+// TODO: endHour startHour dan önce olmaz ve startHour endHour dan sona olamaz
+export const createCalendarEventSchema = Yup.object().shape({
+  workerID: Yup.string().required(() => 'worker zorunlu'),
+  customerName: Yup.string().required(() => 'customerName zorunlu'),
+  customerSurname: Yup.string().required(() => 'customerSurname zorunlu'),
+  clientTel: Yup.string().required(() => 'clientTel zorunlu'),
+  date: Yup.string().required(() => 'date zorunlu'),
+  startHour: Yup.string().required(() => 'startHour zorunlu'),
+  endHour: Yup.string().required(() => 'endHour zorunlu'),
+  orderNote: Yup.string().required(() => 'orderNote zorunlu'),
 });

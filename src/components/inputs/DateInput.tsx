@@ -103,7 +103,11 @@ const DateInput: React.FC<IDateInput> = ({
             error && styles.error,
             style,
           ]}>
-          <Icon name="calendar-today" size={22} color={colors.primaryColor} />
+          <Icon
+            name={mode === 'time' ? 'schedule' : 'calendar-today'}
+            size={22}
+            color={colors.primaryColor}
+          />
           {date ? (
             <Text fontSize={14}>{formatDisplay(date, mode, dateFormat)}</Text>
           ) : (

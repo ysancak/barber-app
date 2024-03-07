@@ -328,6 +328,12 @@
             }
         }
     },
+    "adminCalendar": {
+        "title": "Takvim"
+    },
+    "adminCalendarAddEvent": {
+        "title": "Event ekle"
+    },
     "adminDayOffs": {
         "title": "İzin günleri",
         "tabs": {

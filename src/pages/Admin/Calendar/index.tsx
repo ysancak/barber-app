@@ -6,7 +6,7 @@ import {SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 
-import theme from './components/theme';
+import theme from './theme';
 
 import {Text, View} from '@/components';
 import {useNavigation} from '@/hooks';
@@ -19,8 +19,15 @@ export default function AdminCalendar() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
-  const {mode, events, unavailableHours, holidays, startHour, endHour} =
-    useSelector(state => state.calendar);
+  const {
+    mode,
+    numOfDays,
+    events,
+    unavailableHours,
+    holidays,
+    startHour,
+    endHour,
+  } = useSelector(state => state.calendar);
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,7 +56,8 @@ export default function AdminCalendar() {
           color={colors.primaryColor}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('AdminAddCalendarEvent')}>
         <Icon name="add" size={26} color={colors.primaryColor} />
       </TouchableOpacity>
     </View>
@@ -58,6 +66,8 @@ export default function AdminCalendar() {
   if (isLoading) {
     return <View style={styles.container} />;
   }
+
+  // TODO: Format date ile bak, belki değiştirilir ve kolay olur
 
   return (
     <SafeAreaView style={styles.container}>
@@ -69,6 +79,7 @@ export default function AdminCalendar() {
         start={startHour}
         end={endHour}
         holidays={holidays}
+        isLoading={false}
         unavailableHours={unavailableHours}
         theme={theme}
         allowPinchToZoom
@@ -80,8 +91,10 @@ export default function AdminCalendar() {
         showNowIndicator
         spaceFromTop={10}
         spaceFromBottom={2}
-        onPressBackground={(date, event) => {
-          console.log('onPressBackground', date);
+        onDateChanged={date => console.log('onDateChanged', date)}
+        onPressBackground={date => {
+          console.log(date);
+          navigation.navigate('AdminAddCalendarEvent', {date});
         }}
         onPressEvent={eventItem => console.log('onPressEvent', eventItem.title)}
         onLongPressEvent={eventItem =>
