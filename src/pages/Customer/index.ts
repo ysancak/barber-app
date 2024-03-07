@@ -14,8 +14,8 @@ import Faq from './Tabs/MyAccount/Faq';
 import Settings from './Tabs/MyAccount/Settings';
 import LanguageSettings from './Tabs/MyAccount/Settings/Language';
 
-import AddressInputDetail from '@/components/Inputs/AddressInput/detail';
-import SelectInputDetail from '@/components/Inputs/SelectInput/detail';
+import AddressInputDetail from '@/components/inputs/AddressInput/detail';
+import SelectInputDetail from '@/components/inputs/SelectInput/detail';
 import Login from '@/pages/Customer/Login';
 import Register from '@/pages/Customer/Register';
 import Home from '@/pages/Customer/Tabs/Home';

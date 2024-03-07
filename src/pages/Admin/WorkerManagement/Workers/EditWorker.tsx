@@ -19,7 +19,7 @@ import {
   Text,
   View,
 } from '@/components';
-import Switch from '@/components/Inputs/Switch';
+import Switch from '@/components/inputs/Switch';
 import {useNavigation} from '@/hooks';
 import {createWorkerSchema} from '@/schemas/validations';
 import {adminEditWorkerService} from '@/services/admin.service';
