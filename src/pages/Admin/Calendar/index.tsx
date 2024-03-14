@@ -1,7 +1,7 @@
 import 'moment/min/locales';
 import {TimelineCalendar, TimelineCalendarHandle} from '@howljs/calendar-kit';
 import moment from 'moment';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,8 +9,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import theme from './theme';
 
 import {Text, View} from '@/components';
-import {useNavigation} from '@/hooks';
-import {toggleMode} from '@/store/admin/calendar';
+import {useFetch, useNavigation} from '@/hooks';
+import {adminGetCelandarEventService} from '@/services/admin.service';
+import {setEvents, toggleMode} from '@/store/admin/calendar';
 import {colors} from '@/utils';
 
 export default function AdminCalendar() {
@@ -18,6 +19,7 @@ export default function AdminCalendar() {
   const currentHour = new Date().getHours();
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString());
   const [isLoading, setIsLoading] = useState(true);
   const {
     mode,
@@ -28,6 +30,7 @@ export default function AdminCalendar() {
     startHour,
     endHour,
   } = useSelector(state => state.calendar);
+  const {fetch, loading, data} = useFetch(adminGetCelandarEventService);
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,6 +46,24 @@ export default function AdminCalendar() {
       headerRight: HeaderRightComponent,
     });
   }, [navigation, mode]);
+
+  useEffect(() => fetchDateEvetns(), [selectedDate, mode]);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setEvents(data));
+    }
+  }, [data]);
+
+  const fetchDateEvetns = () => {
+    const fromDate = new Date(selectedDate);
+    const toDate = new Date(selectedDate);
+    toDate.setDate(toDate.getDate() + numOfDays);
+    fetch({
+      startDate: moment(fromDate).format('YYYY-MM-DD'),
+      endDate: moment(toDate).format('YYYY-MM-DD'),
+    });
+  };
 
   const HeaderRightComponent = () => (
     <View style={styles.headerContainer}>
@@ -67,8 +88,6 @@ export default function AdminCalendar() {
     return <View style={styles.container} />;
   }
 
-  // TODO: Format date ile bak, belki değiştirilir ve kolay olur
-
   return (
     <SafeAreaView style={styles.container}>
       <TimelineCalendar
@@ -79,7 +98,7 @@ export default function AdminCalendar() {
         start={startHour}
         end={endHour}
         holidays={holidays}
-        isLoading={false}
+        isLoading={loading}
         unavailableHours={unavailableHours}
         theme={theme}
         allowPinchToZoom
@@ -91,16 +110,15 @@ export default function AdminCalendar() {
         showNowIndicator
         spaceFromTop={10}
         spaceFromBottom={2}
-        onDateChanged={date => console.log('onDateChanged', date)}
-        onPressBackground={date => {
-          console.log(date);
-          navigation.navigate('AdminAddCalendarEvent', {date});
-        }}
+        onDateChanged={date => setSelectedDate(date)}
+        onPressBackground={date =>
+          navigation.navigate('AdminAddCalendarEvent', {date})
+        }
         onPressEvent={eventItem => console.log('onPressEvent', eventItem.title)}
         onLongPressEvent={eventItem =>
           console.log('onLongPressEvent', eventItem.title)
         }
-        renderEventContent={(event, timeInterval) => (
+        renderEventContent={event => (
           <View style={styles.eventContentContainer}>
             <Text bold color={colors.textColor} fontSize={14}>
               {event.title}

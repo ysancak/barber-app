@@ -178,3 +178,17 @@ type WorkerDayOff = {
   workerID: string;
   workerName: string;
 };
+
+type CalendarEvent = {
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  color: string;
+  worker: Worker;
+  clientTel: string;
+  customerName: string;
+  customerSurname: string;
+  startHour: string;
+  endHour: string;
+};

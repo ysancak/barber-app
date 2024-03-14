@@ -15,9 +15,14 @@ import {
 } from '@/components';
 import {useFetch, useNavigation} from '@/hooks';
 import {createCalendarEventSchema} from '@/schemas/validations';
-import {adminGetWorkersService} from '@/services/admin.service';
+import {
+  adminCreateCalendarEventService,
+  adminGetCelandarEventService,
+  adminGetWorkersService,
+} from '@/services/admin.service';
 import {addEvent} from '@/store/admin/calendar';
 import {colors} from '@/utils';
+import {showSuccessToast} from '@/utils/toast';
 
 // TODO: dil dosyasını entegre et
 
@@ -36,44 +41,30 @@ export default function AddEvent() {
   const formik = useFormik({
     initialValues: {
       workerID: worker?._id || '',
-      customerName: 'John',
-      customerSurname: 'Doe',
-      clientTel: '55555555',
+      customerName: '',
+      customerSurname: '',
+      clientTel: '',
       date: params?.date ? new Date(params.date) : '',
-      startHour: '10:30',
-      endHour: '11:30',
-      orderNote: 'Saç kesimi',
+      startHour: '',
+      endHour: '',
+      orderNote: '',
     },
     validateOnChange: false,
     validateOnBlur: false,
     validationSchema: createCalendarEventSchema,
     onSubmit: async values => {
-      const event = {
-        id: Math.round(Math.random() * 5 + 99).toString(),
-        title: values.orderNote,
-        start: moment(
-          moment(values.date).format('YYYY-MM-DD') +
-            'T' +
-            values.startHour +
-            ':00Z',
-        ).toISOString(),
-        end: moment(
-          moment(values.date).format('YYYY-MM-DD') +
-            'T' +
-            values.endHour +
-            ':00Z',
-        ).toISOString(),
-        color: 'orange',
-        worker: {
-          _id: '1',
-          fullName: 'Yusuf SAncak',
-          name: 'Yusuf',
-          surname: 'SAncak',
-          workerColor: 'orange',
-        },
-      };
-      dispatch(addEvent(event));
-      navigation.goBack();
+      console.log(values);
+      try {
+        values.date = moment(values.date).format('YYYY-MM-DD');
+        const result = await adminCreateCalendarEventService(values);
+        if (result) {
+          dispatch(addEvent(result as CalendarEvent));
+          navigation.goBack();
+          // TODO: dil dosyasını entegre et
+          showSuccessToast(t('addWorker.toast.savedSuccess'));
+        }
+      } finally {
+      }
     },
   });
 

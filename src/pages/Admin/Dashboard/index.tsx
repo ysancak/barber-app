@@ -28,7 +28,7 @@ export default function Dashboard() {
           style={{
             ...styles.gridItemContainer,
             backgroundColor: colors.borderColor2,
-            height: 160,
+            height: 130,
             marginBottom: 8,
           }}
         />
