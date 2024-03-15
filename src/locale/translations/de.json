@@ -26,11 +26,11 @@
             }
         },
         "delete": {
-            "title": "Silmek istediğine emin misin?",
-            "description": "Silmek istediğine emin misin?",
+            "title": "Bist du sicher, dass du löschen möchtest?",
+            "description": "Bist du sicher, dass du löschen möchtest?",
             "actions": {
-                "delete": "Evet, Sil",
-                "cancel": "İptal"
+                "delete": "Ja, löschen",
+                "cancel": "Abbrechen"
             }
         }
     },
@@ -109,7 +109,7 @@
             "faq": "Häufig gestellte Fragen",
             "agb": "AGB",
             "impressum": "Impressum",
-            "adminLogin": "Admin girişi",
+            "adminLogin": "Admin-Login",
             "deleteAccount": {
                 "label":  "Lösche deinen Account",
                 "alert": {
@@ -146,50 +146,50 @@
         }
     },
     "adminDashboard": {
-        "title": "Yönetim",
-        "welcomeMessage": "Hoşgeldin,",
+        "title": "Verwaltung",
+        "welcomeMessage": "Willkommen,",
         "headerMenu": {
-            "logout": "Çıkış yap"
+            "logout": "Abmelden"
         },
         "menu": {
-            "calendar": "Takvim",
-            "workerManagement": "Çalışan yönetimi",
-            "slider": "Slider görselleri"
+            "calendar": "Kalender",
+            "workerManagement": "Mitarbeiterverwaltung",
+            "slider": "Slider Bilder"
         }
     },
     "adminWorkerManagement": {
-        "title": "Çalışan Yönetimi",
+        "title": "Mitarbeiterverwaltung",
         "options": {
-            "workers": "Çalışanlar",
-            "offdays": "İzin günleri"
+            "workers": "Mitarbeiter",
+            "offdays": "Freitage"
         }
     },
     "adminWorkers": {
-        "title": "Çalışanlar",
+        "title": "Mitarbeiter",
         "availablity": {
-            "available": "Çalışıyor",
-            "unavailable": "Uygun değil"
+            "available": "Arbeitend",
+            "unavailable": "Nicht verfügbar"
         },
         "empty": {
-            "title": "Çalışan yok",
-            "description": "Listelenecek çalışan bulunamadı"
+            "title": "Keine Mitarbeiter",
+            "description": "Keine Mitarbeiter zur Anzeige"
         }
     },
     "adminLogin": {
-        "title": "Kuaför girişi",
-        "login": "Giriş yap",
+        "title": "Admin-Login",
+        "login": "Einloggen",
         "form": {
             "username": {
-                "placeholder": "Kullanıcı adı",
+                "placeholder": "Benutzername",
                 "error": {
-                    "notEmpty": "Kullanıcı adı boş olamaz"
+                    "notEmpty": "Benutzername darf nicht leer sein"
                 }
             },
             "password": {
-                "placeholder": "Şifre",
+                "placeholder": "Passwort",
                 "error": {
-                    "notEmpty": "Şifre boş olamaz",
-                    "min": "Şifre minumum 6 karakterden oluşmalıdır"
+                    "notEmpty": "Passwort darf nicht leer sein",
+                    "min": "Das Passwort muss mindestens 6 Zeichen lang sein"
                 }
             }
         }
@@ -329,163 +329,298 @@
         }
     },
     "adminCalendar": {
-        "title": "Takvim"
-    },
-    "adminCalendarAddEvent": {
-        "title": "Event ekle"
-    },
-    "adminDayOffs": {
-        "title": "İzin günleri",
-        "tabs": {
-            "current": "Aktif",
-            "past": "Geçmiş"
+        "title": "Kalender",
+        "eventModal": {
+            "title": "Auswählen",
+            "actions": {
+                "edit": "Bearbeiten",
+                "delete": "Löschen"
+            }
         },
-        "empty": {
-            "title": "İzin yok",
-            "description": "Listelenecek izin bulunamadı"
-        },
-        "upcomingMessage": {
-            "start": "Başlamasına {{ days }} saat kaldı",
-            "end": "Bitmesine {{ days }} saat kaldı"
+        "workerModal": {
+            "title": "Mitarbeiter",
+            "empty": {
+                "title": "Keine Mitarbeiter gefunden",
+                "description": "Es wurden keine Mitarbeiter zum Anzeigen gefunden"
+            }
         }
     },
-    "addDayOff": {
-        "title": "İzin ekle",
+    "adminCalendarAddEvent": {
+        "title": "Termin hinzufügen",
         "toast": {
-            "savedSuccess": "İzin eklendi"
+            "savedSuccess": "Termin hinzugefügt"
         },
         "form": {
             "workerID": {
-                "placeholder": "Çalışan seçin",
+                "placeholder": "Mitarbeiter auswählen",
                 "error": {
-                    "notEmpty": "Çalışan boş olamaz"
+                    "notEmpty": "Mitarbeiter ist erforderlich"
+                }
+            },
+            "customerName": {
+                "placeholder": "Kundenname",
+                "error": {
+                    "notEmpty": "Kundenname ist erforderlich"
+                }
+            },
+            "customerSurname": {
+                "placeholder": "Kundennachname",
+                "error": {
+                    "notEmpty": "Kundennachname ist erforderlich"
+                }
+            },
+            "clientTel": {
+                "placeholder": "Kundentelefonnummer",
+                "error": {
+                    "notEmpty": "Kundentelefonnummer ist erforderlich"
+                }
+            },
+            "date": {
+                "placeholder": "Datum auswählen",
+                "error": {
+                    "notEmpty": "Datum ist erforderlich"
+                }
+            },
+            "startHour": {
+                "placeholder": "Startzeit",
+                "error": {
+                    "notEmpty": "Startzeit ist erforderlich"
+                }
+            },
+            "endHour": {
+                "placeholder": "Endzeit",
+                "error": {
+                    "notEmpty": "Endzeit ist erforderlich"
+                }
+            },
+            "orderNote": {
+                "placeholder": "Notiz",
+                "error": {
+                    "notEmpty": "Notiz ist erforderlich"
+                }
+            }
+        },
+        "section": {
+            "worker": "Mitarbeiterinformationen",
+            "customer": "Kundeninformationen",
+            "date": "Datum",
+            "other": "Weitere Informationen"
+        }
+    },
+    "adminCalendarEditEvent": {
+        "title": "Termin bearbeiten",
+        "toast": {
+            "savedSuccess": "Termin aktualisiert"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter ist erforderlich"
+                }
+            },
+            "customerName": {
+                "placeholder": "Kundenname",
+                "error": {
+                    "notEmpty": "Kundenname ist erforderlich"
+                }
+            },
+            "customerSurname": {
+                "placeholder": "Kundennachname",
+                "error": {
+                    "notEmpty": "Kundennachname ist erforderlich"
+                }
+            },
+            "clientTel": {
+                "placeholder": "Kundentelefonnummer",
+                "error": {
+                    "notEmpty": "Kundentelefonnummer ist erforderlich"
+                }
+            },
+            "date": {
+                "placeholder": "Datum auswählen",
+                "error": {
+                    "notEmpty": "Datum ist erforderlich"
+                }
+            },
+            "startHour": {
+                "placeholder": "Startzeit",
+                "error": {
+                    "notEmpty": "Startzeit ist erforderlich"
+                }
+            },
+            "endHour": {
+                "placeholder": "Endzeit",
+                "error": {
+                    "notEmpty": "Endzeit ist erforderlich"
+                }
+            },
+            "orderNote": {
+                "placeholder": "Notiz",
+                "error": {
+                    "notEmpty": "Notiz ist erforderlich"
+                }
+            }
+        },
+        "section": {
+            "worker": "Mitarbeiterinformationen",
+            "customer": "Kundeninformationen",
+            "date": "Datum",
+            "other": "Weitere Informationen"
+        }
+    },    
+    "adminDayOffs": {
+        "title": "Freitage",
+        "tabs": {
+            "current": "Aktuell",
+            "past": "Vergangen"
+        },
+        "empty": {
+            "title": "Keine Freitage",
+            "description": "Keine Freitage zur Anzeige"
+        },
+        "upcomingMessage": {
+            "start": "{{ days }} Stunden bis zum Beginn",
+            "end": "{{ days }} Stunden bis zum Ende"
+        }
+    },
+    "addDayOff": {
+        "title": "Freitag hinzufügen",
+        "toast": {
+            "savedSuccess": "Freitag hinzugefügt"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter darf nicht leer sein"
                 }
             },
             "holidayStartDate": {
-                "placeholder": "Başlangıç tarihi",
+                "placeholder": "Startdatum",
                 "error": {
-                    "notEmpty": "Başlangıç tarihi boş olamaz"
+                    "notEmpty": "Startdatum darf nicht leer sein"
                 }
             },
             "holidayEndDate": {
-                "placeholder": "Bitiş tarihi",
+                "placeholder": "Enddatum",
                 "error": {
-                    "notEmpty": "Bitiş tarihi boş olamaz"
+                    "notEmpty": "Enddatum darf nicht leer sein"
                 }
             }
         }
     },
     "editDayOff": {
-        "title": "İzni düzenle",
+        "title": "Freitag bearbeiten",
         "toast": {
-            "savedSuccess": "İzin güncellendi"
+            "savedSuccess": "Freitag aktualisiert"
         },
         "form": {
             "workerID": {
-                "placeholder": "Çalışan seçin",
+                "placeholder": "Mitarbeiter auswählen",
                 "error": {
-                    "notEmpty": "Çalışan boş olamaz"
+                    "notEmpty": "Mitarbeiter darf nicht leer sein"
                 }
             },
             "holidayStartDate": {
-                "placeholder": "Başlangıç tarihi",
+                "placeholder": "Startdatum",
                 "error": {
-                    "notEmpty": "Başlangıç tarihi boş olamaz"
+                    "notEmpty": "Startdatum darf nicht leer sein"
                 }
             },
             "holidayEndDate": {
-                "placeholder": "Bitiş tarihi",
+                "placeholder": "Enddatum",
                 "error": {
-                    "notEmpty": "Bitiş tarihi boş olamaz"
+                    "notEmpty": "Enddatum darf nicht leer sein"
                 }
             }
         }
     },
     "addWorker": {
-        "title": "Çalışan Ekle",
+        "title": "Mitarbeiter hinzufügen",
         "section": {
-            "workerInfo": "Çalışan Bilgileri",
-            "workHours": "Çalışma Saatleri"
+            "workerInfo": "Mitarbeiterinformationen",
+            "workHours": "Arbeitszeiten"
         },
         "toast": {
-            "savedSuccess": "Çalışan eklendi"
+            "savedSuccess": "Mitarbeiter hinzugefügt"
         },
-        "hoursErrorMessage": "Saat aralıklarını kontrol edin",
+        "hoursErrorMessage": "Überprüfen Sie die Zeitintervalle",
         "form": {
             "name": {
-                "placeholder": "İsim",
+                "placeholder": "Vorname",
                 "error": {
-                    "notEmpty": "Çalışan ismi boş olamaz"
+                    "notEmpty": "Vorname darf nicht leer sein"
                 }
             },
             "surname": {
-                "placeholder": "Soyisim",
+                "placeholder": "Nachname",
                 "error": {
-                    "notEmpty": "Soyisim boş olamaz"
+                    "notEmpty": "Nachname darf nicht leer sein"
                 }
             },
             "workHour": {
                 "startHour": {
-                    "placeholder": "Başlangıç",
+                    "placeholder": "Beginn",
                     "error": {
-                        "notEmpty": "Saat boş olamaz"
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
                     }
                 },
                 "endHour": {
-                    "placeholder": "Başlangıç",
+                    "placeholder": "Ende",
                     "error": {
-                        "notEmpty": "Saat boş olamaz"
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
                     }
                 }
             }
         }
     },
     "days": [
-        "Pazartesi",
-        "Salı",
-        "Çarşamba",
-        "Perşembe",
-        "Cuma",
-        "Cumartesi",
-        "Pazar"
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+        "Sonntag"
     ],
     "editWorker": {
-        "title": "Çalışan Düzenle",
+        "title": "Mitarbeiter bearbeiten",
         "section": {
-            "workerInfo": "Çalışan Bilgileri",
-            "workHours": "Çalışma Saatleri"
+            "workerInfo": "Mitarbeiterinformationen",
+            "workHours": "Arbeitszeiten"
         },
         "toast": {
-            "savedSuccess": "Çalışan düzenlendi"
+            "savedSuccess": "Mitarbeiter bearbeitet"
         },
-        "hoursErrorMessage": "Saat aralıklarını kontrol edin",
+        "hoursErrorMessage": "Überprüfen Sie die Zeitintervalle",
         "form": {
             "name": {
-                "placeholder": "İsim",
+                "placeholder": "Vorname",
                 "error": {
-                    "notEmpty": "Çalışan ismi boş olamaz"
+                    "notEmpty": "Vorname darf nicht leer sein"
                 }
             },
             "availability": {
-                "placeholder": "Çalışanın uygunluğu"
+                "placeholder": "Verfügbarkeit des Mitarbeiters"
             },
             "surname": {
-                "placeholder": "Soyisim",
+                "placeholder": "Nachname",
                 "error": {
-                    "notEmpty": "Soyisim boş olamaz"
+                    "notEmpty": "Nachname darf nicht leer sein"
                 }
             },
             "workHour": {
                 "startHour": {
-                    "placeholder": "Başlangıç",
+                    "placeholder": "Beginn",
                     "error": {
-                        "notEmpty": "Saat boş olamaz"
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
                     }
                 },
                 "endHour": {
-                    "placeholder": "Başlangıç",
+                    "placeholder": "Ende",
                     "error": {
-                        "notEmpty": "Saat boş olamaz"
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
                     }
                 }
             }

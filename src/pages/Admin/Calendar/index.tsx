@@ -1,11 +1,13 @@
 import 'moment/min/locales';
 import {TimelineCalendar, TimelineCalendarHandle} from '@howljs/calendar-kit';
 import moment from 'moment';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
+import {SheetManager} from 'react-native-actions-sheet';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 
+import WorkerFilterModal from './components/WorkerFilterModal';
 import theme from './theme';
 
 import {Text, View} from '@/components';
@@ -29,6 +31,7 @@ export default function AdminCalendar() {
     holidays,
     startHour,
     endHour,
+    worker,
   } = useSelector(state => state.calendar);
   const {fetch, loading, data} = useFetch(adminGetCelandarEventService);
 
@@ -47,7 +50,7 @@ export default function AdminCalendar() {
     });
   }, [navigation, mode]);
 
-  useEffect(() => fetchDateEvetns(), [selectedDate, mode]);
+  useEffect(() => fetchDateEvents(), [selectedDate, mode, worker]);
 
   useEffect(() => {
     if (data) {
@@ -55,21 +58,20 @@ export default function AdminCalendar() {
     }
   }, [data]);
 
-  const fetchDateEvetns = () => {
+  const fetchDateEvents = () => {
     const fromDate = new Date(selectedDate);
     const toDate = new Date(selectedDate);
     toDate.setDate(toDate.getDate() + numOfDays);
     fetch({
       startDate: moment(fromDate).format('YYYY-MM-DD'),
       endDate: moment(toDate).format('YYYY-MM-DD'),
+      workerID: worker ? worker._id : undefined,
     });
   };
 
   const HeaderRightComponent = () => (
     <View style={styles.headerContainer}>
-      <TouchableOpacity>
-        <Icon name="person-outline" size={26} color={colors.primaryColor} />
-      </TouchableOpacity>
+      <WorkerFilterModal />
       <TouchableOpacity onPress={() => dispatch(toggleMode())}>
         <Icon
           name={mode === 'threeDays' ? 'crop-square' : 'width-normal'}
@@ -89,52 +91,58 @@ export default function AdminCalendar() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TimelineCalendar
-        ref={calendarRef}
-        locale="de"
-        events={events}
-        viewMode={mode}
-        start={startHour}
-        end={endHour}
-        holidays={holidays}
-        isLoading={loading}
-        unavailableHours={unavailableHours}
-        theme={theme}
-        allowPinchToZoom
-        useHaptic
-        scrollToNow
-        initialTimeIntervalHeight={100}
-        minTimeIntervalHeight={100}
-        maxTimeIntervalHeight={300}
-        showNowIndicator
-        spaceFromTop={10}
-        spaceFromBottom={2}
-        onDateChanged={date => setSelectedDate(date)}
-        onPressBackground={date =>
-          navigation.navigate('AdminAddCalendarEvent', {date})
-        }
-        onPressEvent={eventItem => console.log('onPressEvent', eventItem.title)}
-        onLongPressEvent={eventItem =>
-          console.log('onLongPressEvent', eventItem.title)
-        }
-        renderEventContent={event => (
-          <View style={styles.eventContentContainer}>
-            <Text bold color={colors.textColor} fontSize={14}>
-              {event.title}
-            </Text>
-            <Text color={colors.textColor} fontSize={14}>
-              {event.worker.name}
-            </Text>
-            <Text color={colors.textColor} fontSize={13}>
-              {`${moment(event.start).format('HH:mm')} - ${moment(
-                event.end,
-              ).format('HH:mm')}`}
-            </Text>
-          </View>
-        )}
-      />
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={styles.container}>
+        <TimelineCalendar
+          ref={calendarRef}
+          locale="de"
+          events={events}
+          viewMode={mode}
+          start={startHour}
+          end={endHour}
+          holidays={holidays}
+          isLoading={loading}
+          unavailableHours={unavailableHours}
+          theme={theme}
+          allowPinchToZoom
+          useHaptic
+          scrollToNow
+          initialTimeIntervalHeight={100}
+          minTimeIntervalHeight={100}
+          maxTimeIntervalHeight={300}
+          showNowIndicator
+          spaceFromTop={10}
+          spaceFromBottom={2}
+          onDateChanged={date => setSelectedDate(date)}
+          onPressOutBackground={date => console.log(date)}
+          onPressBackground={date => {
+            navigation.navigate('AdminAddCalendarEvent', {
+              date,
+            });
+          }}
+          onLongPressEvent={eventItem => {
+            SheetManager.show('admin_calendar_event_action', {
+              payload: {event: eventItem, navigation},
+            });
+          }}
+          renderEventContent={event => (
+            <View style={styles.eventContentContainer}>
+              <Text bold color={colors.textColor} fontSize={14}>
+                {event.title}
+              </Text>
+              <Text color={colors.textColor} fontSize={14}>
+                {event.worker.name}
+              </Text>
+              <Text color={colors.textColor} fontSize={13}>
+                {`${moment(event.start).format('HH:mm')} - ${moment(
+                  event.end,
+                ).format('HH:mm')}`}
+              </Text>
+            </View>
+          )}
+        />
+      </SafeAreaView>
+    </>
   );
 }
 

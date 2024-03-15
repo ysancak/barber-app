@@ -189,6 +189,4 @@ type CalendarEvent = {
   clientTel: string;
   customerName: string;
   customerSurname: string;
-  startHour: string;
-  endHour: string;
 };

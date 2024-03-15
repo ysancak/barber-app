@@ -137,43 +137,38 @@ export const adminCreateCalendarEventService = async (event: any) => {
   }
 };
 
-export const adminGetCelandarEventService = async (
-  dates: {
-    startDate: string;
-    endDate: string;
-  },
-  workerID?: string,
-) => {
+export const adminGetCelandarEventService = async (params: {
+  startDate: string;
+  endDate: string;
+  workerID?: string;
+}) => {
   try {
-    let url = `/get-calendar-data-worker-app/${dates.startDate}/${dates.endDate}`;
-    if (workerID) {
-      url += `?workerID=${workerID}`;
+    let url = `/get-calendar-data-worker-app/${params.startDate}/${params.endDate}`;
+    if (params.workerID !== undefined) {
+      url += `?workerID=${params.workerID}`;
     }
     const response = await api.get<CalendarEvent[]>(url);
-    // TODO: burayı servise bağla
-    return [
-      {
-        id: '2',
-        title: 'Renkli Saç Boyama',
-        start: '2024-03-14T14:00:00.000Z',
-        end: '2024-03-14T15:30:00.000Z',
-        color: 'orange',
-        worker: {
-          _id: '34',
-          name: 'Alex',
-          surname: 'Johnson',
-          fullName: 'Alex Johnson',
-          availability: 'Available',
-          businessID: '789',
-          workerColor: 'orange',
-        },
-        clientTel: '1234567890',
-        customerName: 'Jamie',
-        customerSurname: 'Doe',
-        startHour: '10:00',
-        endHour: '11:30',
-      },
-    ];
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const adminDeleteCalendarEventService = async (calendarID: string) => {
+  try {
+    const response = await api.post('/delete-schedule', {calendarID});
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const adminEditCalendarEventService = async (event: any) => {
+  try {
+    const response = await api.post('/edit-event', event);
+    return response.data;
   } catch (error) {
     showAPIErrorToast(error);
     throw error;

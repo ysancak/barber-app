@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {resetNavigationState} from '@/router/root.navigation';
 import {store} from '@/store';
-import {setTokens, clearTokens} from '@/store/auth';
+import auth, {setTokens, clearTokens} from '@/store/auth';
 import {API_BASE_URL} from '@/utils/constants';
 
 const api = axios.create({
@@ -30,7 +30,6 @@ api.interceptors.response.use(
   async (error: any) => {
     const originalRequest = error.config;
     const state = store.getState();
-
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       const token = state.auth.refreshToken;

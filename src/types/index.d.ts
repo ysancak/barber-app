@@ -73,6 +73,7 @@ type RootStackParamList = {
   AdminEditDayOff: WorkerDayOff;
   AdminCalendar: undefined;
   AdminAddCalendarEvent?: {date: string};
+  AdminEditCalendarEvent: CalendarEvent;
 };
 
 type Coordinate = {

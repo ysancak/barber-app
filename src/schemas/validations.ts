@@ -166,15 +166,30 @@ export const createWorkerDayOffSchema = Yup.object().shape({
   ),
 });
 
-// TODO: dil dosyasını düzelt
 // TODO: endHour startHour dan önce olmaz ve startHour endHour dan sona olamaz
 export const createCalendarEventSchema = Yup.object().shape({
-  workerID: Yup.string().required(() => 'worker zorunlu'),
-  customerName: Yup.string().required(() => 'customerName zorunlu'),
-  customerSurname: Yup.string().required(() => 'customerSurname zorunlu'),
-  clientTel: Yup.string().required(() => 'clientTel zorunlu'),
-  date: Yup.string().required(() => 'date zorunlu'),
-  startHour: Yup.string().required(() => 'startHour zorunlu'),
-  endHour: Yup.string().required(() => 'endHour zorunlu'),
-  orderNote: Yup.string().required(() => 'orderNote zorunlu'),
+  workerID: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.workerID.error.notEmpty'),
+  ),
+  customerName: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.customerName.error.notEmpty'),
+  ),
+  customerSurname: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.customerSurname.error.notEmpty'),
+  ),
+  clientTel: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.clientTel.error.notEmpty'),
+  ),
+  date: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.date.error.notEmpty'),
+  ),
+  startHour: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.startHour.error.notEmpty'),
+  ),
+  endHour: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.endHour.error.notEmpty'),
+  ),
+  orderNote: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.orderNote.error.notEmpty'),
+  ),
 });

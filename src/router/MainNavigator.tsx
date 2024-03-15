@@ -15,6 +15,7 @@ import {
   AdminAddWorker,
   AdminCalendar,
   AdminDashboard,
+  AdminEditCalendarEvent,
   AdminEditDayOff,
   AdminEditWorker,
   AdminLogin,
@@ -255,6 +256,13 @@ function MainNavigator(): JSX.Element {
               title: t('adminCalendarAddEvent.title'),
             }}
             component={AdminAddCalendarEvent}
+          />
+          <Stack.Screen
+            name="AdminEditCalendarEvent"
+            options={{
+              title: t('adminCalendarEditEvent.title'),
+            }}
+            component={AdminEditCalendarEvent}
           />
         </Stack.Group>
       </Stack.Navigator>

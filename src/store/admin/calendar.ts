@@ -39,9 +39,30 @@ const calendarSlice = createSlice({
     addEvent: (state, action: PayloadAction<CalendarEvent>) => {
       state.events = [...state.events, action.payload];
     },
+    editEvent: (state, action: PayloadAction<CalendarEvent>) => {
+      const index = state.events.findIndex(
+        event => event.id === action.payload.id,
+      );
+      if (index !== -1) {
+        state.events[index] = action.payload;
+      }
+    },
+    deleteEvent: (state, action: PayloadAction<string>) => {
+      state.events = state.events.filter(event => event.id !== action.payload);
+    },
+    setWorker: (state, action: PayloadAction<Worker | undefined>) => {
+      state.worker = action.payload;
+    },
   },
 });
 
-export const {toggleMode, setEvents, addEvent} = calendarSlice.actions;
+export const {
+  toggleMode,
+  setEvents,
+  setWorker,
+  addEvent,
+  editEvent,
+  deleteEvent,
+} = calendarSlice.actions;
 
 export default calendarSlice.reducer;

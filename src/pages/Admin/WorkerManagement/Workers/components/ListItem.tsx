@@ -60,7 +60,11 @@ export default function ListItem(worker: Worker) {
                 : colors.errorColor,
             }}
           />
-          <Text>{isAvailable ? 'Çalışıyor' : 'Uygun değil'}</Text>
+          <Text>
+            {isAvailable
+              ? t('adminWorkers.availablity.available')
+              : t('adminWorkers.availablity.unavailable')}
+          </Text>
         </View>
       </View>
       <View style={styles.actionButtonsContainer}>

@@ -159,7 +159,7 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       }
     });
 
-    return [...new Set(hours)]; // Tekrar eden saatleri kaldır
+    return [...new Set(hours)];
   }, [currentShifts, selectedDate, generateTimeSlots]);
 
   const toggleHour = (hour: string) => {

@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {
   HeaderRightButton,
@@ -17,14 +17,15 @@ import {useFetch, useNavigation} from '@/hooks';
 import {createCalendarEventSchema} from '@/schemas/validations';
 import {
   adminCreateCalendarEventService,
+  adminEditCalendarEventService,
   adminGetWorkersService,
 } from '@/services/admin.service';
-import {addEvent} from '@/store/admin/calendar';
+import {editEvent} from '@/store/admin/calendar';
 import {colors} from '@/utils';
 import {showSuccessToast} from '@/utils/toast';
 
-export default function AddEvent() {
-  const {params}: {params: {date?: string; startHour?: string}} = useRoute();
+export default function EditEvent() {
+  const {params: event}: {params: CalendarEvent} = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {t} = useTranslation();
@@ -33,20 +34,20 @@ export default function AddEvent() {
     fetch,
     loading: workersLoading,
   } = useFetch(adminGetWorkersService);
-  const {worker} = useSelector(state => state.calendar);
 
   const formik = useFormik({
     initialValues: {
-      workerID: worker?._id || '',
-      customerName: '',
-      customerSurname: '',
-      clientTel: '',
-      date: params?.date ? new Date(params.date) : '',
+      calendarID: event.id,
+      workerID: event.worker._id,
+      customerName: event.customerName,
+      customerSurname: event.customerSurname,
+      clientTel: event.clientTel,
+      date: new Date(event.start),
       startDate: moment(),
       endDate: moment(),
-      startHour: '',
-      endHour: '',
-      orderNote: '',
+      startHour: moment(event.start).format('HH:mm'),
+      endHour: moment(event.end).format('HH:mm'),
+      orderNote: event.title,
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -63,13 +64,13 @@ export default function AddEvent() {
         values.startDate = startDate;
         values.endDate = endDate;
 
-        const result = await adminCreateCalendarEventService(values);
-        console.log(result);
+        console.log(values);
+        const result = await adminEditCalendarEventService(values);
 
         if (result) {
-          dispatch(addEvent(result as CalendarEvent));
+          dispatch(editEvent(result as CalendarEvent));
           navigation.goBack();
-          showSuccessToast(t('adminCalendarAddEvent.toast.savedSuccess'));
+          showSuccessToast(t('adminCalendarEditEvent.toast.savedSuccess'));
         }
       } finally {
       }
@@ -101,11 +102,13 @@ export default function AddEvent() {
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={{paddingBottom: 50}}>
-          <SectionHeader title={t('adminCalendarAddEvent.section.worker')} />
+          <SectionHeader title={t('adminCalendarEditEvent.section.worker')} />
 
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <Input.Select
-              placeholder={t('adminCalendarAddEvent.form.workerID.placeholder')}
+              placeholder={t(
+                'adminCalendarEditEvent.form.workerID.placeholder',
+              )}
               options={workersData}
               loading={workersLoading}
               optionLabel="name"
@@ -116,14 +119,14 @@ export default function AddEvent() {
             />
           </View>
 
-          <SectionHeader title={t('adminCalendarAddEvent.section.customer')} />
+          <SectionHeader title={t('adminCalendarEditEvent.section.customer')} />
 
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <View flexDirection="row" gap={12}>
               <View flex>
                 <Input.Text
                   placeholder={t(
-                    'adminCalendarAddEvent.form.customerName.placeholder',
+                    'adminCalendarEditEvent.form.customerName.placeholder',
                   )}
                   value={formik.values.customerName}
                   onBlur={() => formik.handleBlur('customerName')}
@@ -136,7 +139,7 @@ export default function AddEvent() {
               <View flex>
                 <Input.Text
                   placeholder={t(
-                    'adminCalendarAddEvent.form.customerSurname.placeholder',
+                    'adminCalendarEditEvent.form.customerSurname.placeholder',
                   )}
                   value={formik.values.customerSurname}
                   onBlur={() => formik.handleBlur('customerSurname')}
@@ -151,7 +154,7 @@ export default function AddEvent() {
 
             <Input.Text
               placeholder={t(
-                'adminCalendarAddEvent.form.clientTel.placeholder',
+                'adminCalendarEditEvent.form.clientTel.placeholder',
               )}
               keyboardType="phone-pad"
               value={formik.values.clientTel}
@@ -161,11 +164,11 @@ export default function AddEvent() {
             />
           </View>
 
-          <SectionHeader title={t('adminCalendarAddEvent.section.date')} />
+          <SectionHeader title={t('adminCalendarEditEvent.section.date')} />
 
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <Input.Date
-              placeholder={t('adminCalendarAddEvent.form.date.placeholder')}
+              placeholder={t('adminCalendarEditEvent.form.date.placeholder')}
               mode="date"
               size="input"
               date={formik.values.date}
@@ -175,7 +178,7 @@ export default function AddEvent() {
             <View flexDirection="row" gap={12}>
               <Input.Date
                 placeholder={t(
-                  'adminCalendarAddEvent.form.startHour.placeholder',
+                  'adminCalendarEditEvent.form.startHour.placeholder',
                 )}
                 mode="time"
                 size="input"
@@ -185,7 +188,7 @@ export default function AddEvent() {
               />
               <Input.Date
                 placeholder={t(
-                  'adminCalendarAddEvent.form.endHour.placeholder',
+                  'adminCalendarEditEvent.form.endHour.placeholder',
                 )}
                 mode="time"
                 size="input"
@@ -196,12 +199,12 @@ export default function AddEvent() {
             </View>
           </View>
 
-          <SectionHeader title={t('adminCalendarAddEvent.section.other')} />
+          <SectionHeader title={t('adminCalendarEditEvent.section.other')} />
 
           <View paddingHorizontal={16} gap={10} paddingVertical={12}>
             <Input.Text
               placeholder={t(
-                'adminCalendarAddEvent.form.orderNote.placeholder',
+                'adminCalendarEditEvent.form.orderNote.placeholder',
               )}
               value={formik.values.orderNote}
               onBlur={() => formik.handleBlur('orderNote')}

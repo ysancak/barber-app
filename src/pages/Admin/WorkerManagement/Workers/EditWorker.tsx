@@ -52,7 +52,6 @@ export default function EditWorker() {
           worker: values as Worker,
         });
         if (result) {
-          console.log(result);
           dispatch(editWorker(result));
           navigation.goBack();
           showSuccessToast(t('editWorker.toast.savedSuccess'));
