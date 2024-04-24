@@ -15,7 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install Node.js and Dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Use the Node.js version compatible with your React Native version
+      - run: npm install
+
+      - name: Install CocoaPods Dependencies
         run: |
           cd ios
           pod install
