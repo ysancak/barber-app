@@ -56,6 +56,11 @@ function Account(): JSX.Element {
             onPress={() => navigation.navigate('EditProfile')}
           />
           <ListItem
+            icon="storefront"
+            label={t('myAccount.options.myOrders')}
+            onPress={() => navigation.navigate('MyOrders')}
+          />
+          <ListItem
             label={t('myAccount.options.deleteAccount.label')}
             onPress={deleteAccountHandler}
           />

@@ -39,6 +39,8 @@ type RootStackParamList = {
   Settings: undefined;
   LanguageSettings: undefined;
   Faq: undefined;
+  MyOrders: undefined;
+  MyOrderDetail: {order: Order; deletable: boolean};
   SaloonDetail: {businessID: string};
   SelectInputDetail: {
     title: string;

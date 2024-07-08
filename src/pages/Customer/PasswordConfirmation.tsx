@@ -4,7 +4,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet} from 'react-native';
 
-import {Button, HeaderRightButton, Input, Text, View} from '@/components';
+import {HeaderRightButton, Input, Text, View} from '@/components';
 import {useNavigation} from '@/hooks';
 import {passwordConfirmationSchema} from '@/schemas/validations';
 import {passwordConfirmationService} from '@/services/user.service';

@@ -20,6 +20,8 @@ function Login(): JSX.Element {
   const formik = useFormik({
     initialValues: {email: '', password: ''},
     validationSchema: registerAndLoginValidationSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: async values => fetch(values),
   });
 

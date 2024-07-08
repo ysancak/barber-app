@@ -11,6 +11,7 @@ import workerDayOffReducer from '@/store/admin/dayoffs';
 import workersReducer from '@/store/admin/workers';
 import authReducer from '@/store/auth';
 import cartReducer from '@/store/cart';
+import ordersReducer from '@/store/order';
 import searchReducer from '@/store/search';
 
 const persistConfig = {
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   search: searchReducer,
+  orders: ordersReducer,
   workers: workersReducer,
   dayOffs: workerDayOffReducer,
   calendar: calendarReducer,

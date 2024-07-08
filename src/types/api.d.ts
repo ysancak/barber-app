@@ -111,6 +111,29 @@ type Product = {
   inCampaign: boolean;
 };
 
+type Order = {
+  _id: string;
+  name: string;
+  surname: string;
+  email: string;
+  gsm: string;
+  street: string;
+  postcode: string;
+  ort: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  business: Saloon;
+  orderNumber: string;
+  note: string;
+  paymentStatus: 'Success';
+  userID: string;
+  orderPrice: string;
+  subtotal: string;
+  couponCode?: string;
+  orderItems: (Product | Service)[];
+};
+
 type Campaign = {
   _id: string;
   businessID: string;
@@ -168,6 +191,8 @@ type OrderRequestParams = {
 type Slide = {
   _id: string;
   image_path: string;
+  slideBig: string;
+  slideSmall: string;
 };
 
 type WorkerDayOff = {

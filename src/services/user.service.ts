@@ -61,6 +61,38 @@ export const updateUserProfileService = async (params: {email: string}) => {
   }
 };
 
+export const getUpcomingOrdersService = async () => {
+  try {
+    const response = await api.get<Order[]>('/appOrdersCurrent');
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const getHistoricalOrdersService = async () => {
+  try {
+    const response = await api.get<Order[]>('/appOrdersPast');
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
+export const deleteOrderService = async (orderID: string) => {
+  try {
+    const response = await api.post('/delete-order', {orderID});
+    return response.data;
+  } catch (error) {
+    showAPIErrorToast(error);
+    throw error;
+  }
+};
+
 export const deleteAccountService = async () => {
   try {
     const response = await api.post('/user-delete');

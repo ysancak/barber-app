@@ -40,6 +40,8 @@ import {
   ShoppingCart,
   OrderResult,
   Payment,
+  MyOrders,
+  MyOrderDetail,
 } from '@/pages/Customer';
 import {colors} from '@/utils';
 
@@ -115,6 +117,20 @@ function MainNavigator(): JSX.Element {
               title: t('faq.title'),
             }}
             component={Faq}
+          />
+          <Stack.Screen
+            name="MyOrders"
+            options={{
+              title: t('myOrders.title'),
+            }}
+            component={MyOrders}
+          />
+          <Stack.Screen
+            name="MyOrderDetail"
+            options={{
+              title: t('myOrders.title'),
+            }}
+            component={MyOrderDetail}
           />
           <Stack.Screen
             name="SelectInputDetail"

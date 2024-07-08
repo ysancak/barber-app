@@ -125,6 +125,35 @@
             "description": "Loggen Sie sich in Ihr Konto ein, um Reservierungen vorzunehmen und von Rabatten zu profitieren"
         }
     },
+    "myOrders": {
+        "title": "Meine Bestellungen",
+        "orderCancelButtonText": "Stornieren",
+        "section": {
+            "products": "Produkte",
+            "services": "Dienstleistungen",
+            "businessInfo": "Geschäftsinformationen"
+        },
+        "empty": {
+            "title": "Kein Termin vorhanden",
+            "description": "Es wurden keine Termine zum Auflisten gefunden. Sie können einen neuen erstellen."
+        },
+        "toast": {
+            "orderCancelSuccess": "Ihr Termin wurde abgesagt"
+        },  
+        "alert": {
+            "orderCancel": {
+                "title": "Achtung!",
+                "description": "Wenn Sie Ihren Termin löschen, müssen Sie einen neuen Termin vereinbaren. Für den gelöschten Termin wird eine Rückerstattung vorgenommen.",
+                "buttons": {
+                    "delete":"Ja, löschen"
+                }
+            }
+        },
+        "tabs": {
+            "current": "Aktuell",
+            "past": "Vergangen"
+        }
+    },
     "loginAndRegister": {
         "login": "Anmelden",
         "register": "Registrieren",
@@ -245,10 +274,10 @@
         "action": "Erneut versuchen"
     },
     "dateInput": {
-        "title": "Seçin",
-        "cancelText": "İptal",
-        "confirmText": "Kaydet"
-    },
+        "title": "Wählen",
+        "cancelText": "Abbrechen",
+        "confirmText": "Speichern"
+    },    
     "orderResult": {
         "serviceDateInfo": "Bitte seien Sie vor Ihrer Reservierungszeit an der angegebenen Adresse",
         "title": {
@@ -394,9 +423,9 @@
                 }
             },
             "orderNote": {
-                "placeholder": "Notiz",
+                "placeholder": "Notitz",
                 "error": {
-                    "notEmpty": "Notiz ist erforderlich"
+                    "notEmpty": "Notitz ist erforderlich"
                 }
             }
         },
@@ -456,9 +485,9 @@
                 }
             },
             "orderNote": {
-                "placeholder": "Notiz",
+                "placeholder": "Notitz",
                 "error": {
-                    "notEmpty": "Notiz ist erforderlich"
+                    "notEmpty": "Notitz ist erforderlich"
                 }
             }
         },
@@ -680,7 +709,7 @@
                 "placeholder": "Ort."
             },
             "note": {
-                "placeholder": "Ihre Notiz (Optional)"
+                "placeholder": "Ihre Notitz (Optional)"
             },
             "agb": {
                 "placeholder": "Ich habe die AGB gelesen und akzeptiere sie",

@@ -11,6 +11,8 @@ import Favorites from './Tabs/Favorites';
 import MyAccount from './Tabs/MyAccount';
 import EditProfile from './Tabs/MyAccount/EditProfile';
 import Faq from './Tabs/MyAccount/Faq';
+import MyOrders from './Tabs/MyAccount/MyOrders';
+import MyOrderDetail from './Tabs/MyAccount/MyOrders/Detail';
 import Settings from './Tabs/MyAccount/Settings';
 import LanguageSettings from './Tabs/MyAccount/Settings/Language';
 
@@ -31,6 +33,8 @@ export {
   Settings,
   LanguageSettings,
   Faq,
+  MyOrders,
+  MyOrderDetail,
   Campaigns,
   SaloonDetail,
   SelectInputDetail,
