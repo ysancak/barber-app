@@ -174,12 +174,8 @@ export const createCalendarEventSchema = Yup.object().shape({
   customerName: Yup.string().required(() =>
     t('adminCalendarAddEvent.form.customerName.error.notEmpty'),
   ),
-  customerSurname: Yup.string().required(() =>
-    t('adminCalendarAddEvent.form.customerSurname.error.notEmpty'),
-  ),
-  clientTel: Yup.string().required(() =>
-    t('adminCalendarAddEvent.form.clientTel.error.notEmpty'),
-  ),
+  customerSurname: Yup.string(),
+  clientTel: Yup.string(),
   date: Yup.string().required(() =>
     t('adminCalendarAddEvent.form.date.error.notEmpty'),
   ),
@@ -189,7 +185,5 @@ export const createCalendarEventSchema = Yup.object().shape({
   endHour: Yup.string().required(() =>
     t('adminCalendarAddEvent.form.endHour.error.notEmpty'),
   ),
-  orderNote: Yup.string().required(() =>
-    t('adminCalendarAddEvent.form.orderNote.error.notEmpty'),
-  ),
+  orderNote: Yup.string()
 });

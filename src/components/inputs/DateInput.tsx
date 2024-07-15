@@ -137,6 +137,7 @@ const DateInput: React.FC<IDateInput> = ({
         }}
         title={t('dateInput.title')}
         cancelText={t('dateInput.cancelText')!}
+        minuteInterval={5}
         confirmText={t('dateInput.confirmText')!}
         mode={mode}
         maximumDate={maximumDate}

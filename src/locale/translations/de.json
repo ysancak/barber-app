@@ -61,8 +61,8 @@
     },
     "search": {
         "title": "Suchen",
-        "topTitle": "Ein stilvoller Touch ist nah",
-        "highlightedTitle": "Entdecken Sie die *nächstgelegenen* Friseure!",
+        "topTitle": "Nimm dir Zeit für dich selbst",
+        "highlightedTitle": "Buche jetzt deine *meTime* bei unseren Partnergeschäften",
         "categoryPlaceholder": "Kategorie wählen",
         "addressPlaceholder": "Adresse wählen",
         "buttonLabel": "Suchen",
@@ -104,7 +104,7 @@
             "editProfile": "Profil bearbeiten",
             "logout": "Abmelden",
             "reservations": "Reservierungen",
-            "myOrders": "Meine Bestellungen",
+            "myOrders": "Meine Buchungen",
             "settings": "Einstellungen",
             "faq": "Häufig gestellte Fragen",
             "agb": "AGB",
@@ -126,7 +126,7 @@
         }
     },
     "myOrders": {
-        "title": "Meine Bestellungen",
+        "title": "Meine Buchungen",
         "orderCancelButtonText": "Stornieren",
         "section": {
             "products": "Produkte",

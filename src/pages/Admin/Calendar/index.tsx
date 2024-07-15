@@ -131,7 +131,7 @@ export default function AdminCalendar() {
                 {event.title}
               </Text>
               <Text color={colors.textColor} fontSize={14}>
-                {event.worker.name}
+                {event.customerName}
               </Text>
               <Text color={colors.textColor} fontSize={13}>
                 {`${moment(event.start).format('HH:mm')} - ${moment(
