@@ -169,6 +169,20 @@ type Worker = {
   };
 };
 
+type CustomerCalendarResponse = {
+  events: CalendarEvent[]
+  hours: {
+    0: WorkerShift;
+    1: WorkerShift;
+    2: WorkerShift;
+    3: WorkerShift;
+    4: WorkerShift;
+    5: WorkerShift;
+    6: WorkerShift;
+  };
+  holidays: WorkerDayOff[]
+}
+
 type OrderRequestParams = {
   name: string;
   surname: string;

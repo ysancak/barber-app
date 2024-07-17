@@ -12,12 +12,12 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		237B8271F11F4D20832A52BB /* EncodeSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03652F75789F4C7B9BC72091 /* EncodeSans-SemiBold.ttf */; };
-		241BE303F6232AF238680DB0 /* libPods-MeTime-MeTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4927BEE32DE61C1F4957985 /* libPods-MeTime-MeTimeTests.a */; };
-		2B75580765448DB03BC981DB /* libPods-MeTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ADF056386A90BADE2F0022 /* libPods-MeTime.a */; };
 		57A5C53CE4644975AA2025DB /* EncodeSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A248A00EA0354FB0979794E8 /* EncodeSans-Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		92F41E17973C626C4294CE60 /* libPods-MeTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3338546D088BA9D550A9DC /* libPods-MeTime.a */; };
 		93E812C3EAA54007AAF92121 /* EncodeSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 015290DFB54542F28D96B738 /* EncodeSans-Bold.ttf */; };
 		AB6624847CA04245B058C014 /* EncodeSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43BC55F0104C41B6894F0F8F /* EncodeSans-Medium.ttf */; };
+		ACA647631D371FA42F44F778 /* libPods-MeTime-MeTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 404EFB3373D3AB409574335A /* libPods-MeTime-MeTimeTests.a */; };
 		B32F1A2F4A1A4DD193E57A7E /* EncodeSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6586ADB2AD1473D86E0FD68 /* EncodeSans-Light.ttf */; };
 /* End PBXBuildFile section */
 
@@ -49,15 +49,15 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MeTime/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MeTime/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MeTime/main.m; sourceTree = "<group>"; };
+		1F3338546D088BA9D550A9DC /* libPods-MeTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		404EFB3373D3AB409574335A /* libPods-MeTime-MeTimeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime-MeTimeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BC55F0104C41B6894F0F8F /* EncodeSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Medium.ttf"; path = "../src/assets/fonts/EncodeSans-Medium.ttf"; sourceTree = "<group>"; };
-		4FF4531A942ECBD57233B1ED /* Pods-MeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.debug.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.debug.xcconfig"; sourceTree = "<group>"; };
-		6B4F21325F4F182E0ED501E5 /* Pods-MeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.release.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.release.xcconfig"; sourceTree = "<group>"; };
-		7AF7F80A6AEF488D897664A2 /* Pods-MeTime-MeTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		725FF58D951AE6C8E8646773 /* Pods-MeTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.debug.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MeTime/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A248A00EA0354FB0979794E8 /* EncodeSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Regular.ttf"; path = "../src/assets/fonts/EncodeSans-Regular.ttf"; sourceTree = "<group>"; };
-		A4927BEE32DE61C1F4957985 /* libPods-MeTime-MeTimeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime-MeTimeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8BC518A77EC8EC41F1BBF0A /* Pods-MeTime-MeTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.release.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.release.xcconfig"; sourceTree = "<group>"; };
-		C9ADF056386A90BADE2F0022 /* libPods-MeTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2BFC55CB07D9FDDF939D39 /* Pods-MeTime-MeTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.release.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		AB2670A09D4570697A38A44B /* Pods-MeTime-MeTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime-MeTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE72AF1D9056A2F62823B49F /* Pods-MeTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeTime.release.xcconfig"; path = "Target Support Files/Pods-MeTime/Pods-MeTime.release.xcconfig"; sourceTree = "<group>"; };
 		E6586ADB2AD1473D86E0FD68 /* EncodeSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EncodeSans-Light.ttf"; path = "../src/assets/fonts/EncodeSans-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241BE303F6232AF238680DB0 /* libPods-MeTime-MeTimeTests.a in Frameworks */,
+				ACA647631D371FA42F44F778 /* libPods-MeTime-MeTimeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B75580765448DB03BC981DB /* libPods-MeTime.a in Frameworks */,
+				92F41E17973C626C4294CE60 /* libPods-MeTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C9ADF056386A90BADE2F0022 /* libPods-MeTime.a */,
-				A4927BEE32DE61C1F4957985 /* libPods-MeTime-MeTimeTests.a */,
+				1F3338546D088BA9D550A9DC /* libPods-MeTime.a */,
+				404EFB3373D3AB409574335A /* libPods-MeTime-MeTimeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,10 +175,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4FF4531A942ECBD57233B1ED /* Pods-MeTime.debug.xcconfig */,
-				6B4F21325F4F182E0ED501E5 /* Pods-MeTime.release.xcconfig */,
-				7AF7F80A6AEF488D897664A2 /* Pods-MeTime-MeTimeTests.debug.xcconfig */,
-				C8BC518A77EC8EC41F1BBF0A /* Pods-MeTime-MeTimeTests.release.xcconfig */,
+				725FF58D951AE6C8E8646773 /* Pods-MeTime.debug.xcconfig */,
+				DE72AF1D9056A2F62823B49F /* Pods-MeTime.release.xcconfig */,
+				AB2670A09D4570697A38A44B /* Pods-MeTime-MeTimeTests.debug.xcconfig */,
+				AA2BFC55CB07D9FDDF939D39 /* Pods-MeTime-MeTimeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -190,12 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MeTimeTests" */;
 			buildPhases = (
-				20C86DAB8501073DAD0995C3 /* [CP] Check Pods Manifest.lock */,
+				C440F5ECD6EC25EA7E4DDF31 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				2DF9DE4ABBD1601D089DE7B8 /* [CP] Embed Pods Frameworks */,
-				19BF0066B9CB9DFC0A1D7ADE /* [CP] Copy Pods Resources */,
+				0E5A06BA885BE12B377ECBF5 /* [CP] Embed Pods Frameworks */,
+				8F0C65F02348C38B22717885 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,14 +211,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MeTime" */;
 			buildPhases = (
-				5CEDA7EA7A5190445FE899EC /* [CP] Check Pods Manifest.lock */,
+				29B4A50777BBFCF35DCF364A /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				823BA8BB9AFCB94F480B3953 /* [CP] Embed Pods Frameworks */,
-				FD265017B0CD44B529594C59 /* [CP] Copy Pods Resources */,
+				2F2EFA66CB392F6AA67D20E6 /* [CP] Embed Pods Frameworks */,
+				05B6D36F529D0D46400C71C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,46 +306,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		19BF0066B9CB9DFC0A1D7ADE /* [CP] Copy Pods Resources */ = {
+		05B6D36F529D0D46400C71C8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		20C86DAB8501073DAD0995C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MeTime-MeTimeTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2DF9DE4ABBD1601D089DE7B8 /* [CP] Embed Pods Frameworks */ = {
+		0E5A06BA885BE12B377ECBF5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,7 +340,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5CEDA7EA7A5190445FE899EC /* [CP] Check Pods Manifest.lock */ = {
+		29B4A50777BBFCF35DCF364A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -384,7 +362,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		823BA8BB9AFCB94F480B3953 /* [CP] Embed Pods Frameworks */ = {
+		2F2EFA66CB392F6AA67D20E6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -399,6 +377,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F0C65F02348C38B22717885 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime-MeTimeTests/Pods-MeTime-MeTimeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C440F5ECD6EC25EA7E4DDF31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeTime-MeTimeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -418,23 +435,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FD265017B0CD44B529594C59 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeTime/Pods-MeTime-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -470,7 +470,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AF7F80A6AEF488D897664A2 /* Pods-MeTime-MeTimeTests.debug.xcconfig */;
+			baseConfigurationReference = AB2670A09D4570697A38A44B /* Pods-MeTime-MeTimeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -478,7 +478,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MeTimeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,12 +497,12 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C8BC518A77EC8EC41F1BBF0A /* Pods-MeTime-MeTimeTests.release.xcconfig */;
+			baseConfigurationReference = AA2BFC55CB07D9FDDF939D39 /* Pods-MeTime-MeTimeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = MeTimeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -521,19 +521,18 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FF4531A942ECBD57233B1ED /* Pods-MeTime.debug.xcconfig */;
+			baseConfigurationReference = 725FF58D951AE6C8E8646773 /* Pods-MeTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7V8924M7W2;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = 7V8924M7W2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MeTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Me Time";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,7 +546,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.metime-schweiz";
 				PRODUCT_NAME = MeTime;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Tekin Durmaz App Store Me Time";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -559,18 +557,17 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B4F21325F4F182E0ED501E5 /* Pods-MeTime.release.xcconfig */;
+			baseConfigurationReference = DE72AF1D9056A2F62823B49F /* Pods-MeTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7V8924M7W2;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = 7V8924M7W2;
 				INFOPLIST_FILE = MeTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Me Time";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -584,7 +581,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.metime-schweiz";
 				PRODUCT_NAME = MeTime;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Tekin Durmaz App Store Me Time";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -643,7 +639,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -718,7 +714,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

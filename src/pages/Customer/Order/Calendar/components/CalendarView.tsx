@@ -144,6 +144,19 @@ const CalendarView: React.FC<Props> = ({businessID, workerID}) => {
       return [];
     }
 
+    const isHoliday = workerEventFetch?.data?.holidays.some(holiday =>
+      selectedDate.isBetween(
+        moment(holiday.HolidayStartDate),
+        moment(holiday.HolidayEndDate),
+        null,
+        '[]',
+      ),
+    );
+
+    if (isHoliday) {
+      return [];
+    }
+
     let hours = [];
     currentShifts.forEach(shift => {
       let startHour = parseInt(moment(shift.start, 'HH:mm').format('HH'), 10);
