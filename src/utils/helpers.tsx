@@ -1,5 +1,7 @@
+import {showAlert} from '@/components/Alert';
 import {t} from 'i18next';
 import {Linking, Platform} from 'react-native';
+import {PERMISSIONS, request} from 'react-native-permissions';
 
 export const makePhoneCall = async (number: string) => {
   const replacedNumber = number?.toString().replaceAll(' ', '');
@@ -73,4 +75,38 @@ export const openUrl = url => {
   Linking.openURL(validUrl).catch(err =>
     console.error('Failed to open URL:', err),
   );
+};
+
+export const checkAndRequestLocationPermission = async () => {
+  await request(PERMISSIONS.IOS.LOCATION_ALWAYS)
+    .then(result => {
+      switch (result) {
+        case 'granted':
+          return true;
+        case 'blocked':
+        case 'denied':
+        case 'limited':
+        case 'unavailable':
+        default:
+          showAlert({
+            title: t('alert.locationSettings.title'),
+            content: t('alert.locationSettings.description'),
+            buttons: [
+              {
+                type: 'default',
+                text: t('alert.locationSettings.actions.allow'),
+                onPress: () => Linking.openSettings(),
+              },
+              {
+                type: 'secondary',
+                text: t('alert.locationSettings.actions.cancel'),
+              },
+            ],
+          });
+          throw new Error();
+      }
+    })
+    .catch(() => {
+      throw new Error();
+    });
 };

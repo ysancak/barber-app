@@ -32,6 +32,14 @@
                 "delete": "Ja, löschen",
                 "cancel": "Abbrechen"
             }
+        },
+        "locationSettings": {
+            "title": "Standortzugriff anfordern",
+            "description": "Um diese Funktion nutzen zu können, muss die App auf Ihren Standort zugreifen dürfen. Bitte gehen Sie zu den Einstellungen und erlauben Sie den Standortzugriff.",            
+            "actions": {
+                "allow": "Zu den Einstellungen",
+                "cancel": "Abbrechen"
+            }
         }
     },
     "nativeMapDefaultLabel": "Zielort",

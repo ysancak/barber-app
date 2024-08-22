@@ -485,6 +485,8 @@ PODS:
   - RNGestureHandler (2.17.1):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
+  - RNPermissions (4.1.5):
+    - React-Core
   - RNReanimated (3.14.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -555,6 +557,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -674,6 +677,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -741,12 +746,13 @@ SPEC CHECKSUMS:
   RNCMaskedView: 090213d32d8b3bb83a4dcb7d12c18f0152591906
   RNFlashList: a74c48e93cded2dd0b8a8b30e73c44afa8275c66
   RNGestureHandler: bbb8e17b10afdafc5cc5746e8f60772236e7e2ca
+  RNPermissions: a4c964f030841f35d918ab3248df9dec9db5f44d
   RNReanimated: 158b2f80fdb043ab5a645ba047209badbd7eb9a9
   RNScreens: 0bd9eec783bed1032e02a4db9976dae1664a5c7b
   RNVectorIcons: bfb663f3f7b37340cd90120151b720641523dc84
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 
-PODFILE CHECKSUM: c31ff8689c1a8b752f46fcfd6520a9dbddf6c602
+PODFILE CHECKSUM: 9d2077eccc1efbf9bdd75f1e19b31e1465a9d41a
 
 COCOAPODS: 1.14.0

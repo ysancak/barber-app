@@ -11,6 +11,7 @@ import {getCategoriesService} from '@/services/common.service';
 import {getMapSaloonsService} from '@/services/saloon.service';
 import {setSaloons} from '@/store/search';
 import {colors} from '@/utils';
+import {checkAndRequestLocationPermission} from '@/utils/helpers';
 
 const SearchSaloons = () => {
   const {t} = useTranslation();
@@ -26,6 +27,7 @@ const SearchSaloons = () => {
     validationSchema: searchValidationSchema,
     onSubmit: async values => {
       try {
+        await checkAndRequestLocationPermission();
         const result = await getMapSaloonsService(values);
         if (result) {
           dispatch(setSaloons(result));

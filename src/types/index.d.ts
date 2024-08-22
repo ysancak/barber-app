@@ -22,6 +22,8 @@ interface ButtonProps {
   labelStyle?: StyleProp<TextStyle>;
 }
 
+type PermissionStatus = 'unavailable' | 'denied' | 'limited' | 'granted' | 'blocked';
+
 type SelectOption = {
   [key: string]: any;
 };

@@ -40,10 +40,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Wir verwenden Ihren Standort, um Ihnen die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden nur genutzt, während Sie die App aktiv verwenden.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Ihr Standort wird ständig genutzt, um Ihnen jederzeit die nächstgelegenen Friseursalons anzeigen zu können. Diese Daten ermöglichen es uns, Ihnen auch im Hintergrund standortbezogene Dienste anzubieten.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Wir verwenden Ihren Standort, um Ihnen jederzeit die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden genutzt, sowohl während Sie die App aktiv verwenden, als auch im Hintergrund, um Ihnen standortbezogene Dienste anbieten zu können.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
