@@ -22,6 +22,8 @@ interface ButtonProps {
   labelStyle?: StyleProp<TextStyle>;
 }
 
+type PermissionStatus = 'unavailable' | 'denied' | 'limited' | 'granted' | 'blocked';
+
 type SelectOption = {
   [key: string]: any;
 };
@@ -39,6 +41,8 @@ type RootStackParamList = {
   Settings: undefined;
   LanguageSettings: undefined;
   Faq: undefined;
+  MyOrders: undefined;
+  MyOrderDetail: {order: Order; deletable: boolean};
   SaloonDetail: {businessID: string};
   SelectInputDetail: {
     title: string;
@@ -61,6 +65,19 @@ type RootStackParamList = {
   OrderUserInfo: {businessID: string};
   OrderResult: {businessID: string};
   Payment: {businessID: string; link: string};
+  // Admin
+  AdminDashboard: undefined;
+  AdminLogin: undefined;
+  AdminWorkerManagement: undefined;
+  AdminWorkers: undefined;
+  AdminAddWorker: undefined;
+  AdminEditWorker: Worker;
+  AdminWorkerDayOffs: undefined;
+  AdminAddDayOff: undefined;
+  AdminEditDayOff: WorkerDayOff;
+  AdminCalendar: undefined;
+  AdminAddCalendarEvent?: {date: string};
+  AdminEditCalendarEvent: CalendarEvent;
 };
 
 type Coordinate = {

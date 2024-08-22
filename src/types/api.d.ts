@@ -111,6 +111,29 @@ type Product = {
   inCampaign: boolean;
 };
 
+type Order = {
+  _id: string;
+  name: string;
+  surname: string;
+  email: string;
+  gsm: string;
+  street: string;
+  postcode: string;
+  ort: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  business: Saloon;
+  orderNumber: string;
+  note: string;
+  paymentStatus: 'Success';
+  userID: string;
+  orderPrice: string;
+  subtotal: string;
+  couponCode?: string;
+  orderItems: (Product | Service)[];
+};
+
 type Campaign = {
   _id: string;
   businessID: string;
@@ -131,9 +154,10 @@ type Worker = {
   _id: string;
   name: string;
   surname: string;
-  fullname: string;
+  fullName: string;
   availability: string;
   businessID: string;
+  workerColor: string;
   hours: {
     0: WorkerShift;
     1: WorkerShift;
@@ -144,6 +168,20 @@ type Worker = {
     6: WorkerShift;
   };
 };
+
+type CustomerCalendarResponse = {
+  events: CalendarEvent[]
+  hours: {
+    0: WorkerShift;
+    1: WorkerShift;
+    2: WorkerShift;
+    3: WorkerShift;
+    4: WorkerShift;
+    5: WorkerShift;
+    6: WorkerShift;
+  };
+  holidays: WorkerDayOff[]
+}
 
 type OrderRequestParams = {
   name: string;
@@ -167,4 +205,27 @@ type OrderRequestParams = {
 type Slide = {
   _id: string;
   image_path: string;
+  slideBig: string;
+  slideSmall: string;
+};
+
+type WorkerDayOff = {
+  _id: string;
+  businessID: string;
+  HolidayEndDate: string;
+  HolidayStartDate: string;
+  workerID: string;
+  workerName: string;
+};
+
+type CalendarEvent = {
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  color: string;
+  worker: Worker;
+  clientTel: string;
+  customerName: string;
+  customerSurname: string;
 };

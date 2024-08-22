@@ -1,7 +1,9 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
+import {SheetProvider} from 'react-native-actions-sheet';
 import Toast from 'react-native-toast-message';
 import {Provider} from 'react-redux';
+import '@/utils/sheets.tsx';
 
 import '@/locale/i18n.config';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -21,7 +23,9 @@ function App(): JSX.Element {
       />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <MainNavigator />
+          <SheetProvider>
+            <MainNavigator />
+          </SheetProvider>
           <Toast config={toastConfig} />
           <AlertController />
         </PersistGate>

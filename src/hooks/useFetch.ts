@@ -53,6 +53,7 @@ const useFetch = <T, P = void>(fetchFunction: (params: P) => Promise<T>) => {
     error,
     setError,
     data,
+    setData,
     refresh,
     retry,
     fetch,

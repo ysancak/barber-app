@@ -24,6 +24,22 @@
                 "login": "Einloggen",
                 "cancel": "Abbrechen"
             }
+        },
+        "delete": {
+            "title": "Bist du sicher, dass du löschen möchtest?",
+            "description": "Bist du sicher, dass du löschen möchtest?",
+            "actions": {
+                "delete": "Ja, löschen",
+                "cancel": "Abbrechen"
+            }
+        },
+        "locationSettings": {
+            "title": "Standortzugriff anfordern",
+            "description": "Um diese Funktion nutzen zu können, muss die App auf Ihren Standort zugreifen dürfen. Bitte gehen Sie zu den Einstellungen und erlauben Sie den Standortzugriff.",            
+            "actions": {
+                "allow": "Zu den Einstellungen",
+                "cancel": "Abbrechen"
+            }
         }
     },
     "nativeMapDefaultLabel": "Zielort",
@@ -53,8 +69,8 @@
     },
     "search": {
         "title": "Suchen",
-        "topTitle": "Ein stilvoller Touch ist nah",
-        "highlightedTitle": "Entdecken Sie die *nächstgelegenen* Friseure!",
+        "topTitle": "Nimm dir Zeit für dich selbst",
+        "highlightedTitle": "Buche jetzt deine *meTime* bei unseren Partnergeschäften",
         "categoryPlaceholder": "Kategorie wählen",
         "addressPlaceholder": "Adresse wählen",
         "buttonLabel": "Suchen",
@@ -96,11 +112,12 @@
             "editProfile": "Profil bearbeiten",
             "logout": "Abmelden",
             "reservations": "Reservierungen",
-            "myOrders": "Meine Bestellungen",
+            "myOrders": "Meine Buchungen",
             "settings": "Einstellungen",
             "faq": "Häufig gestellte Fragen",
             "agb": "AGB",
             "impressum": "Impressum",
+            "adminLogin": "Admin-Login",
             "deleteAccount": {
                 "label":  "Lösche deinen Account",
                 "alert": {
@@ -116,6 +133,35 @@
             "description": "Loggen Sie sich in Ihr Konto ein, um Reservierungen vorzunehmen und von Rabatten zu profitieren"
         }
     },
+    "myOrders": {
+        "title": "Meine Buchungen",
+        "orderCancelButtonText": "Stornieren",
+        "section": {
+            "products": "Produkte",
+            "services": "Dienstleistungen",
+            "businessInfo": "Geschäftsinformationen"
+        },
+        "empty": {
+            "title": "Kein Termin vorhanden",
+            "description": "Es wurden keine Termine zum Auflisten gefunden. Sie können einen neuen erstellen."
+        },
+        "toast": {
+            "orderCancelSuccess": "Ihr Termin wurde abgesagt"
+        },  
+        "alert": {
+            "orderCancel": {
+                "title": "Achtung!",
+                "description": "Wenn Sie Ihren Termin löschen, müssen Sie einen neuen Termin vereinbaren. Für den gelöschten Termin wird eine Rückerstattung vorgenommen.",
+                "buttons": {
+                    "delete":"Ja, löschen"
+                }
+            }
+        },
+        "tabs": {
+            "current": "Aktuell",
+            "past": "Vergangen"
+        }
+    },
     "loginAndRegister": {
         "login": "Anmelden",
         "register": "Registrieren",
@@ -129,6 +175,55 @@
             },
             "password": {
                 "placeholder": "Geben Sie Ihr Passwort ein",
+                "error": {
+                    "notEmpty": "Passwort darf nicht leer sein",
+                    "min": "Das Passwort muss mindestens 6 Zeichen lang sein"
+                }
+            }
+        }
+    },
+    "adminDashboard": {
+        "title": "Verwaltung",
+        "welcomeMessage": "Willkommen,",
+        "headerMenu": {
+            "logout": "Abmelden"
+        },
+        "menu": {
+            "calendar": "Kalender",
+            "workerManagement": "Mitarbeiterverwaltung",
+            "slider": "Slider Bilder"
+        }
+    },
+    "adminWorkerManagement": {
+        "title": "Mitarbeiterverwaltung",
+        "options": {
+            "workers": "Mitarbeiter",
+            "offdays": "Freitage"
+        }
+    },
+    "adminWorkers": {
+        "title": "Mitarbeiter",
+        "availablity": {
+            "available": "Arbeitend",
+            "unavailable": "Nicht verfügbar"
+        },
+        "empty": {
+            "title": "Keine Mitarbeiter",
+            "description": "Keine Mitarbeiter zur Anzeige"
+        }
+    },
+    "adminLogin": {
+        "title": "Admin-Login",
+        "login": "Einloggen",
+        "form": {
+            "username": {
+                "placeholder": "Benutzername",
+                "error": {
+                    "notEmpty": "Benutzername darf nicht leer sein"
+                }
+            },
+            "password": {
+                "placeholder": "Passwort",
                 "error": {
                     "notEmpty": "Passwort darf nicht leer sein",
                     "min": "Das Passwort muss mindestens 6 Zeichen lang sein"
@@ -186,6 +281,11 @@
         "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut",
         "action": "Erneut versuchen"
     },
+    "dateInput": {
+        "title": "Wählen",
+        "cancelText": "Abbrechen",
+        "confirmText": "Speichern"
+    },    
     "orderResult": {
         "serviceDateInfo": "Bitte seien Sie vor Ihrer Reservierungszeit an der angegebenen Adresse",
         "title": {
@@ -265,6 +365,304 @@
             }
         }
     },
+    "adminCalendar": {
+        "title": "Kalender",
+        "eventModal": {
+            "title": "Auswählen",
+            "actions": {
+                "edit": "Bearbeiten",
+                "delete": "Löschen"
+            }
+        },
+        "workerModal": {
+            "title": "Mitarbeiter",
+            "empty": {
+                "title": "Keine Mitarbeiter gefunden",
+                "description": "Es wurden keine Mitarbeiter zum Anzeigen gefunden"
+            }
+        }
+    },
+    "adminCalendarAddEvent": {
+        "title": "Termin hinzufügen",
+        "toast": {
+            "savedSuccess": "Termin hinzugefügt"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter ist erforderlich"
+                }
+            },
+            "customerName": {
+                "placeholder": "Kundenname",
+                "error": {
+                    "notEmpty": "Kundenname ist erforderlich"
+                }
+            },
+            "customerSurname": {
+                "placeholder": "Kundennachname",
+                "error": {
+                    "notEmpty": "Kundennachname ist erforderlich"
+                }
+            },
+            "clientTel": {
+                "placeholder": "Kundentelefonnummer",
+                "error": {
+                    "notEmpty": "Kundentelefonnummer ist erforderlich"
+                }
+            },
+            "date": {
+                "placeholder": "Datum auswählen",
+                "error": {
+                    "notEmpty": "Datum ist erforderlich"
+                }
+            },
+            "startHour": {
+                "placeholder": "Startzeit",
+                "error": {
+                    "notEmpty": "Startzeit ist erforderlich"
+                }
+            },
+            "endHour": {
+                "placeholder": "Endzeit",
+                "error": {
+                    "notEmpty": "Endzeit ist erforderlich"
+                }
+            },
+            "orderNote": {
+                "placeholder": "Notitz",
+                "error": {
+                    "notEmpty": "Notitz ist erforderlich"
+                }
+            }
+        },
+        "section": {
+            "worker": "Mitarbeiterinformationen",
+            "customer": "Kundeninformationen",
+            "date": "Datum",
+            "other": "Weitere Informationen"
+        }
+    },
+    "adminCalendarEditEvent": {
+        "title": "Termin bearbeiten",
+        "toast": {
+            "savedSuccess": "Termin aktualisiert"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter ist erforderlich"
+                }
+            },
+            "customerName": {
+                "placeholder": "Kundenname",
+                "error": {
+                    "notEmpty": "Kundenname ist erforderlich"
+                }
+            },
+            "customerSurname": {
+                "placeholder": "Kundennachname",
+                "error": {
+                    "notEmpty": "Kundennachname ist erforderlich"
+                }
+            },
+            "clientTel": {
+                "placeholder": "Kundentelefonnummer",
+                "error": {
+                    "notEmpty": "Kundentelefonnummer ist erforderlich"
+                }
+            },
+            "date": {
+                "placeholder": "Datum auswählen",
+                "error": {
+                    "notEmpty": "Datum ist erforderlich"
+                }
+            },
+            "startHour": {
+                "placeholder": "Startzeit",
+                "error": {
+                    "notEmpty": "Startzeit ist erforderlich"
+                }
+            },
+            "endHour": {
+                "placeholder": "Endzeit",
+                "error": {
+                    "notEmpty": "Endzeit ist erforderlich"
+                }
+            },
+            "orderNote": {
+                "placeholder": "Notitz",
+                "error": {
+                    "notEmpty": "Notitz ist erforderlich"
+                }
+            }
+        },
+        "section": {
+            "worker": "Mitarbeiterinformationen",
+            "customer": "Kundeninformationen",
+            "date": "Datum",
+            "other": "Weitere Informationen"
+        }
+    },    
+    "adminDayOffs": {
+        "title": "Freitage",
+        "tabs": {
+            "current": "Aktuell",
+            "past": "Vergangen"
+        },
+        "empty": {
+            "title": "Keine Freitage",
+            "description": "Keine Freitage zur Anzeige"
+        },
+        "upcomingMessage": {
+            "start": "{{ days }} Stunden bis zum Beginn",
+            "end": "{{ days }} Stunden bis zum Ende"
+        }
+    },
+    "addDayOff": {
+        "title": "Freitag hinzufügen",
+        "toast": {
+            "savedSuccess": "Freitag hinzugefügt"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter darf nicht leer sein"
+                }
+            },
+            "holidayStartDate": {
+                "placeholder": "Startdatum",
+                "error": {
+                    "notEmpty": "Startdatum darf nicht leer sein"
+                }
+            },
+            "holidayEndDate": {
+                "placeholder": "Enddatum",
+                "error": {
+                    "notEmpty": "Enddatum darf nicht leer sein"
+                }
+            }
+        }
+    },
+    "editDayOff": {
+        "title": "Freitag bearbeiten",
+        "toast": {
+            "savedSuccess": "Freitag aktualisiert"
+        },
+        "form": {
+            "workerID": {
+                "placeholder": "Mitarbeiter auswählen",
+                "error": {
+                    "notEmpty": "Mitarbeiter darf nicht leer sein"
+                }
+            },
+            "holidayStartDate": {
+                "placeholder": "Startdatum",
+                "error": {
+                    "notEmpty": "Startdatum darf nicht leer sein"
+                }
+            },
+            "holidayEndDate": {
+                "placeholder": "Enddatum",
+                "error": {
+                    "notEmpty": "Enddatum darf nicht leer sein"
+                }
+            }
+        }
+    },
+    "addWorker": {
+        "title": "Mitarbeiter hinzufügen",
+        "section": {
+            "workerInfo": "Mitarbeiterinformationen",
+            "workHours": "Arbeitszeiten"
+        },
+        "toast": {
+            "savedSuccess": "Mitarbeiter hinzugefügt"
+        },
+        "hoursErrorMessage": "Überprüfen Sie die Zeitintervalle",
+        "form": {
+            "name": {
+                "placeholder": "Vorname",
+                "error": {
+                    "notEmpty": "Vorname darf nicht leer sein"
+                }
+            },
+            "surname": {
+                "placeholder": "Nachname",
+                "error": {
+                    "notEmpty": "Nachname darf nicht leer sein"
+                }
+            },
+            "workHour": {
+                "startHour": {
+                    "placeholder": "Beginn",
+                    "error": {
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
+                    }
+                },
+                "endHour": {
+                    "placeholder": "Ende",
+                    "error": {
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
+                    }
+                }
+            }
+        }
+    },
+    "days": [
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+        "Sonntag"
+    ],
+    "editWorker": {
+        "title": "Mitarbeiter bearbeiten",
+        "section": {
+            "workerInfo": "Mitarbeiterinformationen",
+            "workHours": "Arbeitszeiten"
+        },
+        "toast": {
+            "savedSuccess": "Mitarbeiter bearbeitet"
+        },
+        "hoursErrorMessage": "Überprüfen Sie die Zeitintervalle",
+        "form": {
+            "name": {
+                "placeholder": "Vorname",
+                "error": {
+                    "notEmpty": "Vorname darf nicht leer sein"
+                }
+            },
+            "availability": {
+                "placeholder": "Verfügbarkeit des Mitarbeiters"
+            },
+            "surname": {
+                "placeholder": "Nachname",
+                "error": {
+                    "notEmpty": "Nachname darf nicht leer sein"
+                }
+            },
+            "workHour": {
+                "startHour": {
+                    "placeholder": "Beginn",
+                    "error": {
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
+                    }
+                },
+                "endHour": {
+                    "placeholder": "Ende",
+                    "error": {
+                        "notEmpty": "Stundenangabe darf nicht leer sein"
+                    }
+                }
+            }
+        }
+    },
     "orderUserInfo": {
         "title": "Überprüfen Informationen",
         "section": {
@@ -319,7 +717,7 @@
                 "placeholder": "Ort."
             },
             "note": {
-                "placeholder": "Ihre Notiz (Optional)"
+                "placeholder": "Ihre Notitz (Optional)"
             },
             "agb": {
                 "placeholder": "Ich habe die AGB gelesen und akzeptiere sie",

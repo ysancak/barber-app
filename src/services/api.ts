@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+import {resetNavigationState} from '@/router/root.navigation';
 import {store} from '@/store';
-import {setTokens, clearTokens} from '@/store/auth';
+import auth, {setTokens, clearTokens} from '@/store/auth';
 import {API_BASE_URL} from '@/utils/constants';
 
 const api = axios.create({
@@ -29,12 +30,16 @@ api.interceptors.response.use(
   async (error: any) => {
     const originalRequest = error.config;
     const state = store.getState();
-
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       const token = state.auth.refreshToken;
+      const authType = state.auth.authType;
       try {
-        const {data} = await axios.post(`${API_BASE_URL}/refresh`, {
+        const refreshUrl =
+          authType === 'Admin'
+            ? `${API_BASE_URL}/refresh-admin`
+            : `${API_BASE_URL}/refresh`;
+        const {data} = await axios.post(refreshUrl, {
           token,
         });
         store.dispatch(setTokens(data));
@@ -42,6 +47,12 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         store.dispatch(clearTokens());
+        if (authType === 'Admin') {
+          resetNavigationState({
+            index: 1,
+            routes: [{name: 'Tabs'}],
+          });
+        }
       }
     }
     if (error.response.status === 401) {

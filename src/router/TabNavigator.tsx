@@ -4,12 +4,12 @@ import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {HeaderTitle} from '@/components';
-import {Campaigns, Favorites, Home, MyAccount, Search} from '@/pages';
+import {Campaigns, Favorites, Home, MyAccount, Search} from '@/pages/Customer';
 import {colors} from '@/utils';
 
 const Tab = createBottomTabNavigator();
 
-function TabNavigator(): JSX.Element {
+function CustomerTabNavigator(): JSX.Element {
   const {t} = useTranslation();
 
   return (
@@ -73,4 +73,4 @@ function TabNavigator(): JSX.Element {
   );
 }
 
-export default TabNavigator;
+export default CustomerTabNavigator;

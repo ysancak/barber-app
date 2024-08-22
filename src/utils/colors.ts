@@ -26,3 +26,11 @@ export const ratingColor = {
   mediumHigh: '#65a30d',
   high: '#15803d',
 };
+
+export const workerColors = [
+  '#518ff1',
+  '#f15151',
+  '#59f151',
+  '#f1a151',
+  '#f1e951',
+];

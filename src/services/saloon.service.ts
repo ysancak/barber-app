@@ -73,7 +73,7 @@ export const getWorkerCalendarEvents = async (params: {
   startDate: string;
 }) => {
   try {
-    const response = await api.get<Worker[]>(
+    const response = await api.get<CustomerCalendarResponse>(
       `/get-calendar-data-worker/${params.businessID}/${params.workerID}/${params.startDate}`,
     );
     return response.data;

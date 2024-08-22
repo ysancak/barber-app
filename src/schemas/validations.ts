@@ -66,3 +66,124 @@ export const orderUserInfoSchema = Yup.object().shape({
     .oneOf([true], () => t('orderUserInfo.form.agb.error.notEmpty'))
     .required(() => t('orderUserInfo.form.agb.error.notEmpty')),
 });
+
+export const adminLoginValidation = Yup.object().shape({
+  username: Yup.string().required(() =>
+    t('adminLogin.form.username.error.notEmpty'),
+  ),
+  password: Yup.string()
+    .min(6, () => t('adminLogin.form.password.error.min'))
+    .required(() => t('adminLogin.form.password.error.notEmpty')),
+});
+
+const daySchema = Yup.array()
+  .of(
+    Yup.object().shape({
+      start: Yup.string().when('offday', (offday: string[], schema) =>
+        offday[0] === 'off'
+          ? schema.required(() =>
+              t('addWorker.form.workHour.startHour.error.notEmpty'),
+            )
+          : schema,
+      ),
+      end: Yup.string().when('offday', (offday: string[], schema) =>
+        offday[0] === 'off'
+          ? schema.required(() =>
+              t('addWorker.form.workHour.endHour.error.notEmpty'),
+            )
+          : schema,
+      ),
+      offday: Yup.string().oneOf(['off', 'on']),
+    }),
+  )
+  .test(
+    'time-overlap',
+    () => t('addWorker.form.workHour.error.timeConflict'),
+    function (hours) {
+      return checkTimeOverlap(hours);
+    },
+  );
+
+const checkTimeOverlap = hours => {
+  const sortedHours = hours
+    .filter(hour => hour.offday === 'off')
+    .sort((a, b) => {
+      const startTimeA = new Date(`2021-01-01T${a.start}:00`).getTime();
+      const startTimeB = new Date(`2021-01-01T${b.start}:00`).getTime();
+      return startTimeA - startTimeB;
+    });
+
+  if (sortedHours.length === 1) {
+    const start1 = new Date(`2021-01-01T${sortedHours[0].start}:00`).getTime();
+    const end1 = new Date(`2021-01-01T${sortedHours[0].end}:00`).getTime();
+
+    if (start1 > end1) {
+      return false;
+    }
+  }
+
+  for (let i = 0; i < sortedHours.length - 1; i++) {
+    const start1 = new Date(`2021-01-01T${sortedHours[i].start}:00`).getTime();
+    const end1 = new Date(`2021-01-01T${sortedHours[i].end}:00`).getTime();
+    const start2 = new Date(
+      `2021-01-01T${sortedHours[i + 1].start}:00`,
+    ).getTime();
+    const end2 = new Date(`2021-01-01T${sortedHours[i + 1].end}:00`).getTime();
+    if (end1 > start2 || end2 <= end1 || start1 > end1 || start2 > end2) {
+      return false;
+    }
+  }
+  return true;
+};
+
+export const createWorkerSchema = Yup.object().shape({
+  name: Yup.string().required(() => t('addWorker.form.name.error.notEmpty')),
+  surname: Yup.string().required(() =>
+    t('addWorker.form.surname.error.notEmpty'),
+  ),
+  workerColor: Yup.string(),
+  availability: Yup.string().oneOf(['Available', 'Unavailable']),
+  hours: Yup.object().shape({
+    '0': daySchema,
+    '1': daySchema,
+    '2': daySchema,
+    '3': daySchema,
+    '4': daySchema,
+    '5': daySchema,
+    '6': daySchema,
+  }),
+});
+
+export const createWorkerDayOffSchema = Yup.object().shape({
+  workerID: Yup.string().required(() =>
+    t('addDayOff.form.workerID.error.notEmpty'),
+  ),
+  HolidayStartDate: Yup.string().required(() =>
+    t('addDayOff.form.holidayStartDate.error.notEmpty'),
+  ),
+  HolidayEndDate: Yup.string().required(() =>
+    t('addDayOff.form.holidayEndDate.error.notEmpty'),
+  ),
+});
+
+// TODO: endHour startHour dan önce olmaz ve startHour endHour dan sona olamaz
+export const createCalendarEventSchema = Yup.object().shape({
+  workerID: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.workerID.error.notEmpty'),
+  ),
+  customerName: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.customerName.error.notEmpty'),
+  ),
+  customerSurname: Yup.string(),
+  clientTel: Yup.string(),
+  date: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.date.error.notEmpty'),
+  ),
+  startHour: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.startHour.error.notEmpty'),
+  ),
+  endHour: Yup.string().required(() =>
+    t('adminCalendarAddEvent.form.endHour.error.notEmpty'),
+  ),
+  orderNote: Yup.string()
+});
