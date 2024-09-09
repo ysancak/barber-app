@@ -6610,10 +6610,10 @@ react-native-map-clustering@^3.4.2:
     "@mapbox/geo-viewport" "^0.4.1"
     supercluster "^7.1.0"
 
-react-native-maps@^1.8.0:
-  version "1.15.6"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.15.6.tgz#237c67345f7b1ce934b4ae6cbb00387bdb8a5497"
-  integrity sha512-RRyjMvpMoV3249kJ9PA1JjZE/8FmYYHrHuloI/Vzkg/DjxFtJAbFnCnhg5AyS/LI5/n2riulbVl4qpiKpuO22Q==
+react-native-maps@1.15.3:
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-1.15.3.tgz#891d3cda1a2a2c93e42bee2a9cf5c22ce477b6f3"
+  integrity sha512-9EXc22FlAm/S3AUpOUaHM7ICmJbY8oXw0w0mQwMos6GZH0QP91BqCNSieOBwL8j9TxJOtAmD0GtDGYaVdiYk2w==
   dependencies:
     "@types/geojson" "^7946.0.13"
 
@@ -6624,6 +6624,11 @@ react-native-modal@^13.0.1:
   dependencies:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
+
+react-native-permissions@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-4.1.5.tgz#db4d1ddbf076570043f4fd4168f54bb6020aec92"
+  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
 
 react-native-reanimated@^3.7.2:
   version "3.14.0"
