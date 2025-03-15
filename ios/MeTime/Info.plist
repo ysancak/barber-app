@@ -104,6 +104,10 @@
 				<true/>
 			</dict>
 		</dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Wir verwenden Ihren Standort, um Ihnen jederzeit die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden genutzt, sowohl während Sie die App aktiv verwenden, als auch im Hintergrund, um Ihnen standortbezogene Dienste anbieten zu können.</string>
@@ -129,7 +133,7 @@
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

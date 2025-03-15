@@ -1,7 +1,7 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useMemo, useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {ActivityIndicator, StyleSheet, Linking} from 'react-native';
+import {ActivityIndicator, StyleSheet, Linking, Platform} from 'react-native';
 import {WebView} from 'react-native-webview';
 
 import {View} from '@/components';
@@ -39,12 +39,13 @@ const Payment = () => {
     }
   };
 
-  const handleNavigationStateChange = navState => {
+  const onShouldStartLoadWithRequest = navState => {
     console.log('navState', navState);
 
     const supportedSchemes = [
       {prefix: 'twint-issuer', appName: 'TWINT'},
       {prefix: 'postfinance', appName: 'PostFinance'},
+      {prefix: 'intent:', appName: 'TWINT'},
     ];
 
     const matchedScheme = supportedSchemes.find(scheme =>
@@ -53,6 +54,45 @@ const Payment = () => {
 
     if (matchedScheme) {
       webViewRef.current?.stopLoading();
+
+      if (Platform.OS === 'android' && navState.url.startsWith('intent:')) {
+        const url = navState.url;
+        const codeMatch = url.match(/S\.code=(\d+)/);
+        const code = codeMatch ? codeMatch[1] : '0';
+        const startingOriginMatch = url.match(/S\.startingOrigin=([^;]+)/);
+        const startingOrigin = startingOriginMatch
+          ? startingOriginMatch[1]
+          : 'EXTERNAL_WEB_BROWSER';
+        const fallbackUrlMatch = url.match(/S\.browser_fallback_url=([^;]+)/);
+        const fallbackUrl = fallbackUrlMatch ? fallbackUrlMatch[1] : '';
+
+        Linking.sendIntent('ch.twint.action.TWINT_PAYMENT', [
+          {key: 'scheme', value: 'twint'},
+          {key: 'S.code', value: code},
+          {key: 'S.startingOrigin', value: startingOrigin},
+          {key: 'S.browser_fallback_url', value: fallbackUrl},
+        ])
+          .then(() => {
+            setLoading(false);
+          })
+          .catch(() => {
+            showAlert({
+              title: t('payment.alert.app_not_opened.title'),
+              content: t('payment.alert.app_not_opened.description'),
+              buttons: [
+                {
+                  text: t('general.ok'),
+                  type: 'default',
+                  onPress: () => {
+                    navigation.goBack();
+                  },
+                },
+              ],
+            });
+          });
+        return false;
+      }
+
       Linking.canOpenURL(navState.url)
         .then(supported => {
           if (supported) {
@@ -106,7 +146,7 @@ const Payment = () => {
         onLoadStart={() => setLoading(true)}
         onLoadEnd={() => setLoading(false)}
         originWhitelist={['*']}
-        onNavigationStateChange={handleNavigationStateChange}
+        onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
         source={{uri: route.params.link}}
         style={{flex: 1}}
       />

@@ -5,13 +5,22 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <queries>
+        <intent>
+            <action android:name="ch.twint.action.TWINT_PAYMENT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="twint" />
+        </intent>
+    </queries>
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme" 
+      android:supportsRtl="true">
       <meta-data
           android:name="com.google.android.geo.API_KEY"
           android:value="AIzaSyBDZT0cRrHiq2Cm6cQ-fONcvw6KIurO-5o"/>
@@ -26,74 +35,75 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-          <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-              <data android:scheme="postfinance" />
-              <data android:scheme="twint-issuer1" />
-              <data android:scheme="twint-issuer2" />
-              <data android:scheme="twint-issuer3" />
-              <data android:scheme="twint-issuer4" />
-              <data android:scheme="twint-issuer5" />
-              <data android:scheme="twint-issuer6" />
-              <data android:scheme="twint-issuer7" />
-              <data android:scheme="twint-issuer8" />
-              <data android:scheme="twint-issuer9" />
-              <data android:scheme="twint-issuer10" />
-              <data android:scheme="twint-issuer12" />
-              <data android:scheme="twint-issuer13" />
-              <data android:scheme="twint-issuer14" />
-              <data android:scheme="twint-issuer15" />
-              <data android:scheme="twint-issuer16" />
-              <data android:scheme="twint-issuer17" />
-              <data android:scheme="twint-issuer18" />
-              <data android:scheme="twint-issuer19" />
-              <data android:scheme="twint-issuer20" />
-              <data android:scheme="twint-issuer21" />
-              <data android:scheme="twint-issuer22" />
-              <data android:scheme="twint-issuer23" />
-              <data android:scheme="twint-issuer24" />
-              <data android:scheme="twint-issuer25" />
-              <data android:scheme="twint-issuer26" />
-              <data android:scheme="twint-issuer27" />
-              <data android:scheme="twint-issuer28" />
-              <data android:scheme="twint-issuer29" />
-              <data android:scheme="twint-issuer30" />
-              <data android:scheme="twint-issuer31" />
-              <data android:scheme="twint-issuer32" />
-              <data android:scheme="twint-issuer33" />
-              <data android:scheme="twint-issuer34" />
-              <data android:scheme="twint-issuer35" />
-              <data android:scheme="twint-issuer36" />
-              <data android:scheme="twint-issuer37" />
-              <data android:scheme="twint-issuer38" />
-              <data android:scheme="twint-issuer39" />
-              <data android:scheme="twint-issuer40" />
-              <data android:scheme="twint-issuer41" />
-              <data android:scheme="twint-issuer42" />
-              <data android:scheme="twint-issuer43" />
-              <data android:scheme="twint-issuer44" />
-              <data android:scheme="twint-issuer46" />
-              <data android:scheme="twint-issuer47" />
-              <data android:scheme="twint-issuer48" />
-              <data android:scheme="twint-issuer49" />
-              <data android:scheme="twint-issuer51" />
-              <data android:scheme="twint-issuer52" />
-              <data android:scheme="twint-issuer53" />
-              <data android:scheme="twint-issuer54" />
-              <data android:scheme="twint-issuer55" />
-              <data android:scheme="twint-issuer56" />
-              <data android:scheme="twint-issuer57" />
-              <data android:scheme="twint-issuer58" />
-              <data android:scheme="twint-issuer59" />
-              <data android:scheme="twint-issuer60" />
-              <data android:scheme="twint-issuer61" />
-              <data android:scheme="twint-issuer62" />
-              <data android:scheme="twint-issuer63" />
-              <data android:scheme="twint-issuer64" />
-              <data android:scheme="twint-issuer65" />
-          </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="twint" />
+          <data android:scheme="postfinance" />
+          <data android:scheme="twint-issuer1" />
+          <data android:scheme="twint-issuer2" />
+          <data android:scheme="twint-issuer3" />
+          <data android:scheme="twint-issuer4" />
+          <data android:scheme="twint-issuer5" />
+          <data android:scheme="twint-issuer6" />
+          <data android:scheme="twint-issuer7" />
+          <data android:scheme="twint-issuer8" />
+          <data android:scheme="twint-issuer9" />
+          <data android:scheme="twint-issuer10" />
+          <data android:scheme="twint-issuer12" />
+          <data android:scheme="twint-issuer13" />
+          <data android:scheme="twint-issuer14" />
+          <data android:scheme="twint-issuer15" />
+          <data android:scheme="twint-issuer16" />
+          <data android:scheme="twint-issuer17" />
+          <data android:scheme="twint-issuer18" />
+          <data android:scheme="twint-issuer19" />
+          <data android:scheme="twint-issuer20" />
+          <data android:scheme="twint-issuer21" />
+          <data android:scheme="twint-issuer22" />
+          <data android:scheme="twint-issuer23" />
+          <data android:scheme="twint-issuer24" />
+          <data android:scheme="twint-issuer25" />
+          <data android:scheme="twint-issuer26" />
+          <data android:scheme="twint-issuer27" />
+          <data android:scheme="twint-issuer28" />
+          <data android:scheme="twint-issuer29" />
+          <data android:scheme="twint-issuer30" />
+          <data android:scheme="twint-issuer31" />
+          <data android:scheme="twint-issuer32" />
+          <data android:scheme="twint-issuer33" />
+          <data android:scheme="twint-issuer34" />
+          <data android:scheme="twint-issuer35" />
+          <data android:scheme="twint-issuer36" />
+          <data android:scheme="twint-issuer37" />
+          <data android:scheme="twint-issuer38" />
+          <data android:scheme="twint-issuer39" />
+          <data android:scheme="twint-issuer40" />
+          <data android:scheme="twint-issuer41" />
+          <data android:scheme="twint-issuer42" />
+          <data android:scheme="twint-issuer43" />
+          <data android:scheme="twint-issuer44" />
+          <data android:scheme="twint-issuer46" />
+          <data android:scheme="twint-issuer47" />
+          <data android:scheme="twint-issuer48" />
+          <data android:scheme="twint-issuer49" />
+          <data android:scheme="twint-issuer51" />
+          <data android:scheme="twint-issuer52" />
+          <data android:scheme="twint-issuer53" />
+          <data android:scheme="twint-issuer54" />
+          <data android:scheme="twint-issuer55" />
+          <data android:scheme="twint-issuer56" />
+          <data android:scheme="twint-issuer57" />
+          <data android:scheme="twint-issuer58" />
+          <data android:scheme="twint-issuer59" />
+          <data android:scheme="twint-issuer60" />
+          <data android:scheme="twint-issuer61" />
+          <data android:scheme="twint-issuer62" />
+          <data android:scheme="twint-issuer63" />
+          <data android:scheme="twint-issuer64" />
+          <data android:scheme="twint-issuer65" />
+        </intent-filter>
       </activity>
     </application>
 </manifest>
