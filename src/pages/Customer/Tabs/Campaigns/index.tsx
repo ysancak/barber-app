@@ -27,8 +27,8 @@ const Campaigns = () => {
     return (
       <EmptyPage
         icon="campaign"
-        title={t('campaign.empty.title')}
-        description={t('campaign.empty.description')}
+        title={t('campaigns.empty.title')}
+        description={t('campaigns.empty.description')}
       />
     );
   }

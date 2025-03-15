@@ -22,10 +22,75 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
 		<string>geo</string>
+		<string>postfinance</string>
+		<string>twint-issuer1</string>
+		<string>twint-issuer2</string>
+		<string>twint-issuer3</string>
+		<string>twint-issuer4</string>
+		<string>twint-issuer5</string>
+		<string>twint-issuer6</string>
+		<string>twint-issuer7</string>
+		<string>twint-issuer8</string>
+		<string>twint-issuer9</string>
+		<string>twint-issuer10</string>
+		<string>twint-issuer12</string>
+		<string>twint-issuer13</string>
+		<string>twint-issuer14</string>
+		<string>twint-issuer15</string>
+		<string>twint-issuer16</string>
+		<string>twint-issuer17</string>
+		<string>twint-issuer18</string>
+		<string>twint-issuer19</string>
+		<string>twint-issuer20</string>
+		<string>twint-issuer21</string>
+		<string>twint-issuer22</string>
+		<string>twint-issuer23</string>
+		<string>twint-issuer24</string>
+		<string>twint-issuer25</string>
+		<string>twint-issuer26</string>
+		<string>twint-issuer27</string>
+		<string>twint-issuer28</string>
+		<string>twint-issuer29</string>
+		<string>twint-issuer30</string>
+		<string>twint-issuer31</string>
+		<string>twint-issuer32</string>
+		<string>twint-issuer33</string>
+		<string>twint-issuer34</string>
+		<string>twint-issuer35</string>
+		<string>twint-issuer36</string>
+		<string>twint-issuer37</string>
+		<string>twint-issuer38</string>
+		<string>twint-issuer39</string>
+		<string>twint-issuer40</string>
+		<string>twint-issuer41</string>
+		<string>twint-issuer42</string>
+		<string>twint-issuer43</string>
+		<string>twint-issuer44</string>
+		<string>twint-issuer46</string>
+		<string>twint-issuer47</string>
+		<string>twint-issuer48</string>
+		<string>twint-issuer49</string>
+		<string>twint-issuer51</string>
+		<string>twint-issuer52</string>
+		<string>twint-issuer53</string>
+		<string>twint-issuer54</string>
+		<string>twint-issuer55</string>
+		<string>twint-issuer56</string>
+		<string>twint-issuer57</string>
+		<string>twint-issuer58</string>
+		<string>twint-issuer59</string>
+		<string>twint-issuer60</string>
+		<string>twint-issuer61</string>
+		<string>twint-issuer62</string>
+		<string>twint-issuer63</string>
+		<string>twint-issuer64</string>
+		<string>twint-issuer65</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -40,14 +105,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Wir verwenden Ihren Standort, um Ihnen die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden nur genutzt, während Sie die App aktiv verwenden.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Ihr Standort wird ständig genutzt, um Ihnen jederzeit die nächstgelegenen Friseursalons anzeigen zu können. Diese Daten ermöglichen es uns, Ihnen auch im Hintergrund standortbezogene Dienste anzubieten.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Wir verwenden Ihren Standort, um Ihnen jederzeit die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden genutzt, sowohl während Sie die App aktiv verwenden, als auch im Hintergrund, um Ihnen standortbezogene Dienste anbieten zu können.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Ihr Standort wird ständig genutzt, um Ihnen jederzeit die nächstgelegenen Friseursalons anzeigen zu können. Diese Daten ermöglichen es uns, Ihnen auch im Hintergrund standortbezogene Dienste anzubieten.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Wir verwenden Ihren Standort, um Ihnen die nächstgelegenen Friseursalons anzuzeigen. Diese Daten werden nur genutzt, während Sie die App aktiv verwenden.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
